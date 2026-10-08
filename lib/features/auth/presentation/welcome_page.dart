@@ -21,6 +21,17 @@ class WelcomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Spacer(),
+                Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+                    child: Image.asset(
+                      'assets/brand/app_icon.png',
+                      width: 88,
+                      height: 88,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.lg),
                 Text(
                   'Controle Saúde',
                   style: text.displayMedium?.copyWith(color: AppColors.teal),

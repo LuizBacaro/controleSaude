@@ -20,7 +20,13 @@ class LabPdfParser {
         .replaceAll('\u00a0', ' ')
         .replaceAll(RegExp(r'[ \t]+'), ' ');
 
-    final collectedAt = _extractCollectionDate(cleaned) ?? DateTime.now();
+    final collectedAt = _extractCollectionDate(cleaned);
+    if (collectedAt == null) {
+      throw FormatException(
+        'Não foi possível encontrar a data de atendimento no PDF '
+        '(Data atend. ou Coleta).',
+      );
+    }
     final patientName = _extractPatientName(cleaned);
     final labName = cleaned.contains('Unilab') ? 'Unilab' : null;
 
@@ -58,9 +64,34 @@ class LabPdfParser {
   }
 
   DateTime? _extractCollectionDate(String text) {
-    final m = RegExp(r'Coleta:\s*(\d{2}/\d{2}/\d{4})').firstMatch(text);
-    if (m == null) return null;
-    return _tryParseDate(m.group(1)!);
+    final adjacent = RegExp(
+      r'Data\s+atend\.?\s*:?\s*(\d{2}/\d{2}/\d{4})',
+      caseSensitive: false,
+    ).firstMatch(text);
+    final adjacentDate = adjacent == null
+        ? null
+        : _tryParseDate(adjacent.group(1)!);
+    if (adjacentDate != null) return adjacentDate;
+
+    // No laudo Unilab o rótulo fica numa coluna e o valor noutra.
+    final label = RegExp(
+      r'Data\s+atend',
+      caseSensitive: false,
+    ).firstMatch(text);
+    if (label != null) {
+      final dated = RegExp(
+        r'(\d{2}/\d{2}/\d{4})\s*-\s*\d{2}:\d{2}',
+      ).firstMatch(text.substring(label.end));
+      final parsed = dated == null ? null : _tryParseDate(dated.group(1)!);
+      if (parsed != null) return parsed;
+    }
+
+    final coleta = RegExp(
+      r'Coleta:\s*(\d{2}/\d{2}/\d{4})',
+      caseSensitive: false,
+    ).firstMatch(text);
+    if (coleta == null) return null;
+    return _tryParseDate(coleta.group(1)!);
   }
 
   String? _extractPatientName(String text) {
