@@ -7,17 +7,21 @@ import '../features/exams/data/exams_repository.dart';
 import '../features/exams/domain/exam_report.dart';
 
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
-  throw UnimplementedError('SharedPreferences deve ser sobrescrito no bootstrap.');
+  throw UnimplementedError(
+    'SharedPreferences deve ser sobrescrito no bootstrap.',
+  );
 });
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  final repo = AuthRepository(prefs: ref.watch(sharedPreferencesProvider));
+  final repo = AuthRepository();
   ref.onDispose(repo.dispose);
   return repo;
 });
 
 /// Sessão atual — atualizado via [authRevisionProvider] após login/logout.
-final authRevisionProvider = NotifierProvider<AuthRevision, int>(AuthRevision.new);
+final authRevisionProvider = NotifierProvider<AuthRevision, int>(
+  AuthRevision.new,
+);
 
 class AuthRevision extends Notifier<int> {
   @override
@@ -35,7 +39,9 @@ final examsRepositoryProvider = Provider<ExamsRepository>((ref) {
   return ExamsRepository(prefs: ref.watch(sharedPreferencesProvider));
 });
 
-final examsRevisionProvider = NotifierProvider<ExamsRevision, int>(ExamsRevision.new);
+final examsRevisionProvider = NotifierProvider<ExamsRevision, int>(
+  ExamsRevision.new,
+);
 
 class ExamsRevision extends Notifier<int> {
   @override

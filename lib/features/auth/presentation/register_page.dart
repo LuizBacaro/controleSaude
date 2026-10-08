@@ -34,7 +34,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       _error = null;
     });
     try {
-      await ref.read(authRepositoryProvider).register(
+      await ref
+          .read(authRepositoryProvider)
+          .register(
             email: _email.text,
             password: _password.text,
             displayName: _name.text,
@@ -59,7 +61,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
         padding: const EdgeInsets.all(AppSpacing.lg),
         children: [
           Text(
-            'Crie sua conta para guardar o histórico dos exames neste aparelho.',
+            'A conta fica salva. Se reinstalar o app, entre de novo com o mesmo e-mail e senha.',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: AppSpacing.lg),
@@ -81,7 +83,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             obscureText: true,
             decoration: const InputDecoration(
               labelText: 'Senha',
-              helperText: 'Mínimo de 4 caracteres',
+              helperText: 'Mínimo de 6 caracteres',
             ),
           ),
           const SizedBox(height: AppSpacing.md),
