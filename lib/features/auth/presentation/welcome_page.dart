@@ -22,22 +22,13 @@ class WelcomePage extends StatelessWidget {
               children: [
                 const Spacer(),
                 Center(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
-                    child: Image.asset(
-                      'assets/brand/app_icon.png',
-                      width: 88,
-                      height: 88,
-                    ),
+                  child: Image.asset(
+                    'assets/brand/logo.png',
+                    width: 280,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                Text(
-                  'Controle Saúde',
-                  style: text.displayMedium?.copyWith(color: AppColors.teal),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: AppSpacing.md),
                 Text(
                   'Importe o PDF dos seus exames de sangue e acompanhe a evolução de cada marcador ao longo do tempo.',
                   style: text.bodyLarge?.copyWith(color: AppColors.textSecondary),

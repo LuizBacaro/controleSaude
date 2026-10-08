@@ -6,8 +6,8 @@ import 'package:uuid/uuid.dart';
 
 import '../domain/app_user.dart';
 
-const _sessionKey = 'controle_saude_session';
-const _usersKey = 'controle_saude_users';
+const _sessionKey = 'exame_facil_session';
+const _usersKey = 'exame_facil_users';
 
 class AuthRepository extends ChangeNotifier {
   AuthRepository({

@@ -58,7 +58,7 @@ class DashboardPage extends ConsumerWidget {
         slivers: [
           SliverAppBar(
             floating: true,
-            title: Text('Controle Saúde', style: text.titleLarge),
+            title: Text('ExameFácil', style: text.titleLarge),
             actions: [
               IconButton(
                 tooltip: 'Importar PDF',

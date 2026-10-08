@@ -11,8 +11,8 @@ import 'lab_pdf_parser.dart';
 import 'pdf_text_extractor.dart';
 import 'sample_exam_text.dart';
 
-const _reportsKey = 'controle_saude_reports';
-const _migratedKey = 'controle_saude_reports_migrated';
+const _reportsKey = 'exame_facil_reports';
+const _migratedKey = 'exame_facil_reports_migrated';
 
 class ExamsRepository {
   ExamsRepository({

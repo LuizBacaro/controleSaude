@@ -1,4 +1,4 @@
-import 'package:controle_saude/core/router/marker_route.dart';
+import 'package:exame_facil/core/router/marker_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';

@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:controle_saude/features/exams/data/lab_pdf_parser.dart';
-import 'package:controle_saude/features/exams/data/pdf_text_extractor.dart';
-import 'package:controle_saude/features/exams/data/sample_exam_text.dart';
-import 'package:controle_saude/features/exams/domain/exam_marker.dart';
+import 'package:exame_facil/features/exams/data/lab_pdf_parser.dart';
+import 'package:exame_facil/features/exams/data/pdf_text_extractor.dart';
+import 'package:exame_facil/features/exams/data/sample_exam_text.dart';
+import 'package:exame_facil/features/exams/domain/exam_marker.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

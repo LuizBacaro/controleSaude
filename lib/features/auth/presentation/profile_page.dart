@@ -53,7 +53,7 @@ class ProfilePage extends ConsumerWidget {
             leading: const Icon(Icons.info_outline),
             title: const Text('Sobre'),
             subtitle: const Text(
-              'Controle Saúde não substitui consulta médica. '
+              'ExameFácil não substitui consulta médica. '
               'Dados armazenados localmente neste aparelho.',
             ),
           ),

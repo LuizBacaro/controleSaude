@@ -1,4 +1,4 @@
-package br.com.controlesaude.controle_saude
+package br.com.examefacil
 
 import io.flutter.embedding.android.FlutterActivity
 

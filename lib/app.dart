@@ -12,7 +12,7 @@ class ControleSaudeApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouterProvider);
     return MaterialApp.router(
-      title: 'Controle Saúde',
+      title: 'ExameFácil',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       routerConfig: router,
