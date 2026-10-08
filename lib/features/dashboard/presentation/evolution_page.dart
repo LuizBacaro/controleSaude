@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
+import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../exams/presentation/widgets/status_chip.dart';
@@ -24,8 +25,8 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
     final categories = series.map((s) => s.category).toSet().toList()..sort();
 
     final filtered = series.where((s) {
-      final matchQuery = _query.isEmpty ||
-          s.name.toLowerCase().contains(_query.toLowerCase());
+      final matchQuery =
+          _query.isEmpty || s.name.toLowerCase().contains(_query.toLowerCase());
       final matchCat = _category == null || s.category == _category;
       return matchQuery && matchCat;
     }).toList();
@@ -99,8 +100,9 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
                       final latest = s.latest;
                       return ListTile(
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(AppSpacing.radiusMd),
+                          borderRadius: BorderRadius.circular(
+                            AppSpacing.radiusMd,
+                          ),
                           side: const BorderSide(color: AppColors.border),
                         ),
                         tileColor: AppColors.surface,
@@ -111,9 +113,7 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
                               : '${latest.value} ${s.unit} · ${s.points.length} pontos',
                         ),
                         trailing: StatusChip(status: s.latestStatus),
-                        onTap: () => context.push(
-                          '/marcador/${Uri.encodeComponent(s.name)}',
-                        ),
+                        onTap: () => context.push(markerRoute(s.name)),
                       );
                     },
                   ),

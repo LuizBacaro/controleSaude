@@ -52,15 +52,32 @@ class LabPdfParser {
       );
     }
 
+    var reportDate = collectedAt;
+    for (final marker in unique) {
+      if (marker.collectedAt.isAfter(reportDate)) {
+        reportDate = marker.collectedAt;
+      }
+    }
+
     return ExamReport(
       id: _uuid.v4(),
-      collectedAt: collectedAt,
+      collectedAt: reportDate,
       importedAt: DateTime.now(),
       markers: unique,
       patientName: patientName,
       labName: labName,
       sourceFileName: sourceFileName,
     );
+  }
+
+  DateTime _dateNear(String text, int index, DateTime fallback) {
+    final head = text.substring(0, index.clamp(0, text.length));
+    final matches = RegExp(
+      r'Coleta:\s*(\d{2}/\d{2}/\d{4})',
+      caseSensitive: false,
+    ).allMatches(head);
+    if (matches.isEmpty) return fallback;
+    return _tryParseDate(matches.last.group(1)!) ?? fallback;
   }
 
   DateTime? _extractCollectionDate(String text) {
@@ -121,7 +138,7 @@ class LabPdfParser {
           name: name,
           value: value,
           unit: unit,
-          collectedAt: collectedAt,
+          collectedAt: _dateNear(text, m.end, collectedAt),
           category: category,
           referenceMin: min,
           referenceMax: max,
@@ -131,25 +148,43 @@ class LabPdfParser {
       );
     }
 
-    add('Hemácias', r'Hem[aá]cias:\s*([\d.,]+)', 'milhões/mm³',
+    add('Hemácias', r'Hem[aá]cias[.\s]*:\s*([\d.,]+)', 'milhões/mm³',
         min: 4.5, max: 6.0, refText: '4,5 a 6,0 milhões/mm³');
-    add('Hemoglobina', r'Hemoglobina:\s*([\d.,]+)\s*g/dL', 'g/dL',
+    add('Hemoglobina', r'Hemoglobina[.\s]*:\s*([\d.,]+)\s*g/dL', 'g/dL',
         min: 13.0, max: 17.0, refText: '13,0 a 17,0 g/dL');
-    add('Hematócrito', r'Hemat[oó]crito:\s*([\d.,]+)\s*%', '%',
+    add('Hematócrito', r'Hemat[oó]crito[.\s]*:\s*([\d.,]+)', '%',
         min: 38, max: 52, refText: '38 a 52 %');
-    add('V.C.M', r'V\.C\.M:\s*([\d.,]+)', 'fL', min: 82, max: 98);
-    add('H.C.M', r'H\.C\.M:\s*([\d.,]+)', 'pg', min: 27, max: 32);
-    add('C.H.C.M', r'C\.H\.C\.M:\s*([\d.,]+)', 'g/dL', min: 32, max: 36);
-    add('R.D.W', r'R\.D\.W:\s*([\d.,]+)', '%', max: 14.5);
-    add('Leucócitos', r'Leuc[oó]citos:\s*([\d.]+)\s*/mm', '/mm³',
-        min: 4500, max: 11000, refText: '4.500 a 11.000 /mm³');
-    add('Plaquetas', r'Contagem de plaquetas:\s*([\d.]+)', '/mm³',
-        min: 150000, max: 450000, refText: '150.000 a 450.000 /mm³');
-    add('Segmentados', r'Segmentados:\s*([\d.,]+)\s*%', '%', min: 50, max: 67);
-    add('Linfócitos', r'Linf[oó]citos:\s*([\d.,]+)\s*%', '%', min: 20, max: 40);
-    add('Monócitos', r'Mon[oó]citos:\s*([\d.,]+)\s*%', '%', min: 4, max: 10);
-    add('Eosinófilos', r'Eosin[oó]filos:\s*([\d.,]+)\s*%', '%', min: 1, max: 4);
-    add('Basófilos', r'Bas[oó]filos:\s*([\d.,]+)\s*%', '%', min: 0, max: 1);
+    add('V.C.M', r'V\.?C\.?M[.\s]*:\s*([\d.,]+)', 'fL', min: 82, max: 98);
+    add('H.C.M', r'H\.?C\.?M[.\s]*:\s*([\d.,]+)', 'pg', min: 27, max: 32);
+    add('C.H.C.M', r'(?:C\.?H\.?C\.?M|CHCM)[.\s]*:\s*([\d.,]+)', 'g/dL',
+        min: 32, max: 36);
+    add('R.D.W', r'R\.?D\.?W[.\s]*:\s*([\d.,]+)', '%', max: 14.5);
+    add(
+      'Leucócitos',
+      r'Leuc[oó]citos(?:[\s\S]{0,24}?TOTAIS)?[.\s]*:\s*([\d.]+)',
+      '/mm³',
+      min: 4500,
+      max: 11000,
+      refText: '4.500 a 11.000 /mm³',
+    );
+    add(
+      'Plaquetas',
+      r'(?:Contagem de plaquetas|Plaquetas)[.\s]*:\s*([\d.]+)',
+      '/mm³',
+      min: 150000,
+      max: 450000,
+      refText: '150.000 a 450.000 /mm³',
+    );
+    add('Segmentados', r'Segmentados[.\s]*:\s*([\d.,]+)\s*%', '%',
+        min: 50, max: 67);
+    add('Linfócitos', r'Linf[oó]citos[.\s]*:\s*([\d.,]+)\s*%', '%',
+        min: 20, max: 40);
+    add('Monócitos', r'Mon[oó]citos[.\s]*:\s*([\d.,]+)\s*%', '%',
+        min: 4, max: 10);
+    add('Eosinófilos', r'Eosin[oó]filos[.\s]*:\s*([\d.,]+)\s*%', '%',
+        min: 1, max: 4);
+    add('Basófilos', r'Bas[oó]filos[.\s]*:\s*([\d.,]+)\s*%', '%',
+        min: 0, max: 1);
 
     return markers;
   }
@@ -170,7 +205,7 @@ class LabPdfParser {
           name: name,
           value: value,
           unit: unit,
-          collectedAt: collectedAt,
+          collectedAt: _dateNear(text, m.end, collectedAt),
           category: category,
           referenceMin: min,
           referenceMax: max,
@@ -234,7 +269,7 @@ class LabPdfParser {
           name: name,
           value: value,
           unit: unit,
-          collectedAt: collectedAt,
+          collectedAt: _dateNear(text, m.end, collectedAt),
           category: category,
           referenceMin: min,
           referenceMax: max,
@@ -246,28 +281,40 @@ class LabPdfParser {
 
     tryAdd(
       'Colesterol Total',
-      RegExp(r'Colesterol Total:\s*([\d.,]+)\s*mg/dL', caseSensitive: false),
+      RegExp(
+        r'(?:Colesterol Total:\s*|COLESTEROL\s+TOTAL(?!\s+e)[\s\S]{0,500}?RESULTADO[.\s]*:\s*)([\d.,]+)\s*mg/dL',
+        caseSensitive: false,
+      ),
       'mg/dL',
       max: 190,
       refText: 'Desejável inferior a 190 mg/dL',
     );
     tryAdd(
       'Colesterol HDL',
-      RegExp(r'Colesterol HDL:\s*([\d.,]+)\s*mg/dL', caseSensitive: false),
+      RegExp(
+        r'(?:Colesterol HDL:\s*|HDL[\s\S]{0,40}?COLESTEROL[\s\S]{0,500}?RESULTADO[.\s]*:\s*)([\d.,]+)\s*mg/dL',
+        caseSensitive: false,
+      ),
       'mg/dL',
       min: 40,
       refText: 'Desejável superior a 40 mg/dL',
     );
     tryAdd(
       'Colesterol LDL',
-      RegExp(r'Colesterol LDL:\s*([\d.,]+)\s*mg/dL', caseSensitive: false),
+      RegExp(
+        r'(?:Colesterol LDL:\s*|COLESTEROL\s+LDL[\s\S]{0,300}?RESULTADO[.\s]*:\s*)([\d.,]+)\s*mg/dL',
+        caseSensitive: false,
+      ),
       'mg/dL',
       max: 100,
       refText: 'Ótimo: menor que 100 mg/dL',
     );
     tryAdd(
       'Colesterol VLDL',
-      RegExp(r'Colesterol VLDL:\s*([\d.,]+)\s*mg/dL', caseSensitive: false),
+      RegExp(
+        r'(?:Colesterol VLDL:\s*|COLESTEROL\s+VLDL[\s\S]{0,300}?RESULTADO[.\s]*:\s*)([\d.,]+)\s*mg/dL',
+        caseSensitive: false,
+      ),
       'mg/dL',
       max: 30,
     );
@@ -286,7 +333,7 @@ class LabPdfParser {
     tryAdd(
       'Triglicerídeos',
       RegExp(
-        r'Triglicer[ií]deos[\s\S]{0,120}?Resultado:\s*([\d.,]+)\s*mg/dL',
+        r'Triglic(?:er[ií]deos|[eé]rides)[\s\S]{0,500}?Resultado[.\s]*:\s*([\d.,]+)\s*mg/dL',
         caseSensitive: false,
       ),
       'mg/dL',
@@ -303,7 +350,7 @@ class LabPdfParser {
         name: 'Glicose',
         category: 'Metabolismo',
         pattern: RegExp(
-          r'Glicose[\s\S]{0,200}?Resultado:\s*([\d.,]+)\s*mg/dL',
+          r'Glicose[\s\S]{0,500}?Resultado[.\s]*:\s*([\d.,]+)\s*mg/dL',
           caseSensitive: false,
         ),
         unit: 'mg/dL',
@@ -347,7 +394,7 @@ class LabPdfParser {
         name: 'Ácido úrico',
         category: 'Metabolismo',
         pattern: RegExp(
-          r'[ÁA]cido [uú]rico[\s\S]{0,200}?Resultado:\s*([\d.,]+)\s*mg/dL',
+          r'[ÁA]cido[\s\S]{0,20}?[uú]rico[\s\S]{0,500}?Resultado[.\s]*:\s*([\d.,]+)\s*mg/dL',
           caseSensitive: false,
         ),
         unit: 'mg/dL',
@@ -389,10 +436,92 @@ class LabPdfParser {
         refText: 'Homens: até 41 U/L',
       ),
       _MarkerSpec(
+        name: 'Fosfatase alcalina',
+        category: 'Hepático',
+        pattern: RegExp(
+          r'Fosfatase alcalina[\s\S]{0,300}?Resultado[.\s]*:\s*([\d.,]+)\s*U/L',
+          caseSensitive: false,
+        ),
+        unit: 'U/L',
+        min: 40,
+        max: 129,
+        refText: 'Homens adultos: 40 a 129 U/L',
+      ),
+      _MarkerSpec(
+        name: 'GGT',
+        category: 'Hepático',
+        pattern: RegExp(
+          r'(?:GGT|Gama Glutamil)[\s\S]{0,300}?Resultado[.\s]*:\s*([\d.,]+)\s*U/L',
+          caseSensitive: false,
+        ),
+        unit: 'U/L',
+        min: 10,
+        max: 71,
+        refText: 'Homens: 10 a 71 U/L',
+      ),
+      _MarkerSpec(
+        name: 'Bilirrubina direta',
+        category: 'Hepático',
+        pattern: RegExp(
+          r'Bilirrubina direta:\s*([\d.,]+)\s*mg/dL',
+          caseSensitive: false,
+        ),
+        unit: 'mg/dL',
+        max: 0.40,
+        refText: 'Inferior ou igual a 0,40 mg/dL',
+      ),
+      _MarkerSpec(
+        name: 'Bilirrubina indireta',
+        category: 'Hepático',
+        pattern: RegExp(
+          r'Bilirrubina indireta:\s*([\d.,]+)\s*mg/dL',
+          caseSensitive: false,
+        ),
+        unit: 'mg/dL',
+        max: 0.80,
+        refText: 'Inferior ou igual a 0,80 mg/dL',
+      ),
+      _MarkerSpec(
+        name: 'Bilirrubina total',
+        category: 'Hepático',
+        pattern: RegExp(
+          r'Bilirrubina total:\s*([\d.,]+)\s*mg/dL',
+          caseSensitive: false,
+        ),
+        unit: 'mg/dL',
+        min: 0.30,
+        max: 1.20,
+        refText: '0,30 a 1,20 mg/dL',
+      ),
+      _MarkerSpec(
+        name: 'Vitamina D',
+        category: 'Vitaminas',
+        pattern: RegExp(
+          r'Vitamina D[\s\S]{0,300}?Resultado[.\s]*:\s*([\d.,]+)\s*ng/mL',
+          caseSensitive: false,
+        ),
+        unit: 'ng/mL',
+        min: 20,
+        max: 60,
+        refText: 'Adequado: 20 a 60 ng/mL',
+      ),
+      _MarkerSpec(
+        name: 'Vitamina B12',
+        category: 'Vitaminas',
+        pattern: RegExp(
+          r'Vitamina[\s\S]{0,20}?B12[\s\S]{0,400}?Resultado[.\s]*:\s*([\d.,]+)\s*pg/mL',
+          caseSensitive: false,
+        ),
+        unit: 'pg/mL',
+        min: 181,
+        max: 906,
+        refText: '181 a 906 pg/mL',
+      ),
+      _MarkerSpec(
         name: 'Ferritina',
         category: 'Ferro',
         pattern: RegExp(
-          r'Ferritina[\s\S]{0,200}?Resultado:\s*([\d.,]+)\s*ng/mL',
+          r'Ferritina[\s\S]{0,400}?Resultado[.\s]*:\s*([\d.,]+)\s*ng/mL',
           caseSensitive: false,
         ),
         unit: 'ng/mL',
@@ -448,7 +577,7 @@ class LabPdfParser {
           name: spec.name,
           value: value,
           unit: spec.unit,
-          collectedAt: collectedAt,
+          collectedAt: _dateNear(text, m.end, collectedAt),
           category: spec.category,
           referenceMin: spec.min,
           referenceMax: spec.max,
@@ -508,6 +637,8 @@ class LabPdfParser {
     // 4.970 (milhar BR) ou 16,1 (decimal BR) ou 161.000
     if (s.contains(',') && s.contains('.')) {
       s = s.replaceAll('.', '').replaceAll(',', '.');
+    } else if (RegExp(r'^\d{1,3}(\.\d{3})+$').hasMatch(s)) {
+      s = s.replaceAll('.', '');
     } else if (s.contains(',')) {
       s = s.replaceAll(',', '.');
     } else if (RegExp(r'^\d{1,3}(\.\d{3})+$').hasMatch(s)) {

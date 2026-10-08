@@ -27,8 +27,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       final loc = state.matchedLocation;
       final loggedIn = ref.read(authRepositoryProvider).isLoggedIn;
-      final isPublic =
-          loc == '/' || loc == '/entrar' || loc == '/criar-conta';
+      final isPublic = loc == '/' || loc == '/entrar' || loc == '/criar-conta';
 
       if (!loggedIn && !isPublic) return '/';
       if (loggedIn && isPublic) {
@@ -52,9 +51,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: '/marcador/:name',
+        path: '/marcador',
         builder: (context, state) {
-          final name = Uri.decodeComponent(state.pathParameters['name']!);
+          final name = state.uri.queryParameters['nome'] ?? '';
           return MarkerDetailPage(markerName: name);
         },
       ),

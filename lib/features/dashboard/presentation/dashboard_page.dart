@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/providers.dart';
+import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../exams/domain/exam_marker.dart';
@@ -28,7 +29,10 @@ class DashboardPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('Olá, ${user?.displayName ?? 'paciente'}', style: text.headlineMedium),
+                Text(
+                  'Olá, ${user?.displayName ?? 'paciente'}',
+                  style: text.headlineMedium,
+                ),
                 const SizedBox(height: AppSpacing.md),
                 Text(
                   'Ainda não há exames. Importe o PDF do seu laudo para montar o painel.',
@@ -117,7 +121,9 @@ class DashboardPage extends ConsumerWidget {
                   const SizedBox(height: AppSpacing.lg),
                   Text('Atenção', style: text.titleMedium),
                   const SizedBox(height: AppSpacing.sm),
-                  ...summary.outOfRange.take(5).map(
+                  ...summary.outOfRange
+                      .take(5)
+                      .map(
                         (s) => Padding(
                           padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                           child: _MarkerTile(
@@ -125,9 +131,7 @@ class DashboardPage extends ConsumerWidget {
                             value: s.latest!.value,
                             unit: s.unit,
                             status: s.latestStatus,
-                            onTap: () => context.push(
-                              '/marcador/${Uri.encodeComponent(s.name)}',
-                            ),
+                            onTap: () => context.push(markerRoute(s.name)),
                           ),
                         ),
                       ),
@@ -135,7 +139,9 @@ class DashboardPage extends ConsumerWidget {
                 const SizedBox(height: AppSpacing.lg),
                 Row(
                   children: [
-                    Expanded(child: Text('Marcadores', style: text.titleMedium)),
+                    Expanded(
+                      child: Text('Marcadores', style: text.titleMedium),
+                    ),
                     TextButton(
                       onPressed: () => context.go('/app/evolucao'),
                       child: const Text('Ver todos'),
@@ -152,9 +158,7 @@ class DashboardPage extends ConsumerWidget {
                       status: s.latestStatus,
                       category: s.category,
                       delta: s.delta,
-                      onTap: () => context.push(
-                        '/marcador/${Uri.encodeComponent(s.name)}',
-                      ),
+                      onTap: () => context.push(markerRoute(s.name)),
                     ),
                   ),
                 ),
@@ -192,7 +196,9 @@ class _StatCard extends StatelessWidget {
         children: [
           Text(
             value,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: color),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(color: color),
           ),
           const SizedBox(height: 2),
           Text(label, style: Theme.of(context).textTheme.bodySmall),
@@ -260,7 +266,9 @@ class _MarkerTile extends StatelessWidget {
                       Text(
                         '${delta! >= 0 ? '▲' : '▼'} ${delta!.abs().toStringAsFixed(1)} vs anterior',
                         style: text.bodySmall?.copyWith(
-                          color: delta! >= 0 ? AppColors.warning : AppColors.info,
+                          color: delta! >= 0
+                              ? AppColors.warning
+                              : AppColors.info,
                         ),
                       ),
                   ],

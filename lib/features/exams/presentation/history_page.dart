@@ -25,7 +25,11 @@ class HistoryPage extends ConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.folder_open, size: 48, color: AppColors.sage),
+                    const Icon(
+                      Icons.folder_open,
+                      size: 48,
+                      color: AppColors.sage,
+                    ),
                     const SizedBox(height: AppSpacing.md),
                     Text(
                       'Nenhum laudo importado ainda.',
@@ -63,7 +67,10 @@ class HistoryPage extends ConsumerWidget {
                       color: AppColors.error.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
                     ),
-                    child: const Icon(Icons.delete_outline, color: AppColors.error),
+                    child: const Icon(
+                      Icons.delete_outline,
+                      color: AppColors.error,
+                    ),
                   ),
                   confirmDismiss: (_) async {
                     return await showDialog<bool>(
@@ -88,7 +95,9 @@ class HistoryPage extends ConsumerWidget {
                         false;
                   },
                   onDismissed: (_) async {
-                    await ref.read(examsRepositoryProvider).deleteReport(report.id);
+                    await ref
+                        .read(examsRepositoryProvider)
+                        .deleteReport(report.id);
                     ref.read(examsRevisionProvider.notifier).bump();
                   },
                   child: Material(
@@ -101,31 +110,54 @@ class HistoryPage extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
                       onTap: () => context.push('/laudo/${report.id}'),
                       child: Padding(
-                        padding: const EdgeInsets.all(AppSpacing.md),
-                        child: Column(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.md,
+                          AppSpacing.sm,
+                          AppSpacing.xs,
+                          AppSpacing.md,
+                        ),
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              dateFmt.format(report.collectedAt),
-                              style: text.titleMedium,
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              [
-                                if (report.labName != null) report.labName!,
-                                '${report.markerCount} marcadores',
-                                if (report.outOfRangeCount > 0)
-                                  '${report.outOfRangeCount} fora da faixa',
-                              ].join(' · '),
-                              style: text.bodyMedium,
-                            ),
-                            if (report.sourceFileName != null) ...[
-                              const SizedBox(height: 4),
-                              Text(
-                                report.sourceFileName!,
-                                style: text.bodySmall,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: AppSpacing.sm),
+                                  Text(
+                                    dateFmt.format(report.collectedAt),
+                                    style: text.titleMedium,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    [
+                                      if (report.labName != null)
+                                        report.labName!,
+                                      '${report.markerCount} marcadores',
+                                      if (report.outOfRangeCount > 0)
+                                        '${report.outOfRangeCount} fora da faixa',
+                                    ].join(' · '),
+                                    style: text.bodyMedium,
+                                  ),
+                                  if (report.sourceFileName != null) ...[
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      report.sourceFileName!,
+                                      style: text.bodySmall,
+                                    ),
+                                  ],
+                                ],
                               ),
-                            ],
+                            ),
+                            IconButton(
+                              tooltip: 'Remover laudo',
+                              onPressed: () =>
+                                  _removeReport(context, ref, report.id),
+                              icon: const Icon(
+                                Icons.delete_outline,
+                                color: AppColors.error,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -136,4 +168,35 @@ class HistoryPage extends ConsumerWidget {
             ),
     );
   }
+}
+
+Future<void> _removeReport(
+  BuildContext context,
+  WidgetRef ref,
+  String reportId,
+) async {
+  final confirmed =
+      await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Remover laudo?'),
+          content: const Text(
+            'Os marcadores deste PDF sairão do histórico, do painel e da evolução.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Cancelar'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Remover'),
+            ),
+          ],
+        ),
+      ) ??
+      false;
+  if (!confirmed) return;
+  await ref.read(examsRepositoryProvider).deleteReport(reportId);
+  ref.read(examsRevisionProvider.notifier).bump();
 }

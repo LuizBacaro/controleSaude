@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/providers.dart';
+import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../domain/exam_marker.dart';
@@ -37,6 +38,39 @@ class ReportDetailPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Coleta ${dateFmt.format(report.collectedAt)}'),
+        actions: [
+          IconButton(
+            tooltip: 'Remover laudo',
+            onPressed: () async {
+              final confirmed =
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      title: const Text('Remover laudo?'),
+                      content: const Text(
+                        'Os marcadores deste PDF sairão do histórico, do painel e da evolução.',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(ctx, false),
+                          child: const Text('Cancelar'),
+                        ),
+                        FilledButton(
+                          onPressed: () => Navigator.pop(ctx, true),
+                          child: const Text('Remover'),
+                        ),
+                      ],
+                    ),
+                  ) ??
+                  false;
+              if (!confirmed || !context.mounted) return;
+              await ref.read(examsRepositoryProvider).deleteReport(report.id);
+              ref.read(examsRevisionProvider.notifier).bump();
+              if (context.mounted) context.pop();
+            },
+            icon: const Icon(Icons.delete_outline),
+          ),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
@@ -77,9 +111,7 @@ class ReportDetailPage extends ConsumerWidget {
                     ),
                     isThreeLine: m.referenceText != null,
                     trailing: StatusChip(status: m.status),
-                    onTap: () => context.push(
-                      '/marcador/${Uri.encodeComponent(m.name)}',
-                    ),
+                    onTap: () => context.push(markerRoute(m.name)),
                   ),
                 ),
               ),
