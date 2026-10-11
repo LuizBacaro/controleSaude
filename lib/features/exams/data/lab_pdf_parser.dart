@@ -24,8 +24,7 @@ class LabPdfParser {
         '(Data atend. ou Coleta).',
       );
     }
-    final patientName = _extractPatientName(cleaned);
-    final labName = cleaned.contains('Unilab') ? 'Unilab' : null;
+    final header = _extractHeader(cleaned);
     final urine = _parseUrine(cleaned, collectedAt);
     final body = _stripUrine(cleaned);
 
@@ -68,8 +67,10 @@ class LabPdfParser {
       collectedAt: reportDate,
       importedAt: DateTime.now(),
       markers: markersOut,
-      patientName: patientName,
-      labName: labName,
+      patientName: header.patient,
+      labName: header.lab,
+      doctorName: header.doctor,
+      insuranceName: header.insurance,
       sourceFileName: sourceFileName,
       unrecognized: generic.unrecognized,
     );
@@ -116,9 +117,128 @@ class LabPdfParser {
     return _tryParseDate(coleta.group(1)!);
   }
 
-  String? _extractPatientName(String text) {
-    final m = RegExp(r'Nome\s*:\s*([A-ZÁÉÍÓÚÂÊÔÃÕÇ ]{5,})').firstMatch(text);
-    return m?.group(1)?.trim();
+  static const _headerKeys = {
+    'nome': 'nome',
+    'medico dr a': 'medico',
+    'medico': 'medico',
+    'dr a': 'medico',
+    'solicitante': 'medico',
+    'convenio': 'convenio',
+    'origem': 'origem',
+    'unidade': 'origem',
+    'destino': 'origem',
+  };
+
+  ({String? patient, String? doctor, String? insurance, String? lab})
+  _extractHeader(String text) {
+    final lines = text
+        .split('\n')
+        .map((line) => line.trim())
+        .where((line) => line.isNotEmpty)
+        .toList();
+    String? patient;
+    String? doctor;
+    String? insurance;
+    String? origin;
+
+    void assign(String key, String value) {
+      final clean = value.replaceAll(RegExp(r'\s+'), ' ').trim();
+      if (clean.isEmpty) return;
+      switch (key) {
+        case 'nome':
+          patient ??= clean;
+        case 'medico':
+          doctor ??= clean;
+        case 'convenio':
+          insurance ??= clean;
+        case 'origem':
+          origin ??= clean;
+      }
+    }
+
+    var i = 0;
+    while (i < lines.length) {
+      final field = _headerField(lines[i]);
+      if (field == null) {
+        i++;
+        continue;
+      }
+      if (field.value != null) {
+        assign(field.key, field.value!);
+        i++;
+        continue;
+      }
+
+      final keys = <String>[field.key];
+      var j = i + 1;
+      while (j < lines.length) {
+        final next = _headerField(lines[j]);
+        if (next == null || next.value != null) break;
+        keys.add(next.key);
+        j++;
+      }
+      for (final key in keys) {
+        if (j >= lines.length || _headerField(lines[j]) != null) break;
+        final read = _readHeaderValue(lines, j);
+        assign(key, read.$1);
+        j = read.$2;
+      }
+      i = j > i ? j : i + 1;
+    }
+
+    return (
+      patient: patient,
+      doctor: doctor,
+      insurance: insurance,
+      lab: _prettyLab(origin, text),
+    );
+  }
+
+  ({String key, String? value})? _headerField(String line) {
+    final colon = line.indexOf(':');
+    final label = colon >= 0 ? line.substring(0, colon) : line;
+    final key = _headerKeys[_foldLabel(label)];
+    if (key == null) return null;
+    if (colon < 0) return (key: key, value: null);
+    final after = line.substring(colon + 1).trim();
+    return (key: key, value: after.isEmpty ? null : after);
+  }
+
+  (String, int) _readHeaderValue(List<String> lines, int start) {
+    final parts = <String>[];
+    var index = start;
+    while (index < lines.length) {
+      final line = lines[index];
+      if (parts.isNotEmpty &&
+          (_headerField(line) != null || !_headerValueContinues(line))) {
+        break;
+      }
+      parts.add(line);
+      index++;
+      if (RegExp(r'\s').hasMatch(line) && !line.endsWith('-')) break;
+    }
+    final joined = parts
+        .join(' ')
+        .replaceAll(RegExp(r'\s*-\s*'), ' - ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
+    return (joined, index);
+  }
+
+  bool _headerValueContinues(String line) {
+    if (line == '-' || line == '–') return true;
+    if (RegExp(r'\d').hasMatch(line)) return false;
+    return RegExp(r'^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,}$').hasMatch(line);
+  }
+
+  String? _prettyLab(String? origin, String text) {
+    final source = origin?.trim() ?? '';
+    final folded = _foldLabel(source);
+    if (folded.contains('unilab')) return 'Unilab';
+    if (folded.contains('ipc')) return source.replaceAll(RegExp(r'\s+'), ' ');
+    if (source.isNotEmpty) return source;
+    if (RegExp(r'unilab', caseSensitive: false).hasMatch(text)) return 'Unilab';
+    return null;
   }
 
   List<ExamMarker> _parseHemogram(String text, DateTime collectedAt) {
@@ -887,7 +1007,12 @@ class LabPdfParser {
       final inline = sameLine.firstMatch(line);
       if (inline != null) {
         final label = inline.group(1)!.trim();
-        if (_isNoise(label) || already(label)) continue;
+        final rest = line.substring(inline.end);
+        if (_isNotExam(label) ||
+            already(label) ||
+            RegExp(r'^\s*[-–a]\s*\d', caseSensitive: false).hasMatch(rest)) {
+          continue;
+        }
         final value = _parseLoose(inline.group(2)!);
         if (value == null) continue;
         final ref = _referenceNear(lines, i);
@@ -906,7 +1031,7 @@ class LabPdfParser {
       final inlineText = sameQualitative.firstMatch(line);
       if (inlineText != null) {
         final label = inlineText.group(1)!.trim();
-        if (_isNoise(label) || already(label)) continue;
+        if (_isNotExam(label) || already(label)) continue;
         addMarker(
           label: label,
           at: text.indexOf(line),
@@ -918,7 +1043,7 @@ class LabPdfParser {
       final bare = bareLabel.firstMatch(line);
       if (bare == null) continue;
       final label = bare.group(1)!.trim();
-      if (_isNoise(label) || already(label)) continue;
+      if (_isNotExam(label) || already(label)) continue;
 
       var consumed = 0;
       double? value;
@@ -931,7 +1056,10 @@ class LabPdfParser {
           continue;
         }
         final numeric = valueLine.firstMatch(next);
-        if (numeric != null) {
+        final continuesRange =
+            i + step + 1 < lines.length &&
+            RegExp(r'^[-–]\s*\d').hasMatch(lines[i + step + 1].trim());
+        if (numeric != null && !continuesRange) {
           value = _parseLoose(numeric.group(1)!);
           unit = numeric.group(2) ?? '';
           consumed = step;
@@ -945,16 +1073,8 @@ class LabPdfParser {
         if (bareLabel.hasMatch(next)) break;
       }
 
-      if (value == null && words == null) {
-        final folded = _foldLabel(label);
-        if (label.contains(' ') &&
-            !_isSection(folded) &&
-            unrecognized.length < 8 &&
-            !unrecognized.contains(label)) {
-          unrecognized.add(label);
-        }
-        continue;
-      }
+      if (value == null && words == null) continue;
+      if (words == null && (unit == null || unit.isEmpty)) continue;
 
       final ref = _referenceNear(lines, i + consumed);
       addMarker(
@@ -1059,6 +1179,72 @@ class LabPdfParser {
     if (folded.contains('medico') || folded.contains('sexo')) return true;
     if (folded.contains('assinatura') || folded.contains('crm')) return true;
     return false;
+  }
+
+  /// Rótulo de faixa etária, documento ou texto corrido. Não é exame coletado.
+  bool _isNotExam(String label) {
+    if (_isNoise(label)) return true;
+    final folded = _foldLabel(label);
+    if (_isSection(folded)) return true;
+    final words = folded.split(' ').where((word) => word.isNotEmpty).toList();
+    const banned = {
+      'mes',
+      'meses',
+      'ano',
+      'anos',
+      'dia',
+      'dias',
+      'adulto',
+      'adultos',
+      'nascido',
+      'nascidos',
+      'recem',
+      'homem',
+      'homens',
+      'mulher',
+      'mulheres',
+      'crianca',
+      'criancas',
+      'adolescente',
+      'adolescentes',
+      'jejum',
+      'bebe',
+      'rn',
+      'idade',
+      'anterior',
+      'anteriores',
+      'procedimento',
+      'pagina',
+      'paginas',
+      'cnes',
+      'relativo',
+      'absoluto',
+      'referencia',
+      'formula',
+      'responsavel',
+      'dr',
+      'dra',
+    };
+    for (final word in words) {
+      if (banned.contains(word)) return true;
+    }
+    if (folded.contains('anterior') || folded.contains('procedimento')) {
+      return true;
+    }
+    if (folded.contains('pagina') || folded.contains('cnes')) return true;
+    if (words.isNotEmpty && words.every((word) => word.length <= 1)) {
+      return true;
+    }
+    final letters = label.replaceAll(RegExp(r'[^A-Za-zÀ-ÿ]'), '');
+    final uppers = letters.replaceAll(RegExp(r'[^A-ZÁÉÍÓÚÂÊÔÃÕÇ]'), '');
+    if (words.length >= 3 &&
+        letters.isNotEmpty &&
+        uppers.length / letters.length > 0.8) {
+      return true;
+    }
+    if (_aliases.containsKey(folded)) return false;
+    final letterCount = folded.replaceAll(RegExp(r'[^a-z]'), '').length;
+    return letterCount < 3;
   }
 
   bool _isSection(String folded) {

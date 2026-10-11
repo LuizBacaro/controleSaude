@@ -125,21 +125,37 @@ class HistoryPage extends ConsumerWidget {
                                 children: [
                                   const SizedBox(height: AppSpacing.sm),
                                   Text(
-                                    dateFmt.format(report.collectedAt),
-                                    style: text.titleMedium,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
                                     [
                                       if (report.labName != null)
                                         report.labName!,
+                                      dateFmt.format(report.collectedAt),
+                                    ].join(' · '),
+                                    style: text.titleMedium,
+                                  ),
+                                  if (report.doctorName != null) ...[
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      'Médico: ${report.doctorName}',
+                                      style: text.bodyMedium,
+                                    ),
+                                  ],
+                                  if (report.insuranceName != null) ...[
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      'Convênio: ${report.insuranceName}',
+                                      style: text.bodyMedium,
+                                    ),
+                                  ],
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    [
                                       '${report.markerCount} marcadores',
                                       if (report.outOfRangeCount > 0)
                                         '${report.outOfRangeCount} fora da faixa',
                                       if (report.unrecognized.isNotEmpty)
                                         '${report.unrecognized.length} sem leitura',
                                     ].join(' · '),
-                                    style: text.bodyMedium,
+                                    style: text.bodySmall,
                                   ),
                                   if (report.sourceFileName != null) ...[
                                     const SizedBox(height: 4),

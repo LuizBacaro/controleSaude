@@ -9,6 +9,8 @@ class ExamReport {
     required this.markers,
     this.patientName,
     this.labName,
+    this.doctorName,
+    this.insuranceName,
     this.sourceFileName,
     this.notes,
     this.unrecognized = const [],
@@ -20,6 +22,8 @@ class ExamReport {
   final List<ExamMarker> markers;
   final String? patientName;
   final String? labName;
+  final String? doctorName;
+  final String? insuranceName;
   final String? sourceFileName;
   final String? notes;
 
@@ -51,6 +55,8 @@ class ExamReport {
     importedAt: DateTime.parse(json['imported_at'] as String),
     patientName: json['patient_name'] as String?,
     labName: json['lab_name'] as String?,
+    doctorName: json['doctor_name'] as String?,
+    insuranceName: json['insurance_name'] as String?,
     sourceFileName: json['source_file_name'] as String?,
     notes: json['notes'] as String?,
     unrecognized: (json['unrecognized'] as List<dynamic>? ?? const [])
@@ -67,6 +73,8 @@ class ExamReport {
     'imported_at': importedAt.toIso8601String(),
     'patient_name': patientName,
     'lab_name': labName,
+    'doctor_name': doctorName,
+    'insurance_name': insuranceName,
     'source_file_name': sourceFileName,
     'notes': notes,
     'unrecognized': unrecognized,

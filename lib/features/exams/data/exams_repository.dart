@@ -108,13 +108,56 @@ class ExamsRepository {
     }
   }
 
-  List<String> _unrecognizedFromNotes(String? notes) {
-    if (notes == null || notes.trim().isEmpty) return const [];
-    return notes
-        .split('\n')
-        .map((line) => line.trim())
-        .where((line) => line.isNotEmpty)
-        .toList();
+  ({List<String> unrecognized, String? doctor, String? insurance}) _notesFields(
+    String? notes,
+  ) {
+    if (notes == null || notes.trim().isEmpty) {
+      return (unrecognized: const [], doctor: null, insurance: null);
+    }
+    final trimmed = notes.trim();
+    if (trimmed.startsWith('{')) {
+      try {
+        final decoded = jsonDecode(trimmed);
+        if (decoded is Map) {
+          final raw = decoded['unrecognized'];
+          final unrecognized = raw is List
+              ? raw
+                    .map((item) => item.toString().trim())
+                    .where((item) => item.isNotEmpty)
+                    .toList()
+              : const <String>[];
+          return (
+            unrecognized: unrecognized,
+            doctor: decoded['doctor'] as String?,
+            insurance: decoded['insurance'] as String?,
+          );
+        }
+      } catch (_) {}
+    }
+    return (
+      unrecognized: trimmed
+          .split('\n')
+          .map((line) => line.trim())
+          .where((line) => line.isNotEmpty)
+          .toList(),
+      doctor: null,
+      insurance: null,
+    );
+  }
+
+  String? _notesPayload(ExamReport report) {
+    final payload = <String, dynamic>{};
+    if (report.unrecognized.isNotEmpty) {
+      payload['unrecognized'] = report.unrecognized;
+    }
+    if (report.doctorName != null && report.doctorName!.isNotEmpty) {
+      payload['doctor'] = report.doctorName;
+    }
+    if (report.insuranceName != null && report.insuranceName!.isNotEmpty) {
+      payload['insurance'] = report.insuranceName;
+    }
+    if (payload.isEmpty) return report.notes;
+    return jsonEncode(payload);
   }
 
   List<ExamReport> _readLocal() {
@@ -190,15 +233,18 @@ class ExamsRepository {
         ),
       );
     }
+    final notes = _notesFields(report['notes'] as String?);
     return ExamReport(
       id: report['id'] as String,
       collectedAt: DateTime.parse(report['collected_at'] as String),
       importedAt: DateTime.parse(report['imported_at'] as String),
       patientName: report['patient_name'] as String?,
       labName: report['lab_name'] as String?,
+      doctorName: notes.doctor,
+      insuranceName: notes.insurance,
       sourceFileName: report['source_file_name'] as String?,
       notes: report['notes'] as String?,
-      unrecognized: _unrecognizedFromNotes(report['notes'] as String?),
+      unrecognized: notes.unrecognized,
       markers: markers,
     );
   }
@@ -211,9 +257,7 @@ class ExamsRepository {
       'patient_name': report.patientName,
       'lab_name': report.labName,
       'source_file_name': report.sourceFileName,
-      'notes': report.unrecognized.isEmpty
-          ? report.notes
-          : report.unrecognized.join('\n'),
+      'notes': _notesPayload(report),
     });
     await _client.from('exam_results').delete().eq('report_id', report.id);
     final rows = <Map<String, dynamic>>[];
