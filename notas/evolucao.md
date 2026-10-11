@@ -22,6 +22,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Faixa do PDF só substitui a fixa quando é uma faixa única. Linha com homem, mulher, anos, criança ou gestante fica com a faixa fixa; senão o leitor pega a banda errada.
 - Importar não salva direto: `readPdf*` devolve rascunho e só `saveReport` grava. Não voltar a gravar dentro da leitura.
 - Laudos são carregados no bootstrap, antes do login. Após login e cadastro, chamar `examsRepository.load()`; no logout, `clear()`. Com RLS por usuário, sem isso a lista fica vazia ou de outra conta.
+- MCP do Supabase usa token pessoal (`SUPABASE_ACCESS_TOKEN` em `~/.profile`), lido por `${env:...}` no `.cursor/mcp.json`. Nunca renovar à mão o OAuth do `mcp-auth.json`: o refresh token é de uso único e a sessão anterior ficou sem login assim. Nunca escrever o token no arquivo.
 - O MCP do Supabase não está conectado. SQL novo vai em `supabase/migrations/` e o Luiz roda no SQL Editor. Não contar com a migração já aplicada. Dado de conta específica (ex.: nascimento) também vai por SQL, nunca pela `service_role`.
 - `rg` não está instalado no terminal; usar `grep` em comandos de shell.
 - `pkill -f "...flutter run..."` no mesmo comando mata o próprio shell (o padrão casa com ele). Rodar `flutter run` sozinho.
