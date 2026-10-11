@@ -27,8 +27,6 @@ class MarkerDetailPage extends ConsumerWidget {
       );
     }
 
-    final latest = series.latest;
-
     return Scaffold(
       appBar: AppBar(title: Text(series.name)),
       body: ListView(
@@ -50,9 +48,7 @@ class MarkerDetailPage extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        latest == null
-                            ? '—'
-                            : '${latest.value} ${series.unit}'.trim(),
+                        series.latestLabel,
                         style: text.displaySmall?.copyWith(
                           color: AppColors.teal,
                         ),
@@ -113,10 +109,7 @@ class MarkerDetailPage extends ConsumerWidget {
                     : 'Coleta deste PDF',
                 style: text.bodySmall,
               ),
-              trailing: Text(
-                '${p.value} ${series.unit}'.trim(),
-                style: text.titleSmall,
-              ),
+              trailing: Text(p.label(series.unit), style: text.titleSmall),
             ),
           ),
           const SizedBox(height: AppSpacing.lg),

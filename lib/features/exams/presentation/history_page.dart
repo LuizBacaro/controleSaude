@@ -136,6 +136,8 @@ class HistoryPage extends ConsumerWidget {
                                       '${report.markerCount} marcadores',
                                       if (report.outOfRangeCount > 0)
                                         '${report.outOfRangeCount} fora da faixa',
+                                      if (report.unrecognized.isNotEmpty)
+                                        '${report.unrecognized.length} sem leitura',
                                     ].join(' · '),
                                     style: text.bodyMedium,
                                   ),

@@ -129,6 +129,7 @@ class DashboardPage extends ConsumerWidget {
                           child: _MarkerTile(
                             name: s.name,
                             value: s.latest!.value,
+                            textValue: s.latest!.text,
                             unit: s.unit,
                             status: s.latestStatus,
                             onTap: () => context.push(markerRoute(s.name)),
@@ -154,6 +155,7 @@ class DashboardPage extends ConsumerWidget {
                     child: _MarkerTile(
                       name: s.name,
                       value: s.latest?.value ?? 0,
+                      textValue: s.latest?.text,
                       unit: s.unit,
                       status: s.latestStatus,
                       category: s.category,
@@ -212,6 +214,7 @@ class _MarkerTile extends StatelessWidget {
   const _MarkerTile({
     required this.name,
     required this.value,
+    this.textValue,
     required this.unit,
     required this.status,
     this.category,
@@ -221,6 +224,7 @@ class _MarkerTile extends StatelessWidget {
 
   final String name;
   final double value;
+  final String? textValue;
   final String unit;
   final MarkerStatus status;
   final String? category;
@@ -230,9 +234,9 @@ class _MarkerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    final valueStr = value >= 1000
-        ? NumberFormat.decimalPattern('pt_BR').format(value.round())
-        : value.toStringAsFixed(value == value.roundToDouble() ? 0 : 1);
+    final valueStr = (textValue != null && textValue!.trim().isNotEmpty)
+        ? textValue!.trim()
+        : formatLabNumber(value);
 
     return Material(
       color: AppColors.surface,

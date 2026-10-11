@@ -129,7 +129,7 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
-                  'O app lê os resultados (hemograma, glicose, lipídico, INR, etc.), gera o painel e guarda o histórico para comparar a evolução.',
+                  'O app lê os resultados conhecidos e também exames novos do PDF. O que ficar sem valor seguro aparece no laudo como não interpretado.',
                   style: text.bodyMedium,
                 ),
               ],

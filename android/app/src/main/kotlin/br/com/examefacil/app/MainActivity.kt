@@ -1,4 +1,4 @@
-package br.com.examefacil
+package br.com.examefacil.app
 
 import io.flutter.embedding.android.FlutterActivity
 

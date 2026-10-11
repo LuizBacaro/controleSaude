@@ -60,54 +60,147 @@ Valor de Referência: 70 a 99 mg/dL
     expect(report.collectedAt, isNot(DateTime(2026, 8, 7)));
   });
 
-  test('Exame2 traz os exames das páginas seguintes, cada um com a Coleta', () async {
-    final text = await PdfTextExtractorService().fromFile(File('Exame2.pdf'));
+  test(
+    'Exame2 traz os exames das páginas seguintes, cada um com a Coleta',
+    () async {
+      final text = await PdfTextExtractorService().fromFile(File('Exame2.pdf'));
+      final report = LabPdfParser().parse(text);
+
+      ExamMarker find(String name) =>
+          report.markers.firstWhere((m) => m.name == name);
+
+      expect(find('AST/TGO').value, 21);
+      expect(find('ALT/TGP').value, 28);
+      expect(find('Fosfatase alcalina').value, 57);
+      expect(find('GGT').value, 8);
+      expect(find('Bilirrubina direta').value, closeTo(0.38, 0.01));
+      expect(find('Bilirrubina indireta').value, closeTo(0.67, 0.01));
+      expect(find('Bilirrubina total').value, closeTo(1.05, 0.01));
+      expect(find('Vitamina D').value, closeTo(20.9, 0.01));
+      expect(find('Vitamina B12').value, 413);
+
+      for (final name in [
+        'AST/TGO',
+        'Fosfatase alcalina',
+        'GGT',
+        'Vitamina D',
+        'Bilirrubina total',
+      ]) {
+        expect(find(name).collectedAt, DateTime(2026, 3, 30), reason: name);
+      }
+    },
+  );
+
+  test(
+    'ipc.pdf entra com os mesmos nomes para cruzar com outros laudos',
+    () async {
+      final text = await PdfTextExtractorService().fromFile(File('ipc.pdf'));
+      final report = LabPdfParser().parse(text);
+
+      ExamMarker find(String name) =>
+          report.markers.firstWhere((m) => m.name == name);
+
+      expect(find('Hemoglobina').value, closeTo(14.8, 0.01));
+      expect(find('Hemoglobina').collectedAt, DateTime(2023, 8, 18));
+      expect(find('Leucócitos').value, 5800);
+      expect(find('Plaquetas').value, 198000);
+      expect(find('Glicose').value, 85);
+      expect(find('Ácido úrico').value, closeTo(5.5, 0.01));
+      expect(find('Colesterol Total').value, 290);
+      expect(find('Colesterol HDL').value, 40);
+      expect(find('Colesterol LDL').value, 206);
+      expect(find('Colesterol VLDL').value, 29);
+      expect(find('Triglicerídeos').value, 137);
+      expect(find('Ferritina').value, closeTo(157, 0.01));
+      expect(find('Vitamina B12').value, 475);
+      expect(find('Colesterol LDL').collectedAt, DateTime(2023, 8, 18));
+    },
+  );
+
+  test('resultado.pdf lê frações com o nome invertido e a ureia', () async {
+    final text = await PdfTextExtractorService().fromFile(
+      File('resultado.pdf'),
+    );
     final report = LabPdfParser().parse(text);
 
     ExamMarker find(String name) =>
         report.markers.firstWhere((m) => m.name == name);
 
-    expect(find('AST/TGO').value, 21);
-    expect(find('ALT/TGP').value, 28);
-    expect(find('Fosfatase alcalina').value, 57);
-    expect(find('GGT').value, 8);
-    expect(find('Bilirrubina direta').value, closeTo(0.38, 0.01));
-    expect(find('Bilirrubina indireta').value, closeTo(0.67, 0.01));
-    expect(find('Bilirrubina total').value, closeTo(1.05, 0.01));
-    expect(find('Vitamina D').value, closeTo(20.9, 0.01));
-    expect(find('Vitamina B12').value, 413);
-
-    for (final name in [
-      'AST/TGO',
-      'Fosfatase alcalina',
-      'GGT',
-      'Vitamina D',
-      'Bilirrubina total',
-    ]) {
-      expect(find(name).collectedAt, DateTime(2026, 3, 30), reason: name);
-    }
+    expect(report.collectedAt, DateTime(2025, 5, 22));
+    expect(find('Colesterol Total').value, 164);
+    expect(find('Colesterol HDL').value, 51);
+    expect(find('Colesterol LDL').value, 96);
+    expect(find('Colesterol VLDL').value, 17);
+    expect(find('Colesterol não HDL').value, 113);
+    expect(find('Índice de Castelli').value, closeTo(3.22, 0.01));
+    expect(find('Triglicerídeos').value, 87);
+    expect(find('Hemácias').value, closeTo(5.71, 0.01));
+    expect(find('Plaquetas').value, 182000);
+    expect(find('Creatinina').value, closeTo(1.3, 0.01));
+    expect(find('Ureia').value, closeTo(40.2, 0.01));
+    expect(find('Glicose').value, 96);
+    expect(find('AST/TGO').value, 24);
+    expect(find('ALT/TGP').value, 37);
+    expect(find('GGT').value, 9);
+    expect(find('Fosfatase alcalina').value, 59);
+    expect(find('Ferritina').value, closeTo(189.6, 0.01));
+    expect(
+      find('Colesterol HDL').previousValues.map((p) => p.value),
+      containsAll([39, 38]),
+    );
+    expect(find('Metamielócitos').value, 0);
+    expect(find('Metamielócitos').category, 'Não classificado');
+    expect(find('Bastonetes').category, 'Não classificado');
+    expect(report.markers.where((m) => m.name == 'Colesterol HDL').length, 1);
   });
 
-  test('ipc.pdf entra com os mesmos nomes para cruzar com outros laudos', () async {
-    final text = await PdfTextExtractorService().fromFile(File('ipc.pdf'));
+  test('leitor genérico guarda exame desconhecido com a faixa do PDF', () {
+    const text = '''
+Coleta: 01/02/2024
+Zinco: 88 µg/dL
+Valor de Referência: 70 a 120 µg/dL
+HIV: Não reagente
+Glicose
+Resultado: 90 mg/dL
+''';
+    final report = LabPdfParser().parse(text);
+    ExamMarker find(String name) =>
+        report.markers.firstWhere((m) => m.name == name);
+
+    expect(find('Zinco').value, 88);
+    expect(find('Zinco').category, 'Não classificado');
+    expect(find('Zinco').referenceMin, 70);
+    expect(find('Zinco').referenceMax, 120);
+    expect(find('HIV').textValue, 'Não reagente');
+    expect(find('HIV').isQualitative, isTrue);
+    expect(report.markers.where((m) => m.name == 'Glicose').length, 1);
+    expect(find('Glicose').value, 90);
+  });
+
+  test('exame4 separa a urina tipo I do sangue e lê PSA', () async {
+    final text = await PdfTextExtractorService().fromFile(File('exame4.pdf'));
     final report = LabPdfParser().parse(text);
 
     ExamMarker find(String name) =>
         report.markers.firstWhere((m) => m.name == name);
 
-    expect(find('Hemoglobina').value, closeTo(14.8, 0.01));
-    expect(find('Hemoglobina').collectedAt, DateTime(2023, 8, 18));
-    expect(find('Leucócitos').value, 5800);
-    expect(find('Plaquetas').value, 198000);
-    expect(find('Glicose').value, 85);
-    expect(find('Ácido úrico').value, closeTo(5.5, 0.01));
-    expect(find('Colesterol Total').value, 290);
-    expect(find('Colesterol HDL').value, 40);
-    expect(find('Colesterol LDL').value, 206);
-    expect(find('Colesterol VLDL').value, 29);
-    expect(find('Triglicerídeos').value, 137);
-    expect(find('Ferritina').value, closeTo(157, 0.01));
-    expect(find('Vitamina B12').value, 475);
-    expect(find('Colesterol LDL').collectedAt, DateTime(2023, 8, 18));
+    expect(find('Urina: Cor').textValue, 'Amarelo');
+    expect(find('Urina: Cor').isQualitative, isTrue);
+    expect(find('Urina: Aspecto').textValue, 'Límpido');
+    expect(find('Urina: Proteínas').status, MarkerStatus.normal);
+    expect(find('Urina: Densidade').value, closeTo(1.032, 0.0001));
+    expect(find('Urina: Densidade').status, MarkerStatus.high);
+    expect(find('Urina: pH').value, closeTo(7.5, 0.01));
+    expect(find('Urina: pH').status, MarkerStatus.high);
+    expect(find('Urina: Glicose').value, 500);
+    expect(find('Urina: Hemácias').value, closeTo(8.4, 0.01));
+    expect(find('Urina: Não escamosas').status, MarkerStatus.high);
+    expect(find('Urina: Densidade').collectedAt, DateTime(2024, 8, 9));
+
+    expect(find('Creatinina').value, closeTo(1.1, 0.01));
+    expect(find('Creatinina').collectedAt, DateTime(2024, 8, 8));
+    expect(find('PSA').value, closeTo(0.87, 0.01));
+    expect(report.markers.where((m) => m.name == 'Hemácias'), isEmpty);
+    expect(report.markers.where((m) => m.name == 'Glicose'), isEmpty);
   });
 }

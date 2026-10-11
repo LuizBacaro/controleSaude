@@ -110,7 +110,7 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
                         subtitle: Text(
                           latest == null
                               ? s.category
-                              : '${latest.value} ${s.unit} · ${s.points.length} pontos',
+                              : '${s.latestLabel} · ${s.points.length} ${s.points.length == 1 ? 'ponto' : 'pontos'}',
                         ),
                         trailing: StatusChip(status: s.latestStatus),
                         onTap: () => context.push(markerRoute(s.name)),

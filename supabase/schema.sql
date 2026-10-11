@@ -24,7 +24,8 @@ create table if not exists public.exam_results (
   reference_min double precision,
   reference_max double precision,
   origin text not null default 'imported',
-  is_current boolean not null default true
+  is_current boolean not null default true,
+  text_value text
 );
 
 create index if not exists exam_results_name_date_idx
@@ -32,6 +33,8 @@ create index if not exists exam_results_name_date_idx
 
 create index if not exists exam_results_report_idx
   on public.exam_results (report_id);
+
+alter table public.exam_results add column if not exists text_value text;
 
 alter table public.exam_reports enable row level security;
 alter table public.exam_results enable row level security;

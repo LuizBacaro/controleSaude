@@ -16,7 +16,9 @@ class PdfTextExtractorService {
       final extractor = PdfTextExtractor(document);
       final buffer = StringBuffer();
       for (var i = 0; i < document.pages.count; i++) {
-        buffer.writeln(extractor.extractText(startPageIndex: i, endPageIndex: i));
+        buffer.writeln(
+          extractor.extractText(startPageIndex: i, endPageIndex: i),
+        );
       }
       return buffer.toString();
     } finally {

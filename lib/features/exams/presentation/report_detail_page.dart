@@ -75,6 +75,34 @@ class ReportDetailPage extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
         children: [
+          if (report.unrecognized.isNotEmpty)
+            Container(
+              margin: const EdgeInsets.only(bottom: AppSpacing.md),
+              padding: const EdgeInsets.all(AppSpacing.md),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Não interpretado', style: text.titleSmall),
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    'Estes trechos parecem exame, mas o leitor não achou um valor seguro.',
+                    style: text.bodySmall,
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  ...report.unrecognized.map(
+                    (line) => Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: Text('• $line', style: text.bodyMedium),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           if (report.labName != null || report.sourceFileName != null)
             Padding(
               padding: const EdgeInsets.only(bottom: AppSpacing.md),
@@ -104,7 +132,7 @@ class ReportDetailPage extends ConsumerWidget {
                     tileColor: AppColors.surface,
                     title: Text(m.name),
                     subtitle: Text(
-                      '${m.value} ${m.unit}'.trim() +
+                      m.resultLabel +
                           (m.referenceText != null
                               ? '\nRef: ${m.referenceText}'
                               : ''),

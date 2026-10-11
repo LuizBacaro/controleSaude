@@ -108,6 +108,15 @@ class ExamsRepository {
     }
   }
 
+  List<String> _unrecognizedFromNotes(String? notes) {
+    if (notes == null || notes.trim().isEmpty) return const [];
+    return notes
+        .split('\n')
+        .map((line) => line.trim())
+        .where((line) => line.isNotEmpty)
+        .toList();
+  }
+
   List<ExamReport> _readLocal() {
     final raw = prefs.getString(_reportsKey);
     if (raw == null || raw.isEmpty) return [];
@@ -158,6 +167,7 @@ class ExamsRepository {
             (row) => HistoricalValue(
               date: DateTime.parse(row['collected_at'] as String),
               value: (row['value'] as num).toDouble(),
+              text: row['text_value'] as String?,
               origin: row['origin'] == 'imported'
                   ? ValueOrigin.imported
                   : ValueOrigin.citedInReport,
@@ -169,6 +179,7 @@ class ExamsRepository {
           id: current['marker_id'] as String,
           name: current['marker_name'] as String,
           value: (current['value'] as num).toDouble(),
+          textValue: current['text_value'] as String?,
           unit: current['unit'] as String? ?? '',
           collectedAt: DateTime.parse(current['collected_at'] as String),
           category: current['category'] as String? ?? 'Geral',
@@ -187,6 +198,7 @@ class ExamsRepository {
       labName: report['lab_name'] as String?,
       sourceFileName: report['source_file_name'] as String?,
       notes: report['notes'] as String?,
+      unrecognized: _unrecognizedFromNotes(report['notes'] as String?),
       markers: markers,
     );
   }
@@ -199,7 +211,9 @@ class ExamsRepository {
       'patient_name': report.patientName,
       'lab_name': report.labName,
       'source_file_name': report.sourceFileName,
-      'notes': report.notes,
+      'notes': report.unrecognized.isEmpty
+          ? report.notes
+          : report.unrecognized.join('\n'),
     });
     await _client.from('exam_results').delete().eq('report_id', report.id);
     final rows = <Map<String, dynamic>>[];
@@ -245,6 +259,7 @@ class ExamsRepository {
       'marker_id': marker.id,
       'marker_name': marker.name,
       'value': value,
+      'text_value': isCurrent ? marker.textValue : null,
       'unit': marker.unit,
       'collected_at': collectedAt.toUtc().toIso8601String(),
       'category': marker.category,
@@ -281,6 +296,7 @@ class ExamsRepository {
           HistoricalValue(
             date: marker.collectedAt,
             value: marker.value,
+            text: marker.textValue,
             origin: ValueOrigin.imported,
           ),
         );
@@ -312,7 +328,8 @@ class ExamsRepository {
         .where(
           (s) =>
               s.latestStatus == MarkerStatus.low ||
-              s.latestStatus == MarkerStatus.high,
+              s.latestStatus == MarkerStatus.high ||
+              s.latestStatus == MarkerStatus.altered,
         )
         .toList();
     return DashboardSummary(
@@ -358,7 +375,7 @@ class _SeriesBuilder {
 
   void addPoint(HistoricalValue point) {
     final key =
-        '${point.date.year}-${point.date.month}-${point.date.day}-${point.value}';
+        '${point.date.year}-${point.date.month}-${point.date.day}-${point.value}-${point.text ?? ''}';
     final existing = _points[key];
     if (existing != null &&
         existing.origin == ValueOrigin.imported &&
