@@ -22,8 +22,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Faixa do PDF só substitui a fixa quando é uma faixa única. Linha com homem, mulher, anos, criança ou gestante fica com a faixa fixa; senão o leitor pega a banda errada.
 - Importar não salva direto: `readPdf*` devolve rascunho e só `saveReport` grava. Não voltar a gravar dentro da leitura.
 - Laudos são carregados no bootstrap, antes do login. Após login e cadastro, chamar `examsRepository.load()`; no logout, `clear()`. Com RLS por usuário, sem isso a lista fica vazia ou de outra conta.
-- MCP do Supabase usa token pessoal (`SUPABASE_ACCESS_TOKEN` em `~/.profile`), lido por `${env:...}` no `.cursor/mcp.json`. Nunca renovar à mão o OAuth do `mcp-auth.json`: o refresh token é de uso único e a sessão anterior ficou sem login assim. Nunca escrever o token no arquivo.
-- O MCP do Supabase não está conectado. SQL novo vai em `supabase/migrations/` e o Luiz roda no SQL Editor. Não contar com a migração já aplicada. Dado de conta específica (ex.: nascimento) também vai por SQL, nunca pela `service_role`.
+- MCP do Supabase: a configuração oficial fica em `.cursor/mcp.json` (URL com `project_ref` e `features`, sem token no arquivo). Conectar com `agent mcp enable supabase` e `agent mcp login supabase`. Não renovar à mão o refresh do `mcp-auth.json`: é de uso único e a sessão anterior ficou sem login assim.
 - `rg` não está instalado no terminal; usar `grep` em comandos de shell.
 - `pkill -f "...flutter run..."` no mesmo comando mata o próprio shell (o padrão casa com ele). Rodar `flutter run` sozinho.
 - Faixa por sexo/idade: o bloco de referência termina no próximo exame (`Resultado:`, `Rótulo:` seguido de número, `Resultados anteriores`). Sem esse corte, a bilirrubina direta pegou a faixa da total.
@@ -41,7 +40,8 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Sexo e idade saem do PDF (`Sexo/Idade: M/41`, `Data nasc (42 anos)`, IPC `Idade 39 Ano(s)`); o perfil (`profiles.birth_date`, `sex`) completa o que faltar.
 - Cadastro pede data de nascimento e sexo. No Perfil, “Dados para as faixas de referência” edita os dois. Vale para os próximos imports.
 - Painel: cartão da última coleta, “Atenção nesta coleta” e “Mudou desde a coleta anterior” (variação ≥ 10%).
-- `supabase/migrations/002_laudos_por_usuario.sql` cria `user_id` com padrão `auth.uid()` e políticas por dono. Pendente de rodar no SQL Editor; até lá o RLS segue aberto.
+- `002_laudos_por_usuario` já aplicada: `exam_reports` e `exam_results` têm `user_id` padrão `auth.uid()`, anon sem acesso, política só do dono. Laudos antigos foram atribuídos à única conta.
+- Conta do Luiz: `profiles.birth_date` 1984-02-21 e `sex` M. O Perfil mostra sexo, nascimento e idade. Reabrir o app para recarregar o perfil.
 - Ícone: fundo `#0A3352`, logo em `assets/brand/logo.png`.
 
 ## Histórico
@@ -120,3 +120,19 @@ Deu errado / limite:
 - Sem MCP do Supabase nesta sessão, a data não pôde ser gravada daqui. O SQL fica para o SQL Editor. Não usar a `service_role` colada no chat para contornar.
 
 Ainda exige ação de quem usa: rodar `003_nascimento_luiz.sql` (e o `002`, se ainda não rodou), fechar e abrir o app.
+
+### 2026-10-11 — MCP do Supabase pelo login oficial
+
+Pedido: usar a configuração do painel (`features` na URL), `agent mcp enable/login/list` e instalar `supabase/agent-skills`.
+
+Deu certo:
+
+- `.cursor/mcp.json` ficou só com a URL oficial, sem token. `agent mcp list` mostra `supabase: ready`.
+- Login pelo navegador concluiu. `execute_sql` gravou nascimento 1984-02-21; o sexo já era M.
+- `apply_migration` aplicou `laudos_por_usuario`. Uma conta, 3 laudos e 155 resultados ficaram com dono.
+- Skills em `.agents/skills/supabase` e `.agents/skills/supabase-postgres-best-practices`.
+
+Deu errado:
+
+- A primeira tentativa das skills falhou com `ENOTFOUND` dentro do sandbox. Com rede livre, o `npx` concluiu.
+- O cabeçalho `Authorization` com `SUPABASE_ACCESS_TOKEN` não é o caminho do painel. Foi removido.
