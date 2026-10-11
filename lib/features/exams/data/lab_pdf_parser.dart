@@ -3,6 +3,7 @@ import 'package:uuid/uuid.dart';
 
 import '../domain/exam_marker.dart';
 import '../domain/exam_report.dart';
+import '../domain/patient_profile.dart';
 
 /// Extrai marcadores de laudos no formato Unilab / laboratórios BR.
 class LabPdfParser {
@@ -11,7 +12,14 @@ class LabPdfParser {
   final Uuid _uuid;
   static final _dateFmt = DateFormat('dd/MM/yyyy');
 
-  ExamReport parse(String text, {String? sourceFileName}) {
+  String? _sex;
+  int? _age;
+
+  ExamReport parse(
+    String text, {
+    String? sourceFileName,
+    PatientProfile? patient,
+  }) {
     final cleaned = text
         .replaceAll('\r\n', '\n')
         .replaceAll('\u00a0', ' ')
@@ -24,6 +32,9 @@ class LabPdfParser {
         '(Data atend. ou Coleta).',
       );
     }
+    final who = _patientFromPdf(cleaned).orElse(patient);
+    _sex = who.sex;
+    _age = who.ageAt(collectedAt);
     final header = _extractHeader(cleaned);
     final urine = _parseUrine(cleaned, collectedAt);
     final body = _stripUrine(cleaned);
@@ -257,6 +268,7 @@ class LabPdfParser {
       if (m == null) return;
       final value = _parseNumber(m.group(1)!);
       if (value == null) return;
+      final pdf = _pdfRangeAfter(text, m.end, value);
       markers.add(
         ExamMarker(
           id: _uuid.v4(),
@@ -265,9 +277,9 @@ class LabPdfParser {
           unit: unit,
           collectedAt: _dateNear(text, m.end, collectedAt),
           category: category,
-          referenceMin: min,
-          referenceMax: max,
-          referenceText: refText,
+          referenceMin: pdf == null ? min : pdf.min,
+          referenceMax: pdf == null ? max : pdf.max,
+          referenceText: pdf == null ? refText : pdf.text,
           previousValues: _extractPreviousNear(text, name),
         ),
       );
@@ -790,6 +802,14 @@ class LabPdfParser {
       if (m == null) continue;
       final value = _parseNumber(m.group(1)!);
       if (value == null) continue;
+      final pdf =
+          _pdfRangeAfter(text, m.end, value) ??
+          _bandRangeAfter(text, m.end, value);
+      final fixedIsMale = RegExp(
+        r'homem|homens',
+        caseSensitive: false,
+      ).hasMatch(spec.refText ?? '');
+      final dropFixed = pdf == null && fixedIsMale && _sex == 'F';
       markers.add(
         ExamMarker(
           id: _uuid.v4(),
@@ -798,9 +818,9 @@ class LabPdfParser {
           unit: spec.unit,
           collectedAt: _dateNear(text, m.end, collectedAt),
           category: spec.category,
-          referenceMin: spec.min,
-          referenceMax: spec.max,
-          referenceText: spec.refText,
+          referenceMin: pdf?.min ?? (dropFixed || pdf != null ? null : spec.min),
+          referenceMax: pdf?.max ?? (dropFixed || pdf != null ? null : spec.max),
+          referenceText: pdf?.text ?? (dropFixed ? null : spec.refText),
           previousValues: _extractPreviousBlock(text, spec.name),
         ),
       );
@@ -1256,6 +1276,278 @@ class LabPdfParser {
   double? _parseLoose(String raw) {
     if (RegExp(r'^\d\.\d{3}$').hasMatch(raw)) return _parsePlainDecimal(raw);
     return _parseNumber(raw);
+  }
+
+  /// Faixa impressa logo após o resultado. Só vale quando é uma faixa única
+  /// (sem bandas por sexo ou idade) e compatível com a escala do valor.
+  ({double? min, double? max, String text})? _pdfRangeAfter(
+    String text,
+    int end,
+    double value,
+  ) {
+    final tail = text.substring(end, (end + 260).clamp(0, text.length));
+    final lines = tail
+        .split('\n')
+        .map((line) => line.trim())
+        .where((line) => line.isNotEmpty)
+        .take(7)
+        .toList();
+    if (lines.isEmpty) return null;
+
+    final joined = <String>[];
+    for (var i = 0; i < lines.length; i++) {
+      if (i + 2 < lines.length &&
+          lines[i + 1] == '-' &&
+          RegExp(r'^[\d.,]+$').hasMatch(lines[i]) &&
+          RegExp(r'^[\d.,]+$').hasMatch(lines[i + 2])) {
+        joined.add('${lines[i]} - ${lines[i + 2]}');
+        i += 2;
+        continue;
+      }
+      joined.add(lines[i]);
+    }
+
+    for (var i = 0; i < joined.length; i++) {
+      var line = joined[i];
+      final folded = _foldLabel(line);
+      if (RegExp(r'homem|homens|mulher|anos|crianc|masculino|feminino|gestant')
+          .hasMatch(folded)) {
+        return null;
+      }
+      if (i > 0 &&
+          RegExp(r'^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ ./()]{2,}:').hasMatch(line) &&
+          !folded.startsWith('valor')) {
+        return null;
+      }
+      line = line
+          .replaceFirst(
+            RegExp(r'^Valor(?:es)? de refer[eê]ncia\s*:?\s*', caseSensitive: false),
+            '',
+          )
+          .replaceFirst(RegExp(r'^De\s+', caseSensitive: false), '');
+
+      double? min;
+      double? max;
+      final between = RegExp(
+        r'^([\d][\d.,]*)\s*(?:a|-|até)\s*([\d][\d.,]*)',
+        caseSensitive: false,
+      ).firstMatch(line);
+      if (between != null) {
+        min = _parseNumber(between.group(1)!);
+        max = _parseNumber(between.group(2)!);
+        if (min == null || max == null || min >= max) continue;
+      } else {
+        final upTo = RegExp(
+          r'^(?:at[eé]|inferior(?:\s+ou\s+igual)?\s+a|menor(?:\s+ou\s+igual)?\s+(?:que|a)|<=?|≤)\s*([\d][\d.,]*)',
+          caseSensitive: false,
+        ).firstMatch(line);
+        if (upTo == null) continue;
+        max = _parseNumber(upTo.group(1)!);
+        if (max == null) continue;
+      }
+
+      final top = max;
+      if (value > top * 10 || value < (min ?? 0) / 10) continue;
+      final label = line.length > 60 ? line.substring(0, 60) : line;
+      return (min: min, max: max, text: label);
+    }
+    return null;
+  }
+
+  PatientProfile _patientFromPdf(String text) {
+    String? sex;
+    int? age;
+    DateTime? birth;
+
+    final sexAge = RegExp(r'\b([MF])\s*/\s*(\d{1,3})\b').firstMatch(text);
+    if (sexAge != null &&
+        RegExp(r'Sexo\s*/\s*Idade', caseSensitive: false).hasMatch(text)) {
+      sex = sexAge.group(1);
+      age = int.tryParse(sexAge.group(2)!);
+    }
+    final sexLine = RegExp(
+      r'Sexo\s*:?\s*\n?\s*(Masculino|Feminino|M|F)\b',
+      caseSensitive: false,
+    ).firstMatch(text);
+    if (sex == null && sexLine != null) {
+      sex = sexLine.group(1)!.toUpperCase().substring(0, 1);
+    }
+    final birthMatch = RegExp(
+      r'(\d{2}/\d{2}/\d{4})\s*\n?\s*\(\s*\n?\s*\d{1,3}\s*anos',
+      caseSensitive: false,
+    ).firstMatch(text);
+    if (birthMatch != null) birth = _tryParseDate(birthMatch.group(1)!);
+    final ipcAge = RegExp(
+      r'Idade\s*\n\s*(\d{1,3})\s*\n\s*Ano',
+      caseSensitive: false,
+    ).firstMatch(text);
+    if (age == null && ipcAge != null) age = int.tryParse(ipcAge.group(1)!);
+
+    return PatientProfile(sex: sex, birthDate: birth, age: age);
+  }
+
+  /// Faixa por sexo ou idade, escolhida pelo sexo e pela idade do paciente.
+  ({double? min, double? max, String text})? _bandRangeAfter(
+    String text,
+    int end,
+    double value,
+  ) {
+    final sex = _sex;
+    final age = _age;
+    if (sex == null && age == null) return null;
+
+    var block = text.substring(end, (end + 900).clamp(0, text.length));
+    final stop = RegExp(
+      r'Resultados?\s*anteriores|Resultado\(s\)\s*anterior|Resultados?[.\s]*:|Observa[çc][õo]es|Data da libera|Exame assinado|Nota\s*\(?\d*\)?\s*:|Material\s*:|M[ée]todo\s*:',
+      caseSensitive: false,
+    ).firstMatch(block);
+    if (stop != null) block = block.substring(0, stop.start);
+    for (final next in RegExp(
+      r'\n\s*([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ ./()-]{2,40})\s*:\s*\n\s*\d',
+    ).allMatches(block)) {
+      final folded = _foldLabel(next.group(1)!);
+      if (RegExp(
+        r'homem|homens|mulher|masculino|feminino|adulto|crianc|anos|idade|valor',
+      ).hasMatch(folded)) {
+        continue;
+      }
+      block = block.substring(0, next.start);
+      break;
+    }
+    block = block.replaceAll(RegExp(r'\s*\n\s*-\s*\n\s*'), ' - ');
+    final flat = block.replaceAll(RegExp(r'\s+'), ' ');
+
+    ({double? min, double? max, String text})? accept(String raw) {
+      final range = _rangeIn(raw);
+      if (range == null) return null;
+      final top = range.max ?? range.min!;
+      if (value > top * 10) return null;
+      if (range.min != null && value < range.min! / 10) return null;
+      final label = raw.trim();
+      return (
+        min: range.min,
+        max: range.max,
+        text: label.length > 60 ? label.substring(0, 60) : label,
+      );
+    }
+
+    final adult = age == null || age >= 18;
+
+    if (adult) {
+      final table = RegExp(
+        r'Adultos?\s*:\s*([\d.,]+\s*a\s*[\d.,]+)\s*[^\d\s]*\s+([\d.,]+\s*a\s*[\d.,]+)',
+        caseSensitive: false,
+      ).firstMatch(flat);
+      final header = RegExp(
+        r'Homens\s*:\s*Mulheres\s*:',
+        caseSensitive: false,
+      ).hasMatch(flat);
+      if (table != null && header && sex != null) {
+        final picked = sex == 'F' ? table.group(2)! : table.group(1)!;
+        final hit = accept(picked);
+        if (hit != null) {
+          return (
+            min: hit.min,
+            max: hit.max,
+            text: '${sex == 'F' ? 'Mulheres' : 'Homens'} adultos: ${hit.text}',
+          );
+        }
+      }
+    }
+
+    if (sex != null && adult) {
+      final label = sex == 'F'
+          ? r'(?:Mulher(?:es)?|Feminino)'
+          : r'(?:Homem|Homens|Masculino)';
+      final pattern = RegExp(
+        '\\b$label\\s*\\.?\\s*:\\s*',
+        caseSensitive: false,
+      );
+      final cut = RegExp(
+        r'\b(?:Mulher|Homem|Masculino|Feminino|Crian|Adolescent|Idade|Gestant|Adult|Rec[ée]m|De\s+\d)',
+        caseSensitive: false,
+      );
+      for (final match in pattern.allMatches(flat)) {
+        var segment = flat.substring(
+          match.end,
+          (match.end + 70).clamp(0, flat.length),
+        );
+        final next = cut.firstMatch(segment);
+        if (next != null) segment = segment.substring(0, next.start);
+        if (RegExp(r'anos|meses|dias', caseSensitive: false).hasMatch(segment)) {
+          continue;
+        }
+        final hit = accept(segment);
+        if (hit != null) {
+          return (
+            min: hit.min,
+            max: hit.max,
+            text: '${sex == 'F' ? 'Mulheres' : 'Homens'}: ${hit.text}',
+          );
+        }
+      }
+    }
+
+    if (age != null) {
+      for (final match in RegExp(
+        r'([<>])\s*(\d{1,3})\s*anos\s*:\s*(.{1,50}?)(?=Adult|[<>]\s*\d|$)',
+        caseSensitive: false,
+      ).allMatches(flat)) {
+        final limit = int.parse(match.group(2)!);
+        final fits = match.group(1) == '<' ? age < limit : age >= limit;
+        if (!fits) continue;
+        final hit = accept(match.group(3)!);
+        if (hit != null) {
+          return (
+            min: hit.min,
+            max: hit.max,
+            text: '${match.group(1)} $limit anos: ${hit.text}',
+          );
+        }
+      }
+    }
+
+    if (adult) {
+      final single = RegExp(
+        r'Adultos?\s*:\s*([\d.,]+\s*a\s*[\d.,]+(?:\s*[^\s\d]+)?)(?!\s*[\d.,]+\s*a\s*[\d.,]+)',
+        caseSensitive: false,
+      ).firstMatch(flat);
+      if (single != null) {
+        final hit = accept(single.group(1)!);
+        if (hit != null) {
+          return (min: hit.min, max: hit.max, text: 'Adultos: ${hit.text}');
+        }
+      }
+    }
+    return null;
+  }
+
+  ({double? min, double? max})? _rangeIn(String raw) {
+    final between = RegExp(
+      r'([\d][\d.,]*)\s*(?:a|-|–)\s*([\d][\d.,]*)',
+    ).firstMatch(raw);
+    if (between != null) {
+      final min = _parseNumber(between.group(1)!);
+      final max = _parseNumber(between.group(2)!);
+      if (min != null && max != null && min < max) return (min: min, max: max);
+    }
+    final upTo = RegExp(
+      r'(?:at[eé]|inferior(?:\s+ou\s+igual)?\s+a|menor(?:\s+ou\s+igual)?\s+(?:que|a)|<=?|≤)\s*([\d][\d.,]*)',
+      caseSensitive: false,
+    ).firstMatch(raw);
+    if (upTo != null) {
+      final max = _parseNumber(upTo.group(1)!);
+      if (max != null) return (min: null, max: max);
+    }
+    final above = RegExp(
+      r'(?:superior(?:\s+ou\s+igual)?\s+a|maior(?:\s+ou\s+igual)?\s+(?:que|a)|>=?|≥)\s*([\d][\d.,]*)',
+      caseSensitive: false,
+    ).firstMatch(raw);
+    if (above != null) {
+      final min = _parseNumber(above.group(1)!);
+      if (min != null) return (min: min, max: null);
+    }
+    return null;
   }
 
   ({double? min, double? max, String? text})? _referenceNear(

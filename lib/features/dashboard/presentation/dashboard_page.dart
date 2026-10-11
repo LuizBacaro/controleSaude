@@ -8,6 +8,7 @@ import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../exams/domain/exam_marker.dart';
+import '../../exams/domain/exam_report.dart';
 import '../../exams/presentation/widgets/status_chip.dart';
 
 class DashboardPage extends ConsumerWidget {
@@ -17,7 +18,6 @@ class DashboardPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentUserProvider);
     final summary = ref.watch(dashboardSummaryProvider);
-    final series = ref.watch(markerSeriesProvider);
     final text = Theme.of(context).textTheme;
     final dateFmt = DateFormat('dd/MM/yyyy');
 
@@ -51,7 +51,7 @@ class DashboardPage extends ConsumerWidget {
       );
     }
 
-    final highlight = series.take(8).toList();
+    final latest = summary.latestReport;
 
     return Scaffold(
       body: CustomScrollView(
@@ -117,52 +117,64 @@ class DashboardPage extends ConsumerWidget {
                     ),
                   ],
                 ),
-                if (summary.outOfRange.isNotEmpty) ...[
+                if (latest != null) ...[
                   const SizedBox(height: AppSpacing.lg),
-                  Text('Atenção', style: text.titleMedium),
+                  _LatestReportCard(
+                    report: latest,
+                    onTap: () => context.push('/laudo/${latest.id}'),
+                  ),
+                  const SizedBox(height: AppSpacing.lg),
+                  Text('Atenção nesta coleta', style: text.titleMedium),
                   const SizedBox(height: AppSpacing.sm),
-                  ...summary.outOfRange
-                      .take(5)
-                      .map(
-                        (s) => Padding(
-                          padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                          child: _MarkerTile(
-                            name: s.name,
-                            value: s.latest!.value,
-                            textValue: s.latest!.text,
-                            unit: s.unit,
-                            status: s.latestStatus,
-                            onTap: () => context.push(markerRoute(s.name)),
-                          ),
-                        ),
+                  if (summary.latestAlerts.isEmpty)
+                    Text(
+                      'Todos os resultados desta coleta estão dentro da faixa do laudo.',
+                      style: text.bodyMedium?.copyWith(color: AppColors.success),
+                    ),
+                  ...summary.latestAlerts.map(
+                    (s) => Padding(
+                      padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                      child: _MarkerTile(
+                        name: s.name,
+                        value: s.latest!.value,
+                        textValue: s.latest!.text,
+                        unit: s.unit,
+                        status: s.latestStatus,
+                        category: s.category,
+                        delta: s.delta,
+                        onTap: () => context.push(markerRoute(s.name)),
                       ),
-                ],
-                const SizedBox(height: AppSpacing.lg),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text('Marcadores', style: text.titleMedium),
-                    ),
-                    TextButton(
-                      onPressed: () => context.go('/app/evolucao'),
-                      child: const Text('Ver todos'),
-                    ),
-                  ],
-                ),
-                ...highlight.map(
-                  (s) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                    child: _MarkerTile(
-                      name: s.name,
-                      value: s.latest?.value ?? 0,
-                      textValue: s.latest?.text,
-                      unit: s.unit,
-                      status: s.latestStatus,
-                      category: s.category,
-                      delta: s.delta,
-                      onTap: () => context.push(markerRoute(s.name)),
                     ),
                   ),
+                  if (summary.latestChanges.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.lg),
+                    Text(
+                      'Mudou desde a coleta anterior',
+                      style: text.titleMedium,
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    ...summary.latestChanges.map(
+                      (s) => Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                        child: _MarkerTile(
+                          name: s.name,
+                          value: s.latest!.value,
+                          textValue: s.latest!.text,
+                          unit: s.unit,
+                          status: s.latestStatus,
+                          category: s.category,
+                          delta: s.delta,
+                          onTap: () => context.push(markerRoute(s.name)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+                const SizedBox(height: AppSpacing.md),
+                OutlinedButton.icon(
+                  onPressed: () => context.go('/app/evolucao'),
+                  icon: const Icon(Icons.timeline),
+                  label: Text('Ver todos os ${summary.totalMarkers} marcadores'),
                 ),
               ],
             ),
@@ -205,6 +217,56 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(label, style: Theme.of(context).textTheme.bodySmall),
         ],
+      ),
+    );
+  }
+}
+
+class _LatestReportCard extends StatelessWidget {
+  const _LatestReportCard({required this.report, required this.onTap});
+
+  final ExamReport report;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final white = text.bodyMedium?.copyWith(color: Colors.white);
+    return Material(
+      color: AppColors.teal,
+      borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Última coleta · ${DateFormat('dd/MM/yyyy').format(report.collectedAt)}',
+                      style: text.titleMedium?.copyWith(color: Colors.white),
+                    ),
+                    const SizedBox(height: 4),
+                    if (report.labName != null)
+                      Text(report.labName!, style: white),
+                    if (report.doctorName != null)
+                      Text('Médico: ${report.doctorName}', style: white),
+                    Text(
+                      '${report.markerCount} resultados · '
+                      '${report.outOfRangeCount} fora da faixa',
+                      style: text.bodySmall?.copyWith(color: Colors.white70),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Colors.white),
+            ],
+          ),
+        ),
       ),
     );
   }

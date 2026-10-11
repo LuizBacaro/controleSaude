@@ -32,6 +32,20 @@ class ExamReport {
 
   int get markerCount => markers.length;
 
+  ExamReport withMarkers(List<ExamMarker> kept) => ExamReport(
+    id: id,
+    collectedAt: collectedAt,
+    importedAt: importedAt,
+    markers: kept,
+    patientName: patientName,
+    labName: labName,
+    doctorName: doctorName,
+    insuranceName: insuranceName,
+    sourceFileName: sourceFileName,
+    notes: notes,
+    unrecognized: unrecognized,
+  );
+
   int get outOfRangeCount => markers
       .where(
         (m) =>
@@ -126,5 +140,14 @@ class MarkerSeries {
       return null;
     }
     return points.last.value - points[points.length - 2].value;
+  }
+
+  /// Variação em relação à coleta anterior (0,1 = 10%).
+  double? get relativeChange {
+    final change = delta;
+    if (change == null) return null;
+    final before = points[points.length - 2].value;
+    if (before == 0) return null;
+    return change / before.abs();
   }
 }

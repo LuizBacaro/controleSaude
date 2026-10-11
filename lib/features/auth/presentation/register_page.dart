@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
 import '../../../core/theme/app_spacing.dart';
+import 'widgets/health_fields.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
@@ -17,6 +18,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   String? _sex;
+  DateTime? _birthDate;
   var _loading = false;
   String? _error;
 
@@ -29,6 +31,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   }
 
   Future<void> _submit() async {
+    if (_birthDate == null || _sex == null) {
+      setState(
+        () => _error = 'Informe data de nascimento e sexo para avaliar os exames.',
+      );
+      return;
+    }
     setState(() {
       _loading = true;
       _error = null;
@@ -41,8 +49,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             password: _password.text,
             displayName: _name.text,
             sex: _sex,
+            birthDate: _birthDate,
           );
       ref.read(authRevisionProvider.notifier).bump();
+      await ref.read(examsRepositoryProvider).load();
+      ref.read(examsRevisionProvider.notifier).bump();
       if (!mounted) return;
       // Pós-cadastro: pedir o PDF do exame.
       context.go('/importar?onboarding=1');
@@ -87,15 +98,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             ),
           ),
           const SizedBox(height: AppSpacing.md),
-          DropdownMenu<String>(
-            initialSelection: _sex,
-            label: const Text('Sexo (opcional)'),
-            expandedInsets: EdgeInsets.zero,
-            dropdownMenuEntries: const [
-              DropdownMenuEntry(value: 'M', label: 'Masculino'),
-              DropdownMenuEntry(value: 'F', label: 'Feminino'),
-            ],
-            onSelected: (v) => setState(() => _sex = v),
+          HealthFields(
+            birthDate: _birthDate,
+            sex: _sex,
+            onBirthDate: (date) => setState(() => _birthDate = date),
+            onSex: (value) => setState(() => _sex = value),
           ),
           if (_error != null) ...[
             const SizedBox(height: AppSpacing.md),

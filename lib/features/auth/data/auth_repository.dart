@@ -51,6 +51,7 @@ class AuthRepository extends ChangeNotifier {
         data: {
           'display_name': name,
           if (sex != null && sex.isNotEmpty) 'sex': sex,
+          if (birthDate != null) 'birth_date': _isoDate(birthDate),
         },
       );
       final user = response.user;
@@ -58,6 +59,12 @@ class AuthRepository extends ChangeNotifier {
         throw Exception(
           'Conta criada. Confirme o e-mail enviado pelo Supabase e depois entre.',
         );
+      }
+      if (birthDate != null) {
+        await _client
+            .from('profiles')
+            .update({'birth_date': _isoDate(birthDate)})
+            .eq('id', user.id);
       }
       _currentUser = await _profileFor(user);
       notifyListeners();
@@ -89,6 +96,33 @@ class AuthRepository extends ChangeNotifier {
     }
   }
 
+  /// Completa sexo e data de nascimento, usados nas faixas de referência.
+  Future<AppUser> updateHealthProfile({
+    required DateTime birthDate,
+    required String sex,
+  }) async {
+    final user = _client.auth.currentUser;
+    final current = _currentUser;
+    if (user == null || current == null) {
+      throw Exception('Entre na conta para salvar o perfil.');
+    }
+    await _client
+        .from('profiles')
+        .update({'birth_date': _isoDate(birthDate), 'sex': sex})
+        .eq('id', user.id);
+    await _client.auth.updateUser(
+      UserAttributes(data: {'birth_date': _isoDate(birthDate), 'sex': sex}),
+    );
+    _currentUser = current.copyWith(birthDate: birthDate, sex: sex);
+    notifyListeners();
+    return _currentUser!;
+  }
+
+  String _isoDate(DateTime date) =>
+      '${date.year.toString().padLeft(4, '0')}-'
+      '${date.month.toString().padLeft(2, '0')}-'
+      '${date.day.toString().padLeft(2, '0')}';
+
   Future<void> logout() async {
     await _client.auth.signOut();
     _currentUser = null;
@@ -101,8 +135,9 @@ class AuthRepository extends ChangeNotifier {
         .select()
         .eq('id', user.id)
         .maybeSingle();
+    final meta = user.userMetadata ?? const <String, dynamic>{};
+    final metaBirth = DateTime.tryParse(meta['birth_date'] as String? ?? '');
     if (row == null) {
-      final meta = user.userMetadata ?? const <String, dynamic>{};
       return AppUser(
         id: user.id,
         email: user.email ?? '',
@@ -110,9 +145,17 @@ class AuthRepository extends ChangeNotifier {
             meta['display_name'] as String? ??
             (user.email ?? '').split('@').first,
         sex: meta['sex'] as String?,
+        birthDate: metaBirth,
       );
     }
-    return AppUser.fromJson(Map<String, dynamic>.from(row));
+    final profile = AppUser.fromJson(Map<String, dynamic>.from(row));
+    return AppUser(
+      id: profile.id,
+      email: profile.email,
+      displayName: profile.displayName,
+      birthDate: profile.birthDate ?? metaBirth,
+      sex: profile.sex ?? meta['sex'] as String?,
+    );
   }
 
   String _authMessage(String message) {

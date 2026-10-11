@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../domain/exam_marker.dart';
 import '../domain/exam_report.dart';
+import '../domain/patient_profile.dart';
 import 'lab_pdf_parser.dart';
 import 'pdf_text_extractor.dart';
 import 'sample_exam_text.dart';
@@ -66,34 +67,52 @@ class ExamsRepository {
     }
   }
 
-  Future<ExamReport> importPdfFile(File file) async {
+  /// Lê o PDF sem salvar; quem chama decide o que gravar com [saveReport].
+  Future<ExamReport> readPdfFile(File file, {PatientProfile? patient}) async {
     final text = await _extractor.fromFile(file);
-    final report = _parser.parse(
+    return _parser.parse(
       text,
       sourceFileName: file.uri.pathSegments.last,
+      patient: patient,
     );
-    await _insertReport(report);
-    _reports.add(report);
-    return report;
   }
 
-  Future<ExamReport> importPdfBytes(Uint8List bytes, {String? fileName}) async {
+  Future<ExamReport> readPdfBytes(
+    Uint8List bytes, {
+    String? fileName,
+    PatientProfile? patient,
+  }) async {
     final text = await _extractor.fromBytes(bytes);
-    final report = _parser.parse(text, sourceFileName: fileName);
-    await _insertReport(report);
-    _reports.add(report);
-    return report;
+    return _parser.parse(text, sourceFileName: fileName, patient: patient);
   }
 
-  Future<ExamReport> importSample() async {
-    final report = _parser.parse(
-      sampleExamPdfText,
-      sourceFileName: 'exame-exemplo.pdf',
-    );
+  ExamReport readSample({PatientProfile? patient}) => _parser.parse(
+    sampleExamPdfText,
+    sourceFileName: 'exame-exemplo.pdf',
+    patient: patient,
+  );
+
+  /// Laudo já salvo com a mesma coleta e o mesmo arquivo.
+  ExamReport? findDuplicate(ExamReport draft) {
+    for (final report in _reports) {
+      if (_sameDay(report.collectedAt, draft.collectedAt) &&
+          report.sourceFileName == draft.sourceFileName) {
+        return report;
+      }
+    }
+    return null;
+  }
+
+  Future<void> saveReport(ExamReport report) async {
     await _insertReport(report);
     _reports.add(report);
-    return report;
   }
+
+  bool _sameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
+  /// Esquece os laudos em memória ao sair da conta.
+  void clear() => _reports.clear();
 
   Future<void> deleteReport(String id) async {
     await _client.from('exam_reports').delete().eq('id', id);
@@ -376,11 +395,35 @@ class ExamsRepository {
               s.latestStatus == MarkerStatus.altered,
         )
         .toList();
+    final latest = reports.isEmpty ? null : reports.first;
+    final byName = {for (final s in series) s.name.toLowerCase(): s};
+    final latestSeries = latest == null
+        ? const <MarkerSeries>[]
+        : [
+            for (final marker in latest.markers)
+              ?byName[marker.name.toLowerCase()],
+          ];
+    final latestAlerts = latestSeries
+        .where(
+          (s) =>
+              s.latestStatus == MarkerStatus.low ||
+              s.latestStatus == MarkerStatus.high ||
+              s.latestStatus == MarkerStatus.altered,
+        )
+        .toList();
+    final changes =
+        latestSeries.where((s) => (s.relativeChange ?? 0).abs() >= 0.1).toList()
+          ..sort(
+            (a, b) => b.relativeChange!.abs().compareTo(a.relativeChange!.abs()),
+          );
     return DashboardSummary(
       totalMarkers: series.length,
       outOfRange: outOfRange,
       reportCount: _reports.length,
-      lastCollectedAt: reports.isEmpty ? null : reports.first.collectedAt,
+      lastCollectedAt: latest?.collectedAt,
+      latestReport: latest,
+      latestAlerts: latestAlerts,
+      latestChanges: changes.take(5).toList(),
     );
   }
 }
@@ -391,12 +434,24 @@ class DashboardSummary {
     required this.outOfRange,
     required this.reportCount,
     this.lastCollectedAt,
+    this.latestReport,
+    this.latestAlerts = const [],
+    this.latestChanges = const [],
   });
 
   final int totalMarkers;
   final List<MarkerSeries> outOfRange;
   final int reportCount;
   final DateTime? lastCollectedAt;
+
+  /// Laudo com a coleta mais recente.
+  final ExamReport? latestReport;
+
+  /// Marcadores da última coleta fora da faixa.
+  final List<MarkerSeries> latestAlerts;
+
+  /// Marcadores da última coleta que mudaram 10% ou mais desde a anterior.
+  final List<MarkerSeries> latestChanges;
 }
 
 class _SeriesBuilder {

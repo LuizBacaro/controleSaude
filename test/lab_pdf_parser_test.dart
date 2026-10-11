@@ -4,6 +4,7 @@ import 'package:exame_facil/features/exams/data/lab_pdf_parser.dart';
 import 'package:exame_facil/features/exams/data/pdf_text_extractor.dart';
 import 'package:exame_facil/features/exams/data/sample_exam_text.dart';
 import 'package:exame_facil/features/exams/domain/exam_marker.dart';
+import 'package:exame_facil/features/exams/domain/patient_profile.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 bool _isAgeOrDocument(ExamMarker marker) {
@@ -139,6 +140,9 @@ Valor de Referência: 70 a 99 mg/dL
       expect(report.doctorName, 'WALDEMAR PASCHOALINO JUNIOR');
       expect(report.labName, 'IPC - CENTRAL');
       expect(report.insuranceName, 'UNIMED ARARAQUARA');
+      expect(find('Hemoglobina').referenceMin, closeTo(13.5, 0.01));
+      expect(find('Hemoglobina').referenceMax, closeTo(17.5, 0.01));
+      expect(find('R.D.W').referenceMax, closeTo(15.0, 0.01));
     },
   );
 
@@ -156,6 +160,12 @@ Valor de Referência: 70 a 99 mg/dL
     expect(report.doctorName, 'LUCIANA DOS SANTOS SCHRAIBER');
     expect(report.labName, 'Unilab');
     expect(report.insuranceName, 'UNIMED');
+    expect(find('Segmentados').referenceMax, 70);
+    expect(find('Hemoglobina').status, MarkerStatus.high);
+    expect(find('Creatinina').referenceMin, closeTo(0.70, 0.01));
+    expect(find('Creatinina').referenceMax, closeTo(1.20, 0.01));
+    expect(find('Fosfatase alcalina').referenceText, contains('Homens'));
+    expect(find('Ureia').referenceText, contains('65 anos'));
     expect(find('Colesterol Total').value, 164);
     expect(find('Colesterol HDL').value, 51);
     expect(find('Colesterol LDL').value, 96);
@@ -244,6 +254,26 @@ Resultado: 90 mg/dL
     expect(report.doctorName, 'Dra. CECILIA MEIRELLES BARROS');
     expect(report.labName, 'Unilab');
     expect(report.insuranceName, 'Várias fontes pagadoras');
+  });
+
+  test('faixa por sexo segue o PDF e, sem sexo no PDF, o perfil', () async {
+    final exame2 = LabPdfParser().parse(
+      await PdfTextExtractorService().fromFile(File('Exame2.pdf')),
+      patient: const PatientProfile(sex: 'F'),
+    );
+    ExamMarker inExame2(String name) =>
+        exame2.markers.firstWhere((m) => m.name == name);
+    expect(inExame2('GGT').referenceMin, 10);
+    expect(inExame2('Bilirrubina direta').referenceMax, closeTo(0.40, 0.01));
+    expect(inExame2('Bilirrubina total').referenceMax, closeTo(1.20, 0.01));
+
+    final ipc = LabPdfParser().parse(
+      await PdfTextExtractorService().fromFile(File('ipc.pdf')),
+      patient: const PatientProfile(sex: 'F', age: 30),
+    );
+    final uric = ipc.markers.firstWhere((m) => m.name == 'Ácido úrico');
+    expect(uric.referenceMin, closeTo(2.4, 0.01));
+    expect(uric.referenceMax, closeTo(6.0, 0.01));
   });
 
   test('exame4 separa a urina tipo I do sangue e lê PSA', () async {

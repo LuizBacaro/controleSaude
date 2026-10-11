@@ -36,6 +36,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             password: _password.text,
           );
       ref.read(authRevisionProvider.notifier).bump();
+      await ref.read(examsRepositoryProvider).load();
+      ref.read(examsRevisionProvider.notifier).bump();
       if (!mounted) return;
       final hasExams = ref.read(examsRepositoryProvider).hasReports;
       context.go(hasExams ? '/app' : '/importar?onboarding=1');

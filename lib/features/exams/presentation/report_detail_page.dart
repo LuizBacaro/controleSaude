@@ -8,7 +8,7 @@ import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../domain/exam_marker.dart';
-import '../domain/exam_report.dart';
+import 'widgets/report_heading.dart';
 import 'widgets/status_chip.dart';
 
 class ReportDetailPage extends ConsumerWidget {
@@ -80,7 +80,7 @@ class ReportDetailPage extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
         children: [
-          _ReportHeading(report: report, dateLabel: dateFmt.format(report.collectedAt)),
+          ReportHeading(report: report),
           if (report.unrecognized.isNotEmpty)
             Container(
               margin: const EdgeInsets.only(bottom: AppSpacing.md),
@@ -140,81 +140,6 @@ class ReportDetailPage extends ConsumerWidget {
               ),
             ];
           }),
-        ],
-      ),
-    );
-  }
-}
-
-class _ReportHeading extends StatelessWidget {
-  const _ReportHeading({required this.report, required this.dateLabel});
-
-  final ExamReport report;
-  final String dateLabel;
-
-  @override
-  Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
-    final rows = <(String, String)>[
-      if (report.patientName != null) ('Paciente', report.patientName!),
-      if (report.doctorName != null) ('Médico', report.doctorName!),
-      if (report.labName != null) ('Laboratório', report.labName!),
-      if (report.insuranceName != null) ('Convênio', report.insuranceName!),
-      ('Coleta', dateLabel),
-      if (report.sourceFileName != null) ('Arquivo', report.sourceFileName!),
-    ];
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: AppSpacing.md),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
-        border: Border.all(color: AppColors.border),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.md,
-              vertical: AppSpacing.sm,
-            ),
-            color: AppColors.teal,
-            child: Text(
-              report.labName ?? 'Laudo',
-              style: text.titleMedium?.copyWith(color: Colors.white),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            child: Column(
-              children: [
-                for (final row in rows)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 108,
-                          child: Text(
-                            row.$1,
-                            style: text.bodySmall?.copyWith(
-                              color: AppColors.textSecondary,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(row.$2, style: text.bodyMedium),
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-          ),
         ],
       ),
     );
