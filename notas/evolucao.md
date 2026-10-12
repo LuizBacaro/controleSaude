@@ -147,8 +147,8 @@ Deu certo:
 - No SM A528B o debug abria, mas só depois de uma janela preta: o `main` esperava o Supabase e os laudos, e o sistema registrava cerca de 300 quadros perdidos. A memória ficava em torno de 360 MB. O núcleo de debug tinha 107 MB, com o leitor de PDF da Syncfusion inteiro no caminho da abertura.
 - A primeira tela agora é leve e aparece antes da rede. Se a conexão falhar, dá para tentar de novo em vez de ficar preso.
 - O leitor de PDF só entra na memória quando um PDF é importado. Evolução, Histórico e Perfil só são montados na primeira visita.
-- 12 testes passando, `dart analyze` limpo. No aparelho, o APK de release substituiu o debug.
+- 12 testes passando, `dart analyze` limpo. O debug novo foi instalado no SM A528B: a janela passou de 4,7 s para 3,0 s e sumiu o segundo travamento, aquele de ~200 quadros depois que a tela já existia. Painel, laudo e as outras abas abriram.
 
 Deu errado / limite:
 
-- O `flutter run` (debug) continua mais pesado que o release, porque carrega a máquina virtual do Dart. Para o dia a dia no celular, o que abre pelo ícone é o release.
+- O APK de release não compilou: o CMake quebra no caminho com acento (`Área de trabalho`). O que está no celular continua sendo debug, com a máquina virtual do Dart, e a memória fica perto de 400 MB. O `flutter run` segue mais pesado que um release.
