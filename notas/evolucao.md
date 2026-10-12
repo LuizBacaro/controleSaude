@@ -23,6 +23,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Importar não salva direto: `readPdf*` devolve rascunho e só `saveReport` grava. Não voltar a gravar dentro da leitura.
 - Laudos são carregados no bootstrap, antes do login. Após login e cadastro, chamar `examsRepository.load()`; no logout, `clear()`. Com RLS por usuário, sem isso a lista fica vazia ou de outra conta.
 - MCP do Supabase: a configuração oficial fica em `.cursor/mcp.json` (URL com `project_ref` e `features`, sem token no arquivo). Conectar com `agent mcp enable supabase` e `agent mcp login supabase`. Não renovar à mão o refresh do `mcp-auth.json`: é de uso único e a sessão anterior ficou sem login assim.
+- O MCP do Playwright fica no mesmo `.cursor/mcp.json` (`npx -y @playwright/mcp@latest`) e entra com `agent mcp enable playwright`. Não apagar essa entrada ao mexer no Supabase.
 - `rg` não está instalado no terminal; usar `grep` em comandos de shell.
 - `pkill -f "...flutter run..."` no mesmo comando mata o próprio shell (o padrão casa com ele). Rodar `flutter run` sozinho.
 - Faixa por sexo/idade: o bloco de referência termina no próximo exame (`Resultado:`, `Rótulo:` seguido de número, `Resultados anteriores`). Sem esse corte, a bilirrubina direta pegou a faixa da total.
@@ -162,3 +163,12 @@ Deu certo:
 
 - A arte saiu de `logo.png`, sem o texto. O fundo claro foi tirado e a borda transparente ficou na cor do desenho, não num fio branco.
 - Regenerados os cinco tamanhos do foreground e o `ic_launcher` legado, mais `assets/brand/app_icon.png`. O fundo do adaptive icon continua `#0A3352`.
+
+### 2026-10-12 — MCP do Playwright de novo
+
+Pedido: instalar de novo o MCP do Playwright, se tivesse sumido.
+
+Deu certo:
+
+- Não estava em `.cursor/mcp.json` nem no `mcp.json` do usuário. Voltou no arquivo do projeto, ao lado do Supabase.
+- `agent mcp list` mostra `playwright: ready`. O pacote `@playwright/mcp` responde e o Chromium já está no cache.
