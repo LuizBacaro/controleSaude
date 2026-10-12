@@ -9,7 +9,7 @@ import '../domain/exam_marker.dart';
 import '../domain/exam_report.dart';
 import '../domain/patient_profile.dart';
 import 'lab_pdf_parser.dart';
-import 'pdf_text_extractor.dart';
+import 'pdf_text_extractor.dart' deferred as pdf_text;
 import 'sample_exam_text.dart';
 
 const _reportsKey = 'exame_facil_reports';
@@ -20,15 +20,12 @@ class ExamsRepository {
     required this.prefs,
     SupabaseClient? client,
     LabPdfParser? parser,
-    PdfTextExtractorService? extractor,
   }) : _client = client ?? Supabase.instance.client,
-       _parser = parser ?? LabPdfParser(),
-       _extractor = extractor ?? PdfTextExtractorService();
+       _parser = parser ?? LabPdfParser();
 
   final SharedPreferences prefs;
   final SupabaseClient _client;
   final LabPdfParser _parser;
-  final PdfTextExtractorService _extractor;
 
   final List<ExamReport> _reports = [];
 
@@ -68,8 +65,12 @@ class ExamsRepository {
   }
 
   /// Lê o PDF sem salvar; quem chama decide o que gravar com [saveReport].
+  ///
+  /// O leitor da Syncfusion só entra na memória aqui. Na abertura do app ele
+  /// ficava carregado junto com o resto e deixava o processo pesado.
   Future<ExamReport> readPdfFile(File file, {PatientProfile? patient}) async {
-    final text = await _extractor.fromFile(file);
+    await pdf_text.loadLibrary();
+    final text = await pdf_text.PdfTextExtractorService().fromFile(file);
     return _parser.parse(
       text,
       sourceFileName: file.uri.pathSegments.last,
@@ -82,7 +83,8 @@ class ExamsRepository {
     String? fileName,
     PatientProfile? patient,
   }) async {
-    final text = await _extractor.fromBytes(bytes);
+    await pdf_text.loadLibrary();
+    final text = await pdf_text.PdfTextExtractorService().fromBytes(bytes);
     return _parser.parse(text, sourceFileName: fileName, patient: patient);
   }
 

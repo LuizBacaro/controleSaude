@@ -62,8 +62,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             ReportDetailPage(reportId: state.pathParameters['id']!),
       ),
-      StatefulShellRoute.indexedStack(
+      StatefulShellRoute(
         builder: (context, state, shell) => AppShell(navigationShell: shell),
+        navigatorContainerBuilder: lazyBranchContainer,
         branches: [
           StatefulShellBranch(
             routes: [

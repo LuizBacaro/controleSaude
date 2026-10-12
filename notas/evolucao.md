@@ -28,6 +28,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Faixa por sexo/idade: o bloco de referência termina no próximo exame (`Resultado:`, `Rótulo:` seguido de número, `Resultados anteriores`). Sem esse corte, a bilirrubina direta pegou a faixa da total.
 - “Inferior ou igual a”, “menor ou igual a” e “≤” são limite máximo. O leitor não entendia “Inferior ou igual a” e caía na faixa errada.
 - Sexo e idade do PDF têm prioridade sobre o perfil. Faixa fixa “Homens” não vale para mulher: sem banda no PDF, o status fica sem avaliação.
+- Não esperar a rede dentro de `main` antes de `runApp`. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
 
 ## O que está valendo
 
@@ -136,3 +137,18 @@ Deu errado:
 
 - A primeira tentativa das skills falhou com `ENOTFOUND` dentro do sandbox. Com rede livre, o `npx` concluiu.
 - O cabeçalho `Authorization` com `SUPABASE_ACCESS_TOKEN` não é o caminho do painel. Foi removido.
+
+### 2026-10-11 — App pesado demais para abrir
+
+Pedido: depois das alterações, o aplicativo ficou pesado e não abria mais.
+
+Deu certo:
+
+- No SM A528B o debug abria, mas só depois de uma janela preta: o `main` esperava o Supabase e os laudos, e o sistema registrava cerca de 300 quadros perdidos. A memória ficava em torno de 360 MB. O núcleo de debug tinha 107 MB, com o leitor de PDF da Syncfusion inteiro no caminho da abertura.
+- A primeira tela agora é leve e aparece antes da rede. Se a conexão falhar, dá para tentar de novo em vez de ficar preso.
+- O leitor de PDF só entra na memória quando um PDF é importado. Evolução, Histórico e Perfil só são montados na primeira visita.
+- 12 testes passando, `dart analyze` limpo. No aparelho, o APK de release substituiu o debug.
+
+Deu errado / limite:
+
+- O `flutter run` (debug) continua mais pesado que o release, porque carrega a máquina virtual do Dart. Para o dia a dia no celular, o que abre pelo ícone é o release.
