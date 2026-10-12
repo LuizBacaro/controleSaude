@@ -30,7 +30,8 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - “Inferior ou igual a”, “menor ou igual a” e “≤” são limite máximo. O leitor não entendia “Inferior ou igual a” e caía na faixa errada.
 - Sexo e idade do PDF têm prioridade sobre o perfil. Faixa fixa “Homens” não vale para mulher: sem banda no PDF, o status fica sem avaliação.
 - Não esperar a rede dentro de `main` antes de `runApp`. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
-- O ícone da abertura é o escudo em `ic_launcher_foreground`, fundo `#0A3352`. Recortar em cima do branco e só reduzir deixa uma borda clara. A borda transparente tem que ficar na cor do escudo.
+- O ícone da abertura é o escudo em `ic_launcher_foreground`, fundo `#0A3352`. Recortar em cima do branco e só reduzir deixa uma borda clara. A borda transparente tem que ficar na cor do escudo. O escudo cabe na máscara redonda (diâmetro 72/108); maior que isso, o topo oposto à seta é cortado.
+- No encontro da seta com o escudo sobra um vão branco da página. Esse vão se pinta no verde da seta (por volta de 49, 236, 186). Amostrar o pixel claro ao lado pinta de novo um ciano quase branco.
 
 ## O que está valendo
 
@@ -172,3 +173,21 @@ Deu certo:
 
 - Não estava em `.cursor/mcp.json` nem no `mcp.json` do usuário. Voltou no arquivo do projeto, ao lado do Supabase.
 - `agent mcp list` mostra `playwright: ready`. O pacote `@playwright/mcp` responde e o Chromium já está no cache.
+
+### 2026-10-12 — Escudo menor no ícone do celular
+
+Pedido: centralizar o escudo do ícone. A parte de cima, no lado oposto à seta, era cortada pela borda redonda do app.
+
+Deu certo:
+
+- O desenho ocupava 61% da tela do ícone e passava 12 px da máscara. Ficou em 50%, com cerca de 8 px de folga dentro do círculo.
+- Atualizados `assets/brand/app_icon.png`, o foreground e o `ic_launcher` em todos os tamanhos. Fundo continua `#0A3352`.
+
+### 2026-10-12 — Branco no começo da seta
+
+Pedido: a mancha branca perto do começo da seta em `assets/brand/app_icon.png` ficar no verde que o desenho já usa.
+
+Deu certo:
+
+- O vão entre o cabo da seta e o escudo era resto do fundo branco da página, cerca de 120 pixels no recorte. Foi pintado no verde da seta (49, 236, 186), junto com a franja clara em volta.
+- O mesmo recorte foi para o `app_icon` e para os ícones do Android, nos cinco tamanhos. A ponta da seta e a cruz não foram mexidas.
