@@ -29,6 +29,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - “Inferior ou igual a”, “menor ou igual a” e “≤” são limite máximo. O leitor não entendia “Inferior ou igual a” e caía na faixa errada.
 - Sexo e idade do PDF têm prioridade sobre o perfil. Faixa fixa “Homens” não vale para mulher: sem banda no PDF, o status fica sem avaliação.
 - Não esperar a rede dentro de `main` antes de `runApp`. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
+- O ícone da abertura é o escudo em `ic_launcher_foreground`, fundo `#0A3352`. Recortar em cima do branco e só reduzir deixa uma borda clara. A borda transparente tem que ficar na cor do escudo.
 
 ## O que está valendo
 
@@ -152,3 +153,12 @@ Deu certo:
 Deu errado / limite:
 
 - O APK de release não compilou: o CMake quebra no caminho com acento (`Área de trabalho`). O que está no celular continua sendo debug, com a máquina virtual do Dart, e a memória fica perto de 400 MB. O `flutter run` segue mais pesado que um release.
+
+### 2026-10-12 — Borda do ícone na abertura
+
+Pedido: no instante em que aparece só o escudo (`ic_launcher_foreground`), a borda estava ruim.
+
+Deu certo:
+
+- A arte saiu de `logo.png`, sem o texto. O fundo claro foi tirado e a borda transparente ficou na cor do desenho, não num fio branco.
+- Regenerados os cinco tamanhos do foreground e o `ic_launcher` legado, mais `assets/brand/app_icon.png`. O fundo do adaptive icon continua `#0A3352`.
