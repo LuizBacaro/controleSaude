@@ -1,4 +1,4 @@
-package br.com.examefacil.app
+package br.com.examefacil.laudos
 
 import io.flutter.embedding.android.FlutterActivity
 

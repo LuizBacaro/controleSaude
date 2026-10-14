@@ -12,7 +12,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Faixa etária, “resultado anterior”, CNES, páginas e texto de documento não são exame. Marcador numérico desconhecido precisa de unidade.
 - Urina tipo I fica na categoria própria (`Urina: …`). Hemácias e glicose da urina não entram na série do sangue.
 - Rota de marcador é query `nome` em `/marcador`. Não chamar `Uri.decodeComponent` de novo: o GoRouter já decodifica e o acento quebra com “invalid argument”.
-- Nome na loja: **ExameFácil**. Pacote Android e bundle iOS: `br.com.examefacil.app`. `br.com.examefacil` a Apple recusou. Trocar `applicationId` cria outro app e apaga a sessão local.
+- Nome na loja: **ExameFácil**. Pacote Android e bundle iOS: `br.com.examefacil.laudos`. A Apple já recusou `br.com.examefacil` (ocupado) e `br.com.examefacil.app` (terminar em `.app` é inválido). Trocar `applicationId` cria outro app e apaga a sessão local.
 - Conta é Supabase Auth (`public.profiles`). A senha mínima é 6. Desinstalar apaga a sessão, não a conta. Confirmação de e-mail não pôde ser desligada (token sem permissão de auth).
 - No cliente só entra a chave anon. A `service_role` não vai no app, no git nem nas anotações. Quem colou essa chave no chat deve rotacioná-la.
 - `exam_reports` não tem coluna de médico nem de convênio. Isso vai no `notes` em JSON (`doctor`, `insurance`, `unrecognized`). Enviar coluna que não existe derruba o import. `patient_name` e `lab_name` já existem.
@@ -191,3 +191,14 @@ Deu certo:
 
 - O vão entre o cabo da seta e o escudo era resto do fundo branco da página, cerca de 120 pixels no recorte. Foi pintado no verde da seta (49, 236, 186), junto com a franja clara em volta.
 - O mesmo recorte foi para o `app_icon` e para os ícones do Android, nos cinco tamanhos. A ponta da seta e a cruz não foram mexidas.
+
+### 2026-10-14 — Pacote das lojas
+
+Pedido: o identificador `br.com.examefacil.app` também não passou no cadastro. Usar outra string só para a Play Store e a Apple aceitarem.
+
+Deu certo:
+
+- Pacote Android e bundle iOS passaram a `br.com.examefacil.laudos`. O nome na tela continua ExameFácil.
+- `br.com.examefacil` já estava registrado. Terminar em `.app` a Apple trata como identificador inválido.
+
+Ainda exige ação de quem usa: cadastrar `br.com.examefacil.laudos` nas duas lojas. Instalar esse pacote no celular cria outro app e pede login de novo; a conta no Supabase permanece.
