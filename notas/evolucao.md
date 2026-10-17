@@ -36,6 +36,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Não esperar a rede dentro de `main` antes de `runApp`. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
 - O ícone da abertura é o escudo em `ic_launcher_foreground`, fundo `#0A3352`. Recortar em cima do branco e só reduzir deixa uma borda clara. A borda transparente tem que ficar na cor do escudo. O escudo cabe na máscara redonda (diâmetro 72/108); maior que isso, o topo oposto à seta é cortado.
 - No encontro da seta com o escudo sobra um vão branco da página. Esse vão se pinta no verde da seta (por volta de 49, 236, 186). Amostrar o pixel claro ao lado pinta de novo um ciano quase branco.
+- `FilledButton` do tema tem largura infinita (`Size.fromHeight`). Dentro do `trailing` de um `ListTile`, o botão come o cartão e, no debug, o nome some com o erro de largura. Botão de ação fica embaixo do nome, ou num `Expanded`.
 
 ## O que está valendo
 
@@ -55,6 +56,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Paciente convida em Médicos. Médico aceita no Consultório e abre a Evolução daquele paciente, só leitura. Sem aceite, o laudo não abre.
 - O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral. O endereço publicado é `https://examefacil.pages.dev`.
 - `004_medico_e_acesso` já aplicada: `profiles.role`, CRM, `doctor_directory` e `care_grants`. A chave anon não lê diretório nem convite.
+- Médicos: cada médico é um cartão com nome, CRM e o botão embaixo. A lista recarrega ao reabrir a aba. Consultório: uma coluna, convites só quando existem, pacientes em ordem alfabética com busca.
 
 ## Histórico
 
@@ -280,3 +282,30 @@ Deu certo:
 
 - O debug foi instalado no SM A528B (`RQCT3055G5X`). O app abriu e o Supabase iniciou.
 - Os passos ficaram em `notas/todos.md`: Site URL do Auth, prova do consultório, cópia da chave da Play, ficha das lojas e, por último, domínio próprio.
+
+### 2026-10-17 — Mariana sumiu da aba Médicos
+
+Pedido: no celular, a médica Mariana não aparecia em Médicos para o convite. O Consultório, com muitos pacientes, precisa continuar simples.
+
+Deu certo:
+
+- A conta já estava no diretório (CRM/SP 123456). A aba tinha pedido a lista e recebido 200. O nome sumia porque o botão Convidar, com a largura infinita do tema, ocupava o `ListTile` inteiro.
+- O cartão agora mostra o nome e o CRM, e o botão fica na linha de baixo. A busca segue A–Z e a aba recarrega quando volta a aparecer.
+- O Consultório ficou numa coluna: convites só se houver pendência, pacientes com busca e uma linha por nome.
+
+Deu errado / limite:
+
+- Há outro médico de teste no diretório, Revisao Medico. A lista mostra os dois.
+- O celular continuava com o APK antigo (quatro abas, sem Médicos). O código novo só aparece depois de instalar de novo.
+
+### 2026-10-17 — Prova no celular
+
+Pedido: abrir o app no SM A528B e conferir a aba Médicos de ponta a ponta, porque ainda não aparecia nada.
+
+Deu certo:
+
+- O aparelho estava na versão anterior. O debug novo foi instalado por cima.
+- Na conta do Luiz, Médicos mostra Mariana, CRM/SP 123456, e o botão Convidar. O convite foi enviado e o cartão passou a “Aguardando aceite”.
+- O convite ficou pendente no banco, do paciente Luiz Salvador para a médica Mariana.
+
+Ainda exige ação de quem usa: entrar na conta da Mariana e aceitar o convite no Consultório. Sem a senha dela, o aceite não foi feito daqui.

@@ -18,6 +18,7 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
   String? _error;
   String? _busyId;
   String _query = '';
+  bool? _tabShown;
   List<DoctorListing> _doctors = const [];
   List<CareGrant> _grants = const [];
 
@@ -27,11 +28,25 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
     Future.microtask(_load);
   }
 
-  Future<void> _load() async {
-    setState(() {
-      _loading = true;
-      _error = null;
-    });
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final shown = TickerMode.valuesOf(context).enabled;
+    final previous = _tabShown;
+    _tabShown = shown;
+    if (previous == false && shown && !_loading) {
+      _load(silent: true);
+    }
+  }
+
+  Future<void> _load({bool silent = false}) async {
+    if (silent && _loading) return;
+    if (!silent) {
+      setState(() {
+        _loading = true;
+        _error = null;
+      });
+    }
     try {
       final care = ref.read(careRepositoryProvider);
       final doctors = await care.listDoctors();
@@ -40,12 +55,13 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
       setState(() {
         _doctors = doctors;
         _grants = grants;
+        _error = null;
       });
     } catch (error) {
       if (!mounted) return;
       setState(() => _error = _text(error));
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (mounted && !silent) setState(() => _loading = false);
     }
   }
 
@@ -100,11 +116,11 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
           : RefreshIndicator(
               onRefresh: _load,
               child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(AppSpacing.md),
                 children: [
                   Text(
-                    'O médico só vê a sua Evolução depois que você convida e ele aceita. '
-                    'Ele não procura pacientes no sistema.',
+                    'O médico só vê a sua Evolução depois que você convida e ele aceita.',
                     style: text.bodyMedium,
                   ),
                   const SizedBox(height: AppSpacing.md),
@@ -133,7 +149,7 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
                       style: text.bodyLarge,
                     ),
                   for (final doctor in visible) ...[
-                    _DoctorTile(
+                    DoctorInviteCard(
                       doctor: doctor,
                       grant: _grantFor(doctor.id),
                       busy: _busyId == doctor.id,
@@ -149,8 +165,9 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
   }
 }
 
-class _DoctorTile extends StatelessWidget {
-  const _DoctorTile({
+class DoctorInviteCard extends StatelessWidget {
+  const DoctorInviteCard({
+    super.key,
     required this.doctor,
     required this.grant,
     required this.busy,
@@ -166,36 +183,70 @@ class _DoctorTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
     final grant = this.grant;
     final accepted = grant?.isAccepted ?? false;
     final pending = grant?.isPending ?? false;
-    return ListTile(
+    final icon = accepted
+        ? Icons.verified_outlined
+        : pending
+        ? Icons.hourglass_top
+        : Icons.medical_services_outlined;
+
+    return Material(
+      color: AppColors.surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
         side: const BorderSide(color: AppColors.border),
       ),
-      tileColor: AppColors.surface,
-      title: Text(doctor.displayName),
-      subtitle: Text(doctor.crmLabel),
-      trailing: busy
-          ? const SizedBox(
-              width: 22,
-              height: 22,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            )
-          : accepted || pending
-          ? TextButton(
-              onPressed: grant == null ? null : () => onRevoke(grant),
-              child: Text(accepted ? 'Revogar' : 'Cancelar'),
-            )
-          : FilledButton(onPressed: onInvite, child: const Text('Convidar')),
-      leading: Icon(
-        accepted
-            ? Icons.verified_outlined
-            : pending
-            ? Icons.hourglass_top
-            : Icons.medical_services_outlined,
-        color: AppColors.teal,
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                Icon(icon, color: AppColors.teal),
+                const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(doctor.displayName, style: text.titleMedium),
+                      Text(doctor.crmLabel, style: text.bodyMedium),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            if (busy)
+              const Center(
+                child: SizedBox(
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              )
+            else if (grant != null && (accepted || pending))
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      accepted ? 'Acesso liberado' : 'Aguardando aceite',
+                      style: text.bodyMedium,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => onRevoke(grant),
+                    child: Text(accepted ? 'Revogar' : 'Cancelar'),
+                  ),
+                ],
+              )
+            else
+              FilledButton(onPressed: onInvite, child: const Text('Convidar')),
+          ],
+        ),
       ),
     );
   }
