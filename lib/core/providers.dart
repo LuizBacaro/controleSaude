@@ -69,3 +69,13 @@ final hasExamsProvider = Provider<bool>((ref) {
   ref.watch(examsRevisionProvider);
   return ref.watch(examsRepositoryProvider).hasReports;
 });
+
+/// Troca ao sair da conta para as abas não guardarem a lista anterior.
+final shellEpochProvider = NotifierProvider<ShellEpoch, int>(ShellEpoch.new);
+
+class ShellEpoch extends Notifier<int> {
+  @override
+  int build() => 0;
+
+  void bump() => state++;
+}

@@ -1,0 +1,431 @@
+- generic [ref=f76e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f76e3]:
+    - banner [ref=f76e4]:
+      - generic [ref=f76e6]:
+        - link [ref=f76e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f76e8]
+        - generic [ref=f76e9]:
+          - button "Notificações Abrir central de notificações" [ref=f76e45]:
+            - img [aria-hidden] [ref=f76e49]: notifications
+            - generic [ref=f76e50]: Notificações
+          - generic [ref=f76e10]:
+            - button "Exame Fácil" [ref=f76e59] [cursor=pointer]
+            - button [ref=f76e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f76e16]
+    - generic [ref=f76e18]:
+      - generic [ref=f76e71]:
+        - button "Fechar painel lateral" [ref=f76e72] [cursor=pointer]:
+          - img [aria-hidden] [ref=f76e75]: chevron_right
+        - button "Fechar painel lateral" [ref=f76e77] [cursor=pointer]:
+          - img [aria-hidden] [ref=f76e80]: close
+      - generic [ref=f76e1165]:
+        - generic [ref=f76e1166]:
+          - generic [ref=f76e1167]:
+            - generic [ref=f76e1168]:
+              - generic [ref=f76e1169]:
+                - search "Pesquisar recursos":
+                  - generic [ref=f76e1171]:
+                    - generic:
+                      - img [aria-hidden]: search
+                    - generic: Pesquisar recursos
+                    - textbox "Pesquisar recursos" [ref=f76e1172]
+              - button "Filtrar (2)" [ref=f76e1179] [cursor=pointer]:
+                - img [aria-hidden] [ref=f76e1183]: filter_list
+                - generic [ref=f76e1184]:
+                  - text: Filtrar
+                  - generic [ref=f76e1185]: (2)
+            - toolbar "Filtros selecionados" [ref=f76e1186]:
+              - row "Pronto para uso Precisa de recorte" [ref=f76e1187]:
+                - gridcell "Pronto para uso":
+                  - button "Excluir" [ref=f76e1188] [cursor=pointer]:
+                    - img [aria-hidden] [ref=f76e1191]: close
+                - gridcell "Precisa de recorte":
+                  - button "Excluir" [ref=f76e1192] [cursor=pointer]:
+                    - img [aria-hidden] [ref=f76e1195]: close
+          - button "Mais recentes" [ref=f76e1197]:
+            - img [aria-hidden] [ref=f76e1201]: swap_vert
+        - list "Lista de recursos" [ref=f76e1205]:
+          - listitem "Asset row" [ref=f76e1207]
+          - listitem "Asset row" [ref=f76e1227]
+          - listitem "Asset row" [ref=f76e1247]
+          - listitem "Asset row" [active] [ref=f76e1267]
+          - listitem "Asset row" [ref=f76e1287]:
+            - generic [ref=f76e1288]:
+              - generic [ref=f76e1290]:
+                - group "Recurso feature-graphic.png Não selecionado" [ref=f76e1291]
+                - generic [ref=f76e1294]: Recurso feature-graphic.png Não selecionado
+              - generic [ref=f76e1295]:
+                - generic [ref=f76e1296]: feature-graphic.png
+                - group "Propriedades do recurso" [ref=f76e1299]:
+                  - list [ref=f76e1300]:
+                    - listitem [ref=f76e1301]:
+                      - text: 1024x500px
+                      - generic [ref=f76e1302]: Dimensões 1024x500px
+                    - listitem [ref=f76e1303]:
+                      - text: 17 de out. de 2026
+                      - generic [ref=f76e1304]: Enviado em 17 de out. de 2026
+          - listitem "Asset row" [ref=f76e1306]:
+            - generic [ref=f76e1307]:
+              - generic [ref=f76e1309]:
+                - group "Recurso feature-graphic.png Não selecionado" [ref=f76e1310]
+                - generic [ref=f76e1313]: Recurso feature-graphic.png Não selecionado
+              - generic [ref=f76e1314]:
+                - generic [ref=f76e1315]: feature-graphic.png
+                - group "Propriedades do recurso" [ref=f76e1318]:
+                  - list [ref=f76e1319]:
+                    - listitem [ref=f76e1320]:
+                      - text: 1024x500px
+                      - generic [ref=f76e1321]: Dimensões 1024x500px
+                    - listitem [ref=f76e1322]:
+                      - text: 17 de out. de 2026
+                      - generic [ref=f76e1323]: Enviado em 17 de out. de 2026
+          - listitem "Asset row" [ref=f76e1325]:
+            - generic [ref=f76e1326]:
+              - generic [ref=f76e1328]:
+                - group "Recurso app_icon.png Não selecionado" [ref=f76e1329]
+                - generic [ref=f76e1332]: Recurso app_icon.png Não selecionado
+              - generic [ref=f76e1333]:
+                - generic [ref=f76e1334]: app_icon.png
+                - group "Propriedades do recurso" [ref=f76e1337]:
+                  - list [ref=f76e1338]:
+                    - listitem [ref=f76e1339]:
+                      - text: 1∶1
+                      - generic [ref=f76e1340]: Proporção 1∶1
+                    - listitem [ref=f76e1341]:
+                      - text: 512x512px
+                      - generic [ref=f76e1342]: Dimensões 512x512px
+                    - listitem [ref=f76e1343]:
+                      - text: 17 de out. de 2026
+                      - generic [ref=f76e1344]: Enviado em 17 de out. de 2026
+        - generic [ref=f76e1348]:
+          - button "Enviar" [ref=f76e1352] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e1356]: upload
+          - button "Add from Drive" [ref=f76e1360]:
+            - img [aria-hidden] [ref=f76e1364]: drive
+    - navigation [ref=f76e193]:
+      - link "Todos os apps" [ref=f76e194] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f76e196]: keyboard_backspace
+      - list [ref=f76e198]:
+        - listitem "Painel" [ref=f76e201]:
+          - button "Painel" [ref=f76e202] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e205]: dashboard
+        - listitem "Estatísticas" [ref=f76e209]:
+          - button "Estatísticas" [ref=f76e210] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e213]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f76e217]:
+          - button "Visão geral da publicação" [ref=f76e218] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e221]: overview
+        - listitem "Protegido com o Google Play" [ref=f76e225]:
+          - button "Protegido com o Google Play" [ref=f76e226] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e229]: shield
+        - listitem "Testar e lançar" [ref=f76e233]:
+          - button "Testar e lançar" [ref=f76e234] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e237]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f76e241]:
+          - button "Monitorar e aprimorar" [ref=f76e242] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e245]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f76e249]:
+          - button "Aumentar número de usuários" [ref=f76e250] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e253]: finance_mode
+          - list [ref=f76e255]:
+            - generic [ref=f76e257]:
+              - listitem "Presença na loja" [ref=f76e259]:
+                - button "Presença na loja" [ref=f76e260] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f76e263]: expand_less
+                - list [ref=f76e264]:
+                  - generic [ref=f76e266]:
+                    - listitem "Páginas de detalhes do app" [ref=f76e268]:
+                      - button "Páginas de detalhes do app" [ref=f76e269] [cursor=pointer]
+                    - listitem "Configurações da loja" [ref=f76e272]:
+                      - button "Configurações da loja" [ref=f76e273] [cursor=pointer]
+              - listitem "Desempenho na loja" [ref=f76e276]:
+                - button "Desempenho na loja" [ref=f76e277] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f76e280]: expand_more
+              - listitem "Traduções" [ref=f76e282]:
+                - button "Traduções" [ref=f76e283] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f76e286]: expand_more
+              - listitem "Links diretos" [ref=f76e288]:
+                - button "Links diretos" [ref=f76e289] [cursor=pointer]
+        - listitem "Monetizar com o Google Play" [ref=f76e293]:
+          - button "Monetizar com o Google Play" [ref=f76e294] [cursor=pointer]:
+            - img [aria-hidden] [ref=f76e297]: sell
+    - generic [ref=f76e22]:
+      - generic [ref=f76e303]:
+        - generic [ref=f76e307]:
+          - generic:
+            - generic:
+              - link "Voltar para Páginas de detalhes do app":
+                - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/store-listings
+                - generic [ref=f76e308] [cursor=pointer]
+                - img [aria-hidden] [ref=f76e310] [cursor=pointer]: keyboard_backspace
+                - generic [ref=f76e311] [cursor=pointer]: Páginas de detalhes do app
+          - heading "Página \"Detalhes do app\" padrão" [level=1] [ref=f76e320]
+        - generic [ref=f76e324]:
+          - generic [ref=f76e325]:
+            - tablist [ref=f76e326]:
+              - tab "Etapa 1 de 2, Recursos" [selected] [ref=f76e327]:
+                - generic [ref=f76e328]: "1"
+                - generic [ref=f76e331]: Recursos
+              - tab "Etapa 2 de 2, Avaliação" [disabled] [ref=f76e334]:
+                - generic [ref=f76e335]: "2"
+                - generic [ref=f76e338]: Avaliação
+            - tabpanel [ref=f76e341]:
+              - generic [ref=f76e343]:
+                - generic [ref=f76e346]:
+                  - generic [ref=f76e347]: Selecione um idioma para editar
+                  - button "Padrão – Português (Brasil) – pt-BR" [ref=f76e356] [cursor=pointer]:
+                    - img [aria-hidden] [ref=f76e361]: arrow_drop_down
+                - generic [ref=f76e363]:
+                  - generic [ref=f76e364]:
+                    - heading "Importar traduções com IA" [level=3] [ref=f76e373]
+                    - generic [ref=f76e374]: Economize tempo usando a IA para adicionar traduções em vez de criar e adicionar manualmente uma nova tradução para cada idioma.
+                    - generic [ref=f76e375]:
+                      - button "Dispensar" [ref=f76e377]
+                      - button "Importar um arquivo" [ref=f76e382]:
+                        - img [aria-hidden] [ref=f76e386]: article_spark
+                  - generic [ref=f76e391]:
+                    - generic [ref=f76e392]:
+                      - generic [ref=f76e401]:
+                        - heading "Recursos de texto comuns" [level=2] [ref=f76e402]
+                        - generic "Campo obrigatório" [ref=f76e403]: "*"
+                      - 'button "Ocultar conteúdo: Recursos de texto comuns" [expanded] [ref=f76e407] [cursor=pointer]':
+                        - img [aria-hidden] [ref=f76e410]: expand_more
+                    - generic [ref=f76e417]:
+                      - paragraph [ref=f76e418]:
+                        - text: Confira a
+                        - link "Ver política de metadados, abre em uma nova guia" [ref=f76e419] [cursor=pointer]:
+                          - /url: https://play.google.com/about/storelisting-promotional/metadata
+                          - text: Política de Metadados
+                        - text: e as
+                        - link "Ver orientações da Central de Ajuda, abre em uma nova guia" [ref=f76e420] [cursor=pointer]:
+                          - /url: https://support.google.com/googleplay/android-developer/answer/9866151
+                          - text: orientações da Central de Ajuda
+                        - text: para evitar problemas comuns com a página de detalhes do app. Leia todas as
+                        - link "Ver políticas do programa, abre em uma nova guia" [ref=f76e421] [cursor=pointer]:
+                          - /url: https://play.google.com/about/developer-content-policy
+                          - text: políticas do programa
+                        - text: antes de enviar o app.Caso você se qualifique para
+                        - link "Ver ajuda sobre o aviso com antecedência, abre em uma nova guia" [ref=f76e422] [cursor=pointer]:
+                          - /url: https://support.google.com/googleplay/android-developer/answer/6320428
+                          - text: enviar aviso com antecedência
+                        - text: à equipe de revisão de apps, entre em contato antes de publicar a página de detalhes do app.
+                      - group [ref=f76e423]:
+                        - generic [ref=f76e424]:
+                          - generic [ref=f76e427]:
+                            - generic [ref=f76e428]: Nome do app
+                            - generic "Campo obrigatório" [ref=f76e431]: "*"
+                          - generic [ref=f76e432]: É assim que seu app aparecerá no Google Play
+                          - generic [ref=f76e435]:
+                            - textbox "Nome do app" [ref=f76e437]: Exame Fácil
+                            - generic [ref=f76e438]:
+                              - paragraph [aria-hidden] [ref=f76e439]
+                              - generic [ref=f76e440]:
+                                - generic [aria-hidden] [ref=f76e441]: 11 / 30
+                                - generic [ref=f76e442]: O texto tem 11 caracteres de 30
+                      - group [ref=f76e443]:
+                        - generic [ref=f76e444]:
+                          - generic [ref=f76e447]:
+                            - generic [ref=f76e448]: Breve descrição
+                            - generic "Campo obrigatório" [ref=f76e451]: "*"
+                          - generic [ref=f76e452]: Os usuários podem expandir para ver a descrição completa.
+                          - generic [ref=f76e455]:
+                            - textbox "Breve descrição" [ref=f76e457]: Organize laudos em PDF e acompanhe a evolução dos resultados.
+                            - generic [ref=f76e458]:
+                              - paragraph [aria-hidden] [ref=f76e459]
+                              - generic [ref=f76e460]:
+                                - generic [aria-hidden] [ref=f76e461]: 61 / 80
+                                - generic [ref=f76e462]: O texto tem 61 caracteres de 80
+                      - group [ref=f76e463]:
+                        - generic [ref=f76e464]:
+                          - generic [ref=f76e467]:
+                            - generic [ref=f76e468]: Descrição completa
+                            - generic "Campo obrigatório" [ref=f76e471]: "*"
+                          - generic [ref=f76e473]:
+                            - textbox "Descrição completa" [ref=f76e476]: "O ExameFácil organiza os laudos de exames laboratoriais que você importa em PDF. No app dá para: - conferir o laudo antes de salvar e escolher quais resultados entram; - ver o painel da última coleta, com o que merece atenção e o que mudou desde a coleta anterior; - acompanhar a evolução de cada marcador; - guardar o histórico com laboratório, data da coleta, médico e convênio; - usar sexo e idade para escolher a faixa de referência quando o laudo traz faixas diferentes. O médico que você convidar só lê a evolução depois de aceitar o convite. Você pode revogar esse acesso. As faixas e os avisos são informativos. O ExameFácil não diagnostica, não prescreve e não substitui o médico nem o laboratório. O acesso é com e-mail e senha. Cada conta vê os próprios laudos. Política de privacidade: https://docs.google.com/document/d/e/2PACX-1vT-wXLR6zwfUiRpRaM8FNtiJHTrqKxoiTMBvCzKKxHeHADjU9Mb3NI5ilFUsKe2FgiVBIPDUFfOqT7A/pub"
+                            - generic [ref=f76e477]:
+                              - paragraph [aria-hidden] [ref=f76e478]
+                              - generic [ref=f76e479]:
+                                - generic [aria-hidden] [ref=f76e480]: 930 / 4000
+                                - generic [ref=f76e481]: O texto tem 930 caracteres de 4000
+                  - generic [ref=f76e485]:
+                    - generic [ref=f76e486]:
+                      - generic [ref=f76e495]:
+                        - heading "Recursos visuais comuns" [level=2] [ref=f76e496]
+                        - generic "Campo obrigatório" [ref=f76e497]: "*"
+                      - 'button "Ocultar conteúdo: Recursos visuais comuns" [expanded] [ref=f76e501] [cursor=pointer]':
+                        - img [aria-hidden] [ref=f76e504]: expand_more
+                    - generic [ref=f76e511]:
+                      - paragraph [ref=f76e512]:
+                        - text: Gerencie o ícone, as capturas de tela e os vídeos para promover o app no Google Play. Consulte as
+                        - link "Ver diretrizes de conteúdo, abre em uma nova guia" [ref=f76e513] [cursor=pointer]:
+                          - /url: https://support.google.com/googleplay/android-developer/answer/9866151#zippy=,app-icon
+                          - text: diretrizes de conteúdo
+                        - text: antes de fazer upload de novos elementos gráficos. Se você adicionar traduções da página de detalhes do app sem elementos gráficos localizados, vamos usar os que estiverem no idioma padrão.
+                      - group [ref=f76e514]:
+                        - generic [ref=f76e515]:
+                          - generic [ref=f76e518]:
+                            - generic [ref=f76e519]: Ícone do aplicativo
+                            - generic "Campo obrigatório" [ref=f76e522]: "*"
+                          - generic [ref=f76e526]:
+                            - text: O ícone do app precisa ser um PNG ou JPEG de até 1 MB e 512 × 512px, além de obedecer às
+                            - link "Ver especificações de design, abre em uma nova guia" [ref=f76e527] [cursor=pointer]:
+                              - /url: https://developer.android.com/google-play/resources/icon-design-specifications
+                              - text: especificações de design
+                            - text: e à
+                            - link "Ver política de metadados, abre em uma nova guia" [ref=f76e528] [cursor=pointer]:
+                              - /url: https://support.google.com/googleplay/android-developer/answer/9898842
+                              - text: política de metadados
+                          - generic [ref=f76e998]:
+                            - generic [ref=f76e1001]:
+                              - img "app_icon.png" [ref=f76e1002]
+                              - generic [ref=f76e1003]:
+                                - button "Remover app_icon.png" [ref=f76e1004] [cursor=pointer]:
+                                  - img [aria-hidden] [ref=f76e1007]: delete
+                                - button "Ver detalhes sobre app_icon.png" [ref=f76e1008] [cursor=pointer]:
+                                  - img [aria-hidden] [ref=f76e1011]: arrow_right_alt
+                            - generic [ref=f76e1012]:
+                              - generic "Ícone 1 de 1" [ref=f76e1013]: 1 / 1
+                              - button "Adicionar recursos" [ref=f76e1016]
+                      - group [ref=f76e540]:
+                        - generic [ref=f76e541]:
+                          - generic [ref=f76e544]:
+                            - generic [ref=f76e545]: Recurso gráfico
+                            - generic "Campo obrigatório" [ref=f76e548]: "*"
+                          - generic [ref=f76e552]:
+                            - text: O recurso gráfico precisa ser uma imagem PNG ou JPEG de até 15 MB e 1024 x 500 px. Esse gráfico será usado quando você escolher destacar seu app.
+                            - link "Saiba mais sobre as diretrizes de destaque (abre em uma nova guia)" [ref=f76e553] [cursor=pointer]:
+                              - /url: https://play.google.com/console/about/guides/featuring/
+                              - text: Saiba mais
+                          - generic [ref=f76e1367]:
+                            - generic [ref=f76e1370]:
+                              - img "feature-graphic.png" [ref=f76e1371]
+                              - generic [ref=f76e1372]:
+                                - button "Remover feature-graphic.png" [ref=f76e1373] [cursor=pointer]:
+                                  - img [aria-hidden] [ref=f76e1376]: delete
+                                - button "Ver detalhes sobre feature-graphic.png" [ref=f76e1377] [cursor=pointer]:
+                                  - img [aria-hidden] [ref=f76e1380]: arrow_right_alt
+                            - generic [ref=f76e1381]:
+                              - generic "Imagem 1 de 1" [ref=f76e1382]: 1 / 1
+                              - button "Adicionar recursos" [ref=f76e1385]
+                      - group [ref=f76e565]:
+                        - generic [ref=f76e566]:
+                          - generic [ref=f76e567]: Vídeo
+                          - generic [ref=f76e572]: Insira um URL do YouTube para adicionar um vídeo. Ele precisa ser público ou não listado, estar com os anúncios desativados e não ter restrição de idade.
+                          - generic [ref=f76e575]:
+                            - textbox "Vídeo" [ref=f76e577]:
+                              - /placeholder: https://www.youtube.com/watch?v=
+                            - paragraph [aria-hidden] [ref=f76e579]
+                  - generic [ref=f76e583]:
+                    - generic [ref=f76e584]:
+                      - generic [ref=f76e593]:
+                        - heading "Recursos para telefone" [level=2] [ref=f76e594]
+                        - generic "Campo obrigatório" [ref=f76e595]: "*"
+                      - 'button "Ocultar conteúdo: Recursos para telefone" [expanded] [ref=f76e599] [cursor=pointer]':
+                        - img [aria-hidden] [ref=f76e602]: expand_more
+                    - group [ref=f76e610]:
+                      - generic [ref=f76e611]:
+                        - generic [ref=f76e614]:
+                          - generic [ref=f76e615]: Capturas de tela do telefone
+                          - generic "Campo obrigatório" [ref=f76e618]: "*"
+                        - generic [ref=f76e619]: Faça upload de 2 a 8 capturas de tela de smartphone. As capturas precisam ser imagens PNG ou JPEG de até 8 MB cada com proporção 16:9 ou 9:16 e cada lado medindo entre 320 e 3.840 px
+                        - generic [ref=f76e621]:
+                          - button "Adicionar recursos" [ref=f76e628]
+                          - generic [ref=f76e635]:
+                            - img [aria-hidden] [ref=f76e638]: info
+                            - generic [ref=f76e639]: Para se qualificar à promoção, inclua pelo menos quatro capturas de tela com, no mínimo, 1.080 px de cada lado.
+                            - link "Ver diretrizes de conteúdo sobre capturas de tela de celular, abre em uma nova guia" [ref=f76e648] [cursor=pointer]:
+                              - /url: https://support.google.com/googleplay/android-developer/answer/9866151#screenshots
+                              - generic [ref=f76e651]: Ver diretrizes de conteúdo
+                  - generic [ref=f76e655]:
+                    - generic [ref=f76e656]:
+                      - heading "Recursos para tablet" [level=2] [ref=f76e666]
+                      - 'button "Ocultar conteúdo: Recursos para tablet" [expanded] [ref=f76e1020] [cursor=pointer]':
+                        - img [aria-hidden] [ref=f76e673]: expand_more
+                    - generic [ref=f76e1027]:
+                      - group [ref=f76e1028]:
+                        - generic [ref=f76e1029]:
+                          - generic [ref=f76e1032]:
+                            - generic [ref=f76e1033]: Capturas de tela do tablet de 7 pol.
+                            - generic "Campo obrigatório" [ref=f76e1036]: "*"
+                          - generic [ref=f76e1037]: Faça upload de até 8 capturas de tela em tablets de 7 polegadas. As capturas precisam ser imagens PNG ou JPEG de até 8 MB cada com proporção 16:9 ou 9:16 e cada lado medindo entre 320 e 3.840 px
+                          - button "Adicionar recursos" [ref=f76e1046]
+                      - group [ref=f76e1050]:
+                        - generic [ref=f76e1051]:
+                          - generic [ref=f76e1054]:
+                            - generic [ref=f76e1055]: Capturas de tela de tablet de 10"
+                            - generic "Campo obrigatório" [ref=f76e1058]: "*"
+                          - generic [ref=f76e1059]: Faça upload de até 8 capturas de tela em tablets de 10 polegadas. As capturas precisam ser imagens PNG ou JPEG de até 8 MB cada com proporção 16:9 ou 9:16 e cada lado medindo entre 1080 e 7680px
+                          - button "Adicionar recursos" [ref=f76e1068]
+                  - generic [ref=f76e677]:
+                    - generic [ref=f76e678]:
+                      - heading "Recursos para computadores" [level=2] [ref=f76e688]
+                      - 'button "Ocultar conteúdo: Recursos para computadores" [expanded] [ref=f76e1072] [cursor=pointer]':
+                        - img [aria-hidden] [ref=f76e695]: expand_more
+                    - group [ref=f76e1080]:
+                      - generic [ref=f76e1081]:
+                        - generic [ref=f76e1082]: Capturas de tela da versão para computador
+                        - generic [ref=f76e1087]: Faça upload de 4 a 8 capturas de tela. As capturas precisam ser imagens PNG ou JPEG de até 8 MB cada com proporção 16:9 ou 9:16 e cada lado medindo entre 1.080 e 7.680 px
+                        - button "Adicionar recursos" [ref=f76e1096]
+                  - generic [ref=f76e699]:
+                    - generic [ref=f76e700]:
+                      - heading "Recursos para Android XR" [level=2] [ref=f76e710]
+                      - 'button "Ocultar conteúdo: Recursos para Android XR" [expanded] [ref=f76e1100] [cursor=pointer]':
+                        - img [aria-hidden] [ref=f76e717]: expand_more
+                    - generic [ref=f76e1107]:
+                      - group [ref=f76e1108]:
+                        - generic [ref=f76e1109]:
+                          - generic [ref=f76e1110]: Capturas de tela do Android XR
+                          - generic [ref=f76e1115]: Faça upload de 4 a 8 capturas de tela. As capturas precisam ser imagens PNG ou JPEG de até 15 MB cada com proporção 16:9 ou 9:16 e cada lado medindo entre 720 e 7.680 px
+                          - button "Adicionar recursos" [ref=f76e1124]
+                      - group [ref=f76e1128]:
+                        - generic [ref=f76e1129]:
+                          - generic [ref=f76e1130]: Vídeo de XR espacial
+                          - generic [ref=f76e1136]:
+                            - text: Para deixar a visualização dos seus recursos imersiva, adicione um
+                            - link "Ver diretrizes para vídeos de XR espacial, abre em uma nova guia" [ref=f76e1137] [cursor=pointer]:
+                              - /url: https://support.google.com/googleplay/android-developer/answer/9866151#zippy=%2Cpreview-video
+                              - text: vídeo de XR espacial
+                            - text: . É só inserir um URL do YouTube. O vídeo precisa ser em 360°, 180° ou 3D, estar público ou não listado, ter os anúncios desativados e não possuir restrição de idade.
+                          - generic [ref=f76e1139]:
+                            - textbox "Vídeo de XR espacial" [ref=f76e1141]:
+                              - /placeholder: https://www.youtube.com/watch?v=
+                            - paragraph [aria-hidden] [ref=f76e1143]
+                      - group [ref=f76e1144]:
+                        - generic [ref=f76e1145]:
+                          - generic [ref=f76e1146]: Vídeo de XR não espacial
+                          - generic [ref=f76e1151]: Insira um URL do YouTube para adicionar um vídeo XR não espacial. Ele precisa ser público ou não listado, estar com os anúncios desativados e não ter restrição de idade.
+                          - generic [ref=f76e1154]:
+                            - textbox "Vídeo de XR não espacial" [ref=f76e1156]:
+                              - /placeholder: https://www.youtube.com/watch?v=
+                            - paragraph [aria-hidden] [ref=f76e1158]
+          - generic [ref=f76e721]:
+            - generic [ref=f76e722]:
+              - img [aria-hidden] [ref=f76e1162]: check_circle
+              - generic [ref=f76e1163]: Suas alterações foram salvas
+            - generic [ref=f76e725]:
+              - button "Descartar" [ref=f76e726]
+              - button "Salvar como rascunho" [ref=f76e730]
+              - button "Avançar" [ref=f76e734]
+      - generic [ref=f76e30]:
+        - generic [ref=f76e740]:
+          - link "Atualizações de produtos" [ref=f76e741] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f76e742] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f76e743] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f76e744]:
+          - generic [ref=f76e745]: © 2026 Google
+          - link "Privacidade" [ref=f76e746] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f76e747] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f76e748] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/
+  - status [ref=f76e894]

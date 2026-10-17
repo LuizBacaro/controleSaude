@@ -6,17 +6,20 @@ import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../exams/domain/exam_marker.dart';
+import '../../exams/domain/exam_report.dart';
 import '../../exams/presentation/widgets/marker_chart.dart';
 import '../../exams/presentation/widgets/status_chip.dart';
 
 class MarkerDetailPage extends ConsumerWidget {
-  const MarkerDetailPage({super.key, required this.markerName});
+  const MarkerDetailPage({super.key, required this.markerName, this.series});
 
   final String markerName;
+  final MarkerSeries? series;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final series = ref.watch(examsRepositoryProvider).seriesFor(markerName);
+    final series =
+        this.series ?? ref.watch(examsRepositoryProvider).seriesFor(markerName);
     final text = Theme.of(context).textTheme;
     final dateFmt = DateFormat('dd/MM/yyyy');
 

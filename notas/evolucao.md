@@ -13,6 +13,9 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Urina tipo I fica na categoria própria (`Urina: …`). Hemácias e glicose da urina não entram na série do sangue.
 - Rota de marcador é query `nome` em `/marcador`. Não chamar `Uri.decodeComponent` de novo: o GoRouter já decodifica e o acento quebra com “invalid argument”.
 - Nome na loja: **ExameFácil**. Pacote Android e bundle iOS: `br.com.examefacil.laudos`. A Apple já recusou `br.com.examefacil` (ocupado) e `br.com.examefacil.app` (terminar em `.app` é inválido). Trocar `applicationId` cria outro app e apaga a sessão local.
+- O papel da conta fica em `profiles.role`, não no JWT. Médico não lista pacientes: só lê a Evolução de quem convidou e ele aceitou. Não reaplicar `supabase/schema.sql`.
+- No login, carregar os laudos antes de avisar o roteador. Avisar com a memória vazia manda para a importação e o Painel fica sem dados enquanto as outras abas guardam o estado antigo.
+- `flutter create . --platforms=web` troca a lista de plataformas no `.metadata`. Conferir se Android e iOS continuam lá.
 - Conta é Supabase Auth (`public.profiles`). A senha mínima é 6. Desinstalar apaga a sessão, não a conta. Confirmação de e-mail não pôde ser desligada (token sem permissão de auth).
 - No cliente só entra a chave anon. A `service_role` não vai no app, no git nem nas anotações. Quem colou essa chave no chat deve rotacioná-la.
 - `exam_reports` não tem coluna de médico nem de convênio. Isso vai no `notes` em JSON (`doctor`, `insurance`, `unrecognized`). Enviar coluna que não existe derruba o import. `patient_name` e `lab_name` já existem.
@@ -47,6 +50,10 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - `002_laudos_por_usuario` já aplicada: `exam_reports` e `exam_results` têm `user_id` padrão `auth.uid()`, anon sem acesso, política só do dono. Laudos antigos foram atribuídos à única conta.
 - Conta do Luiz: `profiles.birth_date` 1984-02-21 e `sex` M. O Perfil mostra sexo, nascimento e idade. Reabrir o app para recarregar o perfil.
 - Ícone: fundo `#0A3352`, logo em `assets/brand/logo.png`.
+- Cadastro pergunta primeiro se a conta é de paciente ou de médico. Médico informa UF e número do CRM. Conta antiga continua paciente.
+- Paciente convida em Médicos. Médico aceita no Consultório e abre a Evolução daquele paciente, só leitura. Sem aceite, o laudo não abre.
+- O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral.
+- `004_medico_e_acesso` já aplicada: `profiles.role`, CRM, `doctor_directory` e `care_grants`. A chave anon não lê diretório nem convite.
 
 ## Histórico
 
@@ -202,3 +209,37 @@ Deu certo:
 - `br.com.examefacil` já estava registrado. Terminar em `.app` a Apple trata como identificador inválido.
 
 Ainda exige ação de quem usa: cadastrar `br.com.examefacil.laudos` nas duas lojas. Instalar esse pacote no celular cria outro app e pede login de novo; a conta no Supabase permanece.
+
+### 2026-10-17 — Médico, convite e navegador
+
+Pedido: no cadastro, escolher paciente ou médico; médico informa o CRM; o paciente convida e o médico só vê a Evolução depois de aceitar; o mesmo banco serve o app e o navegador do consultório. O Painel esvaziava ao sair e entrar de novo.
+
+Deu certo:
+
+- Migração `004_medico_e_acesso.sql`: papel, CRM, lista pública só com nome e CRM, convite e leitura do laudo apenas com aceite.
+- Cadastro com a escolha e o CRM. Médico cai no Consultório. Paciente ganhou a aba Médicos.
+- Tela larga usa a barra lateral. O alvo web do Flutter foi criado sem tirar Android e iOS.
+- Login carrega os laudos antes de o roteador decidir a tela. Sair descarta as abas visitadas.
+
+Deu certo depois:
+
+- O SQL foi executado no Editor. A API enxerga `profiles.role`, `doctor_directory` e `care_grants`. A chave anon recebe permissão negada no diretório e nos convites.
+
+Deu errado / limite:
+
+- O conector do Supabase não autenticou nesta sessão. A conferência foi pela API pública, sem entrar numa conta.
+
+Ainda exige ação de quem usa: criar uma conta de médico e uma de paciente no app para convidar e aceitar. Não reaplicar `schema.sql`.
+
+### 2026-10-17 — Assinatura de release para a Play
+
+Pedido: a Play rejeita o pacote enquanto o release usa a chave de debug. Publicar a versão de produção.
+
+Deu certo:
+
+- O release passou a assinar com a chave de upload em `android/upload-keystore.jks`, lida de `android/key.properties`. Os dois já estão fora do git.
+- `flutter build appbundle --release` gerou o pacote 1.0.0 (versionCode 1), assinado com o certificado da GoStart Lab.
+
+Ainda exige ação de quem usa: guardar uma cópia do keystore e da senha que está só no `key.properties`. Sem esse arquivo a Play não aceita atualização do mesmo app.
+
+Não repetir: não voltar o `signingConfig` do release para `debug`. Não colocar o keystore nem o `key.properties` no git.

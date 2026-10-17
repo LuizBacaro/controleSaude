@@ -1,5 +1,7 @@
 -- ProjetoExames (xdzognwurazkbmckzldf)
 -- Laudos importados e cada resultado, com a data da coleta.
+-- Este arquivo está atrás das migrações. Não rode de novo por cima do banco:
+-- 002 fechou os laudos por conta, 004 acrescenta médico e convite.
 
 create table if not exists public.exam_reports (
   id uuid primary key,

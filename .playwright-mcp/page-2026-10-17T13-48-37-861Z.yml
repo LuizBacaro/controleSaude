@@ -1,0 +1,150 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=e8]
+        - generic [ref=e9]:
+          - button "Notificações Abrir central de notificações" [ref=e45]:
+            - img [aria-hidden] [ref=e49]: notifications
+            - generic [ref=e50]: Notificações
+          - button [ref=e14] [cursor=pointer]:
+            - img "Trocar de conta de desenvolvedor" [ref=e16]
+    - navigation [ref=e53]:
+      - list [ref=e54]:
+        - listitem "Página inicial" [ref=e57]:
+          - button "Página inicial" [ref=e58] [cursor=pointer]:
+            - img [aria-hidden] [ref=e61]: features
+        - listitem "Status da política" [ref=e65]:
+          - button "Status da política" [ref=e66] [cursor=pointer]:
+            - img [aria-hidden] [ref=e69]: android_security_privacy_safe
+        - listitem "Usuários e permissões" [ref=e73]:
+          - button "Usuários e permissões" [ref=e74] [cursor=pointer]:
+            - img [aria-hidden] [ref=e77]: user_attributes
+        - listitem "Gerenciamento de pedidos" [ref=e81]:
+          - button "Gerenciamento de pedidos" [ref=e82] [cursor=pointer]:
+            - img [aria-hidden] [ref=e85]: credit_card
+        - listitem "Fazer o download de relatórios" [ref=e89]:
+          - button "Fazer o download de relatórios" [ref=e90] [cursor=pointer]:
+            - img [aria-hidden] [ref=e92]: arrow_right
+            - img [aria-hidden] [ref=e95]: download
+        - listitem "Conta de desenvolvedor" [ref=e99]:
+          - button "Conta de desenvolvedor" [ref=e100] [cursor=pointer]:
+            - img [aria-hidden] [ref=e103]: badge
+        - listitem "Registro de atividades" [ref=e107]:
+          - button "Registro de atividades" [ref=e108] [cursor=pointer]:
+            - img [aria-hidden] [ref=e111]: description
+        - listitem "Configurações" [ref=e115]:
+          - button "Configurações" [ref=e116] [cursor=pointer]:
+            - img [aria-hidden] [ref=e119]: settings
+        - listitem "Ajuda" [ref=e123]:
+          - button "Ajuda" [ref=e124] [cursor=pointer]:
+            - img [aria-hidden] [ref=e127]: contact_support
+        - listitem "Verificação de desenvolvedor Android" [ref=e131]:
+          - button "Verificação de desenvolvedor Android" [ref=e132] [cursor=pointer]:
+            - img [aria-hidden] [ref=e135]: app_promotion
+    - generic [ref=e22]:
+      - generic [ref=e140]:
+        - generic [ref=e147]:
+          - heading "Conta de desenvolvedor" [level=1] [ref=e153]
+          - generic [ref=e154]: Gerenciar informações sobre você e esta conta de desenvolvedor
+        - generic [ref=e165]:
+          - generic [ref=e166]:
+            - heading "Sobre você" [level=2] [ref=e175]
+            - button "Acessar Sobre você" [ref=e176] [cursor=pointer]:
+              - img [aria-hidden] [ref=e179]: arrow_right_alt
+          - generic [ref=e180]:
+            - generic [ref=e182]:
+              - generic [ref=e183]: Tipo de conta
+              - generic [ref=e187]:
+                - img [aria-hidden] [ref=e190]: domain
+                - generic [ref=e191]: Organização
+            - generic [ref=e193]:
+              - generic [ref=e194]: ID da conta do desenvolvedor
+              - generic [ref=e196]: "6637139677623017493"
+            - generic [ref=e199]:
+              - generic [ref=e200]: Nome do desenvolvedor
+              - generic [ref=e202]: GoStart Lab
+            - generic [ref=e205]:
+              - generic [ref=e206]: Proprietário da conta
+              - generic [ref=e208]: contato@gostartlab.com (Ricardo Camargo)
+            - generic [ref=e211]:
+              - generic [ref=e212]: Dados da organização
+              - generic [ref=e215]:
+                - generic [ref=e216]: GOSTART LAB SERVICOS DE TECNOLOGIA LTDA
+                - generic [ref=e217]: AV 7 DE SETEMBRO, 371
+                - generic [ref=e218]: Araraquara - 14800390
+                - generic [ref=e219]: Brasil (BR)
+            - generic [ref=e221]:
+              - generic [ref=e222]: Site
+              - generic [ref=e224]:
+                - generic [ref=e225]: https://gostartlab.com/
+                - img "Site verificado" [ref=e229]: check_circle
+        - generic [ref=e234]:
+          - generic [ref=e235]:
+            - heading "Detalhes do contato" [level=2] [ref=e244]
+            - button "Acessar Detalhes de contato" [ref=e245] [cursor=pointer]:
+              - img [aria-hidden] [ref=e248]: arrow_right_alt
+          - generic [ref=e249]:
+            - generic [ref=e254]:
+              - heading "Como o Google entra em contato com você" [level=3] [ref=e260]
+              - generic [ref=e261]: Essas informações são usadas apenas pelo Google para entrar em contato com você e não são mostradas ao público
+            - generic [ref=e267]:
+              - generic [ref=e268]: Nome do contato
+              - generic [ref=e270]: Ricardo Camargo
+            - generic [ref=e273]:
+              - generic [ref=e274]: Endereço de e-mail do contato
+              - generic [ref=e276]:
+                - generic [ref=e277]: ricardo.camargo@gostartlab.com
+                - img "Endereço de e-mail do contato verificado" [ref=e281]: check_circle
+            - generic [ref=e283]:
+              - generic [ref=e284]: Número de telefone para contato
+              - generic [ref=e286]:
+                - generic [ref=e287]: "+5516992849673"
+                - img "Número de telefone do contato verificado" [ref=e291]: check_circle
+            - heading "Detalhes mostrados no seu Perfil do Desenvolvedor do Google Play" [level=3] [ref=e304]
+            - generic [ref=e306]:
+              - generic [ref=e307]: Endereço de e-mail do desenvolvedor
+              - generic [ref=e309]:
+                - generic [ref=e310]: ricardo.camargo@gostartlab.com
+                - img "Endereço de e-mail do desenvolvedor verificado" [ref=e314]: check_circle
+            - generic [ref=e316]:
+              - generic [ref=e317]: Número de telefone do desenvolvedor
+              - generic [ref=e319]:
+                - generic [ref=e320]: "+5516992849673"
+                - img "Número de telefone do desenvolvedor verificado" [ref=e324]: check_circle
+        - generic [ref=e330]:
+          - generic [ref=e333]:
+            - heading "Perfil do desenvolvedor do Google Play" [level=2] [ref=e339]
+            - generic [ref=e340]: Veja as informações que compõem seu perfil público no Google Play e configure sua página pública de desenvolvedor
+          - button "Acessar o Perfil do Desenvolvedor do Google Play" [ref=e342] [cursor=pointer]:
+            - img [aria-hidden] [ref=e345]: arrow_right_alt
+        - generic [ref=e350]:
+          - generic [ref=e351]:
+            - generic [ref=e354]:
+              - heading "Contas de desenvolvedor associadas" [level=2] [ref=e360]
+              - generic [ref=e361]: Informe se existe qualquer outra conta de desenvolvedor com que você tenha associação.
+            - button "Acessar as contas de desenvolvedor associadas" [ref=e363] [cursor=pointer]:
+              - img [aria-hidden] [ref=e366]: arrow_right_alt
+          - generic [ref=e367]: Você não associou esta conta a outras
+      - generic [ref=e30]:
+        - generic [ref=e369]:
+          - link "Atualizações de produtos" [ref=e370] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=e371] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=e372] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support
+        - generic [ref=e373]:
+          - generic [ref=e374]: © 2026 Google
+          - link "Privacidade" [ref=e375] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=e376] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=e377] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

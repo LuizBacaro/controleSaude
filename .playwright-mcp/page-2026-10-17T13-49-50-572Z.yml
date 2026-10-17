@@ -1,0 +1,229 @@
+- application [ref=e1]:
+  - iframe [aria-hidden] [ref=e399]
+  - iframe [aria-hidden] [ref=e400]
+  - banner "Barra de menus" [ref=e2]:
+    - generic [ref=e3]:
+      - complementary "83% de armazenamento usado" [ref=e406]:
+        - generic [ref=e411]:
+          - generic [ref=e412]: 83% de armazenamento usado
+          - generic [ref=e413]: Você pode liberar espaço ou comprar mais armazenamento para o Drive, o Gmail e o Google Fotos. Aumente seu armazenamento — pague R$ 0 por 1 mês.
+        - button "Gerenciar armazenamento" [ref=e416] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e418]: Gerenciar armazenamento
+        - generic [ref=e419]:
+          - button "Fechar banner" [ref=e420] [cursor=pointer]
+          - tooltip [aria-hidden] [ref=e425]: Fechar banner
+      - generic [ref=e5]:
+        - link "Página inicial do Google Docs" [ref=e7] [cursor=pointer]:
+          - /url: https://docs.google.com/document/u/0/?pli=1&authuser=0&usp=docs_web
+        - generic [ref=e14]:
+          - generic "Documento sem título" [ref=e16]:
+            - generic [ref=e17]:
+              - generic: Documento sem título
+              - textbox "Renomear" [ref=e19]: Documento sem título
+            - generic [ref=e20]:
+              - checkbox "Marcar com uma estrela" [ref=e427] [cursor=pointer]
+              - generic:
+                - button
+          - generic [ref=e23]:
+            - button "Mostrar todos os comentários 0 novos comentários" [ref=e430] [cursor=pointer]
+            - button "Use este link para entrar em uma chamada ou apresentar esta guia." [ref=e431] [cursor=pointer]
+            - button "Compartilhar" [ref=e35] [cursor=pointer]
+            - generic [ref=e436]:
+              - generic:
+                - button "Teste o Gemini" [ref=e443] [cursor=pointer]
+                - tooltip [aria-hidden] [ref=e446]: Teste o Gemini
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=e41] [cursor=pointer]'
+    - generic [ref=e43]:
+      - menubar [ref=e45]:
+        - menuitem "Arquivo" [ref=e46] [cursor=pointer]
+        - menuitem "Editar" [ref=e47] [cursor=pointer]
+        - menuitem "Ver" [ref=e48] [cursor=pointer]
+        - menuitem "Inserir" [ref=e49] [cursor=pointer]
+        - menuitem "Formatar" [ref=e50] [cursor=pointer]
+        - menuitem "Ferramentas" [ref=e51] [cursor=pointer]
+        - menuitem "Extensões" [ref=e52] [cursor=pointer]
+        - menuitem "Ajuda" [ref=e53] [cursor=pointer]
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - toolbar "Pesquisar os menus (Alt+/)" [ref=e56]:
+            - combobox "Menus" [ref=e58]
+          - toolbar "Principal" [ref=e59]:
+            - button "Desfazer (Ctrl+Z)" [ref=e60] [cursor=pointer]
+            - button "Refazer (Ctrl+Y)" [ref=e65] [cursor=pointer]
+            - button "Imprimir (Ctrl+P)" [ref=e70] [cursor=pointer]
+            - button "Verificação ortográfica e gramatical (Ctrl+Alt+X)" [ref=e75] [cursor=pointer]
+            - button "Pintar formatação" [ref=e80] [cursor=pointer]
+            - combobox "Zoom" [ref=e85] [cursor=pointer]:
+              - option "Lista Zoom. 100% selecionado." [selected] [ref=e88]:
+                - textbox "Zoom" [ref=e89]: 100%
+            - separator [disabled] [ref=e93]
+            - listbox "Estilos" [ref=e94] [cursor=pointer]:
+              - option "Lista Estilos. Texto normal selecionado." [selected] [ref=e447]: Texto normal
+            - separator [disabled] [ref=e101]
+            - listbox "Fonte" [ref=e102] [cursor=pointer]:
+              - option "Arial" [selected] [ref=e448]
+            - separator [disabled] [ref=e109]
+            - button "Diminuir tamanho da fonte (Ctrl+Shift+vírgula)" [ref=e110] [cursor=pointer]
+            - combobox "Tamanho da fonte" [ref=e115] [cursor=pointer]:
+              - option "Lista Tamanho da fonte. 11 selecionado." [selected] [ref=e118]:
+                - textbox "Tamanho da fonte" [ref=e119]: "11"
+            - button "Aumentar tamanho da fonte (Ctrl+Shift+ponto final)" [ref=e120] [cursor=pointer]
+            - separator [disabled] [ref=e125]
+            - button "Mais" [disabled] [ref=e126] [cursor=pointer]
+        - toolbar "Modo e visualização" [ref=e133]:
+          - button "Modo de edição" [ref=e449] [cursor=pointer]:
+            - generic [ref=e135]: Edição
+          - separator [disabled] [ref=e138]
+          - button "Ocultar os menus (Ctrl+Shift+F)" [ref=e139] [cursor=pointer]
+    - generic [ref=e144]:
+      - complementary "Painel lateral" [ref=e145]:
+        - tablist [ref=e453]:
+          - tab "Agenda":
+            - generic [ref=e148] [cursor=pointer]
+          - tab "Keep":
+            - generic [ref=e149] [cursor=pointer]
+          - tab "Tarefas":
+            - generic [ref=e150] [cursor=pointer]
+          - tab "Contatos":
+            - generic [ref=e151] [cursor=pointer]
+          - tab "Maps":
+            - generic [ref=e152] [cursor=pointer]
+          - separator [disabled] [ref=e454]
+          - tab "Instalar complementos":
+            - generic [ref=e455] [cursor=pointer]
+      - generic:
+        - button "Ocultar painel lateral":
+          - generic [ref=e456] [cursor=pointer]
+  - generic [ref=e155]:
+    - generic [ref=e160]:
+      - generic [ref=e161]: "22"
+      - generic [ref=e166]: "21"
+      - generic [ref=e171]: "20"
+      - generic [ref=e176]: "19"
+      - generic [ref=e181]: "18"
+      - generic [ref=e186]: "17"
+      - generic [ref=e191]: "16"
+      - generic [ref=e196]: "15"
+      - generic [ref=e201]: "14"
+      - generic [ref=e206]: "13"
+      - generic [ref=e211]: "12"
+      - generic [ref=e216]: "11"
+      - generic [ref=e221]: "10"
+      - generic [ref=e226]: "9"
+      - generic [ref=e231]: "8"
+      - generic [ref=e236]: "7"
+      - generic [ref=e241]: "6"
+      - generic [ref=e246]: "5"
+      - generic [ref=e251]: "4"
+      - generic [ref=e256]: "3"
+      - generic [ref=e261]: "2"
+      - generic [ref=e266]: "1"
+      - generic [ref=e275]: "1"
+      - generic [ref=e280]: "2"
+      - generic [ref=e285]: "3"
+      - generic [ref=e290]: "4"
+      - generic [ref=e295]: "5"
+      - generic [ref=e300]: "6"
+      - generic [ref=e305]: "7"
+      - generic [ref=e310]: "8"
+      - generic [ref=e315]: "9"
+      - generic [ref=e320]: "10"
+      - generic [ref=e325]: "11"
+      - generic [ref=e330]: "12"
+      - generic [ref=e335]: "13"
+      - generic [ref=e340]: "14"
+      - generic [ref=e345]: "15"
+      - generic [ref=e350]: "16"
+      - generic [ref=e355]: "17"
+      - generic [ref=e360]: "18"
+      - generic [ref=e365]: "19"
+      - generic [ref=e370]: "20"
+      - generic [ref=e375]: "21"
+    - generic [ref=e390]:
+      - generic:
+        - generic [ref=e393]:
+          - button [aria-hidden]
+        - generic:
+          - list
+    - generic [ref=e462]:
+      - generic [ref=e463]: "30"
+      - generic [ref=e468]: "29"
+      - generic [ref=e473]: "28"
+      - generic [ref=e478]: "27"
+      - generic [ref=e483]: "26"
+      - generic [ref=e488]: "25"
+      - generic [ref=e493]: "24"
+      - generic [ref=e498]: "23"
+      - generic [ref=e503]: "22"
+      - generic [ref=e508]: "21"
+      - generic [ref=e513]: "20"
+      - generic [ref=e518]: "19"
+      - generic [ref=e523]: "18"
+      - generic [ref=e528]: "17"
+      - generic [ref=e533]: "16"
+      - generic [ref=e538]: "15"
+      - generic [ref=e543]: "14"
+      - generic [ref=e548]: "13"
+      - generic [ref=e553]: "12"
+      - generic [ref=e558]: "11"
+      - generic [ref=e563]: "10"
+      - generic [ref=e568]: "9"
+      - generic [ref=e573]: "8"
+      - generic [ref=e578]: "7"
+      - generic [ref=e583]: "6"
+      - generic [ref=e588]: "5"
+      - generic [ref=e593]: "4"
+      - generic [ref=e598]: "3"
+      - generic [ref=e603]: "2"
+      - generic [ref=e608]: "1"
+      - generic [ref=e617]: "1"
+      - generic [ref=e622]: "2"
+      - generic [ref=e627]: "3"
+      - generic [ref=e632]: "4"
+      - generic [ref=e637]: "5"
+      - generic [ref=e642]: "6"
+      - generic [ref=e647]: "7"
+      - generic [ref=e652]: "8"
+      - generic [ref=e657]: "9"
+      - generic [ref=e662]: "10"
+      - generic [ref=e667]: "11"
+      - generic [ref=e672]: "12"
+      - generic [ref=e677]: "13"
+      - generic [ref=e682]: "14"
+      - generic [ref=e687]: "15"
+      - generic [ref=e692]: "16"
+      - generic [ref=e697]: "17"
+      - generic [ref=e702]: "18"
+      - generic [ref=e707]: "19"
+      - generic [ref=e712]: "20"
+      - generic [ref=e717]: "21"
+      - generic [ref=e722]: "22"
+      - generic [ref=e727]: "23"
+      - generic [ref=e732]: "24"
+      - generic [ref=e737]: "25"
+      - generic [ref=e742]: "26"
+      - generic [ref=e747]: "27"
+      - generic [ref=e752]: "28"
+      - generic [ref=e757]: "29"
+    - generic "Guias no documento" [ref=e767]:
+      - button "Ocultar guias e estruturas de tópicos" [ref=e769] [cursor=pointer]:
+        - button [disabled] [ref=e770]:
+          - button "Voltar" [disabled] [ref=e774]
+      - generic [ref=e780]:
+        - generic [ref=e782]:
+          - heading "Guias no documento" [level=2] [ref=e783]
+          - button "Adicionar guia" [ref=e786]
+        - tree "Guias no documento" [ref=e790]:
+          - generic [ref=e792] [cursor=pointer]:
+            - treeitem "Guia 1" [selected] [ref=e793]:
+              - button "Opções de guia" [ref=e803]
+            - generic [ref=e806]: Os títulos que forem adicionados ao documento aparecerão aqui.
+  - iframe [active] [ref=e397]:
+    - textbox "Conteúdo do documento" [active] [ref=f1e1]
+    - group
+  - link "Ativar a compatibilidade com o leitor de tela" [ref=e398] [cursor=pointer]:
+    - /url: "#"
+  - region [ref=e809]: Para ativar o suporte para leitor de tela, pressione Ctrl+Alt+Z Para saber mais sobre atalhos de teclado, pressione Ctrl+barra
+  - generic [ref=e810]: Banner oculto.
+  - region
+  - generic [ref=e811]: 83% de armazenamento usadoVocê pode liberar espaço ou comprar mais armazenamento para o Drive, o Gmail e o Google Fotos. Aumente seu armazenamento — pague R$ 0 por 1 mês. Gerenciar armazenamento Close

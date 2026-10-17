@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
+import '../../../core/router/home_location.dart';
 import '../../../core/theme/app_spacing.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -35,12 +36,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             email: _email.text,
             password: _password.text,
           );
-      ref.read(authRevisionProvider.notifier).bump();
       await ref.read(examsRepositoryProvider).load();
+      ref.read(authRevisionProvider.notifier).bump();
       ref.read(examsRevisionProvider.notifier).bump();
       if (!mounted) return;
+      final user = ref.read(authRepositoryProvider).currentUser;
       final hasExams = ref.read(examsRepositoryProvider).hasReports;
-      context.go(hasExams ? '/app' : '/importar?onboarding=1');
+      context.go(
+        homeLocation(isDoctor: user?.isDoctor ?? false, hasExams: hasExams),
+      );
     } catch (e) {
       setState(() => _error = e.toString().replaceFirst('Exception: ', ''));
     } finally {

@@ -1,0 +1,182 @@
+- generic [active] [ref=f48e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f48e3]:
+    - banner [ref=f48e4]:
+      - generic [ref=f48e6]:
+        - link [ref=f48e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f48e8]
+        - generic [ref=f48e9]:
+          - button "Notificações Abrir central de notificações" [ref=f48e45]:
+            - img [aria-hidden] [ref=f48e49]: notifications
+            - generic [ref=f48e50]: Notificações
+          - generic [ref=f48e10]:
+            - button "Exame Fácil" [ref=f48e59] [cursor=pointer]
+            - button [ref=f48e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f48e16]
+    - navigation [ref=f48e72]:
+      - link "Todos os apps" [ref=f48e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f48e75]: keyboard_backspace
+      - list [ref=f48e77]:
+        - listitem "Painel" [ref=f48e80]:
+          - button "Painel" [ref=f48e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e84]: dashboard
+        - listitem "Estatísticas" [ref=f48e88]:
+          - button "Estatísticas" [ref=f48e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f48e96]:
+          - button "Visão geral da publicação" [ref=f48e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f48e104]:
+          - button "Protegido com o Google Play" [ref=f48e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e108]: shield
+        - listitem "Testar e lançar" [ref=f48e112]:
+          - button "Testar e lançar" [ref=f48e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f48e120]:
+          - button "Monitorar e aprimorar" [ref=f48e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e124]: vital_signs
+          - list [ref=f48e126]:
+            - generic [ref=f48e128]:
+              - listitem "Alcance e dispositivos" [ref=f48e130]:
+                - button "Alcance e dispositivos" [ref=f48e131] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f48e134]: expand_more
+              - listitem "Notas e avaliações" [ref=f48e136]:
+                - button "Notas e avaliações" [ref=f48e137] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f48e140]: expand_more
+              - listitem "Android vitals" [ref=f48e142]:
+                - button "Android vitals" [ref=f48e143] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f48e146]: expand_more
+              - listitem "Políticas e programas" [ref=f48e148]:
+                - button "Políticas e programas" [ref=f48e149] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f48e152]: expand_less
+                - list [ref=f48e153]:
+                  - generic [ref=f48e155]:
+                    - listitem "Status da política" [ref=f48e157]:
+                      - button "Status da política" [ref=f48e158] [cursor=pointer]
+                    - listitem "Conteúdo do app" [ref=f48e161]:
+                      - button "Conteúdo do app" [ref=f48e162] [cursor=pointer]
+                    - listitem "Programas" [ref=f48e165]:
+                      - button "Programas" [ref=f48e166] [cursor=pointer]:
+                        - img [aria-hidden] [ref=f48e169]: expand_more
+        - listitem "Aumentar número de usuários" [ref=f48e172]:
+          - button "Aumentar número de usuários" [ref=f48e173] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e176]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f48e180]:
+          - button "Monetizar com o Google Play" [ref=f48e181] [cursor=pointer]:
+            - img [aria-hidden] [ref=f48e184]: sell
+    - generic [ref=f48e22]:
+      - generic [ref=f48e189]:
+        - generic [ref=f48e193]:
+          - link "Voltar para Conteúdo do app" [ref=f48e196] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-content/overview
+            - img [aria-hidden] [ref=f48e200]: keyboard_backspace
+            - generic [ref=f48e201]: Conteúdo do app
+          - generic [ref=f48e204]:
+            - generic [ref=f48e205]:
+              - heading "Segurança dos dados" [level=1] [ref=f48e210]
+              - generic [ref=f48e215]:
+                - button "Exportar para .csv" [ref=f48e216]
+                - button "Importar de arquivo CSV" [ref=f48e220]
+            - generic [ref=f48e228]:
+              - text: Ajude os usuários a entender como o app coleta e compartilha dados.
+              - button "Mostrar mais detalhes sobre Segurança dos dados" [ref=f48e229] [cursor=pointer]: Mostrar mais
+        - generic [ref=f48e235]:
+          - tablist [ref=f48e236]:
+            - tab "Etapa 1 de 5, Visão geral" [selected] [ref=f48e237]:
+              - generic [ref=f48e238]: "1"
+              - generic [ref=f48e241]: Visão geral
+            - tab "Etapa 2 de 5, Coleta de dados e segurança" [disabled] [ref=f48e244]:
+              - generic [ref=f48e245]: "2"
+              - generic [ref=f48e248]: Coleta de dados e segurança
+            - tab "Etapa 3 de 5, Tipos de dados" [disabled] [ref=f48e251]:
+              - generic [ref=f48e252]: "3"
+              - generic [ref=f48e255]: Tipos de dados
+            - tab "Etapa 4 de 5, Uso e tratamento de dados" [disabled] [ref=f48e258]:
+              - generic [ref=f48e259]: "4"
+              - generic [ref=f48e262]: Uso e tratamento de dados
+            - tab "Etapa 5 de 5, Visualização" [disabled] [ref=f48e265]:
+              - generic [ref=f48e266]: "5"
+              - generic [ref=f48e269]: Visualização
+          - tabpanel [ref=f48e272]:
+            - generic [ref=f48e273]:
+              - generic [ref=f48e276]:
+                - paragraph [ref=f48e277]: Agradecemos por ajudar a manter o Google Play um espaço seguro e confiável para os usuários.
+                - paragraph [ref=f48e278]: Neste questionário, vamos pedir informações sobre os dados do usuário coletados ou compartilhados pelo app. Essas informações vão aparecer na página "Detalhes do app" para ajudar os usuários a entender a privacidade, a segurança e as práticas de tratamento de dados do app antes de fazerem o download dele.
+                - paragraph [ref=f48e279]: Antes de começar, leia as informações a seguir sobre as perguntas que serão feitas e as respostas que você precisará fornecer. As informações fornecidas serão revisadas pelo Google como parte do processo de revisão do app.
+              - generic [ref=f48e281]:
+                - heading "Definições" [level=2] [ref=f48e290]
+                - generic [ref=f48e291]:
+                  - paragraph [ref=f48e292]:
+                    - text: Na próxima tela, perguntaremos se o app coleta ou compartilha qualquer tipo de dados do usuário obrigatórios.
+                    - link "Ver tipos de dados obrigatórios, Abre em uma nova guia" [ref=f48e294] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#types
+                      - text: Ver tipos de dados obrigatórios
+                  - paragraph [ref=f48e295]:
+                    - text: "\"Coletados\" significa dados que foram transmitidos para fora do dispositivo do usuário, para você ou para terceiros. Alguns tipos de coleta de dados são isentos."
+                    - link "Ver isenções, Abre em uma nova guia" [ref=f48e297] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#types
+                      - text: Ver isenções
+                  - paragraph [ref=f48e298]:
+                    - text: Processamento "efêmero" de dados significa acessar e usar esses dados enquanto eles estão armazenados apenas na memória e não são mantidos por mais tempo do que o necessário para atender à solicitação específica em tempo real. Você também precisa avisar quando os dados são coletados assim, mas essa informação não será exibida aos usuários na página "Detalhes do app".
+                    - link "Saiba mais sobre dados processados de maneira efêmera, Abre em uma nova guia" [ref=f48e300] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#collection
+                      - text: Saiba mais
+                  - paragraph [ref=f48e301]:
+                    - text: "\"Compartilhados\" significa dados que são transferidos a terceiros, tanto no próprio dispositivo do usuário quanto para fora dele. Alguns tipos de transferências de dados são isentos."
+                    - link "Ver isenções, Abre em uma nova guia" [ref=f48e303] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#sharing
+                      - text: Ver isenções
+              - generic [ref=f48e305]:
+                - heading "O que você precisa divulgar" [level=2] [ref=f48e314]
+                - generic [ref=f48e315]:
+                  - paragraph [ref=f48e316]: "Você precisa declarar:"
+                  - list [ref=f48e317]:
+                    - listitem [ref=f48e318]:
+                      - text: Todos os tipos de dados do usuário obrigatórios que são coletados e/ou compartilhados.
+                      - link "Saiba mais sobre Segurança dos dados, Abre em uma nova guia" [ref=f48e320] [cursor=pointer]:
+                        - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#types
+                        - text: Saiba mais
+                    - listitem [ref=f48e321]:
+                      - text: Todos os dados do usuário enviados para fora do dispositivo por bibliotecas ou SDKs usados no app, sejam essas informações transmitidas a você (desenvolvedor) ou a terceiros.
+                      - link "Saiba mais sobre Segurança dos dados, Abre em uma nova guia" [ref=f48e323] [cursor=pointer]:
+                        - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#collection
+                        - text: Saiba mais
+                    - listitem [ref=f48e324]:
+                      - text: Todos os dados do usuário transferidos do seu servidor para terceiros ou para outro app de terceiros no mesmo dispositivo.
+                      - link "Saiba mais sobre Segurança dos dados, Abre em uma nova guia" [ref=f48e326] [cursor=pointer]:
+                        - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#collection
+                        - text: Saiba mais
+                    - listitem [ref=f48e327]:
+                      - text: Todos os dados do usuário coletados ou transferidos por um WebView que pode ser aberto no app, a não ser que os usuários naveguem na Web aberta.
+                      - link "Saiba mais sobre Segurança dos dados, Abre em uma nova guia" [ref=f48e329] [cursor=pointer]:
+                        - /url: https://support.google.com/googleplay/android-developer/answer/10787469?hl=pt-BR#collection
+                        - text: Saiba mais
+              - paragraph [ref=f48e333]: Para começar, selecione "Próxima".
+          - generic [ref=f48e334]: Etapa 1 de 5, Visão geral
+        - generic [ref=f48e341]:
+          - button "Avançar" [ref=f48e343]
+          - generic [ref=f48e347]:
+            - button "Voltar" [disabled] [ref=f48e349]
+            - button "Salvar rascunho" [disabled] [ref=f48e354]
+            - button "Cancelar alterações" [disabled] [ref=f48e359]
+      - generic [ref=f48e30]:
+        - generic [ref=f48e365]:
+          - link "Atualizações de produtos" [ref=f48e366] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f48e367] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f48e368] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f48e369]:
+          - generic [ref=f48e370]: © 2026 Google
+          - link "Privacidade" [ref=f48e371] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f48e372] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f48e373] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

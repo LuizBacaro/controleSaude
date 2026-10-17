@@ -6,10 +6,23 @@ import '../../../core/providers.dart';
 import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../exams/domain/exam_report.dart';
 import '../../exams/presentation/widgets/status_chip.dart';
 
 class EvolutionPage extends ConsumerStatefulWidget {
-  const EvolutionPage({super.key});
+  const EvolutionPage({
+    super.key,
+    this.series,
+    this.onOpenMarker,
+    this.title = 'Evolução',
+    this.readOnly = false,
+  });
+
+  /// Quando vem do consultório, a série é a do paciente aceito.
+  final List<MarkerSeries>? series;
+  final void Function(String name)? onOpenMarker;
+  final String title;
+  final bool readOnly;
 
   @override
   ConsumerState<EvolutionPage> createState() => _EvolutionPageState();
@@ -21,7 +34,8 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final series = ref.watch(markerSeriesProvider);
+    final List<MarkerSeries> series =
+        widget.series ?? ref.watch(markerSeriesProvider);
     final categories = series.map((s) => s.category).toSet().toList()..sort();
 
     final filtered = series.where((s) {
@@ -32,9 +46,22 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
     }).toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Evolução')),
+      appBar: AppBar(title: Text(widget.title)),
       body: Column(
         children: [
+          if (widget.readOnly)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.md,
+                AppSpacing.sm,
+                AppSpacing.md,
+                0,
+              ),
+              child: Text(
+                'Somente leitura. Este acesso não permite importar nem alterar o laudo.',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.fromLTRB(
               AppSpacing.md,
@@ -113,7 +140,13 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
                               : '${s.latestLabel} · ${s.points.length} ${s.points.length == 1 ? 'ponto' : 'pontos'}',
                         ),
                         trailing: StatusChip(status: s.latestStatus),
-                        onTap: () => context.push(markerRoute(s.name)),
+                        onTap: () {
+                          if (widget.onOpenMarker != null) {
+                            widget.onOpenMarker!(s.name);
+                          } else {
+                            context.push(markerRoute(s.name));
+                          }
+                        },
                       );
                     },
                   ),

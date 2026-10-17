@@ -1,0 +1,189 @@
+- generic [active] [ref=f28e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f28e3]:
+    - banner [ref=f28e4]:
+      - generic [ref=f28e6]:
+        - link [ref=f28e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f28e8]
+        - generic [ref=f28e9]:
+          - button "Notificações Abrir central de notificações" [ref=f28e45]:
+            - img [aria-hidden] [ref=f28e49]: notifications
+            - generic [ref=f28e50]: Notificações
+          - generic [ref=f28e10]:
+            - button "Exame Fácil" [ref=f28e59] [cursor=pointer]
+            - button [ref=f28e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f28e16]
+    - navigation [ref=f28e72]:
+      - link "Todos os apps" [ref=f28e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f28e75]: keyboard_backspace
+      - list [ref=f28e77]:
+        - listitem "Painel" [ref=f28e80]:
+          - button "Painel" [ref=f28e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e84]: dashboard
+        - listitem "Estatísticas" [ref=f28e88]:
+          - button "Estatísticas" [ref=f28e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f28e96]:
+          - button "Visão geral da publicação" [ref=f28e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f28e104]:
+          - button "Protegido com o Google Play" [ref=f28e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e108]: shield
+        - listitem "Testar e lançar" [ref=f28e112]:
+          - button "Testar e lançar" [ref=f28e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f28e120]:
+          - button "Monitorar e aprimorar" [ref=f28e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e124]: vital_signs
+          - list [ref=f28e126]:
+            - generic [ref=f28e128]:
+              - listitem "Alcance e dispositivos" [ref=f28e130]:
+                - button "Alcance e dispositivos" [ref=f28e131] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f28e134]: expand_more
+              - listitem "Notas e avaliações" [ref=f28e136]:
+                - button "Notas e avaliações" [ref=f28e137] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f28e140]: expand_more
+              - listitem "Android vitals" [ref=f28e142]:
+                - button "Android vitals" [ref=f28e143] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f28e146]: expand_more
+              - listitem "Políticas e programas" [ref=f28e148]:
+                - button "Políticas e programas" [ref=f28e149] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f28e152]: expand_less
+                - list [ref=f28e153]:
+                  - generic [ref=f28e155]:
+                    - listitem "Status da política" [ref=f28e157]:
+                      - button "Status da política" [ref=f28e158] [cursor=pointer]
+                    - listitem "Conteúdo do app" [ref=f28e161]:
+                      - button "Conteúdo do app" [ref=f28e162] [cursor=pointer]
+                    - listitem "Programas" [ref=f28e165]:
+                      - button "Programas" [ref=f28e166] [cursor=pointer]:
+                        - img [aria-hidden] [ref=f28e169]: expand_more
+        - listitem "Aumentar número de usuários" [ref=f28e172]:
+          - button "Aumentar número de usuários" [ref=f28e173] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e176]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f28e180]:
+          - button "Monetizar com o Google Play" [ref=f28e181] [cursor=pointer]:
+            - img [aria-hidden] [ref=f28e184]: sell
+    - generic [ref=f28e22]:
+      - generic [ref=f28e189]:
+        - generic [ref=f28e196]:
+          - heading "Conteúdo do app" [level=1] [ref=f28e202]
+          - generic [ref=f28e209]:
+            - text: Informe-nos o conteúdo do app para garantir a conformidade dele com as políticas do Google Play.
+            - link "Saiba mais sobre o conteúdo do app, Abre em uma nova guia" [ref=f28e211] [cursor=pointer]:
+              - /url: https://play.google.com/about/developer-content-policy/
+              - text: Saiba mais
+        - generic [ref=f28e214]:
+          - tablist [ref=f28e218]:
+            - tab "Precisam de atenção (6)" [selected] [ref=f28e219] [cursor=pointer]
+            - tab "Concluídas" [ref=f28e222] [cursor=pointer]
+          - generic [ref=f28e227]:
+            - generic [ref=f28e230]:
+              - heading "6 declarações precisam de atenção" [level=2] [ref=f28e236]
+              - generic [ref=f28e237]: As declarações de política que precisam da sua atenção são exibidas aqui. Corrija os problemas e preencha as declarações antes dos prazos relevantes.
+            - generic [ref=f28e242]:
+              - generic [ref=f28e247]:
+                - generic [ref=f28e250]:
+                  - heading "Detalhes do login" [level=3] [ref=f28e256]
+                  - generic [ref=f28e259]:
+                    - text: Se partes do app forem restritas com base em detalhes de login, assinaturas, local ou outras formas de autenticação, forneça instruções sobre como acessá-las.
+                    - link "Learn more about Sign in details declaration Opens in a new tab" [ref=f28e260] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/13583557
+                      - text: Saiba mais
+                - generic [ref=f28e261]:
+                  - generic [ref=f28e264]:
+                    - heading "Por que isso afeta seu app" [level=4] [ref=f28e273]
+                    - generic [ref=f28e274]: Todos os desenvolvedores precisam enviar esta declaração referente aos apps
+                  - button "Iniciar a declaração de Detalhes do login" [ref=f28e280]:
+                    - generic [ref=f28e283]: Iniciar declaração
+              - generic [ref=f28e288]:
+                - generic [ref=f28e291]:
+                  - heading "Classificações de conteúdo" [level=3] [ref=f28e297]
+                  - generic [ref=f28e300]:
+                    - text: Receber classificações do conteúdo de autoridades oficiais Suas classificações são exibidas no Google Play para ajudar os usuários a identificar se o app é adequado para eles.
+                    - link "Learn more about Content ratings declaration Opens in a new tab" [ref=f28e301] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/9898843
+                      - text: Saiba mais
+                - generic [ref=f28e302]:
+                  - generic [ref=f28e305]:
+                    - heading "Por que isso afeta seu app" [level=4] [ref=f28e314]
+                    - generic [ref=f28e315]: Todos os desenvolvedores precisam enviar esta declaração referente aos apps
+                  - button "Iniciar a declaração de Classificações de conteúdo" [ref=f28e321]:
+                    - generic [ref=f28e324]: Iniciar declaração
+              - generic [ref=f28e329]:
+                - generic [ref=f28e332]:
+                  - heading "Público-alvo e conteúdo" [level=3] [ref=f28e338]
+                  - generic [ref=f28e341]:
+                    - text: É necessário indicar a faixa etária do público-alvo e outras informações sobre o conteúdo do app. Isso nos ajuda a garantir que apps feitos para crianças sejam seguros e adequados a elas.
+                    - link "Learn more about Target audience and content declaration Opens in a new tab" [ref=f28e342] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/9867159#declare_target_age_group
+                      - text: Saiba mais
+                - generic [ref=f28e343]:
+                  - generic [ref=f28e346]:
+                    - heading "Por que isso afeta seu app" [level=4] [ref=f28e355]
+                    - generic [ref=f28e356]: Todos os desenvolvedores precisam enviar esta declaração referente aos apps
+                  - button "Iniciar a declaração de Público-alvo e conteúdo" [ref=f28e362]:
+                    - generic [ref=f28e365]: Iniciar declaração
+              - generic [ref=f28e370]:
+                - generic [ref=f28e373]:
+                  - heading "Segurança dos dados" [level=3] [ref=f28e379]
+                  - generic [ref=f28e382]:
+                    - text: Fale sobre as práticas de privacidade e segurança do seu app. Essas informações são exibidas na página "Detalhes do app" para ajudar os usuários a entender como você coleta e compartilha os dados deles.
+                    - link "Learn more about Data safety declaration Opens in a new tab" [ref=f28e383] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/10787469
+                      - text: Saiba mais
+                - generic [ref=f28e384]:
+                  - generic [ref=f28e387]:
+                    - heading "Por que isso afeta seu app" [level=4] [ref=f28e396]
+                    - generic [ref=f28e397]: Todos os desenvolvedores precisam enviar esta declaração referente aos apps
+                  - button "Iniciar a declaração de Segurança dos dados" [ref=f28e403]:
+                    - generic [ref=f28e406]: Iniciar declaração
+              - generic [ref=f28e411]:
+                - generic [ref=f28e414]:
+                  - heading "ID de publicidade" [level=3] [ref=f28e420]
+                  - generic [ref=f28e423]:
+                    - text: Queremos saber se o app usa um ID de publicidade. Não será possível enviar versões destinadas ao Android 13 até que esta seção esteja concluída.
+                    - link "Learn more about Advertising ID declaration Opens in a new tab" [ref=f28e424] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/6048248
+                      - text: Saiba mais
+                - generic [ref=f28e425]:
+                  - generic [ref=f28e428]:
+                    - heading "Por que isso afeta seu app" [level=4] [ref=f28e437]
+                    - generic [ref=f28e438]: Todos os desenvolvedores precisam enviar esta declaração referente aos apps
+                  - button "Iniciar a declaração de ID de publicidade" [ref=f28e444]:
+                    - generic [ref=f28e447]: Iniciar declaração
+              - generic [ref=f28e452]:
+                - generic [ref=f28e455]:
+                  - heading "Apps de saúde" [level=3] [ref=f28e461]
+                  - generic [ref=f28e464]:
+                    - text: Informe quais recursos de saúde o app usa.
+                    - link "Learn more about the health declaration Opens in a new tab" [ref=f28e465] [cursor=pointer]:
+                      - /url: https://support.google.com/googleplay/android-developer/answer/14738291
+                      - text: Saiba mais
+                - generic [ref=f28e466]:
+                  - generic [ref=f28e469]:
+                    - heading "Por que isso afeta seu app" [level=4] [ref=f28e478]
+                    - generic [ref=f28e479]: Todos os desenvolvedores precisam preencher esta declaração para nos ajudar a entender quais requisitos precisam atender da política de apps de saúde
+                  - button "Iniciar a declaração de Apps de saúde" [ref=f28e485]:
+                    - generic [ref=f28e488]: Iniciar declaração
+      - generic [ref=f28e30]:
+        - generic [ref=f28e489]:
+          - link "Atualizações de produtos" [ref=f28e490] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f28e491] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f28e492] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f28e493]:
+          - generic [ref=f28e494]: © 2026 Google
+          - link "Privacidade" [ref=f28e495] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f28e496] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f28e497] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

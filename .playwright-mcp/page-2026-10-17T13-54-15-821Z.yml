@@ -1,0 +1,127 @@
+- generic [ref=f16e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f16e3]:
+    - banner [ref=f16e4]:
+      - generic [ref=f16e6]:
+        - link [ref=f16e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f16e8]
+        - generic [ref=f16e9]:
+          - button "Notificações Abrir central de notificações" [ref=f16e45]:
+            - img [aria-hidden] [ref=f16e49]: notifications
+            - generic [ref=f16e50]: Notificações
+          - generic [ref=f16e10]:
+            - button "Exame Fácil" [ref=f16e59] [cursor=pointer]
+            - button [ref=f16e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f16e16]
+    - navigation [ref=f16e72]:
+      - link "Todos os apps" [ref=f16e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f16e75]: keyboard_backspace
+      - list [ref=f16e77]:
+        - listitem "Painel" [ref=f16e80]:
+          - button "Painel" [ref=f16e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e84]: dashboard
+        - listitem "Estatísticas" [ref=f16e88]:
+          - button "Estatísticas" [ref=f16e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f16e96]:
+          - button "Visão geral da publicação" [ref=f16e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f16e104]:
+          - button "Protegido com o Google Play" [ref=f16e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e108]: shield
+        - listitem "Testar e lançar" [ref=f16e112]:
+          - button "Testar e lançar" [ref=f16e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f16e120]:
+          - button "Monitorar e aprimorar" [ref=f16e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e124]: vital_signs
+          - list [ref=f16e126]:
+            - generic [ref=f16e128]:
+              - listitem "Alcance e dispositivos" [ref=f16e130]:
+                - button "Alcance e dispositivos" [ref=f16e131] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e134]: expand_more
+              - listitem "Notas e avaliações" [ref=f16e136]:
+                - button "Notas e avaliações" [ref=f16e137] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e140]: expand_more
+              - listitem "Android vitals" [ref=f16e142]:
+                - button "Android vitals" [ref=f16e143] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e146]: expand_more
+              - listitem "Políticas e programas" [ref=f16e148]:
+                - button "Políticas e programas" [ref=f16e149] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e152]: expand_less
+                - list [ref=f16e153]:
+                  - generic [ref=f16e155]:
+                    - listitem "Status da política" [ref=f16e157]:
+                      - button "Status da política" [ref=f16e158] [cursor=pointer]
+                    - listitem "Conteúdo do app" [ref=f16e161]:
+                      - button "Conteúdo do app" [ref=f16e162] [cursor=pointer]
+                    - listitem "Programas" [ref=f16e165]:
+                      - button "Programas" [ref=f16e166] [cursor=pointer]:
+                        - img [aria-hidden] [ref=f16e169]: expand_more
+        - listitem "Aumentar número de usuários" [ref=f16e172]:
+          - button "Aumentar número de usuários" [ref=f16e173] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e176]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f16e180]:
+          - button "Monetizar com o Google Play" [ref=f16e181] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e184]: sell
+    - generic [ref=f16e22]:
+      - generic [ref=f16e623]:
+        - generic [ref=f16e627]:
+          - link "Voltar para Conteúdo do app" [ref=f16e630] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-content/overview
+            - img [aria-hidden] [ref=f16e634]: keyboard_backspace
+            - generic [ref=f16e635]: Conteúdo do app
+          - heading "Anúncios" [level=1] [ref=f16e644]
+        - generic [ref=f16e645]:
+          - paragraph [ref=f16e649]:
+            - text: Informe se o app tem anúncios. Isso inclui anúncios exibidos por redes de publicidade de terceiros. Verifique se essas informações estão corretas e atualizadas.
+            - link "Saiba mais sobre a declaração de anúncios, Abre em uma nova guia" [ref=f16e651] [cursor=pointer]:
+              - /url: https://support.google.com/googleplay/android-developer/answer/9815348#ads
+              - text: Saiba mais
+          - group "Pergunta sobre anúncios" [ref=f16e657]:
+            - generic [ref=f16e658]: Anúncios
+            - generic [ref=f16e662]:
+              - generic [ref=f16e665]:
+                - text: Seu app tem anúncios? Confira a
+                - link "política de anúncios" [ref=f16e666] [cursor=pointer]:
+                  - /url: https://play.google.com/about/monetization-ads/ads/
+                - text: para garantir a conformidade do seu app.
+              - radiogroup "Anúncios" [ref=f16e667]:
+                - generic [ref=f16e668] [cursor=pointer]:
+                  - radio "Sim, meu app tem anúncios" [ref=f16e670]
+                  - generic [ref=f16e673]:
+                    - text: Sim, meu app tem anúncios
+                    - generic [ref=f16e674]:
+                      - text: A etiqueta "Contém anúncios" será exibida ao lado do app no Google Play.
+                      - link "Saiba mais sobre a declaração de anúncios, Abre em uma nova guia" [ref=f16e676]:
+                        - /url: https://support.google.com/googleplay/android-developer/answer/9815348#ads
+                        - text: Saiba mais
+                - generic [ref=f16e677] [cursor=pointer]:
+                  - radio "Não, meu app não tem anúncios" [checked] [active] [ref=f16e679]
+                  - generic [ref=f16e682]: Não, meu app não tem anúncios
+          - generic [ref=f16e686]:
+            - generic [ref=f16e687]: Se as mudanças forem salvas, elas vão ficar na seção "Visão geral da publicação" prontas para o envio à revisão
+            - generic [ref=f16e690]:
+              - button "Descartar" [ref=f16e715]
+              - button "Salvar" [ref=f16e720]
+      - generic [ref=f16e30]:
+        - generic [ref=f16e703]:
+          - link "Atualizações de produtos" [ref=f16e704] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f16e705] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f16e706] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f16e707]:
+          - generic [ref=f16e708]: © 2026 Google
+          - link "Privacidade" [ref=f16e709] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f16e710] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f16e711] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

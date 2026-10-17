@@ -1,0 +1,122 @@
+- generic [active] [ref=f57e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f57e3]:
+    - banner [ref=f57e4]:
+      - generic [ref=f57e6]:
+        - link [ref=f57e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f57e8]
+        - generic [ref=f57e9]:
+          - button "Notificações Abrir central de notificações" [ref=f57e15]:
+            - img [aria-hidden] [ref=f57e19]: notifications
+            - generic [ref=f57e20]: Notificações
+          - generic [ref=f57e22]:
+            - button "Exame Fácil" [ref=f57e30] [cursor=pointer]
+            - button [ref=f57e45] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f57e47]
+    - navigation [ref=f57e53]:
+      - link "Todos os apps" [ref=f57e54] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f57e56]: keyboard_backspace
+      - list [ref=f57e58]:
+        - listitem "Painel" [ref=f57e61]:
+          - button "Painel" [ref=f57e62] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e65]: dashboard
+        - listitem "Estatísticas" [ref=f57e69]:
+          - button "Estatísticas" [ref=f57e70] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e73]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f57e77]:
+          - button "Visão geral da publicação" [ref=f57e78] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e81]: overview
+        - listitem "Protegido com o Google Play" [ref=f57e85]:
+          - button "Protegido com o Google Play" [ref=f57e86] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e89]: shield
+        - listitem "Testar e lançar" [ref=f57e93]:
+          - button "Testar e lançar" [ref=f57e94] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e97]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f57e101]:
+          - button "Monitorar e aprimorar" [ref=f57e102] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e105]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f57e109]:
+          - button "Aumentar número de usuários" [ref=f57e110] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e113]: finance_mode
+          - list [ref=f57e115]:
+            - generic [ref=f57e117]:
+              - listitem "Presença na loja" [ref=f57e119]:
+                - button "Presença na loja" [ref=f57e120] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f57e123]: expand_less
+                - list [ref=f57e124]:
+                  - generic [ref=f57e126]:
+                    - listitem "Páginas de detalhes do app" [ref=f57e128]:
+                      - button "Páginas de detalhes do app" [ref=f57e129] [cursor=pointer]
+                    - listitem "Configurações da loja" [ref=f57e132]:
+                      - button "Configurações da loja" [ref=f57e133] [cursor=pointer]
+              - listitem "Desempenho na loja" [ref=f57e136]:
+                - button "Desempenho na loja" [ref=f57e137] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f57e140]: expand_more
+              - listitem "Traduções" [ref=f57e142]:
+                - button "Traduções" [ref=f57e143] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f57e146]: expand_more
+              - listitem "Links diretos" [ref=f57e148]:
+                - button "Links diretos" [ref=f57e149] [cursor=pointer]
+        - listitem "Monetizar com o Google Play" [ref=f57e153]:
+          - button "Monetizar com o Google Play" [ref=f57e154] [cursor=pointer]:
+            - img [aria-hidden] [ref=f57e157]: sell
+    - generic [ref=f57e160]:
+      - generic [ref=f57e167]:
+        - generic [ref=f57e174]:
+          - heading "Configurações da loja" [level=1] [ref=f57e180]
+          - generic [ref=f57e181]: Gerencie como seu app será organizado no Google Play e como os usuários poderão entrar em contato com você
+        - generic [ref=f57e206]:
+          - generic [ref=f57e208]:
+            - generic [ref=f57e211]:
+              - generic [ref=f57e212]:
+                - heading "Categoria do app" [level=2] [ref=f57e217]
+                - button "Editar" [ref=f57e223]
+              - generic [ref=f57e227]: Escolha o tipo, a categoria e as tags que melhor descrevem o conteúdo ou a função principal do seu app. Essas informações ajudam os usuários a encontrar os apps no Google Play.
+            - generic [ref=f57e233]:
+              - group "App ou jogo" [ref=f57e235]:
+                - generic [ref=f57e239]: App
+              - group "Categoria" [ref=f57e243]:
+                - generic [ref=f57e247]: Não selecionados
+              - group "Tags" [ref=f57e252]:
+                - button "Gerenciar tags" [ref=f57e261]
+          - generic [ref=f57e266]:
+            - generic [ref=f57e269]:
+              - generic [ref=f57e270]:
+                - heading "Dados de contato da página de detalhes do app" [level=2] [ref=f57e275]
+                - button "Editar" [ref=f57e281]
+              - generic [ref=f57e285]: Esta informação é exibida aos usuários no Google Play
+            - generic [ref=f57e291]:
+              - group "Endereço de e-mail" [ref=f57e293]
+              - group "Número de telefone" [ref=f57e301]
+              - group "Site" [ref=f57e309]
+          - generic [ref=f57e317]:
+            - generic [ref=f57e320]:
+              - heading "Marketing externo" [level=2] [ref=f57e326]
+              - generic [ref=f57e327]: Desative o marketing externo se não quiser que seu app seja anunciado fora do Google Play
+            - group "Marketing externo" [ref=f57e335]:
+              - generic [ref=f57e341] [cursor=pointer]:
+                - checkbox "Anunciar meu app fora do Google Play As alterações podem levar 60 dias para ser aplicadas" [checked] [ref=f57e343]
+                - generic [ref=f57e344]:
+                  - text: Anunciar meu app fora do Google Play
+                  - paragraph [ref=f57e345]: As alterações podem levar 60 dias para ser aplicadas
+      - generic [ref=f57e196]:
+        - generic [ref=f57e197]:
+          - link "Atualizações de produtos" [ref=f57e198] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f57e199] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f57e200] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f57e201]:
+          - generic [ref=f57e202]: © 2026 Google
+          - link "Privacidade" [ref=f57e203] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f57e204] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f57e205] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

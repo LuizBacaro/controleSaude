@@ -1,0 +1,123 @@
+- generic [active] [ref=f11e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f11e3]:
+    - banner [ref=f11e4]:
+      - generic [ref=f11e6]:
+        - link [ref=f11e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f11e8]
+        - generic [ref=f11e9]:
+          - button "Notificações Abrir central de notificações" [ref=f11e45]:
+            - img [aria-hidden] [ref=f11e49]: notifications
+            - generic [ref=f11e50]: Notificações
+          - generic [ref=f11e10]:
+            - button "Exame Fácil" [ref=f11e59] [cursor=pointer]
+            - button [ref=f11e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f11e16]
+    - navigation [ref=f11e72]:
+      - link "Todos os apps" [ref=f11e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f11e75]: keyboard_backspace
+      - list [ref=f11e77]:
+        - listitem "Painel" [ref=f11e80]:
+          - button "Painel" [ref=f11e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e84]: dashboard
+        - listitem "Estatísticas" [ref=f11e88]:
+          - button "Estatísticas" [ref=f11e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f11e96]:
+          - button "Visão geral da publicação" [ref=f11e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f11e104]:
+          - button "Protegido com o Google Play" [ref=f11e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e108]: shield
+        - listitem "Testar e lançar" [ref=f11e112]:
+          - button "Testar e lançar" [ref=f11e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f11e120]:
+          - button "Monitorar e aprimorar" [ref=f11e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e124]: vital_signs
+          - list [ref=f11e601]:
+            - generic [ref=f11e603]:
+              - listitem "Alcance e dispositivos" [ref=f11e605]:
+                - button "Alcance e dispositivos" [ref=f11e606] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f11e609]: expand_more
+              - listitem "Notas e avaliações" [ref=f11e611]:
+                - button "Notas e avaliações" [ref=f11e612] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f11e615]: expand_more
+              - listitem "Android vitals" [ref=f11e617]:
+                - button "Android vitals" [ref=f11e618] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f11e621]: expand_more
+              - listitem "Políticas e programas" [ref=f11e623]:
+                - button "Políticas e programas" [ref=f11e624] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f11e627]: expand_less
+                - list [ref=f11e628]:
+                  - generic [ref=f11e630]:
+                    - listitem "Status da política" [ref=f11e632]:
+                      - button "Status da política" [ref=f11e633] [cursor=pointer]
+                    - listitem "Conteúdo do app" [ref=f11e636]:
+                      - button "Conteúdo do app" [ref=f11e637] [cursor=pointer]
+                    - listitem "Programas" [ref=f11e640]:
+                      - button "Programas" [ref=f11e641] [cursor=pointer]:
+                        - img [aria-hidden] [ref=f11e644]: expand_more
+        - listitem "Aumentar número de usuários" [ref=f11e128]:
+          - button "Aumentar número de usuários" [ref=f11e129] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e132]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f11e136]:
+          - button "Monetizar com o Google Play" [ref=f11e137] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e140]: sell
+    - generic [ref=f11e22]:
+      - generic [ref=f11e647]:
+        - generic [ref=f11e651]:
+          - link "Voltar para Painel" [ref=f11e654] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-dashboard
+            - img [aria-hidden] [ref=f11e658]: keyboard_backspace
+            - generic [ref=f11e659]: Painel
+          - heading "Política de Privacidade" [level=1] [ref=f11e668]
+        - generic [ref=f11e669]:
+          - generic [ref=f11e672]:
+            - paragraph [ref=f11e673]:
+              - generic [ref=f11e674]: Adicione uma Política de Privacidade que apareça na página de detalhes do app para oferecer mais transparência sobre como você lida com os dados sensíveis do usuário e do dispositivo.
+              - link "Saiba mais sobre como adicionar uma Política de Privacidade, Abre em uma nova guia" [ref=f11e676] [cursor=pointer]:
+                - /url: https://support.google.com/googleplay/android-developer/answer/9859455?hl=pt-BR#privacy_policy
+                - text: Saiba mais
+            - generic [ref=f11e678]:
+              - text: "Você precisa incluir um link para uma Política de Privacidade na página de detalhes do app e no próprio app, mesmo que ele não acesse dados pessoais ou sensíveis do usuário nem seja destinado a crianças.Para evitar atrasos na análise, verifique se a Política de Privacidade:"
+              - list [ref=f11e679]:
+                - listitem [ref=f11e680]: está hospedada em um URL ativo e acessível ao público (começando com http:// ou https://) com um certificado SSL válido;
+                - listitem [ref=f11e681]: pode ser acessada no mundo todo sem restrições geográficas, fronteiras geográficas virtuais ou requisitos de login;
+                - listitem [ref=f11e682]: é exibida em uma página da Web padrão e não editável (não em um PDF ou arquivo para download);
+                - listitem [ref=f11e683]: se aplica especificamente ao seu app, aborda a privacidade do usuário e divulga de forma abrangente como o app coleta, usa e compartilha dados do usuário, incluindo com quem são compartilhados.
+            - paragraph [ref=f11e684]:
+              - generic [ref=f11e686]:
+                - text: Confira a
+                - link "política de dados do usuário" [ref=f11e687] [cursor=pointer]:
+                  - /url: https://support.google.com/googleplay/android-developer/answer/10144311?ref_topic=9877467
+                - text: para evitar violações comuns.
+          - generic [ref=f11e692]:
+            - generic [ref=f11e693]:
+              - generic: URL da Política de Privacidade
+              - textbox "URL da Política de Privacidade" [ref=f11e694]
+            - paragraph [ref=f11e696]: Insira um URL, como https://example.com/privacy
+          - generic [ref=f11e704]:
+            - button "Descartar" [disabled] [ref=f11e706]
+            - button "Salvar" [disabled] [ref=f11e711]
+      - generic [ref=f11e30]:
+        - generic [ref=f11e717]:
+          - link "Atualizações de produtos" [ref=f11e718] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f11e719] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f11e720] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f11e721]:
+          - generic [ref=f11e722]: © 2026 Google
+          - link "Privacidade" [ref=f11e723] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f11e724] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f11e725] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

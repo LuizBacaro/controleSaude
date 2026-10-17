@@ -1,0 +1,131 @@
+- generic [active] [ref=f32e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f32e3]:
+    - banner [ref=f32e4]:
+      - generic [ref=f32e6]:
+        - link [ref=f32e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f32e8]
+        - generic [ref=f32e9]:
+          - button "Notificações Abrir central de notificações" [ref=f32e45]:
+            - img [aria-hidden] [ref=f32e49]: notifications
+            - generic [ref=f32e50]: Notificações
+          - generic [ref=f32e10]:
+            - button "Exame Fácil" [ref=f32e59] [cursor=pointer]
+            - button [ref=f32e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f32e16]
+    - navigation [ref=f32e72]:
+      - link "Todos os apps" [ref=f32e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f32e75]: keyboard_backspace
+      - list [ref=f32e77]:
+        - listitem "Painel" [ref=f32e80]:
+          - button "Painel" [ref=f32e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e84]: dashboard
+        - listitem "Estatísticas" [ref=f32e88]:
+          - button "Estatísticas" [ref=f32e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f32e96]:
+          - button "Visão geral da publicação" [ref=f32e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f32e104]:
+          - button "Protegido com o Google Play" [ref=f32e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e108]: shield
+        - listitem "Testar e lançar" [ref=f32e112]:
+          - button "Testar e lançar" [ref=f32e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f32e120]:
+          - button "Monitorar e aprimorar" [ref=f32e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e124]: vital_signs
+          - list [ref=f32e126]:
+            - generic [ref=f32e128]:
+              - listitem "Alcance e dispositivos" [ref=f32e130]:
+                - button "Alcance e dispositivos" [ref=f32e131] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f32e134]: expand_more
+              - listitem "Notas e avaliações" [ref=f32e136]:
+                - button "Notas e avaliações" [ref=f32e137] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f32e140]: expand_more
+              - listitem "Android vitals" [ref=f32e142]:
+                - button "Android vitals" [ref=f32e143] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f32e146]: expand_more
+              - listitem "Políticas e programas" [ref=f32e148]:
+                - button "Políticas e programas" [ref=f32e149] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f32e152]: expand_less
+                - list [ref=f32e153]:
+                  - generic [ref=f32e155]:
+                    - listitem "Status da política" [ref=f32e157]:
+                      - button "Status da política" [ref=f32e158] [cursor=pointer]
+                    - listitem "Conteúdo do app" [ref=f32e161]:
+                      - button "Conteúdo do app" [ref=f32e162] [cursor=pointer]
+                    - listitem "Programas" [ref=f32e165]:
+                      - button "Programas" [ref=f32e166] [cursor=pointer]:
+                        - img [aria-hidden] [ref=f32e169]: expand_more
+        - listitem "Aumentar número de usuários" [ref=f32e172]:
+          - button "Aumentar número de usuários" [ref=f32e173] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e176]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f32e180]:
+          - button "Monetizar com o Google Play" [ref=f32e181] [cursor=pointer]:
+            - img [aria-hidden] [ref=f32e184]: sell
+    - generic [ref=f32e22]:
+      - generic [ref=f32e189]:
+        - generic [ref=f32e193]:
+          - link "Voltar para Conteúdo do app" [ref=f32e196] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-content/overview
+            - img [aria-hidden] [ref=f32e200]: keyboard_backspace
+            - generic [ref=f32e201]: Conteúdo do app
+          - heading "Detalhes do login" [level=1] [ref=f32e210]
+        - generic [ref=f32e213]:
+          - generic [ref=f32e214]: Antes, essa declaração era chamada de "Acesso ao app".
+          - paragraph [ref=f32e216]:
+            - text: Para analisar seu app, precisamos ter acesso a todas as partes dele usando os detalhes de login. Se não conseguirmos acessar o app por completo, ele poderá ser rejeitado durante a análise. Não podemos criar novas contas, usar contas pessoais para fazer compras nem usar testes sem custo financeiro para analisar o app.
+            - link "Saiba mais sobre os detalhes de login (abre em uma nova guia)" [ref=f32e217] [cursor=pointer]:
+              - /url: https://support.google.com/googleplay/android-developer/answer/9859455?#app_access
+              - text: Saiba mais
+          - group "Detalhes do login" [ref=f32e220]:
+            - generic [ref=f32e225]:
+              - paragraph [ref=f32e226]: Alguma parte do seu app é restrita?
+              - generic [ref=f32e230] [cursor=pointer]:
+                - radio "Sim" [ref=f32e232]
+                - generic [ref=f32e235]:
+                  - generic [ref=f32e236]: Sim
+                  - generic [ref=f32e239]:
+                    - paragraph [ref=f32e240]: "Se o app incluir algum dos seguintes elementos:"
+                    - list [ref=f32e241]:
+                      - listitem [ref=f32e242]: detalhes de login da conta, como um endereço de e-mail, nome de usuário, login da Conta do Google e / ou SSO
+                      - listitem [ref=f32e243]: pagamentos, como produtos únicos, assinaturas, inscrições e / ou níveis de acesso
+                      - listitem [ref=f32e244]: códigos de indicação e / ou QR codes
+                      - listitem [ref=f32e245]: PINs únicos e / ou verificação em duas etapas
+                      - listitem [ref=f32e246]: autenticação biométrica
+                      - listitem [ref=f32e247]: ações que precisam ser feitas em outro dispositivo
+              - generic [ref=f32e251] [cursor=pointer]:
+                - radio "Não" [ref=f32e253]
+                - generic [ref=f32e256]:
+                  - generic [ref=f32e257]: Não
+                  - generic [ref=f32e260]:
+                    - paragraph [ref=f32e261]: "Se alguma das seguintes situações se aplicar ao seu app:"
+                    - list [ref=f32e262]:
+                      - listitem [ref=f32e263]: nenhuma parte do seu app é restrita
+                      - listitem [ref=f32e264]: não é preciso fazer login em uma conta em nenhum país / região
+                      - listitem [ref=f32e265]: não é necessário fazer login em uma conta e nenhum conteúdo exige pagamento
+        - generic [ref=f32e273]:
+          - button "Descartar" [disabled] [ref=f32e275]
+          - button "Salvar" [disabled] [ref=f32e280]
+      - generic [ref=f32e30]:
+        - generic [ref=f32e286]:
+          - link "Atualizações de produtos" [ref=f32e287] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f32e288] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f32e289] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f32e290]:
+          - generic [ref=f32e291]: © 2026 Google
+          - link "Privacidade" [ref=f32e292] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f32e293] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f32e294] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

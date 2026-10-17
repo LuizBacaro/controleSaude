@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/providers.dart';
+import '../../care/data/granted_charts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import 'widgets/health_fields.dart';
@@ -74,6 +75,8 @@ class ProfilePage extends ConsumerWidget {
             onPressed: () async {
               await ref.read(authRepositoryProvider).logout();
               ref.read(examsRepositoryProvider).clear();
+              ref.read(grantedChartsProvider.notifier).clear();
+              ref.read(shellEpochProvider.notifier).bump();
               ref.read(authRevisionProvider.notifier).bump();
               ref.read(examsRevisionProvider.notifier).bump();
               if (context.mounted) context.go('/');

@@ -29,8 +29,11 @@ class AuthRepository extends ChangeNotifier {
     required String email,
     required String password,
     required String displayName,
+    required String role,
     DateTime? birthDate,
     String? sex,
+    String? crmUf,
+    String? crmNumber,
   }) async {
     final normalized = email.trim().toLowerCase();
     if (normalized.isEmpty || !normalized.contains('@')) {
@@ -50,8 +53,11 @@ class AuthRepository extends ChangeNotifier {
         password: password,
         data: {
           'display_name': name,
+          'role': role == 'doctor' ? 'doctor' : 'patient',
           if (sex != null && sex.isNotEmpty) 'sex': sex,
           if (birthDate != null) 'birth_date': _isoDate(birthDate),
+          if (role == 'doctor' && crmUf != null) 'crm_uf': crmUf,
+          if (role == 'doctor' && crmNumber != null) 'crm_number': crmNumber,
         },
       );
       final user = response.user;
@@ -70,7 +76,15 @@ class AuthRepository extends ChangeNotifier {
       notifyListeners();
       return _currentUser!;
     } on AuthException catch (error) {
-      throw Exception(_authMessage(error.message));
+      final message = _authMessage(error.message);
+      if (role == 'doctor' &&
+          message == error.message &&
+          message.toLowerCase().contains('database')) {
+        throw Exception(
+          'Não foi possível criar a conta. Confira o CRM; ele pode já estar em uso.',
+        );
+      }
+      throw Exception(message);
     }
   }
 
@@ -146,6 +160,7 @@ class AuthRepository extends ChangeNotifier {
             (user.email ?? '').split('@').first,
         sex: meta['sex'] as String?,
         birthDate: metaBirth,
+        role: 'patient',
       );
     }
     final profile = AppUser.fromJson(Map<String, dynamic>.from(row));
@@ -155,6 +170,9 @@ class AuthRepository extends ChangeNotifier {
       displayName: profile.displayName,
       birthDate: profile.birthDate ?? metaBirth,
       sex: profile.sex ?? meta['sex'] as String?,
+      role: profile.role,
+      crmUf: profile.crmUf,
+      crmNumber: profile.crmNumber,
     );
   }
 
@@ -173,6 +191,12 @@ class AuthRepository extends ChangeNotifier {
     }
     if (lower.contains('email not confirmed')) {
       return 'Confirme o e-mail antes de entrar.';
+    }
+    if (lower.contains('profiles_crm_unique')) {
+      return 'Este CRM já está cadastrado.';
+    }
+    if (lower.contains('profiles_doctor_crm')) {
+      return 'Não foi possível criar a conta. Confira o CRM.';
     }
     return message;
   }

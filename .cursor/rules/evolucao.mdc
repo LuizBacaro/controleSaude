@@ -13,4 +13,4 @@ Ao terminar uma evolução pedida pelo Luiz, antes de encerrar:
 2. Se o erro puder voltar, inclua uma linha curta em **Não repetir**. Não copie segredo, token nem `service_role`.
 3. Atualize **O que está valendo** só quando o comportamento atual mudar.
 
-A data da coleta sai do PDF. O texto do laudo é o do Syncfusion. Médico e convênio ficam no JSON de `notes`. Pacote das lojas: `br.com.examefacil.laudos`.
+A data da coleta sai do PDF. O texto do laudo é o do Syncfusion. Médico e convênio ficam no JSON de `notes`. Pacote das lojas: `br.com.examefacil.laudos`. Médico só lê a Evolução de quem aceitou o convite.

@@ -191,12 +191,23 @@ class ExamsRepository {
     ];
   }
 
-  Future<List<ExamReport>> _fetchRemote() async {
+  /// Laudos de uma conta. O filtro é o dono: a política extra de leitura
+  /// não mistura os pacientes aceitos na lista de quem está logado.
+  Future<List<ExamReport>> fetchReportsOf(String userId) =>
+      _fetchRemote(userId: userId);
+
+  Future<List<ExamReport>> _fetchRemote({String? userId}) async {
+    final uid = userId ?? _client.auth.currentUser?.id;
+    if (uid == null) return [];
     final reportRows = await _client
         .from('exam_reports')
         .select()
+        .eq('user_id', uid)
         .order('collected_at', ascending: false);
-    final resultRows = await _client.from('exam_results').select();
+    final resultRows = await _client
+        .from('exam_results')
+        .select()
+        .eq('user_id', uid);
     final byReport = <String, List<Map<String, dynamic>>>{};
     for (final row in resultRows) {
       final map = Map<String, dynamic>.from(row);
@@ -336,10 +347,14 @@ class ExamsRepository {
     };
   }
 
-  List<MarkerSeries> buildSeries() {
+  List<MarkerSeries> buildSeries() => seriesOf(reports);
+
+  List<MarkerSeries> seriesOf(List<ExamReport> source) {
+    final ordered = [...source]
+      ..sort((a, b) => b.collectedAt.compareTo(a.collectedAt));
     final map = <String, _SeriesBuilder>{};
 
-    for (final report in reports.reversed) {
+    for (final report in ordered.reversed) {
       for (final marker in report.markers) {
         final key = marker.name.toLowerCase();
         final builder = map.putIfAbsent(
