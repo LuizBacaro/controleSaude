@@ -20,6 +20,7 @@ class _OfficePageState extends ConsumerState<OfficePage> {
   var _loading = true;
   String? _error;
   String? _busyId;
+  String _query = '';
   List<CareGrant> _grants = const [];
 
   @override
@@ -43,9 +44,7 @@ class _OfficePageState extends ConsumerState<OfficePage> {
       });
     } catch (error) {
       if (!mounted) return;
-      setState(
-        () => _error = error.toString().replaceFirst('Exception: ', ''),
-      );
+      setState(() => _error = error.toString().replaceFirst('Exception: ', ''));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -94,17 +93,19 @@ class _OfficePageState extends ConsumerState<OfficePage> {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final user = ref.watch(currentUserProvider);
-    final pending = _grants.where((grant) => grant.isPending).toList();
-    final accepted = _grants.where((grant) => grant.isAccepted).toList();
-    final wide = MediaQuery.sizeOf(context).width >= 840;
-
-    final invites = _InviteList(
-      pending: pending,
-      busyId: _busyId,
-      onAccept: (grant) => _respond(grant, accept: true),
-      onDecline: (grant) => _respond(grant, accept: false),
+    final pending = _sorted(_grants.where((grant) => grant.isPending).toList());
+    final accepted = _sorted(
+      _grants.where((grant) => grant.isAccepted).toList(),
     );
-    final patients = _PatientList(accepted: accepted, onOpen: _open);
+    final query = _query.trim().toLowerCase();
+    final visible = accepted.where((grant) {
+      if (query.isEmpty) return true;
+      return grant.patientName.toLowerCase().contains(query);
+    }).toList();
+    final crm = user?.crmLabel;
+    final greeting = crm == null
+        ? 'Olá, ${user?.displayName ?? 'médico'}'
+        : 'Olá, ${user?.displayName ?? 'médico'} · $crm';
 
     return Scaffold(
       appBar: AppBar(
@@ -121,153 +122,158 @@ class _OfficePageState extends ConsumerState<OfficePage> {
           ? const Center(child: CircularProgressIndicator())
           : RefreshIndicator(
               onRefresh: _load,
-              child: ListView(
-                padding: const EdgeInsets.all(AppSpacing.lg),
-                children: [
-                  Text(
-                    'Olá, ${user?.displayName ?? 'médico'}',
-                    style: text.headlineSmall,
-                  ),
-                  if (user?.crmLabel != null)
-                    Text(user!.crmLabel!, style: text.bodyMedium),
-                  const SizedBox(height: AppSpacing.sm),
-                  Text(
-                    'Você só vê quem enviou um convite. Sem o aceite, o exame não abre.',
-                    style: text.bodyMedium,
-                  ),
-                  if (_error != null) ...[
-                    const SizedBox(height: AppSpacing.md),
-                    Text(
-                      _error!,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: AppSpacing.lg),
-                  if (wide)
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(child: invites),
-                        const SizedBox(width: AppSpacing.lg),
-                        Expanded(child: patients),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 640),
+                  child: ListView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    padding: const EdgeInsets.all(AppSpacing.lg),
+                    children: [
+                      Text(greeting, style: text.headlineSmall),
+                      if (_error != null) ...[
+                        const SizedBox(height: AppSpacing.md),
+                        Text(
+                          _error!,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
                       ],
-                    )
-                  else ...[
-                    invites,
-                    const SizedBox(height: AppSpacing.lg),
-                    patients,
-                  ],
-                ],
+                      if (pending.isNotEmpty) ...[
+                        const SizedBox(height: AppSpacing.lg),
+                        Text(
+                          'Convites (${pending.length})',
+                          style: text.titleMedium,
+                        ),
+                        const SizedBox(height: AppSpacing.sm),
+                        for (final grant in pending) ...[
+                          _InviteCard(
+                            grant: grant,
+                            busy: _busyId == grant.id,
+                            onAccept: () => _respond(grant, accept: true),
+                            onDecline: () => _respond(grant, accept: false),
+                          ),
+                          const SizedBox(height: AppSpacing.sm),
+                        ],
+                      ],
+                      const SizedBox(height: AppSpacing.lg),
+                      Text(
+                        'Pacientes (${accepted.length})',
+                        style: text.titleMedium,
+                      ),
+                      const SizedBox(height: AppSpacing.xs),
+                      Text(
+                        'Toque no nome para abrir a Evolução. É somente leitura.',
+                        style: text.bodyMedium,
+                      ),
+                      const SizedBox(height: AppSpacing.md),
+                      TextField(
+                        decoration: const InputDecoration(
+                          hintText: 'Buscar paciente',
+                          prefixIcon: Icon(Icons.search),
+                        ),
+                        onChanged: (value) => setState(() => _query = value),
+                      ),
+                      const SizedBox(height: AppSpacing.md),
+                      if (visible.isEmpty)
+                        Text(
+                          accepted.isEmpty
+                              ? 'Quando você aceitar um convite, o paciente aparece aqui.'
+                              : 'Nenhum paciente com esse nome.',
+                          style: text.bodyLarge,
+                        )
+                      else
+                        for (final grant in visible) ...[
+                          ListTile(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                AppSpacing.radiusMd,
+                              ),
+                              side: const BorderSide(color: AppColors.border),
+                            ),
+                            tileColor: AppColors.surface,
+                            title: Text(grant.patientName),
+                            trailing: const Icon(Icons.chevron_right),
+                            onTap: () => _open(grant),
+                          ),
+                          const SizedBox(height: AppSpacing.sm),
+                        ],
+                    ],
+                  ),
+                ),
               ),
             ),
     );
   }
 }
 
-class _InviteList extends StatelessWidget {
-  const _InviteList({
-    required this.pending,
-    required this.busyId,
+List<CareGrant> _sorted(List<CareGrant> grants) {
+  grants.sort(
+    (a, b) =>
+        a.patientName.toLowerCase().compareTo(b.patientName.toLowerCase()),
+  );
+  return grants;
+}
+
+class _InviteCard extends StatelessWidget {
+  const _InviteCard({
+    required this.grant,
+    required this.busy,
     required this.onAccept,
     required this.onDecline,
   });
 
-  final List<CareGrant> pending;
-  final String? busyId;
-  final ValueChanged<CareGrant> onAccept;
-  final ValueChanged<CareGrant> onDecline;
+  final CareGrant grant;
+  final bool busy;
+  final VoidCallback onAccept;
+  final VoidCallback onDecline;
 
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text('Convites', style: text.titleMedium),
-        const SizedBox(height: AppSpacing.sm),
-        if (pending.isEmpty)
-          Text('Nenhum convite pendente.', style: text.bodyMedium)
-        else
-          for (final grant in pending) ...[
-            ListTile(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
-                side: const BorderSide(color: AppColors.border),
-              ),
-              tileColor: AppColors.surface,
-              title: Text(grant.patientName),
-              subtitle: const Text('Quer liberar a Evolução'),
-              trailing: busyId == grant.id
-                  ? const SizedBox(
-                      width: 22,
-                      height: 22,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : null,
-            ),
-            if (busyId != grant.id)
-              Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () => onDecline(grant),
-                      child: const Text('Recusar'),
-                    ),
-                    const SizedBox(width: AppSpacing.sm),
-                    FilledButton(
-                      onPressed: () => onAccept(grant),
-                      child: const Text('Aceitar'),
-                    ),
-                  ],
+    return Material(
+      color: AppColors.surface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
+        side: const BorderSide(color: AppColors.border),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(grant.patientName, style: text.titleMedium),
+            const SizedBox(height: AppSpacing.sm),
+            if (busy)
+              const Center(
+                child: SizedBox(
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(strokeWidth: 2),
                 ),
               )
             else
-              const SizedBox(height: AppSpacing.sm),
-          ],
-      ],
-    );
-  }
-}
-
-class _PatientList extends StatelessWidget {
-  const _PatientList({required this.accepted, required this.onOpen});
-
-  final List<CareGrant> accepted;
-  final ValueChanged<CareGrant> onOpen;
-
-  @override
-  Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text('Pacientes com acesso', style: text.titleMedium),
-        const SizedBox(height: AppSpacing.sm),
-        if (accepted.isEmpty)
-          Text(
-            'Quando você aceitar um convite, o paciente aparece aqui.',
-            style: text.bodyMedium,
-          )
-        else
-          for (final grant in accepted) ...[
-            ListTile(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
-                side: const BorderSide(color: AppColors.border),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: onDecline,
+                      child: const Text('Recusar'),
+                    ),
+                  ),
+                  const SizedBox(width: AppSpacing.sm),
+                  Expanded(
+                    child: FilledButton(
+                      onPressed: onAccept,
+                      child: const Text('Aceitar'),
+                    ),
+                  ),
+                ],
               ),
-              tileColor: AppColors.surface,
-              title: Text(grant.patientName),
-              subtitle: const Text('Evolução somente leitura'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => onOpen(grant),
-            ),
-            const SizedBox(height: AppSpacing.sm),
           ],
-      ],
+        ),
+      ),
     );
   }
 }

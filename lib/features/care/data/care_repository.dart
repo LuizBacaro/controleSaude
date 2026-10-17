@@ -17,7 +17,7 @@ class CareRepository {
     final rows = await _client
         .from('doctor_directory')
         .select()
-        .order('display_name');
+        .order('display_name', ascending: true);
     return [
       for (final row in rows)
         DoctorListing.fromJson(Map<String, dynamic>.from(row)),
