@@ -271,3 +271,12 @@ Deu certo:
 Ainda exige ação de quem usa: guardar uma cópia do keystore e da senha que está só no `key.properties`. Sem esse arquivo a Play não aceita atualização do mesmo app.
 
 Não repetir: não voltar o `signingConfig` do release para `debug`. Não colocar o keystore nem o `key.properties` no git.
+
+### 2026-10-17 — Versão nova no celular e lista de passos
+
+Pedido: instalar a última versão no celular ligado ao notebook e guardar os próximos passos num markdown de TODOs.
+
+Deu certo:
+
+- O debug foi instalado no SM A528B (`RQCT3055G5X`). O app abriu e o Supabase iniciou.
+- Os passos ficaram em `notas/todos.md`: Site URL do Auth, prova do consultório, cópia da chave da Play, ficha das lojas e, por último, domínio próprio.
