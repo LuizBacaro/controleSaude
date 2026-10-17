@@ -16,6 +16,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - O papel da conta fica em `profiles.role`, não no JWT. Médico não lista pacientes: só lê a Evolução de quem convidou e ele aceitou. Não reaplicar `supabase/schema.sql`.
 - No login, carregar os laudos antes de avisar o roteador. Avisar com a memória vazia manda para a importação e o Painel fica sem dados enquanto as outras abas guardam o estado antigo.
 - `flutter create . --platforms=web` troca a lista de plataformas no `.metadata`. Conferir se Android e iOS continuam lá.
+- O CMake do Android quebra no caminho com acento (`Área de trabalho`). Build de `flutter build` e `flutter run` passa por `scripts/build_ascii.sh`, que compila em `~/builds/controleSaude` e devolve a pasta `build`. Um atalho não resolve: o CMake usa o caminho real.
 - Conta é Supabase Auth (`public.profiles`). A senha mínima é 6. Desinstalar apaga a sessão, não a conta. Confirmação de e-mail não pôde ser desligada (token sem permissão de auth).
 - No cliente só entra a chave anon. A `service_role` não vai no app, no git nem nas anotações. Quem colou essa chave no chat deve rotacioná-la.
 - `exam_reports` não tem coluna de médico nem de convênio. Isso vai no `notes` em JSON (`doctor`, `insurance`, `unrecognized`). Enviar coluna que não existe derruba o import. `patient_name` e `lab_name` já existem.
@@ -52,7 +53,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Ícone: fundo `#0A3352`, logo em `assets/brand/logo.png`.
 - Cadastro pergunta primeiro se a conta é de paciente ou de médico. Médico informa UF e número do CRM. Conta antiga continua paciente.
 - Paciente convida em Médicos. Médico aceita no Consultório e abre a Evolução daquele paciente, só leitura. Sem aceite, o laudo não abre.
-- O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral.
+- O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral. O endereço publicado é `https://examefacil.pages.dev`.
 - `004_medico_e_acesso` já aplicada: `profiles.role`, CRM, `doctor_directory` e `care_grants`. A chave anon não lê diretório nem convite.
 
 ## Histórico
@@ -231,6 +232,33 @@ Deu errado / limite:
 
 Ainda exige ação de quem usa: criar uma conta de médico e uma de paciente no app para convidar e aceitar. Não reaplicar `schema.sql`.
 
+### 2026-10-17 — Build web e caminho com acento
+
+Pedido: tratar o acento do caminho antes do build, gerar o site e publicar na Cloudflare Pages. Depois liberar essa URL no Supabase.
+
+Deu certo:
+
+- `scripts/build_ascii.sh` copia o projeto para `~/builds/controleSaude` quando o caminho real tem acento, compila lá e devolve `build/`. O hook `.cursor/hooks.json` encaminha `flutter build` e `flutter run` para esse script.
+- `flutter build web --release` concluiu. O site está em `build/web`, com o título ExameFácil.
+
+Deu errado / limite:
+
+- A Cloudflare não está autenticada neste computador. O login pelo navegador expirou sem autorização, então não há URL `.pages.dev`.
+- A Site URL do Auth não está numa tabela do banco. O MCP autenticou, mas não tem ferramenta para gravar essa configuração. Sem a URL publicada, não há o que liberar.
+
+Ainda exige ação de quem usa: autorizar a Cloudflare quando o login abrir de novo. Em seguida a Site URL entra em Authentication, URL Configuration.
+
+### 2026-10-17 — Site no ar
+
+Pedido: tentar de novo a publicação na Cloudflare.
+
+Deu certo:
+
+- O login da conta `Luizsalvador31@gmail.com` entrou. O projeto Pages `examefacil` foi criado e os 42 arquivos de `build/web` subiram como produção.
+- O endereço que responde é `https://examefacil.pages.dev`.
+
+Ainda exige ação de quem usa: colocar essa origem na Site URL e na lista de redirecionamentos do Supabase, em Authentication → URL Configuration. O MCP não grava essa configuração.
+
 ### 2026-10-17 — Assinatura de release para a Play
 
 Pedido: a Play rejeita o pacote enquanto o release usa a chave de debug. Publicar a versão de produção.
@@ -238,7 +266,7 @@ Pedido: a Play rejeita o pacote enquanto o release usa a chave de debug. Publica
 Deu certo:
 
 - O release passou a assinar com a chave de upload em `android/upload-keystore.jks`, lida de `android/key.properties`. Os dois já estão fora do git.
-- `flutter build appbundle --release` gerou o pacote 1.0.0 (versionCode 1), assinado com o certificado da GoStart Lab.
+- `flutter build appbundle --release` gerou o pacote 1.0.0 (versionCode 1), assinado com o certificado da GoStart Lab. A Play aceitou o pacote e a versão de produção, com o Brasil, entrou em análise.
 
 Ainda exige ação de quem usa: guardar uma cópia do keystore e da senha que está só no `key.properties`. Sem esse arquivo a Play não aceita atualização do mesmo app.
 
