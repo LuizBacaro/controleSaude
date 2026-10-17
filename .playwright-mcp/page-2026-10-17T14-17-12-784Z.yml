@@ -1,0 +1,261 @@
+- generic [active] [ref=f61e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f61e3]:
+    - banner [ref=f61e4]:
+      - generic [ref=f61e6]:
+        - link [ref=f61e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f61e8]
+        - generic [ref=f61e9]:
+          - button "Notificações Abrir central de notificações" [ref=f61e15]:
+            - img [aria-hidden] [ref=f61e19]: notifications
+            - generic [ref=f61e20]: Notificações
+          - button [ref=f61e26] [cursor=pointer]:
+            - img "Trocar de conta de desenvolvedor" [ref=f61e28]
+    - navigation [ref=f61e34]:
+      - list [ref=f61e35]:
+        - listitem "Página inicial" [ref=f61e38]:
+          - button "Página inicial" [ref=f61e39] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e42]: features
+        - listitem "Status da política" [ref=f61e46]:
+          - button "Status da política" [ref=f61e47] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e50]: android_security_privacy_safe
+        - listitem "Usuários e permissões" [ref=f61e54]:
+          - button "Usuários e permissões" [ref=f61e55] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e58]: user_attributes
+        - listitem "Gerenciamento de pedidos" [ref=f61e62]:
+          - button "Gerenciamento de pedidos" [ref=f61e63] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e66]: credit_card
+        - listitem "Fazer o download de relatórios" [ref=f61e70]:
+          - button "Fazer o download de relatórios" [ref=f61e71] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e73]: arrow_right
+            - img [aria-hidden] [ref=f61e76]: download
+        - listitem "Conta de desenvolvedor" [ref=f61e80]:
+          - button "Conta de desenvolvedor" [ref=f61e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e84]: badge
+        - listitem "Registro de atividades" [ref=f61e88]:
+          - button "Registro de atividades" [ref=f61e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e92]: description
+        - listitem "Configurações" [ref=f61e96]:
+          - button "Configurações" [ref=f61e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e100]: settings
+        - listitem "Ajuda" [ref=f61e104]:
+          - button "Ajuda" [ref=f61e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e108]: contact_support
+        - listitem "Verificação de desenvolvedor Android" [ref=f61e112]:
+          - button "Verificação de desenvolvedor Android" [ref=f61e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f61e116]: app_promotion
+    - generic [ref=f61e119]:
+      - generic [ref=f61e126]:
+        - generic [ref=f61e135]:
+          - heading "GoStart Lab" [level=1] [ref=f61e141]
+          - generic [ref=f61e148]:
+            - generic [ref=f61e149]: Conta da organização
+            - img [aria-hidden] [ref=f61e151]: brightness_1
+            - generic [ref=f61e152]: "ID da conta: 6637139677623017493"
+        - generic [ref=f61e159]:
+          - heading "Registre os nomes de pacotes ou as chaves que você usa para distribuir apps Android fora do Google Play" [level=3] [ref=f61e168]
+          - generic [ref=f61e169]: Todos os seus apps do Google Play foram registrados para cumprir os requisitos de verificação de desenvolvedor Android. Talvez você tenha apps em rascunho que não puderam ser registrados porque não têm um nome de pacote associado.
+          - generic [ref=f61e171]:
+            - text: Se você distribui apps no Android fora do Google Play, registre os nomes de pacotes e as chaves de assinatura deles na página de verificação de desenvolvedor Android. Você também precisa registrar qualquer outra chave que você usa para assiná-los fora do Google Play. Os apps Android de
+            - link "lojas participantes" [ref=f61e172] [cursor=pointer]:
+              - /url: https://developer.android.com/developer-verification/guides#locations
+            - text: que não estiverem registrados até 30 de setembro de 2026 não poderão mais ser instalados em
+            - link "dispositivos Android certificados" [ref=f61e173] [cursor=pointer]:
+              - /url: https://www.android.com/certified/partners/
+            - text: em
+            - link "alguns países" [ref=f61e174] [cursor=pointer]:
+              - /url: https://developer.android.com/developer-verification/guides#locations
+            - text: .
+          - generic [ref=f61e176]:
+            - button "Acessar a verificação de desenvolvedor Android" [ref=f61e177]
+            - button "Dispensar" [ref=f61e181]
+        - generic [ref=f61e189]:
+          - generic [ref=f61e191]:
+            - heading "Apps fixados" [level=2] [ref=f61e195]
+            - button "Veja mais informações sobre \"Apps fixados\"" [ref=f61e198] [cursor=pointer]:
+              - img [aria-hidden] [ref=f61e199]: help
+          - generic [ref=f61e200]: Fixe apps aqui para acessá-los rapidamente e ver métricas importantes
+        - generic [ref=f61e204]:
+          - generic [ref=f61e208]:
+            - heading "6 apps" [level=2] [ref=f61e213]
+            - link "Criar app" [ref=f61e219] [cursor=pointer]:
+              - /url: /console/u/0/developers/6637139677623017493/create-new-app
+          - generic [ref=f61e223]:
+            - generic [ref=f61e224]:
+              - generic [ref=f61e227]:
+                - generic [ref=f61e228]: Filtrar por
+                - button "Filtrar por Todos" [ref=f61e231] [cursor=pointer]:
+                  - generic [ref=f61e232]: Todos
+                  - img [aria-hidden] [ref=f61e236]: arrow_drop_down
+              - generic [ref=f61e240]:
+                - search "Pesquisar por app ou nome do pacote":
+                  - generic [ref=f61e242]:
+                    - generic:
+                      - img [aria-hidden]: search
+                    - generic: Pesquisar por app ou nome do pacote
+                    - textbox "Pesquisar por app ou nome do pacote" [ref=f61e243]
+            - generic [ref=f61e248]:
+              - grid "Todos os apps" [ref=f61e253]:
+                - row [ref=f61e254]:
+                  - columnheader "App" [ref=f61e255] [cursor=pointer]
+                  - columnheader "Público de instalação" [ref=f61e256]:
+                    - text: Público de instalação
+                    - img [aria-hidden] [ref=f61e258]: help_outline
+                  - columnheader "Status do app" [ref=f61e259] [cursor=pointer]
+                  - columnheader "Status da atualização" [ref=f61e260] [cursor=pointer]
+                  - columnheader "Última atualização" [ref=f61e261] [cursor=pointer]
+                  - cell [ref=f61e262]
+                  - cell [ref=f61e263]
+                  - cell [ref=f61e264]
+                - row [ref=f61e265]:
+                  - gridcell "Exame Fácil br.com.examefacil.laudos" [ref=f61e266]:
+                    - generic [ref=f61e273]:
+                      - generic [ref=f61e274]: Exame Fácil
+                      - generic [ref=f61e277]: br.com.examefacil.laudos
+                  - gridcell [ref=f61e281]
+                  - gridcell "Rascunho" [ref=f61e287]
+                  - gridcell [ref=f61e292]
+                  - gridcell "17 de out. de 2026" [ref=f61e293]
+                  - gridcell [ref=f61e298]:
+                    - button "Excluir Exame Fácil" [ref=f61e301] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f61e305]: delete
+                  - gridcell [ref=f61e306]:
+                    - button "Fixar Exame Fácil" [ref=f61e308] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f61e312]: keep
+                  - gridcell [ref=f61e313]:
+                    - link "Ver Exame Fácil" [ref=f61e315] [cursor=pointer]:
+                      - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-dashboard
+                      - img [aria-hidden] [ref=f61e318]: arrow_right_alt
+                - row [ref=f61e319]:
+                  - 'gridcell "Fynum: Finanças e Orçamento com.fynum.app" [ref=f61e320]':
+                    - generic [ref=f61e327]:
+                      - generic [ref=f61e328]: "Fynum: Finanças e Orçamento"
+                      - generic [ref=f61e331]: com.fynum.app
+                  - gridcell [ref=f61e335]
+                  - gridcell "Teste fechado" [ref=f61e341]
+                  - gridcell [ref=f61e346]
+                  - gridcell "15 de out. de 2026" [ref=f61e347]
+                  - gridcell [ref=f61e352]
+                  - gridcell [ref=f61e353]:
+                    - 'button "Fixar Fynum: Finanças e Orçamento" [ref=f61e355] [cursor=pointer]':
+                      - img [aria-hidden] [ref=f61e359]: keep
+                  - gridcell [ref=f61e360]:
+                    - 'link "Ver Fynum: Finanças e Orçamento" [ref=f61e362] [cursor=pointer]':
+                      - /url: /console/u/0/developers/6637139677623017493/app/4972353144048989075/app-dashboard
+                      - img [aria-hidden] [ref=f61e365]: arrow_right_alt
+                - row [ref=f61e366]:
+                  - 'gridcell "Inspekio: OS e Laudo Técnico com.inspekio.app" [ref=f61e367]':
+                    - generic [ref=f61e374]:
+                      - generic [ref=f61e375]: "Inspekio: OS e Laudo Técnico"
+                      - generic [ref=f61e378]: com.inspekio.app
+                  - gridcell [ref=f61e382]
+                  - gridcell "Teste aberto" [ref=f61e388]
+                  - gridcell [ref=f61e393]
+                  - gridcell "15 de out. de 2026" [ref=f61e394]
+                  - gridcell [ref=f61e399]
+                  - gridcell [ref=f61e400]:
+                    - 'button "Fixar Inspekio: OS e Laudo Técnico" [ref=f61e402] [cursor=pointer]':
+                      - img [aria-hidden] [ref=f61e406]: keep
+                  - gridcell [ref=f61e407]:
+                    - 'link "Ver Inspekio: OS e Laudo Técnico" [ref=f61e409] [cursor=pointer]':
+                      - /url: /console/u/0/developers/6637139677623017493/app/4973728958897037818/app-dashboard
+                      - img [aria-hidden] [ref=f61e412]: arrow_right_alt
+                - row [ref=f61e413]:
+                  - 'gridcell "Rede Pesca: pesca inteligente com.redepesca.app" [ref=f61e414]':
+                    - generic [ref=f61e421]:
+                      - generic [ref=f61e422]: "Rede Pesca: pesca inteligente"
+                      - generic [ref=f61e425]: com.redepesca.app
+                  - gridcell [ref=f61e429]
+                  - gridcell "Produção" [ref=f61e435]
+                  - gridcell [ref=f61e440]
+                  - gridcell "14 de out. de 2026" [ref=f61e441]
+                  - gridcell [ref=f61e446]
+                  - gridcell [ref=f61e447]:
+                    - 'button "Fixar Rede Pesca: pesca inteligente" [ref=f61e449] [cursor=pointer]':
+                      - img [aria-hidden] [ref=f61e453]: keep
+                  - gridcell [ref=f61e454]:
+                    - 'link "Ver Rede Pesca: pesca inteligente" [ref=f61e456] [cursor=pointer]':
+                      - /url: /console/u/0/developers/6637139677623017493/app/4975174491898780733/app-dashboard
+                      - img [aria-hidden] [ref=f61e459]: arrow_right_alt
+                - row [ref=f61e460]:
+                  - gridcell "Rescue Garage HD com.rescuegarage.app" [ref=f61e461]:
+                    - generic [ref=f61e468]:
+                      - generic [ref=f61e469]: Rescue Garage HD
+                      - generic [ref=f61e472]: com.rescuegarage.app
+                  - gridcell [ref=f61e476]
+                  - gridcell "Teste fechado" [ref=f61e482]
+                  - gridcell [ref=f61e487]
+                  - gridcell "8 de out. de 2026" [ref=f61e488]
+                  - gridcell [ref=f61e493]
+                  - gridcell [ref=f61e494]:
+                    - button "Fixar Rescue Garage HD" [ref=f61e496] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f61e500]: keep
+                  - gridcell [ref=f61e501]:
+                    - link "Ver Rescue Garage HD" [ref=f61e503] [cursor=pointer]:
+                      - /url: /console/u/0/developers/6637139677623017493/app/4976268702913108618/app-dashboard
+                      - img [aria-hidden] [ref=f61e506]: arrow_right_alt
+                - row [ref=f61e507]:
+                  - gridcell "Sporcast com.sporcast.app" [ref=f61e508]:
+                    - generic [ref=f61e515]:
+                      - generic [ref=f61e516]: Sporcast
+                      - generic [ref=f61e519]: com.sporcast.app
+                  - gridcell [ref=f61e523]
+                  - gridcell "Rascunho" [ref=f61e529]
+                  - gridcell [ref=f61e534]
+                  - gridcell "1 de jul. de 2026" [ref=f61e535]
+                  - gridcell [ref=f61e540]:
+                    - button "Excluir Sporcast" [ref=f61e543] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f61e547]: delete
+                  - gridcell [ref=f61e548]:
+                    - button "Fixar Sporcast" [ref=f61e550] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f61e554]: keep
+                  - gridcell [ref=f61e555]:
+                    - link "Ver Sporcast" [ref=f61e557] [cursor=pointer]:
+                      - /url: /console/u/0/developers/6637139677623017493/app/4973180588001621254/app-dashboard
+                      - img [aria-hidden] [ref=f61e560]: arrow_right_alt
+              - generic [ref=f61e565]:
+                - generic [ref=f61e566]:
+                  - generic [ref=f61e567]: "Mostrar linhas:"
+                  - 'button "Mostrar linhas: 10 selecionadas." [ref=f61e570] [cursor=pointer]':
+                    - generic [ref=f61e571]: "10"
+                    - img [aria-hidden] [ref=f61e573]: arrow_drop_down
+                - generic [ref=f61e574]:
+                  - generic [ref=f61e575]: 1 - 6 de 6
+                  - generic [ref=f61e577]:
+                    - button "Ir para a primeira página" [disabled] [ref=f61e578]:
+                      - generic:
+                        - generic:
+                          - img [aria-hidden]: first_page
+                    - button "Ir para a página anterior" [disabled] [ref=f61e579]:
+                      - generic:
+                        - generic:
+                          - img [aria-hidden]: chevron_left
+                    - button "Ir para a próxima página" [disabled] [ref=f61e580]:
+                      - generic:
+                        - generic:
+                          - img [aria-hidden]: chevron_right
+                    - button "Ir para a última página" [disabled] [ref=f61e581]:
+                      - generic:
+                        - generic:
+                          - img [aria-hidden]: last_page
+      - generic [ref=f61e586]:
+        - generic [ref=f61e587]:
+          - link "Atualizações de produtos" [ref=f61e588] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f61e589] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f61e590] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support
+        - generic [ref=f61e591]:
+          - generic [ref=f61e592]: © 2026 Google
+          - link "Privacidade" [ref=f61e593] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f61e594] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f61e595] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/
+  - status [ref=f61e596]: 1 a 6 de aproximadamente 6

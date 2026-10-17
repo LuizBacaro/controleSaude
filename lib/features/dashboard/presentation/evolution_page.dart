@@ -3,12 +3,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/providers.dart';
+import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../exams/domain/exam_report.dart';
 import '../../exams/presentation/widgets/status_chip.dart';
 
 class EvolutionPage extends ConsumerStatefulWidget {
-  const EvolutionPage({super.key});
+  const EvolutionPage({
+    super.key,
+    this.series,
+    this.onOpenMarker,
+    this.title = 'Evolução',
+    this.readOnly = false,
+  });
+
+  /// Quando vem do consultório, a série é a do paciente aceito.
+  final List<MarkerSeries>? series;
+  final void Function(String name)? onOpenMarker;
+  final String title;
+  final bool readOnly;
 
   @override
   ConsumerState<EvolutionPage> createState() => _EvolutionPageState();
@@ -20,20 +34,34 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final series = ref.watch(markerSeriesProvider);
+    final List<MarkerSeries> series =
+        widget.series ?? ref.watch(markerSeriesProvider);
     final categories = series.map((s) => s.category).toSet().toList()..sort();
 
     final filtered = series.where((s) {
-      final matchQuery = _query.isEmpty ||
-          s.name.toLowerCase().contains(_query.toLowerCase());
+      final matchQuery =
+          _query.isEmpty || s.name.toLowerCase().contains(_query.toLowerCase());
       final matchCat = _category == null || s.category == _category;
       return matchQuery && matchCat;
     }).toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Evolução')),
+      appBar: AppBar(title: Text(widget.title)),
       body: Column(
         children: [
+          if (widget.readOnly)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.md,
+                AppSpacing.sm,
+                AppSpacing.md,
+                0,
+              ),
+              child: Text(
+                'Somente leitura. Este acesso não permite importar nem alterar o laudo.',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.fromLTRB(
               AppSpacing.md,
@@ -99,8 +127,9 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
                       final latest = s.latest;
                       return ListTile(
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(AppSpacing.radiusMd),
+                          borderRadius: BorderRadius.circular(
+                            AppSpacing.radiusMd,
+                          ),
                           side: const BorderSide(color: AppColors.border),
                         ),
                         tileColor: AppColors.surface,
@@ -108,12 +137,16 @@ class _EvolutionPageState extends ConsumerState<EvolutionPage> {
                         subtitle: Text(
                           latest == null
                               ? s.category
-                              : '${latest.value} ${s.unit} · ${s.points.length} pontos',
+                              : '${s.latestLabel} · ${s.points.length} ${s.points.length == 1 ? 'ponto' : 'pontos'}',
                         ),
                         trailing: StatusChip(status: s.latestStatus),
-                        onTap: () => context.push(
-                          '/marcador/${Uri.encodeComponent(s.name)}',
-                        ),
+                        onTap: () {
+                          if (widget.onOpenMarker != null) {
+                            widget.onOpenMarker!(s.name);
+                          } else {
+                            context.push(markerRoute(s.name));
+                          }
+                        },
                       );
                     },
                   ),

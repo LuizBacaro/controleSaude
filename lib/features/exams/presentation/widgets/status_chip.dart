@@ -15,6 +15,7 @@ class StatusChip extends StatelessWidget {
       MarkerStatus.normal => ('Normal', AppColors.success),
       MarkerStatus.low => ('Baixo', AppColors.info),
       MarkerStatus.high => ('Alto', AppColors.warning),
+      MarkerStatus.altered => ('Alterado', AppColors.warning),
       MarkerStatus.unknown => ('—', AppColors.textMuted),
     };
 

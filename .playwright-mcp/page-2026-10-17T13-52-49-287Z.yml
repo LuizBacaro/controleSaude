@@ -1,0 +1,273 @@
+- application [ref=e1]:
+  - iframe [aria-hidden] [ref=e399]
+  - iframe [aria-hidden] [ref=e400]
+  - banner [aria-hidden] [ref=e812]:
+    - generic [ref=e3]:
+      - complementary [ref=e813]:
+        - generic [ref=e411]:
+          - generic [ref=e412]: 83% de armazenamento usado
+          - generic [ref=e413]: Você pode liberar espaço ou comprar mais armazenamento para o Drive, o Gmail e o Google Fotos. Aumente seu armazenamento — pague R$ 0 por 1 mês.
+        - button [ref=e814] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e418]: Gerenciar armazenamento
+        - generic [ref=e419]:
+          - button [ref=e815] [cursor=pointer]
+          - tooltip [aria-hidden] [ref=e425]: Fechar banner
+      - generic [ref=e5]:
+        - link [ref=e816] [cursor=pointer]:
+          - /url: https://docs.google.com/document/u/0/?pli=1&authuser=0&usp=docs_web
+        - generic [ref=e14]:
+          - generic [ref=e817]:
+            - generic [ref=e17]:
+              - generic: Política de Privacidade — ExameFácil
+              - textbox [ref=e818]: Política de Privacidade — ExameFácil
+            - generic [ref=e20]:
+              - checkbox [ref=e819] [cursor=pointer]
+              - button [ref=e821] [cursor=pointer]
+              - button [ref=e825]:
+                - generic [ref=e826] [cursor=pointer]
+          - generic [ref=e23]:
+            - button [ref=e831] [cursor=pointer]
+            - button [ref=e834] [cursor=pointer]
+            - button [ref=e835] [cursor=pointer]
+            - button [ref=e836] [cursor=pointer]
+            - generic [ref=e436]:
+              - button [ref=e839] [cursor=pointer]
+              - tooltip [aria-hidden] [ref=e446]: Teste o Gemini
+            - button [ref=e840] [cursor=pointer]
+    - generic [ref=e43]:
+      - menubar [ref=e45]:
+        - menuitem [ref=e841] [cursor=pointer]: Arquivo
+        - menuitem [ref=e842] [cursor=pointer]: Editar
+        - menuitem [ref=e843] [cursor=pointer]: Ver
+        - menuitem [ref=e844] [cursor=pointer]: Inserir
+        - menuitem [ref=e845] [cursor=pointer]: Formatar
+        - menuitem [ref=e846] [cursor=pointer]: Ferramentas
+        - menuitem [ref=e847] [cursor=pointer]: Extensões
+        - menuitem [ref=e848] [cursor=pointer]: Ajuda
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - toolbar [ref=e849]:
+            - combobox [ref=e850]
+          - toolbar [ref=e851]:
+            - button [ref=e852] [cursor=pointer]
+            - button [ref=e853] [cursor=pointer]
+            - button [ref=e854] [cursor=pointer]
+            - button [ref=e855] [cursor=pointer]
+            - button [ref=e856] [cursor=pointer]
+            - combobox [ref=e857] [cursor=pointer]:
+              - option [selected] [ref=e858]:
+                - textbox [ref=e859]: 100%
+            - separator [disabled] [ref=e93]
+            - listbox [ref=e860] [cursor=pointer]:
+              - option [selected] [ref=e861]: Texto normal
+            - separator [disabled] [ref=e101]
+            - listbox [ref=e862] [cursor=pointer]:
+              - option [selected] [ref=e863]: Arial
+            - separator [disabled] [ref=e109]
+            - button [ref=e864] [cursor=pointer]
+            - combobox [ref=e865] [cursor=pointer]:
+              - option [selected] [ref=e866]:
+                - textbox [ref=e867]: "11"
+            - button [ref=e868] [cursor=pointer]
+            - separator [disabled] [ref=e125]
+            - button [disabled] [ref=e869] [cursor=pointer]
+        - toolbar [ref=e870]:
+          - button [ref=e871] [cursor=pointer]:
+            - generic [ref=e135]: Edição
+          - separator [disabled] [ref=e138]
+          - button [ref=e872] [cursor=pointer]
+    - generic [ref=e144]:
+      - complementary [ref=e873]:
+        - tablist [ref=e453]:
+          - tab:
+            - generic [ref=e148] [cursor=pointer]
+          - tab:
+            - generic [ref=e149] [cursor=pointer]
+          - tab:
+            - generic [ref=e150] [cursor=pointer]
+          - tab:
+            - generic [ref=e151] [cursor=pointer]
+          - tab:
+            - generic [ref=e152] [cursor=pointer]
+          - separator [disabled] [ref=e454]
+          - tab:
+            - generic [ref=e455] [cursor=pointer]
+      - generic:
+        - button:
+          - generic [ref=e456] [cursor=pointer]
+  - generic [ref=e155]:
+    - generic [ref=e160]:
+      - generic [ref=e161]: "22"
+      - generic [ref=e166]: "21"
+      - generic [ref=e171]: "20"
+      - generic [ref=e176]: "19"
+      - generic [ref=e181]: "18"
+      - generic [ref=e186]: "17"
+      - generic [ref=e191]: "16"
+      - generic [ref=e196]: "15"
+      - generic [ref=e201]: "14"
+      - generic [ref=e206]: "13"
+      - generic [ref=e211]: "12"
+      - generic [ref=e216]: "11"
+      - generic [ref=e221]: "10"
+      - generic [ref=e226]: "9"
+      - generic [ref=e231]: "8"
+      - generic [ref=e236]: "7"
+      - generic [ref=e241]: "6"
+      - generic [ref=e246]: "5"
+      - generic [ref=e251]: "4"
+      - generic [ref=e256]: "3"
+      - generic [ref=e261]: "2"
+      - generic [ref=e266]: "1"
+      - generic [ref=e275]: "1"
+      - generic [ref=e280]: "2"
+      - generic [ref=e285]: "3"
+      - generic [ref=e290]: "4"
+      - generic [ref=e295]: "5"
+      - generic [ref=e300]: "6"
+      - generic [ref=e305]: "7"
+      - generic [ref=e310]: "8"
+      - generic [ref=e315]: "9"
+      - generic [ref=e320]: "10"
+      - generic [ref=e325]: "11"
+      - generic [ref=e330]: "12"
+      - generic [ref=e335]: "13"
+      - generic [ref=e340]: "14"
+      - generic [ref=e345]: "15"
+      - generic [ref=e350]: "16"
+      - generic [ref=e355]: "17"
+      - generic [ref=e360]: "18"
+      - generic [ref=e365]: "19"
+      - generic [ref=e370]: "20"
+      - generic [ref=e375]: "21"
+    - generic [ref=e393]:
+      - button [aria-hidden]
+    - generic [ref=e462]:
+      - generic [ref=e875]: "30"
+      - generic [ref=e880]: "29"
+      - generic [ref=e885]: "28"
+      - generic [ref=e890]: "27"
+      - generic [ref=e895]: "26"
+      - generic [ref=e900]: "25"
+      - generic [ref=e905]: "24"
+      - generic [ref=e910]: "23"
+      - generic [ref=e915]: "22"
+      - generic [ref=e920]: "21"
+      - generic [ref=e925]: "20"
+      - generic [ref=e930]: "19"
+      - generic [ref=e935]: "18"
+      - generic [ref=e940]: "17"
+      - generic [ref=e945]: "16"
+      - generic [ref=e950]: "15"
+      - generic [ref=e955]: "14"
+      - generic [ref=e960]: "13"
+      - generic [ref=e965]: "12"
+      - generic [ref=e970]: "11"
+      - generic [ref=e975]: "10"
+      - generic [ref=e980]: "9"
+      - generic [ref=e985]: "8"
+      - generic [ref=e990]: "7"
+      - generic [ref=e995]: "6"
+      - generic [ref=e1000]: "5"
+      - generic [ref=e1005]: "4"
+      - generic [ref=e1010]: "3"
+      - generic [ref=e1015]: "2"
+      - generic [ref=e1020]: "1"
+      - generic [ref=e1029]: "1"
+      - generic [ref=e1034]: "2"
+      - generic [ref=e1039]: "3"
+      - generic [ref=e1044]: "4"
+      - generic [ref=e1049]: "5"
+      - generic [ref=e1054]: "6"
+      - generic [ref=e1059]: "7"
+      - generic [ref=e1064]: "8"
+      - generic [ref=e1069]: "9"
+      - generic [ref=e1074]: "10"
+      - generic [ref=e1079]: "11"
+      - generic [ref=e1084]: "12"
+      - generic [ref=e1089]: "13"
+      - generic [ref=e1094]: "14"
+      - generic [ref=e1099]: "15"
+      - generic [ref=e1104]: "16"
+      - generic [ref=e1109]: "17"
+      - generic [ref=e1114]: "18"
+      - generic [ref=e1119]: "19"
+      - generic [ref=e1124]: "20"
+      - generic [ref=e1129]: "21"
+      - generic [ref=e1134]: "22"
+      - generic [ref=e1139]: "23"
+      - generic [ref=e1144]: "24"
+      - generic [ref=e1149]: "25"
+      - generic [ref=e1154]: "26"
+      - generic [ref=e1159]: "27"
+      - generic [ref=e1164]: "28"
+      - generic [ref=e1169]: "29"
+    - generic [ref=e1174]:
+      - button [ref=e1175] [cursor=pointer]:
+        - button [disabled] [ref=e1176]:
+          - button [disabled] [ref=e1177]
+      - generic [ref=e780]:
+        - generic [ref=e782]:
+          - heading [level=2] [ref=e1178]: Guias no documento
+          - button [ref=e1179]
+        - tree [ref=e1180]:
+          - generic [ref=e792] [cursor=pointer]:
+            - treeitem [selected] [ref=e1181]:
+              - generic [ref=e798]: Guia 1
+              - button [ref=e1182]
+            - generic [ref=e806]: Os títulos que forem adicionados ao documento aparecerão aqui.
+  - iframe [aria-hidden] [ref=e397]:
+    - textbox "Conteúdo do documento" [ref=f1e1]
+    - group
+  - link [aria-hidden] [ref=e1183] [cursor=pointer]:
+    - /url: "#"
+    - text: Ativar a compatibilidade com o leitor de tela
+  - region [ref=e809]: Para ativar o suporte para leitor de tela, pressione Ctrl+Alt+Z Para saber mais sobre atalhos de teclado, pressione Ctrl+barra
+  - generic [aria-hidden] [ref=e810]: Banner oculto.
+  - dialog [ref=e1185]:
+    - iframe [active] [ref=e1187]:
+      - generic [ref=f11e1]:
+        - dialog [ref=f11e9]:
+          - generic [ref=f11e20]:
+            - generic [ref=f11e32]:
+              - heading "Compartilhar \"Política de Privacidade — ExameFácil\"" [level=2] [ref=f11e34]
+              - generic [ref=f11e35]:
+                - button "Suporte" [ref=f11e40] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=f11e42]: help_outline
+                - button "Configurações" [ref=f11e52] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=f11e54]: settings
+            - region "Compartilhar \"Política de Privacidade — ExameFácil\"" [ref=f11e58]:
+              - generic [ref=f11e64]:
+                - generic [ref=f11e65]:
+                  - generic [ref=f11e72]:
+                    - generic [ref=f11e73]: Adicionar participantes, grupos, espaços e eventos da agenda
+                    - grid [ref=f11e79]:
+                      - combobox "Adicionar participantes, grupos, espaços e eventos da agenda" [ref=f11e82]: ar tanto na
+                  - generic [ref=f11e85]:
+                    - heading "Pessoas com acesso" [level=3] [ref=f11e88]
+                    - menu "Lista de pessoas com as quais este item está compartilhado. Há 1 pessoa ou grupo na lista." [ref=f11e101]:
+                      - menuitem "luiz Salvador (you) luiz Salvador (you). luizsalvador31@gmail.com. Proprietário" [ref=f11e102]:
+                        - generic [ref=f11e105]:
+                          - img "luiz Salvador (you)" [ref=f11e107]
+                          - generic [ref=f11e109]:
+                            - generic "luiz Salvador (you)." [ref=f11e110]: luiz Salvador (you)
+                            - generic "luizsalvador31@gmail.com." [ref=f11e111]: luizsalvador31@gmail.com
+                          - generic [ref=f11e115]:
+                            - button "Proprietário" [disabled]:
+                              - generic [aria-hidden]: Proprietário
+                    - generic [ref=f11e117]:
+                      - heading "Acesso geral" [level=3] [ref=f11e121]
+                      - generic [ref=f11e130]:
+                        - generic [ref=f11e133]:
+                          - button "Restrito mudar o acesso geral" [expanded] [ref=f11e135] [cursor=pointer]:
+                            - generic [aria-hidden] [ref=f11e136]: Restrito
+                          - menu "Alterar tipo de link" [active] [ref=f11e155]:
+                            - group [ref=f11e156]:
+                              - menuitemradio "Restrito" [checked] [ref=f11e157] [cursor=pointer]:
+                                - generic [aria-hidden] [ref=f11e159]: check
+                              - menuitemradio "Qualquer pessoa com o link" [ref=f11e161] [cursor=pointer]
+                        - generic [ref=f11e141]: Só as pessoas com acesso podem abrir usando o link.
+                - generic [ref=f11e143]:
+                  - button "Copiar link" [ref=f11e145] [cursor=pointer]
+                  - button "Concluído" [ref=f11e152] [cursor=pointer]
+        - region

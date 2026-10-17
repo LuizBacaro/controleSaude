@@ -1,0 +1,141 @@
+- generic [active] [ref=f66e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f66e3]:
+    - banner [ref=f66e4]:
+      - generic [ref=f66e6]:
+        - link [ref=f66e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f66e8]
+        - generic [ref=f66e9]:
+          - button "Notificações Abrir central de notificações" [ref=f66e15]:
+            - img [aria-hidden] [ref=f66e19]: notifications
+            - generic [ref=f66e20]: Notificações
+          - button [ref=f66e26] [cursor=pointer]:
+            - img "Trocar de conta de desenvolvedor" [ref=f66e28]
+    - navigation [ref=f66e34]:
+      - list [ref=f66e35]:
+        - listitem "Página inicial" [ref=f66e38]:
+          - button "Página inicial" [ref=f66e39] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e42]: features
+        - listitem "Status da política" [ref=f66e46]:
+          - button "Status da política" [ref=f66e47] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e50]: android_security_privacy_safe
+        - listitem "Usuários e permissões" [ref=f66e54]:
+          - button "Usuários e permissões" [ref=f66e55] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e58]: user_attributes
+        - listitem "Gerenciamento de pedidos" [ref=f66e62]:
+          - button "Gerenciamento de pedidos" [ref=f66e63] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e66]: credit_card
+        - listitem "Fazer o download de relatórios" [ref=f66e70]:
+          - button "Fazer o download de relatórios" [ref=f66e71] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e73]: arrow_right
+            - img [aria-hidden] [ref=f66e76]: download
+        - listitem "Conta de desenvolvedor" [ref=f66e80]:
+          - button "Conta de desenvolvedor" [ref=f66e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e84]: badge
+        - listitem "Registro de atividades" [ref=f66e88]:
+          - button "Registro de atividades" [ref=f66e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e92]: description
+        - listitem "Configurações" [ref=f66e96]:
+          - button "Configurações" [ref=f66e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e100]: settings
+        - listitem "Ajuda" [ref=f66e104]:
+          - button "Ajuda" [ref=f66e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e108]: contact_support
+        - listitem "Verificação de desenvolvedor Android" [ref=f66e112]:
+          - button "Verificação de desenvolvedor Android" [ref=f66e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f66e116]: app_promotion
+    - generic [ref=f66e119]:
+      - generic [ref=f66e126]:
+        - generic [ref=f66e135]:
+          - heading "GoStart Lab" [level=1] [ref=f66e141]
+          - generic [ref=f66e148]:
+            - generic [ref=f66e149]: Conta da organização
+            - img [aria-hidden] [ref=f66e151]: brightness_1
+            - generic [ref=f66e152]: "ID da conta: 6637139677623017493"
+        - generic [ref=f66e156]:
+          - generic [ref=f66e161]:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=3]
+          - generic [ref=f66e165]:
+            - button "Acessar a verificação de desenvolvedor Android" [ref=f66e166]
+            - button "Dispensar" [ref=f66e170]
+        - generic [ref=f66e178]:
+          - generic [ref=f66e180]:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=2]
+            - button "Veja mais informações sobre \"Apps fixados\"" [ref=f66e183] [cursor=pointer]:
+              - img [aria-hidden] [ref=f66e184]: help
+          - generic [ref=f66e185]: Fixe apps aqui para acessá-los rapidamente e ver métricas importantes
+        - generic [ref=f66e189]:
+          - generic [ref=f66e193]:
+            - generic [ref=f66e194]:
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=2]
+            - link "Criar app" [disabled] [ref=f66e200]
+          - generic [ref=f66e204]:
+            - img [aria-hidden] [ref=f66e212]: lock
+            - generic [ref=f66e213]:
+              - generic [ref=f66e216]:
+                - generic [ref=f66e217]: Filtrar por
+                - button "Filtrar por Todos" [disabled] [ref=f66e220]:
+                  - generic [ref=f66e221]: Todos
+                  - img [aria-hidden] [ref=f66e225]: arrow_drop_down
+              - generic [ref=f66e229]:
+                - search "Pesquisar por app ou nome do pacote":
+                  - generic [ref=f66e231]:
+                    - generic:
+                      - img [aria-hidden]: search
+                    - generic: Pesquisar por app ou nome do pacote
+                    - textbox "Pesquisar por app ou nome do pacote" [ref=f66e232]
+            - generic [ref=f66e243]:
+              - generic [ref=f66e244]:
+                - generic [ref=f66e245]: "Mostrar linhas:"
+                - 'button "Mostrar linhas: 10 selecionadas." [ref=f66e248] [cursor=pointer]':
+                  - generic [ref=f66e249]: "10"
+                  - img [aria-hidden] [ref=f66e251]: arrow_drop_down
+              - generic [ref=f66e252]:
+                - generic [ref=f66e253]: 1 - 6 de 6
+                - generic [ref=f66e255]:
+                  - button "Ir para a primeira página" [disabled] [ref=f66e256]:
+                    - generic:
+                      - generic:
+                        - img [aria-hidden]: first_page
+                  - button "Ir para a página anterior" [disabled] [ref=f66e257]:
+                    - generic:
+                      - generic:
+                        - img [aria-hidden]: chevron_left
+                  - button "Ir para a próxima página" [disabled] [ref=f66e258]:
+                    - generic:
+                      - generic:
+                        - img [aria-hidden]: chevron_right
+                  - button "Ir para a última página" [disabled] [ref=f66e259]:
+                    - generic:
+                      - generic:
+                        - img [aria-hidden]: last_page
+      - generic [ref=f66e264]:
+        - generic [ref=f66e265]:
+          - link "Atualizações de produtos" [ref=f66e266] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f66e267] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f66e268] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support
+        - generic [ref=f66e269]:
+          - generic [ref=f66e270]: © 2026 Google
+          - link "Privacidade" [ref=f66e271] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f66e272] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f66e273] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/
+  - status [ref=f66e274]

@@ -1,0 +1,159 @@
+- generic [active] [ref=f36e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f36e3]:
+    - banner [ref=f36e4]:
+      - generic [ref=f36e6]:
+        - link [ref=f36e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f36e8]
+        - generic [ref=f36e9]:
+          - button "Notificações Abrir central de notificações" [ref=f36e45]:
+            - img [aria-hidden] [ref=f36e49]: notifications
+            - generic [ref=f36e50]: Notificações
+          - generic [ref=f36e10]:
+            - button "Exame Fácil" [ref=f36e59] [cursor=pointer]
+            - button [ref=f36e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f36e16]
+    - navigation [ref=f36e72]:
+      - link "Todos os apps" [ref=f36e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f36e75]: keyboard_backspace
+      - list [ref=f36e77]:
+        - listitem "Painel" [ref=f36e80]:
+          - button "Painel" [ref=f36e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e84]: dashboard
+        - listitem "Estatísticas" [ref=f36e88]:
+          - button "Estatísticas" [ref=f36e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f36e96]:
+          - button "Visão geral da publicação" [ref=f36e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f36e104]:
+          - button "Protegido com o Google Play" [ref=f36e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e108]: shield
+        - listitem "Testar e lançar" [ref=f36e112]:
+          - button "Testar e lançar" [ref=f36e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f36e120]:
+          - button "Monitorar e aprimorar" [ref=f36e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e124]: vital_signs
+          - list [ref=f36e126]:
+            - generic [ref=f36e128]:
+              - listitem "Alcance e dispositivos" [ref=f36e130]:
+                - button "Alcance e dispositivos" [ref=f36e131] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f36e134]: expand_more
+              - listitem "Notas e avaliações" [ref=f36e136]:
+                - button "Notas e avaliações" [ref=f36e137] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f36e140]: expand_more
+              - listitem "Android vitals" [ref=f36e142]:
+                - button "Android vitals" [ref=f36e143] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f36e146]: expand_more
+              - listitem "Políticas e programas" [ref=f36e148]:
+                - button "Políticas e programas" [ref=f36e149] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f36e152]: expand_less
+                - list [ref=f36e153]:
+                  - generic [ref=f36e155]:
+                    - listitem "Status da política" [ref=f36e157]:
+                      - button "Status da política" [ref=f36e158] [cursor=pointer]
+                    - listitem "Conteúdo do app" [ref=f36e161]:
+                      - button "Conteúdo do app" [ref=f36e162] [cursor=pointer]
+                    - listitem "Programas" [ref=f36e165]:
+                      - button "Programas" [ref=f36e166] [cursor=pointer]:
+                        - img [aria-hidden] [ref=f36e169]: expand_more
+        - listitem "Aumentar número de usuários" [ref=f36e172]:
+          - button "Aumentar número de usuários" [ref=f36e173] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e176]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f36e180]:
+          - button "Monetizar com o Google Play" [ref=f36e181] [cursor=pointer]:
+            - img [aria-hidden] [ref=f36e184]: sell
+    - generic [ref=f36e22]:
+      - generic [ref=f36e189]:
+        - generic [ref=f36e193]:
+          - link "Voltar para Conteúdo do app" [ref=f36e196] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-content/overview
+            - img [aria-hidden] [ref=f36e200]: keyboard_backspace
+            - generic [ref=f36e201]: Conteúdo do app
+          - generic [ref=f36e205]:
+            - heading "Público-alvo e conteúdo" [level=1] [ref=f36e210]
+            - button "Cancelar alterações" [ref=f36e215]
+        - generic [ref=f36e223]:
+          - tablist [ref=f36e224]:
+            - tab "Etapa 1 de 5, Idade do público-alvo" [selected] [ref=f36e225]:
+              - generic [ref=f36e226]: "1"
+              - generic [ref=f36e229]: Idade do público-alvo
+            - tab "Etapa 2 de 5, Detalhes do app" [disabled] [ref=f36e232]:
+              - generic [ref=f36e233]: "2"
+              - generic [ref=f36e236]: Detalhes do app
+            - tab "Etapa 3 de 5, Anúncios" [disabled] [ref=f36e239]:
+              - generic [ref=f36e240]: "3"
+              - generic [ref=f36e243]: Anúncios
+            - tab "Etapa 4 de 5, Presença na loja" [disabled] [ref=f36e246]:
+              - generic [ref=f36e247]: "4"
+              - generic [ref=f36e250]: Presença na loja
+            - tab "Etapa 5 de 5, Resumo" [disabled] [ref=f36e253]:
+              - generic [ref=f36e254]: "5"
+              - generic [ref=f36e257]: Resumo
+          - tabpanel [ref=f36e260]:
+            - generic [ref=f36e263]:
+              - heading "Idade do público-alvo" [level=2] [ref=f36e272]
+              - group "Faixa etária do público-alvo" [ref=f36e278]:
+                - generic [ref=f36e283]:
+                  - generic [ref=f36e284]: Quais são as faixas etárias do público-alvo do app?
+                  - generic [ref=f36e285]:
+                    - paragraph [ref=f36e286]: Com base na sua resposta, destacaremos as ações necessárias e as políticas a que você precisará obedecer.
+                    - paragraph [ref=f36e287]: A seleção de determinadas idades, como usuários acima de 18 anos, pode levar a restrições adicionais à sua disponibilidade no Google Play.
+                    - paragraph [ref=f36e288]:
+                      - generic [ref=f36e290]:
+                        - text: Consulte a
+                        - link "Central de políticas para desenvolvedores" [ref=f36e291] [cursor=pointer]:
+                          - /url: https://play.google.com/about/developer-content-policy/
+                        - text: antes de publicar o app. Os apps que não obedecerem às políticas vão ser removidos do Google Play.
+                      - link "Saiba mais sobre as faixas etárias do público-alvo do app., Abre em uma nova guia" [ref=f36e293] [cursor=pointer]:
+                        - /url: https://support.google.com/googleplay/android-developer/answer/9285070#age-groups
+                        - text: Saiba mais
+                  - generic [ref=f36e298]:
+                    - img [aria-hidden] [ref=f36e301]: info
+                    - generic [ref=f36e302]: Não é possível selecionar idades menores de 13 anos porque a classificação do Conselho de Classificação de Software de Entretenimento (ESRB, na sigla em inglês) do seu app está definida como "adolescente" ou superior.
+                  - generic [ref=f36e306]:
+                    - generic:
+                      - checkbox "Menores de 5 anos" [disabled]
+                    - generic [ref=f36e307]: Menores de 5 anos
+                  - generic [ref=f36e309]:
+                    - generic:
+                      - checkbox "6 a 8" [disabled]
+                    - generic [ref=f36e310]: 6 a 8
+                  - generic [ref=f36e312]:
+                    - generic:
+                      - checkbox "9 a 12" [disabled]
+                    - generic [ref=f36e313]: 9 a 12
+                  - generic [ref=f36e315] [cursor=pointer]:
+                    - checkbox "13 a 15" [ref=f36e317]
+                    - generic [ref=f36e318]: 13 a 15
+                  - generic [ref=f36e320] [cursor=pointer]:
+                    - checkbox "16 a 17" [ref=f36e322]
+                    - generic [ref=f36e323]: 16 a 17
+                  - generic [ref=f36e325] [cursor=pointer]:
+                    - checkbox "Maiores de 18 anos" [ref=f36e327]
+                    - generic [ref=f36e328]: Maiores de 18 anos
+        - generic [ref=f36e336]:
+          - button "Avançar" [disabled] [ref=f36e337]
+          - button "Voltar" [disabled] [ref=f36e341]
+      - generic [ref=f36e30]:
+        - generic [ref=f36e347]:
+          - link "Atualizações de produtos" [ref=f36e348] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f36e349] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f36e350] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f36e351]:
+          - generic [ref=f36e352]: © 2026 Google
+          - link "Privacidade" [ref=f36e353] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f36e354] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f36e355] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

@@ -1,0 +1,113 @@
+- generic [active] [ref=f40e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f40e3]:
+    - banner [ref=f40e4]:
+      - generic [ref=f40e6]:
+        - link [ref=f40e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f40e8]
+        - generic [ref=f40e9]:
+          - button "Notificações Abrir central de notificações" [ref=f40e45]:
+            - img [aria-hidden] [ref=f40e49]: notifications
+            - generic [ref=f40e50]: Notificações
+          - generic [ref=f40e10]:
+            - button "Exame Fácil" [ref=f40e59] [cursor=pointer]
+            - button [ref=f40e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f40e16]
+    - navigation [ref=f40e72]:
+      - link "Todos os apps" [ref=f40e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f40e75]: keyboard_backspace
+      - list [ref=f40e77]:
+        - listitem "Painel" [ref=f40e80]:
+          - button "Painel" [ref=f40e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e84]: dashboard
+        - listitem "Estatísticas" [ref=f40e88]:
+          - button "Estatísticas" [ref=f40e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f40e96]:
+          - button "Visão geral da publicação" [ref=f40e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f40e104]:
+          - button "Protegido com o Google Play" [ref=f40e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e108]: shield
+        - listitem "Testar e lançar" [ref=f40e112]:
+          - button "Testar e lançar" [ref=f40e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f40e120]:
+          - button "Monitorar e aprimorar" [ref=f40e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e124]: vital_signs
+          - list [ref=f40e126]:
+            - generic [ref=f40e128]:
+              - listitem "Alcance e dispositivos" [ref=f40e130]:
+                - button "Alcance e dispositivos" [ref=f40e131] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f40e134]: expand_more
+              - listitem "Notas e avaliações" [ref=f40e136]:
+                - button "Notas e avaliações" [ref=f40e137] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f40e140]: expand_more
+              - listitem "Android vitals" [ref=f40e142]:
+                - button "Android vitals" [ref=f40e143] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f40e146]: expand_more
+              - listitem "Políticas e programas" [ref=f40e148]:
+                - button "Políticas e programas" [ref=f40e149] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f40e152]: expand_less
+                - list [ref=f40e153]:
+                  - generic [ref=f40e155]:
+                    - listitem "Status da política" [ref=f40e157]:
+                      - button "Status da política" [ref=f40e158] [cursor=pointer]
+                    - listitem "Conteúdo do app" [ref=f40e161]:
+                      - button "Conteúdo do app" [ref=f40e162] [cursor=pointer]
+                    - listitem "Programas" [ref=f40e165]:
+                      - button "Programas" [ref=f40e166] [cursor=pointer]:
+                        - img [aria-hidden] [ref=f40e169]: expand_more
+        - listitem "Aumentar número de usuários" [ref=f40e172]:
+          - button "Aumentar número de usuários" [ref=f40e173] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e176]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f40e180]:
+          - button "Monetizar com o Google Play" [ref=f40e181] [cursor=pointer]:
+            - img [aria-hidden] [ref=f40e184]: sell
+    - generic [ref=f40e22]:
+      - generic [ref=f40e189]:
+        - generic [ref=f40e190]:
+          - generic [ref=f40e193]:
+            - link "Voltar para Conteúdo do app" [ref=f40e196] [cursor=pointer]:
+              - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-content/overview
+              - img [aria-hidden] [ref=f40e200]: keyboard_backspace
+              - generic [ref=f40e201]: Conteúdo do app
+            - heading "Classificações de conteúdo" [level=1] [ref=f40e210]
+          - generic [ref=f40e216]:
+            - heading "Receba classificações do app de autoridades oficiais" [level=2] [ref=f40e225]
+            - paragraph [ref=f40e226]:
+              - generic [ref=f40e227]: Complete o questionário de classificação do conteúdo para receber classificações oficiais para seu app. Suas classificações são exibidas no Google Play para ajudar os usuários a identificar se o app é adequado para eles.
+            - generic [ref=f40e229]:
+              - button "Iniciar questionário" [ref=f40e231]
+              - link "Saiba mais sobre a página Classificações de conteúdo (abre em uma nova guia)" [ref=f40e237] [cursor=pointer]:
+                - /url: https://support.google.com/googleplay/android-developer/answer/188189
+                - generic [ref=f40e240]: Saiba mais
+        - generic [ref=f40e247]:
+          - text: As classificações de conteúdo no Google Play são realizadas pela
+          - link "Coalizão Internacional de Classificação Indicativa (IARC, na sigla em inglês)" [ref=f40e248] [cursor=pointer]:
+            - /url: https://globalratings.com
+          - text: . Ao preencher este questionário, você concorda com os
+          - link "Termos de Serviço" [ref=f40e249] [cursor=pointer]:
+            - /url: https://web.iarcservices.com/terms
+          - text: da IARC
+      - generic [ref=f40e30]:
+        - generic [ref=f40e250]:
+          - link "Atualizações de produtos" [ref=f40e251] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f40e252] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f40e253] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f40e254]:
+          - generic [ref=f40e255]: © 2026 Google
+          - link "Privacidade" [ref=f40e256] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f40e257] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f40e258] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

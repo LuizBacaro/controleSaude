@@ -7,17 +7,26 @@ import '../../domain/exam_marker.dart';
 import '../../domain/exam_report.dart';
 
 class MarkerChart extends StatelessWidget {
-  const MarkerChart({
-    super.key,
-    required this.series,
-    this.height = 200,
-  });
+  const MarkerChart({super.key, required this.series, this.height = 200});
 
   final MarkerSeries series;
   final double height;
 
   @override
   Widget build(BuildContext context) {
+    if (series.qualitative) {
+      return SizedBox(
+        height: height,
+        child: Center(
+          child: Text(
+            'Resultado descritivo. A evolução em curva não se aplica.',
+            style: Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+
     final points = series.points;
     if (points.length < 2) {
       return SizedBox(
@@ -67,8 +76,12 @@ class MarkerChart extends StatelessWidget {
           ),
           borderData: FlBorderData(show: false),
           titlesData: FlTitlesData(
-            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+            rightTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
@@ -85,7 +98,9 @@ class MarkerChart extends StatelessWidget {
                 interval: 1,
                 getTitlesWidget: (value, _) {
                   final i = value.toInt();
-                  if (i < 0 || i >= points.length) return const SizedBox.shrink();
+                  if (i < 0 || i >= points.length) {
+                    return const SizedBox.shrink();
+                  }
                   return Padding(
                     padding: const EdgeInsets.only(top: 6),
                     child: Text(
@@ -129,6 +144,7 @@ class MarkerChart extends StatelessWidget {
                     MarkerStatus.normal => AppColors.success,
                     MarkerStatus.low => AppColors.info,
                     MarkerStatus.high => AppColors.warning,
+                    MarkerStatus.altered => AppColors.warning,
                     MarkerStatus.unknown => AppColors.teal,
                   };
                   return FlDotCirclePainter(

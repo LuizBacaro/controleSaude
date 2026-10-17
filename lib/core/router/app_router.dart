@@ -6,6 +6,9 @@ import '../../features/auth/presentation/login_page.dart';
 import '../../features/auth/presentation/profile_page.dart';
 import '../../features/auth/presentation/register_page.dart';
 import '../../features/auth/presentation/welcome_page.dart';
+import '../../features/care/presentation/doctors_page.dart';
+import '../../features/care/presentation/office_page.dart';
+import '../../features/care/presentation/patient_evolution_page.dart';
 import '../../features/dashboard/presentation/dashboard_page.dart';
 import '../../features/dashboard/presentation/evolution_page.dart';
 import '../../features/dashboard/presentation/marker_detail_page.dart';
@@ -14,6 +17,7 @@ import '../../features/exams/presentation/report_detail_page.dart';
 import '../../features/onboarding/presentation/import_exam_page.dart';
 import '../providers.dart';
 import '../widgets/app_shell.dart';
+import 'home_location.dart';
 
 final _rootKey = GlobalKey<NavigatorState>();
 
@@ -27,14 +31,18 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       final loc = state.matchedLocation;
       final loggedIn = ref.read(authRepositoryProvider).isLoggedIn;
-      final isPublic =
-          loc == '/' || loc == '/entrar' || loc == '/criar-conta';
+      final isPublic = loc == '/' || loc == '/entrar' || loc == '/criar-conta';
+      final isDoctor =
+          ref.read(authRepositoryProvider).currentUser?.isDoctor ?? false;
+      final home = homeLocation(
+        isDoctor: isDoctor,
+        hasExams: ref.read(examsRepositoryProvider).hasReports,
+      );
 
       if (!loggedIn && !isPublic) return '/';
-      if (loggedIn && isPublic) {
-        final hasExams = ref.read(examsRepositoryProvider).hasReports;
-        return hasExams ? '/app' : '/importar?onboarding=1';
-      }
+      if (loggedIn && isPublic) return home;
+      if (loggedIn && isDoctor && isPatientArea(loc)) return '/consultorio';
+      if (loggedIn && !isDoctor && loc.startsWith('/consultorio')) return home;
       return null;
     },
     routes: [
@@ -52,9 +60,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: '/marcador/:name',
+        path: '/marcador',
         builder: (context, state) {
-          final name = Uri.decodeComponent(state.pathParameters['name']!);
+          final name = state.uri.queryParameters['nome'] ?? '';
           return MarkerDetailPage(markerName: name);
         },
       ),
@@ -63,8 +71,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             ReportDetailPage(reportId: state.pathParameters['id']!),
       ),
-      StatefulShellRoute.indexedStack(
+      StatefulShellRoute(
         builder: (context, state, shell) => AppShell(navigationShell: shell),
+        navigatorContainerBuilder: lazyBranchContainer,
         branches: [
           StatefulShellBranch(
             routes: [
@@ -93,8 +102,38 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
+                path: '/app/medicos',
+                builder: (context, state) => const DoctorsPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
                 path: '/app/perfil',
                 builder: (context, state) => const ProfilePage(),
+              ),
+            ],
+          ),
+        ],
+      ),
+      GoRoute(
+        path: '/consultorio',
+        builder: (context, state) => const OfficePage(),
+        routes: [
+          GoRoute(
+            path: 'paciente/:id',
+            builder: (context, state) => PatientEvolutionPage(
+              patientId: state.pathParameters['id']!,
+              patientName: state.uri.queryParameters['nome'] ?? 'Paciente',
+            ),
+            routes: [
+              GoRoute(
+                path: 'marcador',
+                builder: (context, state) => GrantedMarkerPage(
+                  patientId: state.pathParameters['id']!,
+                  markerName: state.uri.queryParameters['nome'] ?? '',
+                ),
               ),
             ],
           ),

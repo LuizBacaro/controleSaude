@@ -5,17 +5,21 @@ import 'package:intl/intl.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../exams/domain/exam_marker.dart';
+import '../../exams/domain/exam_report.dart';
 import '../../exams/presentation/widgets/marker_chart.dart';
 import '../../exams/presentation/widgets/status_chip.dart';
 
 class MarkerDetailPage extends ConsumerWidget {
-  const MarkerDetailPage({super.key, required this.markerName});
+  const MarkerDetailPage({super.key, required this.markerName, this.series});
 
   final String markerName;
+  final MarkerSeries? series;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final series = ref.watch(examsRepositoryProvider).seriesFor(markerName);
+    final series =
+        this.series ?? ref.watch(examsRepositoryProvider).seriesFor(markerName);
     final text = Theme.of(context).textTheme;
     final dateFmt = DateFormat('dd/MM/yyyy');
 
@@ -25,8 +29,6 @@ class MarkerDetailPage extends ConsumerWidget {
         body: const Center(child: Text('Marcador não encontrado')),
       );
     }
-
-    final latest = series.latest;
 
     return Scaffold(
       appBar: AppBar(title: Text(series.name)),
@@ -49,10 +51,10 @@ class MarkerDetailPage extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        latest == null
-                            ? '—'
-                            : '${latest.value} ${series.unit}'.trim(),
-                        style: text.displaySmall?.copyWith(color: AppColors.teal),
+                        series.latestLabel,
+                        style: text.displaySmall?.copyWith(
+                          color: AppColors.teal,
+                        ),
                       ),
                     ),
                     StatusChip(status: series.latestStatus),
@@ -94,15 +96,23 @@ class MarkerDetailPage extends ConsumerWidget {
           ),
           const SizedBox(height: AppSpacing.lg),
           Text('Histórico de valores', style: text.titleMedium),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            'Datas de resultado anterior já vêm escritas dentro do PDF. Elas não são outro arquivo anexado.',
+            style: text.bodySmall,
+          ),
           const SizedBox(height: AppSpacing.sm),
           ...series.points.reversed.map(
             (p) => ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(dateFmt.format(p.date)),
-              trailing: Text(
-                '${p.value} ${series.unit}'.trim(),
-                style: text.titleSmall,
+              subtitle: Text(
+                p.origin == ValueOrigin.citedInReport
+                    ? 'Resultado anterior citado no laudo'
+                    : 'Coleta deste PDF',
+                style: text.bodySmall,
               ),
+              trailing: Text(p.label(series.unit), style: text.titleSmall),
             ),
           ),
           const SizedBox(height: AppSpacing.lg),

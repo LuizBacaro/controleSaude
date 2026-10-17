@@ -21,12 +21,14 @@ class WelcomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Spacer(),
-                Text(
-                  'Controle Saúde',
-                  style: text.displayMedium?.copyWith(color: AppColors.teal),
-                  textAlign: TextAlign.center,
+                Center(
+                  child: Image.asset(
+                    'assets/brand/logo.png',
+                    width: 280,
+                    fit: BoxFit.contain,
+                  ),
                 ),
-                const SizedBox(height: AppSpacing.md),
+                const SizedBox(height: AppSpacing.lg),
                 Text(
                   'Importe o PDF dos seus exames de sangue e acompanhe a evolução de cada marcador ao longo do tempo.',
                   style: text.bodyLarge?.copyWith(color: AppColors.textSecondary),

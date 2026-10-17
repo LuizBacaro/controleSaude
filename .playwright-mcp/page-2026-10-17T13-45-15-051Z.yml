@@ -1,0 +1,139 @@
+- generic [active] [ref=f11e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f11e3]:
+    - banner [ref=f11e4]:
+      - generic [ref=f11e6]:
+        - link [ref=f11e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/app-list
+          - button "Logotipo do Google Play Console" [ref=f11e8]
+        - generic [ref=f11e9]:
+          - button "Notificações Abrir central de notificações" [ref=f11e45]:
+            - img [aria-hidden] [ref=f11e49]: notifications
+            - generic [ref=f11e50]: Notificações
+          - generic [ref=f11e10]:
+            - button "Exame Fácil" [ref=f11e59] [cursor=pointer]
+            - button [ref=f11e14] [cursor=pointer]:
+              - img "Trocar de conta de desenvolvedor" [ref=f11e16]
+    - navigation [ref=f11e72]:
+      - link "Todos os apps" [ref=f11e73] [cursor=pointer]:
+        - /url: /console/u/0/developers/6637139677623017493/app-list
+        - img [aria-hidden] [ref=f11e75]: keyboard_backspace
+      - list [ref=f11e77]:
+        - listitem "Painel" [ref=f11e80]:
+          - button "Painel" [ref=f11e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e84]: dashboard
+        - listitem "Estatísticas" [ref=f11e88]:
+          - button "Estatísticas" [ref=f11e89] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e92]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f11e96]:
+          - button "Visão geral da publicação" [ref=f11e97] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e100]: overview
+        - listitem "Protegido com o Google Play" [ref=f11e104]:
+          - button "Protegido com o Google Play" [ref=f11e105] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e108]: shield
+        - listitem "Testar e lançar" [ref=f11e112]:
+          - button "Testar e lançar" [ref=f11e113] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e116]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f11e120]:
+          - button "Monitorar e aprimorar" [ref=f11e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e124]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f11e128]:
+          - button "Aumentar número de usuários" [ref=f11e129] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e132]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f11e136]:
+          - button "Monetizar com o Google Play" [ref=f11e137] [cursor=pointer]:
+            - img [aria-hidden] [ref=f11e140]: sell
+    - generic [ref=f11e22]:
+      - generic [ref=f11e145]:
+        - generic [ref=f11e147]:
+          - heading "Painel" [level=1] [ref=f11e158]
+          - generic [ref=f11e164]:
+            - heading "Começar a configuração do app" [level=2] [ref=f11e173]
+            - paragraph [ref=f11e174]:
+              - generic [ref=f11e175]: Durante a configuração, o painel mostra o que você precisa fazer para deixar seu app pronto para uso. Isso inclui recomendações sobre como gerenciar, testar e promover seu app. Depois de concluir uma tarefa, volte nesta página para ver outras ações sugeridas.
+            - button "Ocultar descrição detalhada sobre Painel" [ref=f11e180]:
+              - generic [ref=f11e183]: Ocultar
+        - generic [ref=f11e190]:
+          - heading "Começar a testar agora" [level=2] [ref=f11e199]
+          - generic [ref=f11e209]:
+            - generic [ref=f11e212]:
+              - heading "Lance seu app mais cedo para testes internos sem revisão" [level=3] [ref=f11e218]
+              - generic [ref=f11e219]: Compartilhe o app com até cem testadores internos para identificar problemas e receber feedback antecipado
+            - button "Ver tarefas associadas a Lance seu app mais cedo para testes internos sem revisão" [ref=f11e227]:
+              - generic [ref=f11e230]: Ver etapas
+              - img [aria-hidden] [ref=f11e232]: expand_more
+        - generic [ref=f11e236]:
+          - heading "Configurar o app" [level=2] [ref=f11e245]
+          - generic [ref=f11e255]:
+            - generic [ref=f11e258]:
+              - heading "Forneça informações sobre o app e configure a página \"Detalhes do app\"" [level=3] [ref=f11e264]
+              - generic [ref=f11e265]: Informe o conteúdo do app e gerencie como ele é organizado e apresentado no Google Play
+            - button "Ver tarefas associadas a Forneça informações sobre o app e configure a página \"Detalhes do app\"" [ref=f11e273]:
+              - generic [ref=f11e276]: Ver etapas
+              - img [aria-hidden] [ref=f11e278]: expand_more
+        - generic [ref=f11e291]:
+          - heading "Lançar o app" [level=2] [ref=f11e300]
+          - generic [ref=f11e301]:
+            - generic [ref=f11e310]:
+              - generic [ref=f11e313]:
+                - heading "Testar o app com um grupo maior de testadores controlado por você" [level=3] [ref=f11e319]
+                - generic [ref=f11e320]: Com o teste fechado, você pode disponibilizar seu app a grupos maiores de testadores. É possível controlar o acesso ao app usando endereços de e-mail ou o Grupos do Google.
+              - generic [ref=f11e325]:
+                - generic [ref=f11e327]:
+                  - img [aria-hidden] [ref=f11e330]: lock
+                  - generic [ref=f11e331]: Conclua as tarefas de configuração inicial primeiro
+                - button "Ver tarefas associadas a Testar o app com um grupo maior de testadores controlado por você" [ref=f11e334]:
+                  - generic [ref=f11e337]: Ver etapas
+                  - img [aria-hidden] [ref=f11e339]: expand_more
+            - generic [ref=f11e353]:
+              - generic [ref=f11e356]:
+                - heading "Permitir que qualquer pessoa se inscreva para testar o app no Google Play" [level=3] [ref=f11e362]
+                - generic [ref=f11e363]: Com faixas abertas, qualquer pessoa pode participar dos seus testes no Google Play. Os usuários podem fornecer feedback sem afetar sua classificação pública.
+              - generic [ref=f11e368]:
+                - generic [ref=f11e370]:
+                  - img [aria-hidden] [ref=f11e373]: lock
+                  - generic [ref=f11e374]: Conclua as tarefas de configuração inicial primeiro
+                - button "Ver tarefas associadas a Permitir que qualquer pessoa se inscreva para testar o app no Google Play" [ref=f11e377]:
+                  - generic [ref=f11e380]: Ver etapas
+                  - img [aria-hidden] [ref=f11e382]: expand_more
+            - generic [ref=f11e395]:
+              - generic [ref=f11e398]:
+                - heading "Usar o pré-registro e conquistar usuários para o app" [level=3] [ref=f11e404]
+                - generic [ref=f11e405]: Com o pré-registro, você pode publicar a página "Detalhes do app" antes do lançamento para que os usuários possam informar os próprios interesses. Depois do lançamento, todos os usuários pré-registrados receberão uma notificação para fazer o download do seu app.
+              - generic [ref=f11e410]:
+                - generic [ref=f11e412]:
+                  - img [aria-hidden] [ref=f11e415]: lock
+                  - generic [ref=f11e416]: Conclua as tarefas de configuração inicial primeiro
+                - button "Ver tarefas associadas a Usar o pré-registro e conquistar usuários para o app" [ref=f11e419]:
+                  - generic [ref=f11e422]: Ver etapas
+                  - img [aria-hidden] [ref=f11e424]: expand_more
+            - generic [ref=f11e433]:
+              - generic [ref=f11e436]:
+                - heading "Criar e publicar uma versão" [level=3] [ref=f11e442]
+                - generic [ref=f11e443]: Faça um lançamento na faixa de produção e publique seu app para usuários reais no Google Play
+              - generic [ref=f11e448]:
+                - generic [ref=f11e450]:
+                  - img [aria-hidden] [ref=f11e453]: lock
+                  - generic [ref=f11e454]: Conclua as tarefas de configuração inicial primeiro
+                - button "Ver tarefas associadas a Criar e publicar uma versão" [ref=f11e457]:
+                  - generic [ref=f11e460]: Ver etapas
+                  - img [aria-hidden] [ref=f11e462]: expand_more
+      - generic [ref=f11e30]:
+        - generic [ref=f11e467]:
+          - link "Atualizações de produtos" [ref=f11e468] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f11e469] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f11e470] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f11e471]:
+          - generic [ref=f11e472]: © 2026 Google
+          - link "Privacidade" [ref=f11e473] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f11e474] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f11e475] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

@@ -6,7 +6,11 @@ import 'app_spacing.dart';
 import 'app_typography.dart';
 
 abstract final class AppTheme {
-  static ThemeData light() {
+  static final ThemeData _light = _build();
+
+  static ThemeData light() => _light;
+
+  static ThemeData _build() {
     final textTheme = AppTypography.lightTextTheme();
     return ThemeData(
       useMaterial3: true,
