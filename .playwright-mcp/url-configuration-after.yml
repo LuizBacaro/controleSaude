@@ -1,0 +1,222 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - link "Skip to content" [ref=f3e6] [cursor=pointer]:
+        - /url: "#main"
+      - generic [ref=f3e11]:
+        - generic [ref=f3e16]:
+          - paragraph [ref=f3e17]: We are investigating a technical issue
+          - generic [ref=f3e18]:
+            - generic [ref=f3e19]: ·
+            - generic [ref=f3e20]:
+              - text: Follow the
+              - link "status page" [ref=f3e21] [cursor=pointer]:
+                - /url: https://status.supabase.com/
+              - text: for updates
+        - button "Dismiss banner" [ref=f3e22] [cursor=pointer]
+      - banner [ref=f3e28]:
+        - generic [ref=f3e29]:
+          - generic [ref=f3e30]:
+            - link "Supabase Back to organization home" [ref=f3e31] [cursor=pointer]:
+              - /url: /dashboard/org/pcrwbmgqmsudgxciqpoi
+              - img "Supabase" [ref=f3e32]
+              - generic [ref=f3e33]: Back to organization home
+            - generic [ref=f3e34]:
+              - generic [ref=f3e38]:
+                - link "LuizBacaro Free" [ref=f3e39] [cursor=pointer]:
+                  - /url: /dashboard/org/pcrwbmgqmsudgxciqpoi
+                  - generic [ref=f3e50]: LuizBacaro
+                  - generic [ref=f3e51]: Free
+                - button "Show organizations" [ref=f3e52] [cursor=pointer]
+              - generic [ref=f3e57]:
+                - generic [ref=f3e61]:
+                  - link "ProjetoExames" [ref=f3e62] [cursor=pointer]:
+                    - /url: /dashboard/project/xdzognwurazkbmckzldf
+                  - button "Show organization projects" [ref=f3e67] [cursor=pointer]
+                - generic [ref=f3e75]:
+                  - link "main Production" [ref=f3e76] [cursor=pointer]:
+                    - /url: /dashboard/project/xdzognwurazkbmckzldf
+                    - generic "main" [ref=f3e77]
+                    - generic [ref=f3e78]: Production
+                  - button "Show project branches" [ref=f3e79] [cursor=pointer]
+            - button "Connect" [ref=f3e85] [cursor=pointer]
+          - generic [ref=f3e90]:
+            - button "Feedback" [ref=f3e91] [cursor=pointer]
+            - generic [ref=f3e93]:
+              - button [ref=f3e94] [cursor=pointer]:
+                - paragraph [ref=f3e99]: Search...
+                - generic [ref=f3e101]: Ctrl K
+              - button "Help" [ref=f3e102] [cursor=pointer]
+              - button "Advisor Center" [ref=f3e109] [cursor=pointer]
+              - button "SQL Editor" [ref=f3e115] [cursor=pointer]
+              - button "AI Assistant" [ref=f3e120] [cursor=pointer]
+            - button [ref=f3e128] [cursor=pointer]:
+              - img "LuizBacaro" [ref=f3e130]
+      - generic [ref=f3e131]:
+        - generic [ref=f3e135]:
+          - navigation [ref=f3e137]:
+            - list [ref=f3e139]:
+              - listitem [ref=f3e140]:
+                - link "Project Overview" [ref=f3e141] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf
+              - listitem [ref=f3e144]:
+                - link "Table Editor" [ref=f3e145] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/editor
+              - listitem [ref=f3e148]:
+                - link "SQL Editor" [ref=f3e149] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/sql
+            - list [ref=f3e153]:
+              - listitem [ref=f3e154]:
+                - link "Database" [ref=f3e155] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/database/schemas
+              - listitem [ref=f3e160]:
+                - link "Authentication" [ref=f3e161] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/users
+              - listitem [ref=f3e164]:
+                - link "Storage" [ref=f3e165] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/storage/files
+              - listitem [ref=f3e168]:
+                - link "Edge Functions" [ref=f3e169] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/functions
+              - listitem [ref=f3e175]:
+                - link "Compute New" [ref=f3e176] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/compute
+                  - generic [ref=f3e179]: Compute
+                  - generic [ref=f3e180]: New
+              - listitem [ref=f3e181]:
+                - link "Realtime" [ref=f3e182] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/realtime/inspector
+            - list [ref=f3e186]:
+              - listitem [ref=f3e187]:
+                - link "Advisors" [ref=f3e188] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/advisors/health
+              - listitem [ref=f3e192]:
+                - link "Observability" [ref=f3e193] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/observability
+              - listitem [ref=f3e202]:
+                - link "Logs" [ref=f3e203] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/logs
+              - listitem [ref=f3e205]:
+                - link "Integrations" [ref=f3e206] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/integrations
+            - list [ref=f3e211]:
+              - listitem [ref=f3e212]:
+                - link "Project Settings" [ref=f3e213] [cursor=pointer]:
+                  - /url: /dashboard/project/xdzognwurazkbmckzldf/settings/general
+          - button "Sidebar control" [ref=f3e219] [cursor=pointer]
+        - main [ref=f3e226]:
+          - generic [ref=f3e228]:
+            - generic [ref=f3e232]:
+              - heading "Authentication" [level=4] [ref=f3e234]
+              - menu "Sidebar" [ref=f3e237]:
+                - list [ref=f3e238]:
+                  - generic [ref=f3e241]:
+                    - generic [ref=f3e242]: Manage
+                    - generic [ref=f3e246]:
+                      - link [ref=f3e247] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/users
+                        - menuitem "Users" [ref=f3e248]
+                      - link [ref=f3e253] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/oauth-apps
+                        - menuitem "OAuth Apps" [ref=f3e254]
+                  - generic [ref=f3e262]:
+                    - generic [ref=f3e263]: Notifications
+                    - link [ref=f3e268] [cursor=pointer]:
+                      - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/templates
+                      - menuitem "Emails" [ref=f3e269]
+                  - generic [ref=f3e277]:
+                    - generic [ref=f3e278]: Configuration
+                    - generic [ref=f3e282]:
+                      - link [ref=f3e283] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/database/policies
+                        - menuitem "Policies" [ref=f3e284]:
+                          - generic "Policies" [ref=f3e287]
+                      - link [ref=f3e293] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/providers
+                        - menuitem "Sign In / Providers" [ref=f3e294]
+                      - link [ref=f3e299] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/passkeys
+                        - menuitem "Passkeys Beta" [ref=f3e300]:
+                          - generic [ref=f3e303]:
+                            - generic [ref=f3e304]: Passkeys
+                            - generic [ref=f3e305]: Beta
+                      - link [ref=f3e306] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/oauth-server
+                        - menuitem "OAuth Server Beta" [ref=f3e307]:
+                          - generic [ref=f3e310]:
+                            - generic [ref=f3e311]: OAuth Server
+                            - generic [ref=f3e312]: Beta
+                      - link [ref=f3e313] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/sessions
+                        - menuitem "Sessions" [ref=f3e314]
+                      - link [ref=f3e319] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/rate-limits
+                        - menuitem "Rate Limits" [ref=f3e320]
+                      - link [ref=f3e325] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/mfa
+                        - menuitem "Multi-Factor" [ref=f3e326]
+                      - link [ref=f3e331] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/url-configuration
+                        - menuitem "URL Configuration" [ref=f3e332]
+                      - link [ref=f3e337] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/protection
+                        - menuitem "Attack Protection" [ref=f3e338]
+                      - link [ref=f3e343] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/hooks
+                        - menuitem "Auth Hooks Beta" [ref=f3e344]:
+                          - generic [ref=f3e347]:
+                            - generic [ref=f3e348]: Auth Hooks
+                            - generic [ref=f3e349]: Beta
+                      - link [ref=f3e350] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/audit-logs
+                        - menuitem "Audit Logs" [ref=f3e351]
+                      - link [ref=f3e356] [cursor=pointer]:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/performance
+                        - menuitem "Performance" [ref=f3e357]
+            - separator [disabled] [ref=f3e362]
+            - main [ref=f3e373]:
+              - generic [ref=f3e377]:
+                - heading "URL Configuration" [level=1] [ref=f3e378]
+                - generic [ref=f3e379]: Configure site URL and redirect URLs for authentication
+              - generic [ref=f3e380]:
+                - generic [ref=f3e381]:
+                  - heading "Site URL" [level=2] [ref=f3e385]
+                  - generic [ref=f3e388]:
+                    - generic [ref=f3e391]:
+                      - textbox "Site URL" [ref=f3e393]: https://examefacil.pages.dev
+                      - generic [ref=f3e394]:
+                        - generic [ref=f3e395]: Site URL
+                        - generic [ref=f3e397]: Configure the default redirect URL used when a redirect URL is not specified or doesn't match one from the allow list. This value is also exposed as a template variable in the email templates section. Wildcards cannot be used here.
+                    - generic [ref=f3e398]:
+                      - button "Save changes" [disabled]
+                - generic [ref=f3e399]:
+                  - generic [ref=f3e401]:
+                    - generic [ref=f3e402]:
+                      - heading "Redirect URLs" [level=2] [ref=f3e403]
+                      - generic [ref=f3e404]: URLs that auth providers are permitted to redirect to post authentication. Wildcards are allowed, for example, https://*.domain.com
+                    - link "Docs" [ref=f3e406] [cursor=pointer]:
+                      - /url: https://supabase.com/docs/guides/auth/concepts/redirect-urls
+                  - generic [ref=f3e412]:
+                    - button "Add URL" [ref=f3e414] [cursor=pointer]
+                    - generic [ref=f3e500] [cursor=pointer]:
+                      - checkbox [ref=f3e502]
+                      - generic [ref=f3e506]: https://examefacil.pages.dev/**
+                    - paragraph [ref=f3e508]: "Total URLs: 1"
+    - generic [ref=f3e428]:
+      - button "Close banner" [ref=f3e430] [cursor=pointer]
+      - generic [ref=f3e435]:
+        - generic [ref=f3e436]:
+          - generic [ref=f3e437]: Preview
+          - generic [ref=f3e438]:
+            - generic [ref=f3e439]:
+              - paragraph [ref=f3e440]: User growth
+              - paragraph [ref=f3e441]: Track how your user base is trending.
+            - paragraph [ref=f3e444]:
+              - generic [ref=f3e445]: select
+              - generic [ref=f3e446]: date_trunc('week', last_sign_in_at) as week,
+              - generic [ref=f3e447]: count(distinct id) as active_users
+        - generic [ref=f3e448]:
+          - paragraph [ref=f3e449]: Explorer & Notebooks
+          - paragraph [ref=f3e450]: New unified workspace for querying data and chatting with Assistant.
+        - button "Enable Explorer" [ref=f3e452] [cursor=pointer]
+  - alert [ref=f3e454]: URL Configuration | Authentication | Supabase

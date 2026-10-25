@@ -1,0 +1,211 @@
+- generic [active] [ref=f30e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f30e3]:
+    - banner [ref=f30e4]:
+      - generic [ref=f30e6]:
+        - link [ref=f30e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=f30e8]
+        - generic [ref=f30e9]:
+          - button "Notificações não lidas Abrir central de notificações" [ref=f30e157]:
+            - img [aria-hidden] [ref=f30e19]: notifications_unread
+            - generic [ref=f30e20]: Notificações não lidas
+          - generic [ref=f30e24]:
+            - button "Trocar de conta de desenvolvedor" [ref=f30e27] [cursor=pointer]:
+              - img [aria-hidden] [ref=f30e29]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=f30e37] [cursor=pointer]'
+    - navigation [ref=f30e45]:
+      - list [ref=f30e46]:
+        - listitem "Página inicial" [ref=f30e49]:
+          - button "Página inicial" [ref=f30e50] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e53]: home
+        - listitem "Gerenciar conta" [ref=f30e56]:
+          - button "Gerenciar conta" [ref=f30e57] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e60]: badge
+        - listitem "Exame Fácil" [ref=f30e63]:
+          - button "Exame Fácil" [ref=f30e66] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e70]: play_prism
+        - listitem "Painel" [ref=f30e73]:
+          - button "Painel" [ref=f30e74] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e77]: dashboard
+        - listitem "Estatísticas" [ref=f30e80]:
+          - button "Estatísticas" [ref=f30e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e84]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f30e87]:
+          - button "Visão geral da publicação" [ref=f30e88] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e91]: overview
+        - listitem "Protegido com o Google Play" [ref=f30e94]:
+          - button "Protegido com o Google Play" [ref=f30e95] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e98]: shield
+        - listitem "Testar e lançar" [ref=f30e101]:
+          - button "Testar e lançar" [ref=f30e102] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e105]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f30e108]:
+          - button "Monitorar e aprimorar" [ref=f30e109] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e112]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f30e115]:
+          - button "Aumentar número de usuários" [ref=f30e116] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e119]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f30e122]:
+          - button "Monetizar com o Google Play" [ref=f30e123] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e126]: sell
+    - generic [ref=f30e128]:
+      - generic [ref=f30e136]:
+        - generic [ref=f30e164]:
+          - heading "Visão geral da publicação" [level=1] [ref=f30e170]
+          - generic [ref=f30e175]:
+            - text: Confira uma visão geral das mudanças feitas no app e controle quando elas são enviadas para revisão ou publicação.
+            - button "Mostrar mais detalhes sobre Visão geral da publicação" [ref=f30e176] [cursor=pointer]: Mostrar mais
+        - generic [ref=f30e181]:
+          - button "Publicação gerenciada desativada" [ref=f30e186] [cursor=pointer]:
+            - generic [ref=f30e187]:
+              - img [aria-hidden] [ref=f30e191]: sync_disabled
+              - generic [ref=f30e192]: Publicação gerenciada desativada
+            - img [aria-hidden] [ref=f30e194]: arrow_drop_down
+          - link "Atividades de envio" [ref=f30e197] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/publishing/submission-activity
+            - img [aria-hidden] [ref=f30e202]: arrow_right_alt
+        - generic [ref=f30e205]:
+          - generic [ref=f30e209]:
+            - generic [ref=f30e210]:
+              - heading "Alterações em análise" [level=2] [ref=f30e214]
+              - button "Veja mais informações sobre \"Alterações em análise\"" [ref=f30e217] [cursor=pointer]:
+                - img [aria-hidden] [ref=f30e218]: help
+            - generic [ref=f30e220]:
+              - button "Remover mudanças" [ref=f30e223]
+              - 'button "Ocultar conteúdo: Alterações em análise" [expanded] [ref=f30e226]':
+                - generic [ref=f30e229]: Ocultar
+                - img [aria-hidden] [ref=f30e231]: expand_less
+          - generic [ref=f30e232]:
+            - generic [ref=f30e238]:
+              - generic [ref=f30e239]:
+                - img [aria-hidden] [ref=f30e242]: inventory
+                - generic [ref=f30e243]: As mudanças estão sendo revisadas. É possível que outros problemas sejam encontrados durante a análise do app.
+              - link "Acesse a Central de Ajuda para saber mais sobre as verificações automáticas que executamos para detectar problemas antes de enviar suas mudanças para revisão" [ref=f30e247] [cursor=pointer]:
+                - /url: https://support.google.com/googleplay/android-developer/answer/14807773
+                - generic [ref=f30e250]: Saiba mais
+            - grid "Alterações" [ref=f30e259]:
+              - row [ref=f30e260]:
+                - columnheader "Item alterado" [ref=f30e261]
+                - columnheader "Descrição" [ref=f30e262]
+                - cell [ref=f30e263]
+              - row [ref=f30e264]:
+                - img [aria-hidden] [ref=f30e267]: rocket_launch
+                - gridcell "Produção" [ref=f30e268]
+              - row [ref=f30e269]:
+                - gridcell "3 (1.0.2)" [ref=f30e270]
+                - gridcell "Iniciar o lançamento completo" [ref=f30e275]
+                - gridcell [ref=f30e280]:
+                  - listbox "Mais ações" [ref=f30e283]:
+                    - button "Mais ações" [ref=f30e286] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e289]: more_vert
+              - row [ref=f30e290]:
+                - gridcell "Países / regiões" [ref=f30e291]
+                - 'gridcell "Adicionar 1 país / região: Brasil" [ref=f30e296]'
+                - gridcell [ref=f30e301]:
+                  - listbox "Mais ações" [ref=f30e304]:
+                    - button "Mais ações" [ref=f30e307] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e310]: more_vert
+              - row [ref=f30e311]:
+                - img [aria-hidden] [ref=f30e314]: play_prism
+                - gridcell "Páginas de detalhes do app" [ref=f30e315]
+              - row [ref=f30e316]:
+                - gridcell "Português (Brasil) – pt-BR Página \"Detalhes do app\" padrão" [ref=f30e317]:
+                  - generic [ref=f30e319]:
+                    - generic [ref=f30e320]: Português (Brasil) – pt-BR
+                    - generic [ref=f30e322]: Página "Detalhes do app" padrão
+                - gridcell "Idioma adicionado. O nome do app (Exame Fácil) e todas as outras informações necessárias foram fornecidas." [ref=f30e323]
+                - gridcell [ref=f30e328]:
+                  - listbox "Mais ações" [ref=f30e331]:
+                    - button "Mais ações" [ref=f30e334] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e337]: more_vert
+              - row [ref=f30e338]:
+                - img [aria-hidden] [ref=f30e341]: android_security_privacy_safe
+                - gridcell "Conteúdo do app" [ref=f30e342]
+              - row [ref=f30e343]:
+                - gridcell "Classificação do conteúdo" [ref=f30e344]
+                - gridcell "Enviar um novo questionário" [ref=f30e349]
+                - gridcell [ref=f30e354]:
+                  - listbox "Mais ações" [ref=f30e357]:
+                    - button "Mais ações" [ref=f30e360] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e363]: more_vert
+              - row [ref=f30e364]:
+                - gridcell "Público-alvo e conteúdo" [ref=f30e365]
+                - gridcell "Atualizar as informações de público-alvo e conteúdo (a idade do público-alvo é 18 ou mais)" [ref=f30e370]
+                - gridcell [ref=f30e375]:
+                  - listbox "Mais ações" [ref=f30e378]:
+                    - button "Mais ações" [ref=f30e381] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e384]: more_vert
+              - row [ref=f30e385]:
+                - gridcell "Política de Privacidade" [ref=f30e386]
+                - gridcell "Definir o URL da Política de Privacidade como https://docs.google.com/document/d/e/2PACX-1vT-wXLR6zwfUiRpRaM8FNtiJHTrqKxoiTMBvCzKKxHeHADjU9Mb3NI5ilFUsKe2FgiVBIPDUFfOqT7A/pub" [ref=f30e391]
+                - gridcell [ref=f30e396]:
+                  - listbox "Mais ações" [ref=f30e399]:
+                    - button "Mais ações" [ref=f30e402] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e405]: more_vert
+              - row [ref=f30e406]:
+                - gridcell "Declaração de anúncios" [ref=f30e407]
+                - gridcell "Atualizar a declaração de anúncios" [ref=f30e412]
+                - gridcell [ref=f30e417]:
+                  - listbox "Mais ações" [ref=f30e420]:
+                    - button "Mais ações" [ref=f30e423] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e426]: more_vert
+              - row [ref=f30e427]:
+                - gridcell "Segurança dos dados" [ref=f30e428]
+                - gridcell "Preencher o questionário de Segurança dos dados" [ref=f30e433]
+                - gridcell [ref=f30e438]:
+                  - listbox "Mais ações" [ref=f30e441]:
+                    - button "Mais ações" [ref=f30e444] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e447]: more_vert
+              - row [ref=f30e448]:
+                - gridcell "Apps de saúde" [ref=f30e449]
+                - gridcell "Preencher a declaração de apps de saúde" [ref=f30e454]
+                - gridcell [ref=f30e459]:
+                  - listbox "Mais ações" [ref=f30e462]:
+                    - button "Mais ações" [ref=f30e465] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e468]: more_vert
+              - row [ref=f30e469]:
+                - img [aria-hidden] [ref=f30e472]: play_prism
+                - gridcell "Configurações da loja" [ref=f30e473]
+              - row [ref=f30e474]:
+                - gridcell "Categoria do app" [ref=f30e475]
+                - gridcell "Selecionar a categoria do app (App de Medicina)" [ref=f30e480]
+                - gridcell [ref=f30e485]:
+                  - listbox "Mais ações" [ref=f30e488]:
+                    - button "Mais ações" [ref=f30e491] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f30e494]: more_vert
+            - heading "O que você nos informou" [level=3] [ref=f30e506]
+            - generic [ref=f30e508]:
+              - text: "Os itens listados aqui não são publicados, mas serão considerados ao analisar seu app:"
+              - list [ref=f30e509]:
+                - listitem [ref=f30e510]:
+                  - link "Conteúdo do app" [ref=f30e511] [cursor=pointer]
+                  - text: ": atualização das instruções de detalhes de login (todos ou alguns recursos são restritos)"
+                - listitem [ref=f30e512]:
+                  - link "Conteúdo do app" [ref=f30e513] [cursor=pointer]
+                  - text: ": a declaração \"ID de publicidade\" foi atualizada"
+                - listitem [ref=f30e514]:
+                  - link "Conteúdo do app" [ref=f30e515] [cursor=pointer]
+                  - text: ": a declaração de \"Apps governamentais\" foi atualizada"
+                - listitem [ref=f30e516]:
+                  - link "Conteúdo do app" [ref=f30e517] [cursor=pointer]
+                  - text: ": a declaração de recursos financeiros foi atualizada"
+      - generic [ref=f30e147]:
+        - generic [ref=f30e148]:
+          - link "Atualizações de produtos" [ref=f30e149] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f30e150] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f30e151] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f30e152]:
+          - generic [ref=f30e153]: © 2026 Google
+          - link "Privacidade" [ref=f30e154] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f30e155] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f30e156] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/
