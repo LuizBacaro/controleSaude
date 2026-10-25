@@ -1,0 +1,162 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=e8]
+        - generic [ref=e9]:
+          - button "Notificações não lidas Abrir central de notificações" [ref=e56]:
+            - img [aria-hidden] [ref=e60]: notifications_unread
+            - generic [ref=e61]: Notificações não lidas
+          - generic [ref=e12]:
+            - button "Trocar de conta de desenvolvedor" [ref=e15] [cursor=pointer]:
+              - img [aria-hidden] [ref=e17]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=e25] [cursor=pointer]'
+    - navigation [ref=e64]:
+      - list [ref=e65]:
+        - listitem "Página inicial" [ref=e68]:
+          - button "Página inicial" [ref=e69] [cursor=pointer]:
+            - img [aria-hidden] [ref=e72]: home
+        - listitem "Gerenciar conta" [ref=e75]:
+          - button "Gerenciar conta" [ref=e76] [cursor=pointer]:
+            - img [aria-hidden] [ref=e79]: badge
+        - listitem "Exame Fácil" [ref=e82]:
+          - button "Exame Fácil" [ref=e85] [cursor=pointer]:
+            - img [aria-hidden] [ref=e89]: play_prism
+        - listitem "Painel" [ref=e92]:
+          - button "Painel" [ref=e93] [cursor=pointer]:
+            - img [aria-hidden] [ref=e96]: dashboard
+        - listitem "Estatísticas" [ref=e99]:
+          - button "Estatísticas" [ref=e100] [cursor=pointer]:
+            - img [aria-hidden] [ref=e103]: bar_chart
+        - listitem "Visão geral da publicação" [ref=e106]:
+          - button "Visão geral da publicação" [ref=e107] [cursor=pointer]:
+            - img [aria-hidden] [ref=e110]: overview
+        - listitem "Protegido com o Google Play" [ref=e113]:
+          - button "Protegido com o Google Play" [ref=e114] [cursor=pointer]:
+            - img [aria-hidden] [ref=e117]: shield
+        - listitem "Testar e lançar" [ref=e120]:
+          - button "Testar e lançar" [ref=e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=e124]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=e127]:
+          - button "Monitorar e aprimorar" [ref=e128] [cursor=pointer]:
+            - img [aria-hidden] [ref=e131]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=e134]:
+          - button "Aumentar número de usuários" [ref=e135] [cursor=pointer]:
+            - img [aria-hidden] [ref=e138]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=e141]:
+          - button "Monetizar com o Google Play" [ref=e142] [cursor=pointer]:
+            - img [aria-hidden] [ref=e145]: sell
+    - generic [ref=e33]:
+      - generic [ref=e677]:
+        - generic [ref=e681]:
+          - link "Voltar para Status da política" [ref=e684] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/policy-center
+            - img [aria-hidden] [ref=e688]: keyboard_backspace
+            - generic [ref=e689]: Status da política
+          - heading "Detalhes do problema" [level=1] [ref=e698]
+        - generic [ref=e700]:
+          - generic [ref=e703]:
+            - generic [ref=e706]:
+              - generic [ref=e707]:
+                - 'heading "Política de recursos corrompidos: Violação da política de recursos corrompidos" [level=2] [ref=e716]'
+                - paragraph [ref=e718]:
+                  - generic [ref=e719]:
+                    - paragraph [ref=e720]: "O app tem os seguintes problemas de funcionalidade:"
+                    - paragraph
+                    - list [ref=e721]:
+                      - listitem [ref=e722]:
+                        - strong [ref=e723]: Problemas de carregamento
+                        - text: O app não abre ou não carrega
+                - button "Ver pacotes de apps" [ref=e727]
+              - generic [ref=e731]:
+                - heading "Onde o problema foi encontrado" [level=3] [ref=e740]
+                - paragraph [ref=e741]: Esse problema também pode aparecer em outros lugares. Confira todas as áreas do app ao corrigir esse problema.
+                - table "Onde o problema foi encontrado" [ref=e742]:
+                  - row [ref=e743]:
+                    - columnheader "Local" [ref=e744]
+                    - columnheader "Evidência" [ref=e745]
+                  - row "Experiência no app" [ref=e748]:
+                    - cell "Experiência no app" [ref=e749]
+                    - cell [ref=e750]
+            - generic [ref=e757]:
+              - generic [ref=e758]:
+                - heading "Como corrigir" [level=2] [ref=e767]
+                - paragraph [ref=e769]:
+                  - list [ref=e771]:
+                    - listitem [ref=e772]: Corrija todas as experiências corrompidas no app listadas acima, bem como outros problemas identificados pelo feedback dos usuários.
+                    - listitem [ref=e773]:
+                      - text: Use o
+                      - link "Android Vitals" [ref=e774] [cursor=pointer]:
+                        - /url: https://play.google.com/console/u/0/developers/6637139677623017493/app/4975687011100372533/vitals/metrics/overview
+                      - text: para diagnosticar problemas de estabilidade e qualidade e as faixas de teste para verificar cuidadosamente todos os recursos do app antes do envio.
+                    - listitem [ref=e775]: "Depois de corrigir todos os problemas, envie uma nova versão do app pelo Play Console para que ela seja analisada. Observação: não é necessário fazer uma contestação para reenviar uma violação de menor gravidade."
+                - link "Ver os e-mails enviados pelo Google Play sobre este problema (em uma nova janela)" [ref=e779] [cursor=pointer]:
+                  - /url: /console/u/0/policy-emails/developers/6637139677623017493?id=4977281718415684438
+                  - generic [ref=e782]: Ver e-mail
+              - generic [ref=e788]:
+                - generic [ref=e789]: A informação é útil?
+                - button "Botão \"Gostei\" para relatar que as informações são úteis." [ref=e790] [cursor=pointer]:
+                  - img [aria-hidden] [ref=e793]: thumb_up
+                - button "Botão \"Não gostei\" para relatar que as informações não são úteis." [ref=e794] [cursor=pointer]:
+                  - img [aria-hidden] [ref=e797]: thumb_down
+          - generic [ref=e805]:
+            - generic [ref=e809]:
+              - heading "App não disponível no Google Play" [level=3] [ref=e819]
+              - generic [ref=e820]:
+                - generic [ref=e821]: Aplicado em
+                - generic [ref=e828]:
+                  - img [aria-hidden] [ref=e832]: error
+                  - heading [level=3] [ref=e834]: 21 de out.
+                - generic [ref=e835]: Erro, 21 de out.
+            - generic [ref=e838]:
+              - generic [ref=e839]:
+                - heading "Recursos relacionados" [level=4] [ref=e848]
+                - button "\"Recursos com problemas\" abre em uma nova guia" [ref=e849] [cursor=pointer]:
+                  - generic [ref=e850]: Recursos com problemas
+                  - img [aria-hidden] [ref=e853]: open_in_new
+                - button "\"Dicas úteis para publicar seu app no Google Play\" abre em uma nova guia" [ref=e854] [cursor=pointer]:
+                  - generic [ref=e855]: Dicas úteis para publicar seu app no Google Play
+                  - img [aria-hidden] [ref=e858]: open_in_new
+                - button "\"Funcionalidade, conteúdo e experiência do usuário\" abre em uma nova guia" [ref=e859] [cursor=pointer]:
+                  - generic [ref=e860]: Funcionalidade, conteúdo e experiência do usuário
+                  - img [aria-hidden] [ref=e863]: open_in_new
+              - generic [ref=e864]:
+                - heading "Precisa de mais ajuda?" [level=4] [ref=e873]
+                - generic [ref=e874]:
+                  - button "\"Perguntar à Comunidade de Ajuda do Google Play\" abre em uma nova guia" [ref=e875] [cursor=pointer]:
+                    - img [aria-hidden] [ref=e878]: group
+                    - generic [ref=e879]:
+                      - generic [ref=e880]: Perguntar à Comunidade de Ajuda do Google Play
+                      - generic [ref=e881]: Conecte-se com nossa comunidade de experts em produtos
+                  - button "Receber ajuda Escreva para a equipe de especialistas em políticas do Google Play" [ref=e883] [cursor=pointer]:
+                    - img [aria-hidden] [ref=e886]: contact_support
+                    - generic [ref=e887]:
+                      - generic [ref=e888]: Receber ajuda
+                      - generic [ref=e889]: Escreva para a equipe de especialistas em políticas do Google Play
+                  - button "Enviar uma contestação Tempo de espera de 5 a 8 dias" [ref=e891] [cursor=pointer]:
+                    - img [aria-hidden] [ref=e894]: send
+                    - generic [ref=e895]:
+                      - generic [ref=e896]: Enviar uma contestação
+                      - generic [ref=e897]: Tempo de espera de 5 a 8 dias
+      - generic [ref=e41]:
+        - generic [ref=e899]:
+          - link "Atualizações de produtos" [ref=e900] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=e901] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=e902] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=e903]:
+          - generic [ref=e904]: © 2026 Google
+          - link "Privacidade" [ref=e905] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=e906] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=e907] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

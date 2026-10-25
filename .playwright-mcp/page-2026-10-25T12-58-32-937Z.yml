@@ -1,0 +1,139 @@
+- generic [active] [ref=f12e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f12e3]:
+    - banner [ref=f12e4]:
+      - generic [ref=f12e6]:
+        - link [ref=f12e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=f12e8]
+        - generic [ref=f12e9]:
+          - button "Notificações não lidas Abrir central de notificações" [ref=f12e56]:
+            - img [aria-hidden] [ref=f12e60]: notifications_unread
+            - generic [ref=f12e61]: Notificações não lidas
+          - generic [ref=f12e12]:
+            - button "Trocar de conta de desenvolvedor" [ref=f12e15] [cursor=pointer]:
+              - img [aria-hidden] [ref=f12e17]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=f12e25] [cursor=pointer]'
+    - navigation [ref=f12e64]:
+      - list [ref=f12e65]:
+        - listitem "Página inicial" [ref=f12e68]:
+          - button "Página inicial" [ref=f12e69] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e72]: home
+        - listitem "Gerenciar conta" [ref=f12e75]:
+          - button "Gerenciar conta" [ref=f12e76] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e79]: badge
+        - listitem "Exame Fácil" [ref=f12e82]:
+          - button "Exame Fácil" [ref=f12e85] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e89]: play_prism
+        - listitem "Painel" [ref=f12e92]:
+          - button "Painel" [ref=f12e93] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e96]: dashboard
+        - listitem "Estatísticas" [ref=f12e99]:
+          - button "Estatísticas" [ref=f12e100] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e103]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f12e106]:
+          - button "Visão geral da publicação" [ref=f12e107] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e110]: overview
+        - listitem "Protegido com o Google Play" [ref=f12e113]:
+          - button "Protegido com o Google Play" [ref=f12e114] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e117]: shield
+        - listitem "Testar e lançar" [ref=f12e120]:
+          - button "Testar e lançar" [ref=f12e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e124]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f12e127]:
+          - button "Monitorar e aprimorar" [ref=f12e128] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e131]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f12e134]:
+          - button "Aumentar número de usuários" [ref=f12e135] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e138]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f12e141]:
+          - button "Monetizar com o Google Play" [ref=f12e142] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e145]: sell
+    - generic [ref=f12e33]:
+      - generic [ref=f12e149]:
+        - generic [ref=f12e153]:
+          - link "Voltar para Conteúdo do app" [ref=f12e156] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/app-content/overview
+            - img [aria-hidden] [ref=f12e160]: keyboard_backspace
+            - generic [ref=f12e161]: Conteúdo do app
+          - heading "Detalhes do login" [level=1] [ref=f12e170]
+        - generic [ref=f12e173]:
+          - generic [ref=f12e174]: Antes, essa declaração era chamada de "Acesso ao app".
+          - paragraph [ref=f12e176]:
+            - text: Para analisar seu app, precisamos ter acesso a todas as partes dele usando os detalhes de login. Se não conseguirmos acessar o app por completo, ele poderá ser rejeitado durante a análise. Não podemos criar novas contas, usar contas pessoais para fazer compras nem usar testes sem custo financeiro para analisar o app.
+            - link "Saiba mais sobre os detalhes de login (abre em uma nova guia)" [ref=f12e177] [cursor=pointer]:
+              - /url: https://support.google.com/googleplay/android-developer/answer/9859455?#app_access
+              - text: Saiba mais
+          - group "Detalhes do login" [ref=f12e180]:
+            - generic [ref=f12e185]:
+              - paragraph [ref=f12e186]: Alguma parte do seu app é restrita?
+              - generic [ref=f12e188]:
+                - generic [ref=f12e190] [cursor=pointer]:
+                  - radio "Sim" [checked] [ref=f12e192]
+                  - generic [ref=f12e196]:
+                    - generic [ref=f12e197]: Sim
+                    - generic [ref=f12e200]:
+                      - paragraph [ref=f12e201]: "Se o app incluir algum dos seguintes elementos:"
+                      - list [ref=f12e202]:
+                        - listitem [ref=f12e203]: detalhes de login da conta, como um endereço de e-mail, nome de usuário, login da Conta do Google e / ou SSO
+                        - listitem [ref=f12e204]: pagamentos, como produtos únicos, assinaturas, inscrições e / ou níveis de acesso
+                        - listitem [ref=f12e205]: códigos de indicação e / ou QR codes
+                        - listitem [ref=f12e206]: PINs únicos e / ou verificação em duas etapas
+                        - listitem [ref=f12e207]: autenticação biométrica
+                        - listitem [ref=f12e208]: ações que precisam ser feitas em outro dispositivo
+                - generic [ref=f12e212]:
+                  - generic [ref=f12e213]:
+                    - generic [ref=f12e214]:
+                      - strong [ref=f12e215]: Detalhes do login
+                      - button "Adicionar informações" [ref=f12e216]:
+                        - img [aria-hidden] [ref=f12e220]: add
+                    - grid "Detalhes do login" [ref=f12e227]:
+                      - row [ref=f12e228]:
+                        - columnheader "Nome" [ref=f12e229] [cursor=pointer]
+                        - columnheader "Detalhes do login" [ref=f12e230] [cursor=pointer]
+                        - cell [ref=f12e231]
+                      - row [ref=f12e232]:
+                        - gridcell "Patient account" [ref=f12e233]
+                        - gridcell "Nome de usuário / número de telefone, senha, instruções" [ref=f12e238]
+                        - gridcell [ref=f12e243]:
+                          - generic [ref=f12e245]:
+                            - button "Gerenciar Patient account" [ref=f12e246] [cursor=pointer]:
+                              - img [aria-hidden] [ref=f12e250]: edit
+                            - button "Excluir Patient account" [disabled] [ref=f12e251]:
+                              - img [aria-hidden] [ref=f12e255]: delete
+                  - generic [ref=f12e256]:
+                    - paragraph [ref=f12e257]: Permita que o Google use esses detalhes de login para testes em dispositivos do Google e de parceiros confiáveis. Assim, você recebe feedback sobre a experiência do seu app.
+                    - switch "Permita que o Google use esses detalhes de login para testes em dispositivos do Google e de parceiros confiáveis. Assim, você recebe feedback sobre a experiência do seu app." [checked] [ref=f12e260] [cursor=pointer]:
+                      - img [aria-hidden] [ref=f12e268]: done
+              - generic [ref=f12e272] [cursor=pointer]:
+                - radio "Não" [ref=f12e274]
+                - generic [ref=f12e277]:
+                  - generic [ref=f12e278]: Não
+                  - generic [ref=f12e281]:
+                    - paragraph [ref=f12e282]: "Se alguma das seguintes situações se aplicar ao seu app:"
+                    - list [ref=f12e283]:
+                      - listitem [ref=f12e284]: nenhuma parte do seu app é restrita
+                      - listitem [ref=f12e285]: não é preciso fazer login em uma conta em nenhum país / região
+                      - listitem [ref=f12e286]: não é necessário fazer login em uma conta e nenhum conteúdo exige pagamento
+        - generic [ref=f12e294]:
+          - button "Descartar" [disabled] [ref=f12e296]
+          - button "Salvar" [disabled] [ref=f12e301]
+      - generic [ref=f12e41]:
+        - generic [ref=f12e307]:
+          - link "Atualizações de produtos" [ref=f12e308] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f12e309] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f12e310] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f12e311]:
+          - generic [ref=f12e312]: © 2026 Google
+          - link "Privacidade" [ref=f12e313] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f12e314] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f12e315] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

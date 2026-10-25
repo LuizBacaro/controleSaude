@@ -1,0 +1,203 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=e8]
+        - generic [ref=e9]:
+          - button "Notificações não lidas Abrir central de notificações" [ref=e56]:
+            - img [aria-hidden] [ref=e60]: notifications_unread
+            - generic [ref=e61]: Notificações não lidas
+          - generic [ref=e12]:
+            - button "Trocar de conta de desenvolvedor" [ref=e15] [cursor=pointer]:
+              - img [aria-hidden] [ref=e17]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=e25] [cursor=pointer]'
+    - navigation [ref=e64]:
+      - list [ref=e65]:
+        - listitem "Página inicial" [ref=e68]:
+          - button "Página inicial" [ref=e69] [cursor=pointer]:
+            - img [aria-hidden] [ref=e72]: home
+        - listitem "Gerenciar conta" [ref=e75]:
+          - button "Gerenciar conta" [ref=e76] [cursor=pointer]:
+            - img [aria-hidden] [ref=e79]: badge
+        - listitem "Exame Fácil" [ref=e82]:
+          - button "Exame Fácil" [ref=e85] [cursor=pointer]:
+            - img [aria-hidden] [ref=e89]: play_prism
+        - listitem "Painel" [ref=e92]:
+          - button "Painel" [ref=e93] [cursor=pointer]:
+            - img [aria-hidden] [ref=e96]: dashboard
+        - listitem "Estatísticas" [ref=e99]:
+          - button "Estatísticas" [ref=e100] [cursor=pointer]:
+            - img [aria-hidden] [ref=e103]: bar_chart
+        - listitem "Visão geral da publicação" [ref=e106]:
+          - button "Visão geral da publicação" [ref=e107] [cursor=pointer]:
+            - img [aria-hidden] [ref=e110]: overview
+        - listitem "Protegido com o Google Play" [ref=e113]:
+          - button "Protegido com o Google Play" [ref=e114] [cursor=pointer]:
+            - img [aria-hidden] [ref=e117]: shield
+        - listitem "Testar e lançar" [ref=e120]:
+          - button "Testar e lançar" [ref=e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=e124]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=e127]:
+          - button "Monitorar e aprimorar" [ref=e128] [cursor=pointer]:
+            - img [aria-hidden] [ref=e131]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=e134]:
+          - button "Aumentar número de usuários" [ref=e135] [cursor=pointer]:
+            - img [aria-hidden] [ref=e138]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=e141]:
+          - button "Monetizar com o Google Play" [ref=e142] [cursor=pointer]:
+            - img [aria-hidden] [ref=e145]: sell
+    - generic [ref=e33]:
+      - generic [ref=e149]:
+        - generic [ref=e156]:
+          - heading "Painel" [level=1] [ref=e162]
+          - generic [ref=e167]:
+            - text: Começar a configuração do app.
+            - button "Mostrar mais detalhes sobre Painel" [ref=e168] [cursor=pointer]: Mostrar mais
+        - generic [ref=e173]:
+          - img "Exame Fácil" [ref=e175]
+          - generic [ref=e176]:
+            - generic [ref=e177]:
+              - heading "Exame Fácil" [level=2] [ref=e182]
+              - link "Acessar a visão geral das versões" [ref=e187] [cursor=pointer]:
+                - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/releases/overview
+            - list [ref=e193]:
+              - listitem [ref=e194]: br.com.examefacil.laudos
+              - listitem [ref=e195]:
+                - link "Ver no Google Play" [ref=e196] [cursor=pointer]:
+                  - /url: https://play.google.com/store/apps/details?id=br.com.examefacil.laudos
+        - generic [ref=e200]:
+          - generic [ref=e201]:
+            - generic [ref=e203]:
+              - heading "Status da atualização" [level=3] [ref=e212]
+              - generic [ref=e213]:
+                - img [aria-hidden] [ref=e216]: error
+                - generic [ref=e217]: App rejeitado
+                - img [aria-hidden] [ref=e219]: brightness_1
+                - link "Acessar \"Status da política\"" [ref=e222] [cursor=pointer]
+            - generic [ref=e224]:
+              - heading "Produção" [level=3] [ref=e233]
+              - generic [ref=e234]:
+                - generic [ref=e235]: Ativo
+                - img [aria-hidden] [ref=e237]: brightness_1
+                - generic [ref=e238]: 0 dispositivo ativo
+                - img [aria-hidden] [ref=e240]: brightness_1
+                - generic [ref=e241]: 1 país / região
+          - button "Mostrar faixas de teste" [ref=e249]:
+            - img [aria-hidden] [ref=e254]: expand_more
+        - generic [ref=e256]:
+          - heading "Lançar o app" [level=2] [ref=e265]
+          - generic [ref=e266]:
+            - generic [ref=e275]:
+              - generic [ref=e278]:
+                - heading "Testar o app com um grupo maior de testadores controlado por você" [level=3] [ref=e284]
+                - generic [ref=e285]: Com o teste fechado, você pode disponibilizar seu app a grupos maiores de testadores. É possível controlar o acesso ao app usando endereços de e-mail ou o Grupos do Google.
+              - generic [ref=e289]:
+                - generic [ref=e290]:
+                  - progressbar "Testar o app com um grupo maior de testadores controlado por você" [ref=e293]
+                  - button "Ocultar 1 de 5 tarefas concluídas para Testar o app com um grupo maior de testadores controlado por você" [expanded] [ref=e297]:
+                    - generic [ref=e300]: "Tarefas concluídas: 1 de 5"
+                    - img [aria-hidden] [ref=e302]: expand_less
+                - generic [ref=e307]:
+                  - generic [ref=e308]:
+                    - generic [ref=e309]: Configurar uma faixa de teste fechada
+                    - generic [ref=e311]:
+                      - generic [ref=e313]:
+                        - img [aria-hidden] [ref=e318]: check
+                        - generic [ref=e320]: Selecionar países e regiões
+                      - button "Selecionar testadores" [ref=e328] [cursor=pointer]:
+                        - img [aria-hidden] [ref=e331]: chevron_right
+                  - generic [ref=e334]:
+                    - generic [ref=e335]: Criar e lançar uma versão
+                    - generic [ref=e337]:
+                      - button "Criar uma nova versão" [ref=e345] [cursor=pointer]:
+                        - img [aria-hidden] [ref=e348]: chevron_right
+                      - generic [ref=e350]:
+                        - img [aria-hidden] [ref=e355]: lock
+                        - generic [ref=e357] [cursor=pointer]: Visualizar e confirmar a versão
+                      - generic [ref=e359]:
+                        - img [aria-hidden] [ref=e364]: lock
+                        - generic [ref=e365]: Enviar a versão ao Google para revisão
+            - generic [ref=e374]:
+              - generic [ref=e377]:
+                - heading "Permitir que qualquer pessoa se inscreva para testar o app no Google Play" [level=3] [ref=e383]
+                - generic [ref=e384]: Com faixas abertas, qualquer pessoa pode participar dos seus testes no Google Play. Os usuários podem fornecer feedback sem afetar sua classificação pública.
+              - generic [ref=e388]:
+                - generic [ref=e389]:
+                  - progressbar "Permitir que qualquer pessoa se inscreva para testar o app no Google Play" [ref=e392]
+                  - button "Ocultar 1 de 4 tarefas concluídas para Permitir que qualquer pessoa se inscreva para testar o app no Google Play" [expanded] [ref=e396]:
+                    - generic [ref=e399]: "Tarefas concluídas: 1 de 4"
+                    - img [aria-hidden] [ref=e401]: expand_less
+                - generic [ref=e406]:
+                  - generic [ref=e407]:
+                    - generic [ref=e408]: Configurar uma faixa de teste aberta
+                    - generic [ref=e412]:
+                      - img [aria-hidden] [ref=e417]: check
+                      - generic [ref=e419]: Selecionar países e regiões
+                  - generic [ref=e422]:
+                    - generic [ref=e423]: Criar e lançar uma versão
+                    - generic [ref=e425]:
+                      - button "Criar uma nova versão" [ref=e433] [cursor=pointer]:
+                        - img [aria-hidden] [ref=e436]: chevron_right
+                      - generic [ref=e438]:
+                        - img [aria-hidden] [ref=e443]: lock
+                        - generic [ref=e445] [cursor=pointer]: Visualizar e confirmar a versão
+                      - generic [ref=e447]:
+                        - img [aria-hidden] [ref=e452]: lock
+                        - generic [ref=e453]: Enviar a versão ao Google para revisão
+            - generic [ref=e462]:
+              - generic [ref=e465]:
+                - heading "Usar o pré-registro e conquistar usuários para o app" [level=3] [ref=e471]
+                - generic [ref=e472]: Com o pré-registro, você pode publicar a página "Detalhes do app" antes do lançamento para que os usuários possam informar os próprios interesses. Depois do lançamento, todos os usuários pré-registrados receberão uma notificação para fazer o download do seu app.
+              - button "Ver tarefas associadas a Usar o pré-registro e conquistar usuários para o app" [ref=e480]:
+                - generic [ref=e483]: Ver etapas
+                - img [aria-hidden] [ref=e485]: expand_more
+            - generic [ref=e494]:
+              - generic [ref=e497]:
+                - heading "Criar e publicar uma versão" [level=3] [ref=e503]
+                - generic [ref=e504]: Faça um lançamento na faixa de produção e publique seu app para usuários reais no Google Play
+              - generic [ref=e508]:
+                - generic [ref=e509]:
+                  - progressbar "Criar e publicar uma versão" [ref=e512]
+                  - button "Ocultar 4 de 5 tarefas concluídas para Criar e publicar uma versão" [expanded] [ref=e516]:
+                    - generic [ref=e519]: "Tarefas concluídas: 4 de 5"
+                    - img [aria-hidden] [ref=e521]: expand_less
+                - generic [ref=e526]:
+                  - generic [ref=e531]:
+                    - img [aria-hidden] [ref=e535]: check
+                    - generic [ref=e537]: Selecionar países e regiões
+                  - generic [ref=e540]:
+                    - generic [ref=e541]: Criar e lançar uma versão
+                    - generic [ref=e543]:
+                      - generic [ref=e545]:
+                        - img [aria-hidden] [ref=e550]: check
+                        - generic [ref=e552]: Criar uma nova versão
+                      - generic [ref=e554]:
+                        - img [aria-hidden] [ref=e559]: check
+                        - generic [ref=e561]: Visualizar e confirmar a versão
+                      - generic [ref=e563]:
+                        - img [aria-hidden] [ref=e568]: check
+                        - generic [ref=e570]: Enviar a versão ao Google para revisão
+                      - button "Publicar o app no Google Play" [ref=e577] [cursor=pointer]:
+                        - img [aria-hidden] [ref=e580]: chevron_right
+      - generic [ref=e41]:
+        - generic [ref=e581]:
+          - link "Atualizações de produtos" [ref=e582] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=e583] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=e584] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=e585]:
+          - generic [ref=e586]: © 2026 Google
+          - link "Privacidade" [ref=e587] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=e588] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=e589] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/
