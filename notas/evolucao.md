@@ -17,7 +17,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - No login, carregar os laudos antes de avisar o roteador. Avisar com a memória vazia manda para a importação e o Painel fica sem dados enquanto as outras abas guardam o estado antigo.
 - `flutter create . --platforms=web` troca a lista de plataformas no `.metadata`. Conferir se Android e iOS continuam lá.
 - O CMake do Android quebra no caminho com acento (`Área de trabalho`). Build de `flutter build` e `flutter run` passa por `scripts/build_ascii.sh`, que compila em `~/builds/controleSaude` e devolve a pasta `build`. Um atalho não resolve: o CMake usa o caminho real.
-- Conta é Supabase Auth (`public.profiles`). A senha mínima é 6. Desinstalar apaga a sessão, não a conta. Confirmação de e-mail não pôde ser desligada (token sem permissão de auth).
+- Conta é Supabase Auth (`public.profiles`). A senha mínima é 6. Desinstalar apaga a sessão, não a conta. O release não instala por cima do debug: a assinatura é outra e o Android remove o app antigo. Confirmação de e-mail não pôde ser desligada (token sem permissão de auth).
 - No cliente só entra a chave anon. A `service_role` não vai no app, no git nem nas anotações. Quem colou essa chave no chat deve rotacioná-la.
 - `exam_reports` não tem coluna de médico nem de convênio. Isso vai no `notes` em JSON (`doctor`, `insurance`, `unrecognized`). Enviar coluna que não existe derruba o import. `patient_name` e `lab_name` já existem.
 - Laudo antigo não se reescreve sozinho. Mudou o leitor: apagar o item no Histórico e importar o PDF de novo.
@@ -33,7 +33,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Faixa por sexo/idade: o bloco de referência termina no próximo exame (`Resultado:`, `Rótulo:` seguido de número, `Resultados anteriores`). Sem esse corte, a bilirrubina direta pegou a faixa da total.
 - “Inferior ou igual a”, “menor ou igual a” e “≤” são limite máximo. O leitor não entendia “Inferior ou igual a” e caía na faixa errada.
 - Sexo e idade do PDF têm prioridade sobre o perfil. Faixa fixa “Homens” não vale para mulher: sem banda no PDF, o status fica sem avaliação.
-- Não esperar a rede nem o `SharedPreferences` dentro de `main` antes de `runApp`. Enquanto o primeiro quadro não sai, o Android 12 fica no ícone branco e a Play recusa como app que não abre. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
+- Não esperar a rede nem o `SharedPreferences` dentro de `main` antes de `runApp`. Enquanto o primeiro quadro não sai, o Android 12 fica no ícone branco e a Play recusa como app que não abre. `shared_preferences_android` 2.5.0 e 2.5.1 quebram o release: o R8 renomeia `kotlin.coroutines.Continuation` e o app cai ao abrir as preferências. Ficar em 2.5.2 ou mais novo. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
 - O ícone da abertura é o escudo em `ic_launcher_foreground`, fundo `#0A3352`. Recortar em cima do branco e só reduzir deixa uma borda clara. A borda transparente tem que ficar na cor do escudo. O escudo cabe na máscara redonda (diâmetro 72/108); maior que isso, o topo oposto à seta é cortado.
 - No encontro da seta com o escudo sobra um vão branco da página. Esse vão se pinta no verde da seta (por volta de 49, 236, 186). Amostrar o pixel claro ao lado pinta de novo um ciano quase branco.
 - `FilledButton` do tema tem largura infinita (`Size.fromHeight`). Dentro do `trailing` de um `ListTile`, o botão come o cartão e, no debug, o nome some com o erro de largura. Botão de ação fica embaixo do nome, ou num `Expanded`.
@@ -57,7 +57,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral. O endereço publicado é `https://examefacil.pages.dev`.
 - `004_medico_e_acesso` já aplicada: `profiles.role`, CRM, `doctor_directory` e `care_grants`. A chave anon não lê diretório nem convite.
 - Médicos: cada médico é um cartão com nome, CRM e o botão embaixo. A lista recarrega ao reabrir a aba. Consultório: uma coluna, convites só quando existem, pacientes em ordem alfabética com busca.
-- A abertura pinta o logo e o indicador antes de ler o disco e de conectar o Supabase. Pacote na Play: 1.0.1 (versionCode 2), em análise desde 2026-10-25. O 1.0.0 (versionCode 1) foi recusado.
+- A abertura pinta o logo e o indicador antes de ler o disco e de conectar o Supabase. Pacote na Play: 1.0.2 (versionCode 3), em análise desde 2026-10-25. O 1.0.1 quebrava no release por causa do R8. O celular de teste está nessa 1.0.2.
 
 ## Histórico
 
@@ -325,3 +325,44 @@ Deu errado / limite:
 
 - A análise do Google ainda não terminou. A mensagem no console é que a revisão pode achar outro problema. Não há relatório de pré-lançamento: o 1.0.0 foi direto para a produção.
 - O código novo está na árvore de trabalho, ainda sem commit. O `main` local continua atrás do `origin/main`.
+
+### 2026-10-25 — Main publicado e celular na 1.0.1
+
+Pedido: o código já foi commitado, enviado e mergeado no `main`. Atualizar a Play se precisar, e o SM A528B ligado no notebook, e testar.
+
+Deu certo:
+
+- O `origin/main` (`6412697`, merge do `bea614c`) é a 1.0.1 (versionCode 2), o mesmo pacote que já está em “Alterações em análise”. Não houve outro envio.
+- O celular tinha o debug 1.0.0. O release 1.0.1 instalou no `RQCT3055G5X`. O processo desenhou o primeiro quadro cerca de 3 segundos depois de abrir. Não houve crash.
+
+Deu errado / limite:
+
+- A assinatura do release não casa com a do debug. O Android removeu o app antigo, então a sessão local desse celular se foi. A conta continua no Supabase.
+- A tela estava bloqueada. Não deu para ver login, Painel nem as abas. No log, a abertura pulou 339 quadros antes do primeiro desenho.
+
+### 2026-10-25 — Reinstalação no celular
+
+Pedido: pode remover e instalar de novo a versão nova no celular.
+
+Deu certo:
+
+- O app antigo saiu e o release 1.0.1 (versionCode 2) entrou de novo no SM A528B. A tela passou do ícone branco e mostrou o logo do ExameFácil.
+
+Deu errado / limite:
+
+- Em seguida apareceu “Não consegui conectar”. O Wi-Fi do celular resolve `google.com` e `supabase.co`, mas `xdzognwurazkbmckzldf.supabase.co` não existe no DNS público. O banco respondeu que não está acessível. O último log do Postgres, em 24 de out., criou o ponto `restore_xdzognwurazkbmckzldf_2058917011`, sinal de projeto pausado. Sem restaurar o projeto, o login não abre.
+
+### 2026-10-25 — Supabase no ar e release que abre
+
+Pedido: o Supabase voltou; refazer os testes no celular.
+
+Deu certo:
+
+- O endereço do projeto voltou a resolver e a API responde. O banco lista as tabelas de novo.
+- A 1.0.1 de release não conectava em menos de dois segundos. O erro era `NoSuchMethodError` em `SharedPreferencesApiRegistrar.getAll`: o R8 da  `shared_preferences_android` 2.5.0 renomeia `Continuation`. O plugin foi para 2.5.3.
+- A 1.0.2 (versionCode 3) no SM A528B abre a tela de entrada, com “Criar conta” e “Já tenho conta”. O login mostra “Entrar”.
+- A 1.0.1 em análise tinha o mesmo defeito. A análise foi reiniciada com a 1.0.2, lançamento completo. As verificações rápidas da Play ainda estavam rodando ao encerrar.
+
+Deu errado / limite:
+
+- O código desta correção ainda não foi commitado. Sem login no aparelho, Painel, Evolução e Histórico não foram abertos.

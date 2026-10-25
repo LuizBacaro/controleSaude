@@ -1,0 +1,180 @@
+- generic [ref=f25e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f25e3]:
+    - banner [ref=f25e4]:
+      - generic [ref=f25e6]:
+        - link [ref=f25e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=f25e8]
+        - generic [ref=f25e9]:
+          - button "Notificações não lidas Abrir central de notificações" [ref=f25e56]:
+            - img [aria-hidden] [ref=f25e60]: notifications_unread
+            - generic [ref=f25e61]: Notificações não lidas
+          - generic [ref=f25e12]:
+            - button "Trocar de conta de desenvolvedor" [ref=f25e15] [cursor=pointer]:
+              - img [aria-hidden] [ref=f25e17]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=f25e25] [cursor=pointer]'
+    - navigation [ref=f25e64]:
+      - list [ref=f25e65]:
+        - listitem "Página inicial" [ref=f25e68]:
+          - button "Página inicial" [ref=f25e69] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e72]: home
+        - listitem "Gerenciar conta" [ref=f25e75]:
+          - button "Gerenciar conta" [ref=f25e76] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e79]: badge
+        - listitem "Exame Fácil" [ref=f25e82]:
+          - button "Exame Fácil" [ref=f25e85] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e89]: play_prism
+        - listitem "Painel" [ref=f25e92]:
+          - button "Painel" [ref=f25e93] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e96]: dashboard
+        - listitem "Estatísticas" [ref=f25e99]:
+          - button "Estatísticas" [ref=f25e100] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e103]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f25e106]:
+          - button "Visão geral da publicação" [ref=f25e107] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e110]: overview
+        - listitem "Protegido com o Google Play" [ref=f25e113]:
+          - button "Protegido com o Google Play" [ref=f25e114] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e117]: shield
+        - listitem "Testar e lançar" [ref=f25e120]:
+          - button "Testar e lançar" [ref=f25e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e124]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f25e127]:
+          - button "Monitorar e aprimorar" [ref=f25e128] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e131]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f25e134]:
+          - button "Aumentar número de usuários" [ref=f25e135] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e138]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f25e141]:
+          - button "Monetizar com o Google Play" [ref=f25e142] [cursor=pointer]:
+            - img [aria-hidden] [ref=f25e145]: sell
+    - generic [ref=f25e33]:
+      - generic [ref=f25e867]:
+        - generic [ref=f25e874]:
+          - heading "Criar versão de produção" [level=1] [ref=f25e880]
+          - generic [ref=f25e881]: As versões de produção ficam disponíveis para todos os usuários nos países selecionados
+        - generic [ref=f25e886]:
+          - generic [ref=f25e890]:
+            - tablist [ref=f25e891]:
+              - tab "Etapa 1 de 2, Criar versão" [selected] [ref=f25e892]:
+                - generic [ref=f25e893]: "1"
+                - generic [ref=f25e896]: Criar versão
+              - tab "Etapa 2 de 2, Visualizar e confirmar" [disabled] [ref=f25e899]:
+                - generic [ref=f25e900]: "2"
+                - generic [ref=f25e903]: Visualizar e confirmar
+            - generic:
+              - tabpanel
+          - button "Descartar versão de rascunho" [ref=f25e909]
+        - heading "Pacotes de apps" [level=2] [ref=f25e924]
+        - generic [ref=f25e927]:
+          - generic [ref=f25e934]:
+            - generic [ref=f25e937]:
+              - img [aria-hidden] [ref=f25e941]: clock_loader_60
+              - heading "‎2 de 3 melhorias ativas" [level=3] [ref=f25e943]
+            - 'button "Mostrar conteúdo: ‎2 de 3 melhorias ativas" [ref=f25e946] [cursor=pointer]':
+              - img [aria-hidden] [ref=f25e949]: expand_more
+          - generic [ref=f25e952]:
+            - heading "Fazer upload de pacotes de apps" [level=3] [ref=f25e961]
+            - generic [ref=f25e966]:
+              - generic [ref=f25e967]:
+                - alert [ref=f25e970]:
+                  - generic [ref=f25e971]:
+                    - text: Fazendo upload de
+                    - strong [ref=f25e972]: app-release.aab
+                - button "Cancelar" [active] [ref=f25e975]
+              - progressbar "progresso ativo" [ref=f25e980]
+              - generic [ref=f25e982]:
+                - generic [ref=f25e985]:
+                  - img "Aviso" [ref=f25e989]: warning
+                  - generic [ref=f25e990]: Se você sair desta página, o upload será cancelado.
+                - generic [ref=f25e992]: 1.49 MB of 61.7 MB
+        - generic [ref=f25e996]:
+          - generic [ref=f25e999]:
+            - heading "Versão anterior" [level=3] [ref=f25e1005]
+            - generic [ref=f25e1006]: Incluir versões do app da sua versão anterior
+          - generic [ref=f25e1009]:
+            - heading "Incluído" [level=4] [ref=f25e1021]
+            - generic [ref=f25e1028]:
+              - img [aria-hidden] [ref=f25e1032]: rocket_launch
+              - paragraph [ref=f25e1034]: Nenhum pacote de apps da versão anterior será incluído nesta versão
+            - generic [ref=f25e1040]:
+              - heading "Não incluídos" [level=4] [ref=f25e1046]
+              - generic [ref=f25e1047]: Essas versões do app da sua versão anterior não serão incluídas nesta versão
+            - grid "Artefatos" [ref=f25e1058]:
+              - row [ref=f25e1059]:
+                - columnheader "Tipo de arquivo" [ref=f25e1060] [cursor=pointer]
+                - columnheader "Versão" [ref=f25e1061] [cursor=pointer]
+                - columnheader "Níveis de API" [ref=f25e1062] [cursor=pointer]
+                - columnheader "SDK de destino" [ref=f25e1063] [cursor=pointer]
+                - columnheader "Layouts da tela" [ref=f25e1064] [cursor=pointer]
+                - columnheader "Interfaces binárias de aplicativo (ABIs, na sigla em inglês)" [ref=f25e1065] [cursor=pointer]
+                - columnheader "Recursos obrigatórios" [ref=f25e1066] [cursor=pointer]
+                - cell [ref=f25e1067]
+                - cell [ref=f25e1068]
+              - row [ref=f25e1069]:
+                - 'gridcell "App bundle Este artefato (app bundle) tem os seguintes anexos: arquivo de mapeamento ReTrace e símbolos de depuração nativos Melhorado" [ref=f25e1070]':
+                  - generic [ref=f25e1072]:
+                    - generic [ref=f25e1073]: App bundle
+                    - 'img "Este artefato (app bundle) tem os seguintes anexos: arquivo de mapeamento ReTrace e símbolos de depuração nativos" [ref=f25e1077]': attachment
+                    - button "Melhorado" [ref=f25e1078]:
+                      - generic [ref=f25e1080]:
+                        - img [aria-hidden] [ref=f25e1083]: info
+                        - generic [ref=f25e1084]: Melhorado
+                - gridcell "2 (1.0.1)" [ref=f25e1086]
+                - gridcell "24 ou superior" [ref=f25e1088]
+                - gridcell "36" [ref=f25e1090]
+                - gridcell "4" [ref=f25e1092]
+                - gridcell "3" [ref=f25e1094]
+                - gridcell "1" [ref=f25e1096]
+                - gridcell [ref=f25e1098]:
+                  - button "Incluir" [ref=f25e1101]
+                - gridcell [ref=f25e1105]:
+                  - 'button "Mais detalhes sobre Pacote de apps: 2 (1.0.1)" [ref=f25e1107] [cursor=pointer]':
+                    - img [aria-hidden] [ref=f25e1110]: arrow_right_alt
+        - generic [ref=f25e1112]:
+          - heading "Detalhes da versão" [level=2] [ref=f25e1121]
+          - generic [ref=f25e1125]:
+            - generic [ref=f25e1126]:
+              - group "Nome da versão" [ref=f25e1128]:
+                - generic [ref=f25e1129]: Nome da versão *
+                - generic [ref=f25e1133]:
+                  - generic [ref=f25e1134]:
+                    - textbox "Nome da versão" [ref=f25e1136]
+                    - generic [ref=f25e1137]:
+                      - paragraph [aria-hidden] [ref=f25e1138]
+                      - generic [ref=f25e1139]:
+                        - generic [aria-hidden] [ref=f25e1140]: 0 / 50
+                        - generic [ref=f25e1141]: O texto tem 1 caractere de 50
+                  - generic [ref=f25e1142]: Este nome serve para você identificar a versão e não é exibido aos usuários no Google Play. Sugerimos um nome baseado no primeiro pacote de apps ou APK desta versão, mas você pode editá-lo.
+              - group "Notas da versão" [ref=f25e1144]:
+                - generic [ref=f25e1149]:
+                  - button "Copiar de uma versão anterior" [ref=f25e1153]
+                  - generic [ref=f25e1157]:
+                    - textbox "Notas da versão" [ref=f25e1160]: <pt-BR> Insira ou cole aqui as notas da versão no idioma pt-BR </pt-BR>
+                    - paragraph [aria-hidden] [ref=f25e1162]
+                  - generic [ref=f25e1163]: Foram enviadas notas da versão em 0 idioma
+                  - generic [ref=f25e1164]: Explique aos usuários o que está incluído na versão. Insira as notas em cada idioma nas tags correspondentes.
+            - generic [ref=f25e1172]:
+              - button "Cancelar alterações" [disabled] [ref=f25e1174]
+              - button "Salvar como rascunho" [disabled] [ref=f25e1179]
+              - button "Avançar" [disabled] [ref=f25e1184]
+      - generic [ref=f25e41]:
+        - generic [ref=f25e1190]:
+          - link "Atualizações de produtos" [ref=f25e1191] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f25e1192] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f25e1193] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f25e1194]:
+          - generic [ref=f25e1195]: © 2026 Google
+          - link "Privacidade" [ref=f25e1196] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f25e1197] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f25e1198] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/
