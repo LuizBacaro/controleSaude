@@ -1,0 +1,28 @@
+- main [ref=f3e373]:
+  - generic [ref=f3e377]:
+    - heading "URL Configuration" [level=1] [ref=f3e378]
+    - generic [ref=f3e379]: Configure site URL and redirect URLs for authentication
+  - generic [ref=f3e380]:
+    - generic [ref=f3e381]:
+      - heading "Site URL" [level=2] [ref=f3e385]
+      - generic [ref=f3e388]:
+        - generic [ref=f3e391]:
+          - textbox "Site URL" [active] [ref=f3e393]: https://examefacil.pages.dev
+          - generic [ref=f3e394]:
+            - generic [ref=f3e395]: Site URL
+            - generic [ref=f3e397]: Configure the default redirect URL used when a redirect URL is not specified or doesn't match one from the allow list. This value is also exposed as a template variable in the email templates section. Wildcards cannot be used here.
+        - generic [ref=f3e398]:
+          - button "Cancel" [ref=f3e456] [cursor=pointer]
+          - button "Save changes" [ref=f3e458] [cursor=pointer]
+    - generic [ref=f3e399]:
+      - generic [ref=f3e401]:
+        - generic [ref=f3e402]:
+          - heading "Redirect URLs" [level=2] [ref=f3e403]
+          - generic [ref=f3e404]: URLs that auth providers are permitted to redirect to post authentication. Wildcards are allowed, for example, https://*.domain.com
+        - link "Docs" [ref=f3e406] [cursor=pointer]:
+          - /url: https://supabase.com/docs/guides/auth/concepts/redirect-urls
+      - generic [ref=f3e412]:
+        - button "Add URL" [ref=f3e414] [cursor=pointer]
+        - generic [ref=f3e421]:
+          - heading "No Redirect URLs" [level=3] [ref=f3e422]
+          - paragraph [ref=f3e423]: Auth providers may need a URL to redirect back to

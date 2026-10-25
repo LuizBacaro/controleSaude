@@ -1,0 +1,70 @@
+- generic [active] [ref=f30e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f30e3]:
+    - banner [ref=f30e4]:
+      - generic [ref=f30e6]:
+        - link [ref=f30e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=f30e8]
+        - generic [ref=f30e9]:
+          - button "Notificações Abrir central de notificações" [ref=f30e15]:
+            - img [aria-hidden] [ref=f30e19]: notifications
+            - generic [ref=f30e20]: Notificações
+          - generic [ref=f30e24]:
+            - button "Trocar de conta de desenvolvedor" [ref=f30e27] [cursor=pointer]:
+              - img [aria-hidden] [ref=f30e29]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=f30e37] [cursor=pointer]'
+    - navigation [ref=f30e45]:
+      - list [ref=f30e46]:
+        - listitem "Página inicial" [ref=f30e49]:
+          - button "Página inicial" [ref=f30e50] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e53]: home
+        - listitem "Gerenciar conta" [ref=f30e56]:
+          - button "Gerenciar conta" [ref=f30e57] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e60]: badge
+        - listitem "Exame Fácil" [ref=f30e63]:
+          - button "Exame Fácil" [ref=f30e66] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e70]: play_prism
+        - listitem "Painel" [ref=f30e73]:
+          - button "Painel" [ref=f30e74] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e77]: dashboard
+        - listitem "Estatísticas" [ref=f30e80]:
+          - button "Estatísticas" [ref=f30e81] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e84]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f30e87]:
+          - button "Visão geral da publicação" [ref=f30e88] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e91]: overview
+        - listitem "Protegido com o Google Play" [ref=f30e94]:
+          - button "Protegido com o Google Play" [ref=f30e95] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e98]: shield
+        - listitem "Testar e lançar" [ref=f30e101]:
+          - button "Testar e lançar" [ref=f30e102] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e105]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f30e108]:
+          - button "Monitorar e aprimorar" [ref=f30e109] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e112]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f30e115]:
+          - button "Aumentar número de usuários" [ref=f30e116] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e119]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f30e122]:
+          - button "Monetizar com o Google Play" [ref=f30e123] [cursor=pointer]:
+            - img [aria-hidden] [ref=f30e126]: sell
+    - generic [ref=f30e147]:
+      - generic [ref=f30e148]:
+        - link "Atualizações de produtos" [ref=f30e149] [cursor=pointer]:
+          - /url: https://play.google.com/console/about/whats-new/
+        - link "Painel de status" [ref=f30e150] [cursor=pointer]:
+          - /url: https://status.play.google.com/
+        - link "Ajuda" [ref=f30e151] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+      - generic [ref=f30e152]:
+        - generic [ref=f30e153]: © 2026 Google
+        - link "Privacidade" [ref=f30e154] [cursor=pointer]:
+          - /url: https://www.google.com/policies/privacy/
+        - link "Contrato de distribuição do desenvolvedor" [ref=f30e155] [cursor=pointer]:
+          - /url: https://play.google.com/about/developer-distribution-agreement.html
+        - link "Termos de Serviço" [ref=f30e156] [cursor=pointer]:
+          - /url: https://play.google.com/about/console/terms-of-service/

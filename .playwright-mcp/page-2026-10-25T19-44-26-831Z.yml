@@ -1,0 +1,330 @@
+- generic:
+  - generic [aria-hidden]:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#main"
+            - generic: Skip to content
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - paragraph: We are investigating a technical issue
+                    - generic:
+                      - generic: ·
+                      - generic:
+                        - text: Follow the
+                        - link:
+                          - /url: https://status.supabase.com/
+                          - text: status page
+                        - text: for updates
+                - button
+        - generic:
+          - banner:
+            - generic:
+              - generic:
+                - link:
+                  - /url: /dashboard/org/pcrwbmgqmsudgxciqpoi
+                  - generic: Back to organization home
+                - generic:
+                  - generic:
+                    - link:
+                      - /url: /dashboard/org/pcrwbmgqmsudgxciqpoi
+                      - generic: LuizBacaro
+                      - generic: Free
+                    - button
+                  - generic:
+                    - generic:
+                      - link:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf
+                        - generic: ProjetoExames
+                      - button
+                    - generic:
+                      - link:
+                        - /url: /dashboard/project/xdzognwurazkbmckzldf
+                        - generic: main
+                        - generic: Production
+                      - button
+                - generic:
+                  - button:
+                    - generic: Connect
+              - generic:
+                - button:
+                  - generic: Feedback
+                - generic:
+                  - button:
+                    - generic:
+                      - paragraph: Search...
+                    - generic [aria-hidden]:
+                      - generic: Ctrl K
+                  - button:
+                    - generic: Help
+                  - generic:
+                    - button:
+                      - generic: Advisor Center
+                  - button:
+                    - generic: SQL Editor
+                  - button:
+                    - generic: AI Assistant
+                - button
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - navigation:
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/editor
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/sql
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/database/schemas
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/users
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/storage/files
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/functions
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/compute
+                            - generic: Compute
+                            - generic: New
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/realtime/inspector
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/advisors/health
+                            - generic: Advisors
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/observability
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/logs
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/integrations
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /dashboard/project/xdzognwurazkbmckzldf/settings/general
+                - generic:
+                  - generic:
+                    - button
+          - generic:
+            - generic:
+              - generic:
+                - main:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - heading [level=4]: Authentication
+                              - generic:
+                                - generic:
+                                  - menu:
+                                    - list:
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - generic: Manage
+                                            - generic:
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/users
+                                                - menuitem:
+                                                  - generic: Users
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/oauth-apps
+                                                - menuitem:
+                                                  - generic: OAuth Apps
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - generic: Notifications
+                                            - generic:
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/templates
+                                                - menuitem:
+                                                  - generic: Emails
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - generic: Configuration
+                                            - generic:
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/database/policies
+                                                - menuitem:
+                                                  - generic: Policies
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/providers
+                                                - menuitem:
+                                                  - generic: Sign In / Providers
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/passkeys
+                                                - menuitem:
+                                                  - generic:
+                                                    - generic:
+                                                      - generic:
+                                                        - generic: Passkeys
+                                                        - generic: Beta
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/oauth-server
+                                                - menuitem:
+                                                  - generic:
+                                                    - generic:
+                                                      - generic:
+                                                        - generic: OAuth Server
+                                                        - generic: Beta
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/sessions
+                                                - menuitem:
+                                                  - generic: Sessions
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/rate-limits
+                                                - menuitem:
+                                                  - generic: Rate Limits
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/mfa
+                                                - menuitem:
+                                                  - generic: Multi-Factor
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/url-configuration
+                                                - menuitem:
+                                                  - generic: URL Configuration
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/protection
+                                                - menuitem:
+                                                  - generic: Attack Protection
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/hooks
+                                                - menuitem:
+                                                  - generic:
+                                                    - generic:
+                                                      - generic:
+                                                        - generic: Auth Hooks
+                                                        - generic: Beta
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/audit-logs
+                                                - menuitem:
+                                                  - generic: Audit Logs
+                                              - link:
+                                                - /url: /dashboard/project/xdzognwurazkbmckzldf/auth/performance
+                                                - menuitem:
+                                                  - generic: Performance
+                      - separator [disabled]
+                      - generic:
+                        - generic:
+                          - main:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - heading [level=1]: URL Configuration
+                                    - generic: Configure site URL and redirect URLs for authentication
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - generic:
+                                      - heading [level=2]: Site URL
+                                - generic:
+                                  - generic:
+                                    - generic:
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - generic:
+                                              - textbox: https://examefacil.pages.dev
+                                            - generic:
+                                              - generic: Site URL
+                                              - generic: Configure the default redirect URL used when a redirect URL is not specified or doesn't match one from the allow list. This value is also exposed as a template variable in the email templates section. Wildcards cannot be used here.
+                                      - generic:
+                                        - button [disabled]:
+                                          - generic: Save changes
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - generic:
+                                      - heading [level=2]: Redirect URLs
+                                      - generic: URLs that auth providers are permitted to redirect to post authentication. Wildcards are allowed, for example, https://*.domain.com
+                                    - generic:
+                                      - link:
+                                        - /url: https://supabase.com/docs/guides/auth/concepts/redirect-urls
+                                        - generic: Docs
+                                - generic:
+                                  - generic:
+                                    - generic:
+                                      - button:
+                                        - generic: Add URL
+                                    - generic:
+                                      - generic:
+                                        - generic:
+                                          - heading [level=3]: No Redirect URLs
+                                          - paragraph: Auth providers may need a URL to redirect back to
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - button
+                - generic:
+                  - generic:
+                    - generic: Preview
+                    - generic:
+                      - generic:
+                        - paragraph: User growth
+                        - paragraph: Track how your user base is trending.
+                      - generic:
+                        - paragraph:
+                          - generic: select
+                          - generic: date_trunc('week', last_sign_in_at) as week,
+                          - generic: count(distinct id) as active_users
+                  - generic:
+                    - paragraph: Explorer & Notebooks
+                    - paragraph: New unified workspace for querying data and chatting with Assistant.
+                  - generic:
+                    - button:
+                      - generic: Enable Explorer
+  - generic:
+    - alert: URL Configuration | Authentication | Supabase
+  - dialog [ref=f3e462]:
+    - generic [ref=f3e463]:
+      - heading "Add new redirect URLs" [level=2] [ref=f3e464]
+      - paragraph [ref=f3e465]: This will add a URL to a list of allowed URLs that can interact with your Authentication services for this project.
+    - generic [ref=f3e467]:
+      - generic [ref=f3e468]:
+        - generic [ref=f3e469]:
+          - generic [ref=f3e470]: URL
+          - paragraph [ref=f3e471]: Paste multiple URLs at once — one per line
+        - generic [ref=f3e480]:
+          - generic [ref=f3e482]:
+            - textbox "https://mydomain.com" [active] [ref=f3e484]
+            - button "Remove URL" [disabled]
+          - button "Add URL" [ref=f3e486] [cursor=pointer]
+      - button "Save URLs" [ref=f3e491] [cursor=pointer]
+    - button "Close" [ref=f3e493]

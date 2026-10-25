@@ -17,7 +17,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - No login, carregar os laudos antes de avisar o roteador. Avisar com a memória vazia manda para a importação e o Painel fica sem dados enquanto as outras abas guardam o estado antigo.
 - `flutter create . --platforms=web` troca a lista de plataformas no `.metadata`. Conferir se Android e iOS continuam lá.
 - O CMake do Android quebra no caminho com acento (`Área de trabalho`). Build de `flutter build` e `flutter run` passa por `scripts/build_ascii.sh`, que compila em `~/builds/controleSaude` e devolve a pasta `build`. Um atalho não resolve: o CMake usa o caminho real.
-- Conta é Supabase Auth (`public.profiles`). A senha mínima é 6. Desinstalar apaga a sessão, não a conta. O release não instala por cima do debug: a assinatura é outra e o Android remove o app antigo. Confirmação de e-mail não pôde ser desligada (token sem permissão de auth).
+- Conta é Supabase Auth (`public.profiles`). A senha mínima é 6. Desinstalar apaga a sessão, não a conta. O release não instala por cima do debug: a assinatura é outra e o Android remove o app antigo. Confirmação de e-mail não pôde ser desligada (token sem permissão de auth). A Site URL do Auth não pode voltar para `localhost`: o link de confirmação deixa de abrir `https://examefacil.pages.dev`. O redirecionamento permitido é `https://examefacil.pages.dev/**`.
 - No cliente só entra a chave anon. A `service_role` não vai no app, no git nem nas anotações. Quem colou essa chave no chat deve rotacioná-la.
 - `exam_reports` não tem coluna de médico nem de convênio. Isso vai no `notes` em JSON (`doctor`, `insurance`, `unrecognized`). Enviar coluna que não existe derruba o import. `patient_name` e `lab_name` já existem.
 - Laudo antigo não se reescreve sozinho. Mudou o leitor: apagar o item no Histórico e importar o PDF de novo.
@@ -54,7 +54,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Ícone: fundo `#0A3352`, logo em `assets/brand/logo.png`.
 - Cadastro pergunta primeiro se a conta é de paciente ou de médico. Médico informa UF e número do CRM. Conta antiga continua paciente.
 - Paciente convida em Médicos. Médico aceita no Consultório e abre a Evolução daquele paciente, só leitura. Sem aceite, o laudo não abre.
-- O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral. O endereço publicado é `https://examefacil.pages.dev`.
+- O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral. O endereço publicado é `https://examefacil.pages.dev`. A Site URL do Auth é esse endereço, e o redirecionamento permitido é `https://examefacil.pages.dev/**`.
 - `004_medico_e_acesso` já aplicada: `profiles.role`, CRM, `doctor_directory` e `care_grants`. A chave anon não lê diretório nem convite.
 - Médicos: cada médico é um cartão com nome, CRM e o botão embaixo. A lista recarrega ao reabrir a aba. Consultório: uma coluna, convites só quando existem, pacientes em ordem alfabética com busca.
 - A abertura pinta o logo e o indicador antes de ler o disco e de conectar o Supabase. Pacote na Play: 1.0.2 (versionCode 3), em análise desde 2026-10-25. O 1.0.1 quebrava no release por causa do R8. O celular de teste está nessa 1.0.2.
@@ -366,3 +366,28 @@ Deu certo:
 Deu errado / limite:
 
 - O código desta correção ainda não foi commitado. Sem login no aparelho, Painel, Evolução e Histórico não foram abertos.
+
+### 2026-10-25 — Main e prova da conta de revisão
+
+Pedido: o código já foi commitado, enviado e mergeado no `main`. Seguir com os próximos passos.
+
+Deu certo:
+
+- O `origin/main` (`fb19d4c`) é a 1.0.2 com `shared_preferences_android` 2.5.3, o mesmo pacote que a Play já tem em “Alterações em análise”. Não houve outro envio.
+- No SM A528B, a conta de revisão de paciente entrou. O Painel mostra “Olá, Revisao Play”, coleta de 03/08/2026, 38 marcadores e 5 fora da faixa. Evolução lista os marcadores. Histórico tem o laudo Unilab `exame-exemplo.pdf`. Médicos mostra Mariana (CRM/SP 123456) e Revisao Medico. Perfil mostra sexo masculino, nascimento 15/01/1990 e 36 anos.
+
+Deu errado / limite:
+
+- A Site URL do Supabase continua sem o endereço `https://examefacil.pages.dev`. O painel do Supabase pediu login e esta sessão não entrou. Sem isso, o link de confirmação de uma conta nova não abre o site.
+
+### 2026-10-25 — Site URL do Auth no endereço publicado
+
+Pedido: gravar no Supabase a Site URL `https://examefacil.pages.dev` e o redirecionamento `https://examefacil.pages.dev/**`.
+
+Deu certo:
+
+- Na tela Authentication → URL Configuration do projeto `xdzognwurazkbmckzldf`, a Site URL saiu de `http://localhost:3000` para `https://examefacil.pages.dev`. A lista de Redirect URLs, que estava vazia, ficou com `https://examefacil.pages.dev/**`. Os dois salvamentos responderam 200 e a tela passou a mostrar esses valores.
+
+Deu errado / limite:
+
+- Conta nova ainda não foi criada para ver o e-mail de confirmação abrir o site. As contas que já confirmaram o e-mail não dependem dessa troca.
