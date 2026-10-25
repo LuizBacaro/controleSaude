@@ -1,0 +1,35 @@
+- generic [active] [ref=f12e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f12e3]:
+    - banner [ref=f12e4]:
+      - generic [ref=f12e6]:
+        - link [ref=f12e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=f12e8]
+        - generic [ref=f12e12]:
+          - button "Trocar de conta de desenvolvedor" [ref=f12e15] [cursor=pointer]:
+            - img [aria-hidden] [ref=f12e17]: more_vert
+          - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=f12e25] [cursor=pointer]'
+    - generic [ref=f12e31]:
+      - generic:
+        - navigation:
+          - list
+    - generic [ref=f12e41]:
+      - generic [ref=f12e42]:
+        - link "Atualizações de produtos" [ref=f12e43] [cursor=pointer]:
+          - /url: https://play.google.com/console/about/whats-new/
+        - link "Painel de status" [ref=f12e44] [cursor=pointer]:
+          - /url: https://status.play.google.com/
+        - link "Ajuda" [ref=f12e45] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/help-and-support
+      - generic [ref=f12e46]:
+        - generic [ref=f12e47]: © 2026 Google
+        - link "Privacidade" [ref=f12e48] [cursor=pointer]:
+          - /url: https://www.google.com/policies/privacy/
+        - link "Contrato de distribuição do desenvolvedor" [ref=f12e49] [cursor=pointer]:
+          - /url: https://play.google.com/about/developer-distribution-agreement.html
+        - link "Termos de Serviço" [ref=f12e50] [cursor=pointer]:
+          - /url: https://play.google.com/about/console/terms-of-service/

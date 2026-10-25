@@ -1,0 +1,80 @@
+- generic [active] [ref=f5e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f5e3]:
+    - banner [ref=f5e4]:
+      - generic [ref=f5e6]:
+        - link [ref=f5e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=f5e8]
+        - generic [ref=f5e9]:
+          - button "Notificações não lidas Abrir central de notificações" [ref=f5e56]:
+            - img [aria-hidden] [ref=f5e60]: notifications_unread
+            - generic [ref=f5e61]: Notificações não lidas
+          - generic [ref=f5e12]:
+            - button "Trocar de conta de desenvolvedor" [ref=f5e15] [cursor=pointer]:
+              - img [aria-hidden] [ref=f5e17]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=f5e25] [cursor=pointer]'
+    - navigation [ref=f5e64]:
+      - list [ref=f5e65]:
+        - listitem "Página inicial" [ref=f5e68]:
+          - button "Página inicial" [ref=f5e69] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e72]: home
+        - listitem "Gerenciar conta" [ref=f5e75]:
+          - button "Gerenciar conta" [ref=f5e76] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e79]: badge
+        - listitem "Exame Fácil" [ref=f5e82]:
+          - button "Exame Fácil" [ref=f5e85] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e89]: play_prism
+        - listitem "Painel" [ref=f5e92]:
+          - button "Painel" [ref=f5e93] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e96]: dashboard
+        - listitem "Estatísticas" [ref=f5e99]:
+          - button "Estatísticas" [ref=f5e100] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e103]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f5e106]:
+          - button "Visão geral da publicação" [ref=f5e107] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e110]: overview
+        - listitem "Protegido com o Google Play" [ref=f5e113]:
+          - button "Protegido com o Google Play" [ref=f5e114] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e117]: shield
+        - listitem "Testar e lançar" [ref=f5e120]:
+          - button "Testar e lançar" [ref=f5e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e124]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f5e127]:
+          - button "Monitorar e aprimorar" [ref=f5e128] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e131]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f5e134]:
+          - button "Aumentar número de usuários" [ref=f5e135] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e138]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f5e141]:
+          - button "Monetizar com o Google Play" [ref=f5e142] [cursor=pointer]:
+            - img [aria-hidden] [ref=f5e145]: sell
+    - generic [ref=f5e33]:
+      - generic [ref=f5e150]:
+        - heading "Relatório de pré-lançamento" [level=1] [ref=f5e163]
+        - generic [ref=f5e169]:
+          - heading "Fazer upload de artefatos para gerar relatórios de pré-lançamento" [level=2] [ref=f5e178]
+          - paragraph [ref=f5e179]:
+            - generic [ref=f5e180]: Os relatórios de pré-lançamento são gerados automaticamente quando você faz upload de artefatos para qualquer faixa. Com eles, você pode prever e corrigir problemas no app antes que eles cheguem aos usuários. Isso inclui problemas de estabilidade, desempenho e acessibilidade, além de vulnerabilidades na segurança e questões de privacidade. Para testar o app e gerar um relatório de pré-lançamento, sugerimos fazer upload de um pacote para sua faixa de teste fechado.
+          - link "Saiba mais" [ref=f5e183] [cursor=pointer]:
+            - /url: https://support.google.com/googleplay/android-developer/answer/7159011
+            - img [aria-hidden] [ref=f5e188]: open_in_new
+      - generic [ref=f5e41]:
+        - generic [ref=f5e191]:
+          - link "Atualizações de produtos" [ref=f5e192] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f5e193] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f5e194] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f5e195]:
+          - generic [ref=f5e196]: © 2026 Google
+          - link "Privacidade" [ref=f5e197] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f5e198] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f5e199] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/

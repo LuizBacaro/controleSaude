@@ -33,7 +33,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - Faixa por sexo/idade: o bloco de referência termina no próximo exame (`Resultado:`, `Rótulo:` seguido de número, `Resultados anteriores`). Sem esse corte, a bilirrubina direta pegou a faixa da total.
 - “Inferior ou igual a”, “menor ou igual a” e “≤” são limite máximo. O leitor não entendia “Inferior ou igual a” e caía na faixa errada.
 - Sexo e idade do PDF têm prioridade sobre o perfil. Faixa fixa “Homens” não vale para mulher: sem banda no PDF, o status fica sem avaliação.
-- Não esperar a rede dentro de `main` antes de `runApp`. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
+- Não esperar a rede nem o `SharedPreferences` dentro de `main` antes de `runApp`. Enquanto o primeiro quadro não sai, o Android 12 fica no ícone branco e a Play recusa como app que não abre. A Syncfusion só carrega na importação do PDF (`deferred`). As abas Evolução, Histórico e Perfil não montam junto com o Painel.
 - O ícone da abertura é o escudo em `ic_launcher_foreground`, fundo `#0A3352`. Recortar em cima do branco e só reduzir deixa uma borda clara. A borda transparente tem que ficar na cor do escudo. O escudo cabe na máscara redonda (diâmetro 72/108); maior que isso, o topo oposto à seta é cortado.
 - No encontro da seta com o escudo sobra um vão branco da página. Esse vão se pinta no verde da seta (por volta de 49, 236, 186). Amostrar o pixel claro ao lado pinta de novo um ciano quase branco.
 - `FilledButton` do tema tem largura infinita (`Size.fromHeight`). Dentro do `trailing` de um `ListTile`, o botão come o cartão e, no debug, o nome some com o erro de largura. Botão de ação fica embaixo do nome, ou num `Expanded`.
@@ -57,6 +57,7 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral. O endereço publicado é `https://examefacil.pages.dev`.
 - `004_medico_e_acesso` já aplicada: `profiles.role`, CRM, `doctor_directory` e `care_grants`. A chave anon não lê diretório nem convite.
 - Médicos: cada médico é um cartão com nome, CRM e o botão embaixo. A lista recarrega ao reabrir a aba. Consultório: uma coluna, convites só quando existem, pacientes em ordem alfabética com busca.
+- A abertura pinta o logo e o indicador antes de ler o disco e de conectar o Supabase. Pacote na Play: 1.0.1 (versionCode 2), em análise desde 2026-10-25. O 1.0.0 (versionCode 1) foi recusado.
 
 ## Histórico
 
@@ -309,3 +310,18 @@ Deu certo:
 - O convite ficou pendente no banco, do paciente Luiz Salvador para a médica Mariana.
 
 Ainda exige ação de quem usa: entrar na conta da Mariana e aceitar o convite no Consultório. Sem a senha dela, o aceite não foi feito daqui.
+
+### 2026-10-25 — Rejeição da Play e versão 1.0.1
+
+Pedido: ver no Play Console por que o Exame Fácil foi rejeitado por política e publicar a última versão do `main`.
+
+Deu certo:
+
+- A conta `luizsalvador31@gmail.com` abriu o console. O problema é um só: política de recursos corrompidos, “o app não abre ou não carrega”, na experiência do app, versionCode 1 (1.0.0), recusado em 21 de out. de 2026. O app saiu da loja. A evidência é a abertura do Android: fundo branco e só o ícone, sem a tela do Flutter.
+- O `origin/main` (`81efd76`) é o mesmo código do 1.0.0. A Play não aceita de novo o versionCode 1. O `main` esperava o `SharedPreferences` antes do `runApp`, então o primeiro quadro não saía.
+- O `runApp` agora acontece na hora. Disco e Supabase entram depois, com a tela do logo. Pacote 1.0.1 (versionCode 2), assinado com a chave de upload, subiu na produção com lançamento completo. A visão geral da publicação ficou em “Alterações em análise”, junto com a ficha que já estava pronta (Brasil, página da loja, privacidade, saúde, segurança dos dados).
+
+Deu errado / limite:
+
+- A análise do Google ainda não terminou. A mensagem no console é que a revisão pode achar outro problema. Não há relatório de pré-lançamento: o 1.0.0 foi direto para a produção.
+- O código novo está na árvore de trabalho, ainda sem commit. O `main` local continua atrás do `origin/main`.

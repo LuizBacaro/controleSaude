@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
 import 'bootstrap.dart';
+import 'core/providers.dart';
 import 'core/theme/app_colors.dart';
 
-/// Pinta uma tela leve e só então fala com o Supabase.
+/// Pinta uma tela leve e só então fala com o disco e o Supabase.
 ///
 /// Antes, [main] esperava a rede para chamar `runApp`. No celular isso
 /// deixava a janela preta por vários segundos e o sistema tratava o app
-/// como travado.
+/// como travado. A abertura do Android 12 fica no ícone branco enquanto
+/// o primeiro quadro não sai; por isso a espera começa depois desse quadro.
 class BootGate extends StatefulWidget {
   const BootGate({super.key});
 
@@ -18,7 +21,7 @@ class BootGate extends StatefulWidget {
 }
 
 class _BootGateState extends State<BootGate> {
-  var _ready = false;
+  ProviderContainer? _container;
   var _failed = false;
 
   @override
@@ -27,23 +30,52 @@ class _BootGateState extends State<BootGate> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _open());
   }
 
+  @override
+  void dispose() {
+    _container?.dispose();
+    super.dispose();
+  }
+
   Future<void> _open() async {
     if (mounted) setState(() => _failed = false);
+    ProviderContainer? created;
     try {
+      final prefs = await SharedPreferences.getInstance().timeout(
+        const Duration(seconds: 8),
+      );
+      created = ProviderContainer(
+        overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+      );
       await openServices().timeout(const Duration(seconds: 15));
+      await loadSession(created).timeout(
+        const Duration(seconds: 12),
+        onTimeout: () {},
+      );
+      if (!mounted) {
+        created.dispose();
+        return;
+      }
+      final previous = _container;
+      setState(() {
+        _container = created;
+        _failed = false;
+      });
+      if (previous != null && previous != created) previous.dispose();
     } catch (_) {
+      created?.dispose();
       if (mounted) setState(() => _failed = true);
-      return;
     }
-    if (!mounted) return;
-    await loadSession(ProviderScope.containerOf(context, listen: false))
-        .timeout(const Duration(seconds: 12), onTimeout: () {});
-    if (mounted) setState(() => _ready = true);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_ready) return const ControleSaudeApp();
+    final container = _container;
+    if (container != null && !_failed) {
+      return UncontrolledProviderScope(
+        container: container,
+        child: const ControleSaudeApp(),
+      );
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

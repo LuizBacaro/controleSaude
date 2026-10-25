@@ -1,0 +1,152 @@
+- generic [ref=f10e4]:
+  - generic:
+    - generic "Página de e-mail aberta"
+  - generic [ref=f10e10]:
+    - generic [ref=f10e11]: "Action Required: Your app is not compliant with Google Play Policies (Exame Fácil)"
+    - generic [ref=f10e12]: "Para: contato@gostartlab.com"
+    - generic [ref=f10e13]: Este e-mail foi enviado ao proprietário da conta
+    - generic [ref=f10e15]:
+      - table [ref=f10e16]:
+        - rowgroup [ref=f10e17]:
+          - row [ref=f10e18]:
+            - cell [ref=f10e19]:
+              - generic [ref=f10e22]: Developer update
+      - table [ref=f10e23]:
+        - rowgroup [ref=f10e24]:
+          - row [ref=f10e25]:
+            - cell [ref=f10e26]:
+              - table [ref=f10e27]:
+                - rowgroup [ref=f10e28]:
+                  - row [ref=f10e29]:
+                    - cell [ref=f10e30]:
+                      - heading [level=3] [ref=f10e31]: Hi Developers at GoStart Lab,
+                      - paragraph [ref=f10e32]: When reviewing your app, Exame Fácil (br.com.examefacil.laudos), we found that it doesn’t comply with one or more of our Google Play policies, which has affected your app’s status.
+                      - generic [ref=f10e33]:
+                        - table [ref=f10e34]:
+                          - rowgroup [ref=f10e35]:
+                            - row [ref=f10e36]:
+                              - cell [ref=f10e37]
+                              - cell [ref=f10e39]:
+                                - heading [level=3] [ref=f10e40]: "App Status: Rejected"
+                                - paragraph [ref=f10e41]: Changes to your app weren’t published because of the policy issue(s) listed below. If you have an older version of your app, it will still be available on Google Play. You can learn more about this issue and how to fix it on Play Console.
+                                - heading [level=3] [ref=f10e42]:
+                                  - link [ref=f10e43] [cursor=pointer]:
+                                    - /url: http://play.google.com/console/developers/6637139677623017493/app/4975687011100372533/policy-center?emailButtonOrigin=1
+                                    - text: Go to Play Console
+                        - table [ref=f10e44]:
+                          - rowgroup [ref=f10e45]:
+                            - row [ref=f10e46]:
+                              - cell [ref=f10e47]
+                              - cell [ref=f10e49]:
+                                - heading [level=3] [ref=f10e50]: "Issue found: Violation of Broken Functionality policy"
+                                - paragraph [ref=f10e51]: "Your app has the following functionality issue(s):"
+                                - list [ref=f10e52]:
+                                  - listitem [ref=f10e53]:
+                                    - strong [ref=f10e54]: Problems loading
+                                    - text: Your app does not open or load
+                                - paragraph [ref=f10e55]: Issue details
+                                - paragraph [ref=f10e56]: "We found an issue in the following area(s):"
+                                - list [ref=f10e57]:
+                                  - listitem [ref=f10e58]:
+                                    - generic [ref=f10e59]: "Version code 1: In-app experience"
+                                    - text: ": Please see attached screenshot IN_APP_EXPERIENCE-5282.png"
+                                - paragraph [ref=f10e60]:
+                                  - strong [ref=f10e61]: "To resolve this issue, follow these steps:"
+                                - list [ref=f10e62]:
+                                  - listitem [ref=f10e63]: Fix all broken experiences within your app that are listed above, as well as any other issues identified via user feedback.
+                                  - listitem [ref=f10e64]:
+                                    - text: "Utilize Android Vitals and Test Tracks: Use"
+                                    - link [ref=f10e65] [cursor=pointer]:
+                                      - /url: https://play.google.com/console/developers/app/vitals/metrics/overview
+                                      - text: Android Vitals
+                                    - text: to diagnose stability and quality issues. Make use of test tracks to thoroughly test the app's functionality before submission.
+                                  - listitem [ref=f10e66]: "Resubmit: After fixing all issues, submit a new version of the app for review through your Play Developer Console. (Note: An appeal is not necessary for resubmission of a minor violation.)"
+                                - heading [level=3] [ref=f10e67]:
+                                  - text: About the
+                                  - link [ref=f10e68] [cursor=pointer]:
+                                    - /url: https://support.google.com/googleplay/android-developer/answer/9898783#broken_functionality
+                                    - text: Broken Functionality policy
+                                - text: "We don't allow apps that crash, force close, freeze, or otherwise function abnormally. Below are a few examples of common violations:"
+                                - list [ref=f10e69]:
+                                  - listitem [ref=f10e70]: Apps that don't install
+                                  - listitem [ref=f10e71]: Apps that install, but don't load
+                                  - listitem [ref=f10e72]: Apps that load, but are not responsive
+                                - paragraph [ref=f10e73]:
+                                  - text: You can learn more about our policies by watching this video on
+                                  - link [ref=f10e74] [cursor=pointer]:
+                                    - /url: https://www.youtube.com/watch?v=62e4GGctnvY&list=PLWz5rJ2EKKc_ElGrEtiEXc83m1SeYu3-Q
+                                    - text: tips to help you stay on the right side of Google Play policy
+                                  - text: .
+                                - paragraph [ref=f10e75]: Before you send your app for review, make sure that it complies with all Developer Program policies. If you repeatedly violate our policies, you may be prevented from publishing updates to your app, or your app may be suspended.
+                                - paragraph [ref=f10e76]:
+                                  - text: For more information about how to avoid policy violations, read
+                                  - link [ref=f10e77] [cursor=pointer]:
+                                    - /url: https://support.google.com/googleplay/android-developer/answer/15191715?
+                                    - text: Helpful tips to get your app published on Google Play
+                                  - text: .
+                                - generic [ref=f10e78]:
+                                  - text: Visit
+                                  - link [ref=f10e79] [cursor=pointer]:
+                                    - /url: https://playacademy.exceedlms.com/student/activity/65186-minimum-and-broken-functionality-spam?utm_source=enforcementemail&utm_medium=email&utm_campaign=policy-spam-minimiumfunctionality&utm_content=policy-spam-minimiumfunctionality&use_locale=true
+                                    - text: Google Play’s Academy for App Success
+                                  - text: to get contextual learning on this Google Play policy.
+                      - heading [level=3] [ref=f10e80]: Submit an Appeal
+                      - paragraph [ref=f10e81]: If you believe that our decision is incorrect, you can submit an appeal. It may take up to 7 days to receive a response, but it occasionally takes longer.
+                      - paragraph [ref=f10e82]:
+                        - link [ref=f10e83] [cursor=pointer]:
+                          - /url: https://play.google.com/console/appealsForm?ts=SR&aid=br.com.examefacil.laudos
+                          - text: Submit an appeal
+                      - paragraph [ref=f10e84]:
+                        - text: If you’ve fixed this issue, send changes to your app for review on the
+                        - link [ref=f10e85] [cursor=pointer]:
+                          - /url: https://play.google.com/console/u/0/developers/app/publishing
+                          - text: Publishing overview
+                        - text: page in Play Console.
+                      - heading [level=3] [ref=f10e86]: Learn More
+                      - paragraph [ref=f10e87]:
+                        - text: To learn more about the enforcement process,
+                        - link [ref=f10e88] [cursor=pointer]:
+                          - /url: https://support.google.com/googleplay/android-developer/answer/9899234/
+                          - text: visit the Help Center
+                        - text: ". For the latest updates on Google Play’s policies, watch Android Developers’ #"
+                        - link [ref=f10e89] [cursor=pointer]:
+                          - /url: https://goo.gle/policybytes326
+                          - text: PolicyBytes
+                        - text: . Choose your preferred language by changing the audio track in the settings.
+                      - paragraph [ref=f10e90]: Thanks for your continued support in helping to make Google Play a positive experience for both developers and consumers.
+                      - paragraph [ref=f10e91]:
+                        - text: Help us improve the Google Play experience by
+                        - emphasis [ref=f10e92]: completing our
+                        - link [ref=f10e93] [cursor=pointer]:
+                          - /url: https://docs.google.com/forms/d/e/1FAIpQLScYSJsd99JFYRmybEPSdw508BVZwn2QS_tIGWx8PSbEiQgBfQ/viewform?entry.513582582=cp:br.com.examefacil.laudos:6585990704951377241
+                          - emphasis [ref=f10e94]: two question survey
+                        - emphasis [ref=f10e95]: .
+                  - row [ref=f10e96]:
+                    - cell [ref=f10e97]:
+                      - heading [level=3] [ref=f10e98]: The Google Play Team
+                  - row [ref=f10e99]:
+                    - cell [ref=f10e100]:
+                      - paragraph [ref=f10e101]:
+                        - link [ref=f10e102] [cursor=pointer]:
+                          - /url: https://playacademy.exceedlms.com/student/collection/263275&utm_source=hc_promo&utm_medium=banner&utm_campaign=policyemailfooter&use_locale=true
+                  - row [ref=f10e104]:
+                    - cell [ref=f10e105]:
+                      - paragraph [ref=f10e106]: © 2026 Google LLC 1600 Amphitheatre Parkway, Mountain View, CA 94043
+                      - paragraph [ref=f10e107]:
+                        - text: Click
+                        - link [ref=f10e108] [cursor=pointer]:
+                          - /url: https://play.google.com/console/developers/preferences?donotshowonboarding
+                          - text: here
+                        - text: to configure your notification preferences.
+                      - paragraph [ref=f10e109]: This message was sent to inform you about important updates to your Google Play developer account.
+    - generic [ref=f10e110]:
+      - generic [ref=f10e111]:
+        - generic [ref=f10e112]: 1 anexo
+        - button "Clique para fazer download do anexo" [ref=f10e114]:
+          - img [aria-hidden] [ref=f10e118]: download
+          - generic [ref=f10e119]: Baixar o anexo
+      - generic [ref=f10e121]:
+        - link [ref=f10e122] [cursor=pointer]:
+          - /url: https://lh3.googleusercontent.com/N1qWqe-GG6jzQgiEaMyZPw6mmsRKLabVLLIESD9xkGtaVbovc20I4S2Hk2872-A0Z0M=s1048
+          - img "IN_APP_EXPERIENCE-5282.png" [ref=f10e123]
+        - paragraph [ref=f10e124]: IN_APP_EXPERIENCE-5282.png

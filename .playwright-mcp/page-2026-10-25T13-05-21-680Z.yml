@@ -1,0 +1,255 @@
+- generic [active] [ref=f16e1]:
+  - generic:
+    - generic:
+      - progressbar [aria-hidden]
+      - generic: Carregando o Google Play Console
+  - generic [ref=f16e3]:
+    - banner [ref=f16e4]:
+      - generic [ref=f16e6]:
+        - link [ref=f16e7] [cursor=pointer]:
+          - /url: /console/u/0/developers/6637139677623017493/home
+          - button "Logotipo do Google Play Console" [ref=f16e8]
+        - generic [ref=f16e9]:
+          - button "Notificações não lidas Abrir central de notificações" [ref=f16e56]:
+            - img [aria-hidden] [ref=f16e60]: notifications_unread
+            - generic [ref=f16e61]: Notificações não lidas
+          - generic [ref=f16e12]:
+            - button "Trocar de conta de desenvolvedor" [ref=f16e15] [cursor=pointer]:
+              - img [aria-hidden] [ref=f16e17]: more_vert
+            - 'button "Conta do Google: luiz Salvador (luizsalvador31@gmail.com)" [ref=f16e25] [cursor=pointer]'
+    - navigation [ref=f16e64]:
+      - list [ref=f16e65]:
+        - listitem "Página inicial" [ref=f16e68]:
+          - button "Página inicial" [ref=f16e69] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e72]: home
+        - listitem "Gerenciar conta" [ref=f16e75]:
+          - button "Gerenciar conta" [ref=f16e76] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e79]: badge
+        - listitem "Exame Fácil" [ref=f16e82]:
+          - button "Exame Fácil" [ref=f16e85] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e89]: play_prism
+        - listitem "Painel" [ref=f16e92]:
+          - button "Painel" [ref=f16e93] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e96]: dashboard
+        - listitem "Estatísticas" [ref=f16e99]:
+          - button "Estatísticas" [ref=f16e100] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e103]: bar_chart
+        - listitem "Visão geral da publicação" [ref=f16e106]:
+          - button "Visão geral da publicação" [ref=f16e107] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e110]: overview
+        - listitem "Protegido com o Google Play" [ref=f16e113]:
+          - button "Protegido com o Google Play" [ref=f16e114] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e117]: shield
+        - listitem "Testar e lançar" [ref=f16e120]:
+          - button "Testar e lançar" [ref=f16e121] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e124]: rocket_launch
+        - listitem "Monitorar e aprimorar" [ref=f16e127]:
+          - button "Monitorar e aprimorar" [ref=f16e128] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e131]: vital_signs
+        - listitem "Aumentar número de usuários" [ref=f16e134]:
+          - button "Aumentar número de usuários" [ref=f16e135] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e138]: finance_mode
+        - listitem "Monetizar com o Google Play" [ref=f16e141]:
+          - button "Monetizar com o Google Play" [ref=f16e142] [cursor=pointer]:
+            - img [aria-hidden] [ref=f16e145]: sell
+    - generic [ref=f16e33]:
+      - generic [ref=f16e149]:
+        - generic [ref=f16e157]:
+          - generic [ref=f16e158]:
+            - heading "Produção" [level=1] [ref=f16e163]
+            - generic [ref=f16e167]:
+              - button "Selecionar formatos. Smartphones, Tablets, Desktop (Googlebook OS, ChromeOS), Android XR" [ref=f16e172] [cursor=pointer]:
+                - generic [ref=f16e173]:
+                  - img [aria-hidden] [ref=f16e177]: phonelink
+                  - generic [ref=f16e178]: Smartphones, Tablets, Desktop (Googlebook OS, ChromeOS), Android XR
+                - img [aria-hidden] [ref=f16e180]: arrow_drop_down
+              - button "Criar nova versão" [ref=f16e181]
+          - generic [ref=f16e191]:
+            - text: Crie e gerencie versões de produção para disponibilizar o app a todos os usuários nos países selecionados.
+            - link "Saiba mais sobre a página Produção (abre em uma nova guia)" [ref=f16e193] [cursor=pointer]:
+              - /url: https://play.google.com/console/about/publicreleases
+              - text: Saiba mais
+        - generic [ref=f16e201]:
+          - heading "Resumo da faixa (Smartphones, Tablets, Desktop, Android XR)" [level=4] [ref=f16e207]
+          - list [ref=f16e210]:
+            - listitem [ref=f16e211]: Ativo
+            - listitem [ref=f16e212]: Versão 1.0.0 (1) recusada
+            - listitem [ref=f16e213]: 1 país / região
+            - listitem [ref=f16e214]: 0 instalações
+        - tablist [ref=f16e221]:
+          - tab "Painel da versão" [selected] [ref=f16e222] [cursor=pointer]
+          - tab "Versões" [ref=f16e225] [cursor=pointer]
+          - tab "Países / regiões" [ref=f16e228] [cursor=pointer]
+        - generic [ref=f16e233]:
+          - generic [ref=f16e235]:
+            - heading "Painel da versão" [level=2] [ref=f16e244]
+            - generic [ref=f16e248]:
+              - 'button "Versão: Mais recente (1.0.0 (1))" [ref=f16e253]':
+                - img [aria-hidden] [ref=f16e258]: arrow_drop_down
+              - 'button "Comparar com: Todas as versões" [ref=f16e263]':
+                - img [aria-hidden] [ref=f16e268]: arrow_drop_down
+              - 'button "Granularidade: Diária" [ref=f16e271] [cursor=pointer]':
+                - img [aria-hidden] [ref=f16e276]: arrow_drop_down
+          - generic [ref=f16e279]:
+            - generic [ref=f16e283]:
+              - heading "Estabilidade da versão" [level=2] [ref=f16e288]
+              - generic [ref=f16e295]:
+                - button "Recolher seção" [ref=f16e297] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e300]: view_agenda
+                - button "Recolher seção" [ref=f16e302] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e305]: grid_view
+            - generic [ref=f16e307]:
+              - generic [ref=f16e308]:
+                - generic [ref=f16e312]:
+                  - generic [ref=f16e315]:
+                    - button "Falhas percebidas pelo usuário" [ref=f16e319]
+                    - generic [ref=f16e320]: "-"
+                  - generic [ref=f16e331]:
+                    - img "Gráfico Use as teclas esquerda e direita para navegar pelos valores de domínio." [ref=f16e333]
+                    - generic [ref=f16e337]: Falhas percebidas pelo usuário (1.0.0 (1))
+                  - link "Abrir o relatório de Falhas percebidas pelo usuário" [ref=f16e350] [cursor=pointer]:
+                    - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/vitals/crashes?errorType=CRASH&versionCode=1
+                    - generic [ref=f16e353]: Explorar
+                    - img [aria-hidden] [ref=f16e355]: arrow_right_alt
+                - generic [ref=f16e359]:
+                  - generic [ref=f16e362]:
+                    - button "Taxa de falhas percebidas pelo usuário" [ref=f16e366]
+                    - generic [ref=f16e367]: "-"
+                  - generic [ref=f16e382]:
+                    - img [aria-hidden] [ref=f16e386]: equalizer
+                    - paragraph [ref=f16e388]: Dados indisponíveis
+                  - link "Abrir o relatório de Taxa de falhas percebidas pelo usuário" [ref=f16e391] [cursor=pointer]:
+                    - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/vitals/metrics/details?days=28&metric=USER_PERCEIVED_CRASHES&versionCode=1&granularity=DAILY_GRANULARITY&aggregationPeriod=AGGREGATION_PERIOD_28D
+                    - generic [ref=f16e394]: Explorar
+                    - img [aria-hidden] [ref=f16e396]: arrow_right_alt
+                - generic [ref=f16e400]:
+                  - generic [ref=f16e403]:
+                    - button "ANRs percebidos pelo usuário" [ref=f16e407]
+                    - generic [ref=f16e408]: "-"
+                  - generic [ref=f16e419]:
+                    - img "Gráfico Use as teclas esquerda e direita para navegar pelos valores de domínio." [ref=f16e421]
+                    - generic [ref=f16e425]: ANRs percebidos pelo usuário (1.0.0 (1))
+                  - link "Abrir o relatório de ANRs percebidos pelo usuário" [ref=f16e438] [cursor=pointer]:
+                    - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/vitals/crashes?errorType=ANR&versionCode=1
+                    - generic [ref=f16e441]: Explorar
+                    - img [aria-hidden] [ref=f16e443]: arrow_right_alt
+                - generic [ref=f16e447]:
+                  - generic [ref=f16e450]:
+                    - button "Taxa de ANR percebido pelo usuário" [ref=f16e454]
+                    - generic [ref=f16e455]: "-"
+                  - generic [ref=f16e470]:
+                    - img [aria-hidden] [ref=f16e474]: equalizer
+                    - paragraph [ref=f16e476]: Dados indisponíveis
+                  - link "Abrir o relatório de Taxa de ANR percebido pelo usuário" [ref=f16e479] [cursor=pointer]:
+                    - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/vitals/metrics/details?days=28&metric=USER_PERCEIVED_ANRS&versionCode=1&granularity=DAILY_GRANULARITY&aggregationPeriod=AGGREGATION_PERIOD_28D
+                    - generic [ref=f16e482]: Explorar
+                    - img [aria-hidden] [ref=f16e484]: arrow_right_alt
+              - generic [ref=f16e494]:
+                - generic [ref=f16e499]:
+                  - heading "Problemas que afetam a maioria dos usuários" [level=2] [ref=f16e503]
+                  - button "Veja mais informações sobre \"Problemas que afetam a maioria dos usuários\"" [ref=f16e506] [cursor=pointer]:
+                    - img [aria-hidden] [ref=f16e507]: help
+                - grid "Problemas que afetam a maioria dos usuários" [ref=f16e512]:
+                  - row [ref=f16e513]:
+                    - columnheader "Problema" [ref=f16e514]
+                    - columnheader "Tipo" [ref=f16e515]
+                    - columnheader "Versões afetadas" [ref=f16e516]
+                    - columnheader "Usuários afetados" [ref=f16e517]:
+                      - text: Usuários afetados
+                      - img [aria-hidden] [ref=f16e519]: help_outline
+                    - columnheader "Eventos" [ref=f16e520]:
+                      - text: Eventos
+                      - img [aria-hidden] [ref=f16e522]: help_outline
+                    - columnheader "Última ocorrência" [ref=f16e523]:
+                      - text: Última ocorrência
+                      - img [aria-hidden] [ref=f16e525]: help_outline
+                    - cell [ref=f16e526]
+                  - row [ref=f16e527]:
+                    - cell "Nenhum resultado" [ref=f16e528]
+          - generic [ref=f16e531]:
+            - generic [ref=f16e535]:
+              - heading "Comentários" [level=2] [ref=f16e540]
+              - generic [ref=f16e547]:
+                - button "Recolher seção" [ref=f16e549] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e552]: view_agenda
+                - button "Recolher seção" [ref=f16e554] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e557]: grid_view
+            - generic [ref=f16e560]:
+              - generic [ref=f16e564]:
+                - generic [ref=f16e565]: Avaliações de uma ou duas estrelas
+                - generic [ref=f16e580]:
+                  - img [aria-hidden] [ref=f16e584]: equalizer
+                  - paragraph [ref=f16e586]: Nenhuma avaliação
+                - link "Abrir o relatório de Avaliações de uma ou duas estrelas" [ref=f16e589] [cursor=pointer]:
+                  - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/user-feedback/reviews?versionCodes=1&starCounts=1%2C2
+                  - generic [ref=f16e592]: Explorar
+                  - img [aria-hidden] [ref=f16e594]: arrow_right_alt
+              - generic [ref=f16e598]:
+                - generic [ref=f16e599]: Notas 4 e 5
+                - generic [ref=f16e614]:
+                  - img [aria-hidden] [ref=f16e618]: equalizer
+                  - paragraph [ref=f16e620]: Nenhuma avaliação
+                - link "Abrir o relatório de Notas 4 e 5" [ref=f16e623] [cursor=pointer]:
+                  - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/user-feedback/reviews?versionCodes=1&starCounts=4%2C5
+                  - generic [ref=f16e626]: Explorar
+                  - img [aria-hidden] [ref=f16e628]: arrow_right_alt
+          - generic [ref=f16e631]:
+            - generic [ref=f16e635]:
+              - heading "Instalações e desinstalações" [level=2] [ref=f16e640]
+              - generic [ref=f16e647]:
+                - button "Recolher seção" [ref=f16e649] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e652]: view_agenda
+                - button "Recolher seção" [ref=f16e654] [cursor=pointer]:
+                  - img [aria-hidden] [ref=f16e657]: grid_view
+            - generic [ref=f16e660]:
+              - generic [ref=f16e664]:
+                - generic [ref=f16e667]:
+                  - button "Base de instalações" [ref=f16e671]
+                  - generic [ref=f16e672]: "-"
+                - generic [ref=f16e683]:
+                  - img "Gráfico Use as teclas esquerda e direita para navegar pelos valores de domínio." [ref=f16e685]
+                  - generic [ref=f16e689]: Base de instalações
+                - link "Abrir o relatório de Base de instalações" [ref=f16e702] [cursor=pointer]:
+                  - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/statistics?metrics=ACTIVE_DEVICES-ALL-UNIQUE-PER_INTERVAL-DAY&dimension=APP_VERSION&dimensionValues=1&dateRange=2026_10_17-2026_10_26
+                  - generic [ref=f16e705]: Explorar
+                  - img [aria-hidden] [ref=f16e707]: arrow_right_alt
+              - generic [ref=f16e711]:
+                - generic [ref=f16e714]:
+                  - button "Eventos de instalação e atualização" [ref=f16e718]
+                  - generic [ref=f16e719]: "-"
+                - generic [ref=f16e730]:
+                  - img "Gráfico Use as teclas esquerda e direita para navegar pelos valores de domínio." [ref=f16e732]
+                  - generic [ref=f16e740]:
+                    - generic [ref=f16e741]: Novas instalações
+                    - generic [ref=f16e747]: Atualizações
+                - link "Abrir o relatório de Eventos de instalação e atualização" [ref=f16e755] [cursor=pointer]:
+                  - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/statistics?metrics=DEVICE_ACQUISITION-ALL-EVENTS-PER_INTERVAL-DAY%2CDEVICE_UPDATES-ALL-EVENTS-PER_INTERVAL-DAY&dimension=APP_VERSION&dimensionValues=1&dateRange=2026_10_17-2026_10_26
+                  - generic [ref=f16e758]: Explorar
+                  - img [aria-hidden] [ref=f16e760]: arrow_right_alt
+              - generic [ref=f16e764]:
+                - generic [ref=f16e767]:
+                  - button "Desinstalações" [ref=f16e771]
+                  - generic [ref=f16e772]: "-"
+                - generic [ref=f16e787]:
+                  - img [aria-hidden] [ref=f16e791]: equalizer
+                  - paragraph [ref=f16e793]: Dados indisponíveis
+                - link "Abrir o relatório de Desinstalações" [ref=f16e796] [cursor=pointer]:
+                  - /url: /console/u/0/developers/6637139677623017493/app/4975687011100372533/statistics?metrics=DEVICE_LOSS-ALL-EVENTS-PER_INTERVAL-DAY&dimension=APP_VERSION&dimensionValues=1&dateRange=2026_10_17-2026_10_26
+                  - generic [ref=f16e799]: Explorar
+                  - img [aria-hidden] [ref=f16e801]: arrow_right_alt
+      - generic [ref=f16e41]:
+        - generic [ref=f16e802]:
+          - link "Atualizações de produtos" [ref=f16e803] [cursor=pointer]:
+            - /url: https://play.google.com/console/about/whats-new/
+          - link "Painel de status" [ref=f16e804] [cursor=pointer]:
+            - /url: https://status.play.google.com/
+          - link "Ajuda" [ref=f16e805] [cursor=pointer]:
+            - /url: /console/u/0/developers/6637139677623017493/help-and-support?app=4975687011100372533
+        - generic [ref=f16e806]:
+          - generic [ref=f16e807]: © 2026 Google
+          - link "Privacidade" [ref=f16e808] [cursor=pointer]:
+            - /url: https://www.google.com/policies/privacy/
+          - link "Contrato de distribuição do desenvolvedor" [ref=f16e809] [cursor=pointer]:
+            - /url: https://play.google.com/about/developer-distribution-agreement.html
+          - link "Termos de Serviço" [ref=f16e810] [cursor=pointer]:
+            - /url: https://play.google.com/about/console/terms-of-service/
