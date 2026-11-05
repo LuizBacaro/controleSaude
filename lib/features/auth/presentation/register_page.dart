@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/router/home_location.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -44,7 +45,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     }
     if (_birthDate == null || _sex == null) {
       setState(
-        () => _error = 'Informe data de nascimento e sexo para avaliar os exames.',
+        () => _error =
+            'Informe data de nascimento e sexo para avaliar os exames.',
       );
       return;
     }
@@ -83,7 +85,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       final hasExams = ref.read(examsRepositoryProvider).hasReports;
       context.go(homeLocation(isDoctor: role == 'doctor', hasExams: hasExams));
     } catch (e) {
-      setState(() => _error = e.toString().replaceFirst('Exception: ', ''));
+      setState(() => _error = AppException.messageOf(e));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -102,7 +104,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: AppSpacing.lg),
-          Text('Esta conta é de', style: Theme.of(context).textTheme.titleMedium),
+          Text(
+            'Esta conta é de',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           const SizedBox(height: AppSpacing.sm),
           SegmentedButton<String>(
             segments: const [

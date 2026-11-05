@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../domain/care_grant.dart';
 
 final careRepositoryProvider = Provider<CareRepository>((ref) {
@@ -63,14 +64,23 @@ class CareRepository {
       }
       final status = existing['status'] as String?;
       if (status == 'pending' || status == 'accepted') {
-        throw Exception('Este médico já recebeu o seu convite.');
+        throw AppException('Este médico já recebeu o seu convite.');
       }
       await _client
           .from('care_grants')
           .update({'status': 'pending'})
           .eq('id', existing['id'] as String);
+    } on AppException {
+      rethrow;
     } on PostgrestException catch (error) {
-      throw Exception(_message(error));
+      throw AppException(
+        _message(error, 'Não foi possível enviar o convite. Tente de novo.'),
+      );
+    } catch (error) {
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível enviar o convite. Tente de novo.',
+      );
     }
   }
 
@@ -87,14 +97,21 @@ class CareRepository {
           .update({'status': status})
           .eq('id', grantId);
     } on PostgrestException catch (error) {
-      throw Exception(_message(error));
+      throw AppException(
+        _message(error, 'Não foi possível atualizar o acesso. Tente de novo.'),
+      );
+    } catch (error) {
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível atualizar o acesso. Tente de novo.',
+      );
     }
   }
 
   String _requireUser() {
     final uid = _client.auth.currentUser?.id;
     if (uid == null) {
-      throw Exception('Entre na conta para continuar.');
+      throw AppException('Entre na conta para continuar.');
     }
     return uid;
   }
@@ -103,7 +120,7 @@ class CareRepository {
     for (final row in rows) CareGrant.fromJson(Map<String, dynamic>.from(row)),
   ];
 
-  String _message(PostgrestException error) {
+  String _message(PostgrestException error, String fallback) {
     final text = error.message;
     final lower = text.toLowerCase();
     if (lower.contains('revogue') ||
@@ -116,6 +133,6 @@ class CareRepository {
     if (lower.contains('duplicate') || lower.contains('unique')) {
       return 'Este convite já existe.';
     }
-    return 'Não foi possível atualizar o acesso.';
+    return fallback;
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../care/data/granted_charts.dart';
 import '../../../core/theme/app_colors.dart';
@@ -235,7 +236,7 @@ class _HealthProfileSheetState extends ConsumerState<_HealthProfileSheet> {
     } catch (e) {
       setState(() {
         _saving = false;
-        _error = e.toString().replaceFirst('Exception: ', '');
+        _error = AppException.messageOf(e);
       });
     }
   }
@@ -270,7 +271,10 @@ class _HealthProfileSheetState extends ConsumerState<_HealthProfileSheet> {
           ),
           if (_error != null) ...[
             const SizedBox(height: AppSpacing.sm),
-            Text(_error!, style: text.bodyMedium?.copyWith(color: AppColors.error)),
+            Text(
+              _error!,
+              style: text.bodyMedium?.copyWith(color: AppColors.error),
+            ),
           ],
           const SizedBox(height: AppSpacing.lg),
           FilledButton(

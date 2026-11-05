@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../domain/app_user.dart';
 
 class AuthRepository extends ChangeNotifier {
@@ -37,10 +38,10 @@ class AuthRepository extends ChangeNotifier {
   }) async {
     final normalized = email.trim().toLowerCase();
     if (normalized.isEmpty || !normalized.contains('@')) {
-      throw Exception('Informe um e-mail válido.');
+      throw AppException('Informe um e-mail válido.');
     }
     if (password.length < 6) {
-      throw Exception('A senha precisa ter pelo menos 6 caracteres.');
+      throw AppException('A senha precisa ter pelo menos 6 caracteres.');
     }
 
     final name = displayName.trim().isEmpty
@@ -48,43 +49,51 @@ class AuthRepository extends ChangeNotifier {
         : displayName.trim();
 
     try {
-      final response = await _client.auth.signUp(
-        email: normalized,
-        password: password,
-        data: {
-          'display_name': name,
-          'role': role == 'doctor' ? 'doctor' : 'patient',
-          if (sex != null && sex.isNotEmpty) 'sex': sex,
-          if (birthDate != null) 'birth_date': _isoDate(birthDate),
-          if (role == 'doctor' && crmUf != null) 'crm_uf': crmUf,
-          if (role == 'doctor' && crmNumber != null) 'crm_number': crmNumber,
-        },
+      final response = await _call(
+        () => _client.auth.signUp(
+          email: normalized,
+          password: password,
+          data: {
+            'display_name': name,
+            'role': role == 'doctor' ? 'doctor' : 'patient',
+            if (sex != null && sex.isNotEmpty) 'sex': sex,
+            if (birthDate != null) 'birth_date': _isoDate(birthDate),
+            if (role == 'doctor' && crmUf != null) 'crm_uf': crmUf,
+            if (role == 'doctor' && crmNumber != null) 'crm_number': crmNumber,
+          },
+        ),
       );
       final user = response.user;
       if (user == null || response.session == null) {
-        throw Exception(
-          'Conta criada. Confirme o e-mail enviado pelo Supabase e depois entre.',
+        throw AppException(
+          'Conta criada. Abra o e-mail de confirmação e depois entre com a senha.',
         );
       }
       if (birthDate != null) {
-        await _client
-            .from('profiles')
-            .update({'birth_date': _isoDate(birthDate)})
-            .eq('id', user.id);
+        await _call(
+          () => _client
+              .from('profiles')
+              .update({'birth_date': _isoDate(birthDate)})
+              .eq('id', user.id),
+        );
       }
-      _currentUser = await _profileFor(user);
+      _currentUser = await _call(() => _profileFor(user));
       notifyListeners();
       return _currentUser!;
-    } on AuthException catch (error) {
-      final message = _authMessage(error.message);
+    } on AppException {
+      rethrow;
+    } catch (error) {
       if (role == 'doctor' &&
-          message == error.message &&
-          message.toLowerCase().contains('database')) {
-        throw Exception(
+          error is AuthException &&
+          error.message.toLowerCase().contains('database')) {
+        throw AppException(
           'Não foi possível criar a conta. Confira o CRM; ele pode já estar em uso.',
         );
       }
-      throw Exception(message);
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível criar a conta. Tente de novo.',
+      );
     }
   }
 
@@ -94,19 +103,26 @@ class AuthRepository extends ChangeNotifier {
   }) async {
     final normalized = email.trim().toLowerCase();
     try {
-      final response = await _client.auth.signInWithPassword(
-        email: normalized,
-        password: password,
+      final response = await _call(
+        () => _client.auth.signInWithPassword(
+          email: normalized,
+          password: password,
+        ),
       );
       final user = response.user;
       if (user == null) {
-        throw Exception('E-mail ou senha inválidos.');
+        throw AppException('E-mail ou senha não conferem.');
       }
-      _currentUser = await _profileFor(user);
+      _currentUser = await _call(() => _profileFor(user));
       notifyListeners();
       return _currentUser!;
-    } on AuthException catch (error) {
-      throw Exception(_authMessage(error.message));
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível entrar. Tente de novo.',
+      );
     }
   }
 
@@ -118,15 +134,28 @@ class AuthRepository extends ChangeNotifier {
     final user = _client.auth.currentUser;
     final current = _currentUser;
     if (user == null || current == null) {
-      throw Exception('Entre na conta para salvar o perfil.');
+      throw AppException('Entre na conta para salvar o perfil.');
     }
-    await _client
-        .from('profiles')
-        .update({'birth_date': _isoDate(birthDate), 'sex': sex})
-        .eq('id', user.id);
-    await _client.auth.updateUser(
-      UserAttributes(data: {'birth_date': _isoDate(birthDate), 'sex': sex}),
-    );
+    try {
+      await _call(
+        () => _client
+            .from('profiles')
+            .update({'birth_date': _isoDate(birthDate), 'sex': sex})
+            .eq('id', user.id),
+      );
+      await _call(
+        () => _client.auth.updateUser(
+          UserAttributes(data: {'birth_date': _isoDate(birthDate), 'sex': sex}),
+        ),
+      );
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível salvar os dados. Tente de novo.',
+      );
+    }
     _currentUser = current.copyWith(birthDate: birthDate, sex: sex);
     notifyListeners();
     return _currentUser!;
@@ -176,28 +205,18 @@ class AuthRepository extends ChangeNotifier {
     );
   }
 
-  String _authMessage(String message) {
-    final lower = message.toLowerCase();
-    if (lower.contains('already registered') ||
-        lower.contains('already been registered')) {
-      return 'Já existe uma conta com este e-mail. Entre com a senha.';
+  /// Repete só falha de rede. O DNS do celular, logo depois de instalar,
+  /// às vezes responde vazio na primeira consulta e acerta na seguinte.
+  Future<T> _call<T>(Future<T> Function() action) async {
+    var attempt = 0;
+    while (true) {
+      try {
+        return await action();
+      } catch (error) {
+        attempt++;
+        if (attempt >= 3 || !AppException.isTransientNetwork(error)) rethrow;
+        await Future<void>.delayed(Duration(milliseconds: 400 * attempt));
+      }
     }
-    if (lower.contains('invalid login') ||
-        lower.contains('invalid credentials')) {
-      return 'E-mail ou senha inválidos.';
-    }
-    if (lower.contains('password') && lower.contains('6')) {
-      return 'A senha precisa ter pelo menos 6 caracteres.';
-    }
-    if (lower.contains('email not confirmed')) {
-      return 'Confirme o e-mail antes de entrar.';
-    }
-    if (lower.contains('profiles_crm_unique')) {
-      return 'Este CRM já está cadastrado.';
-    }
-    if (lower.contains('profiles_doctor_crm')) {
-      return 'Não foi possível criar a conta. Confira o CRM.';
-    }
-    return message;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../data/care_repository.dart';
@@ -59,7 +60,7 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
       });
     } catch (error) {
       if (!mounted) return;
-      setState(() => _error = _text(error));
+      setState(() => _error = AppException.messageOf(error));
     } finally {
       if (mounted && !silent) setState(() => _loading = false);
     }
@@ -78,7 +79,7 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
       await ref.read(careRepositoryProvider).invite(doctor.id);
       await _load();
     } catch (error) {
-      if (mounted) setState(() => _error = _text(error));
+      if (mounted) setState(() => _error = AppException.messageOf(error));
     } finally {
       if (mounted) setState(() => _busyId = null);
     }
@@ -90,14 +91,11 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
       await ref.read(careRepositoryProvider).revoke(grant.id);
       await _load();
     } catch (error) {
-      if (mounted) setState(() => _error = _text(error));
+      if (mounted) setState(() => _error = AppException.messageOf(error));
     } finally {
       if (mounted) setState(() => _busyId = null);
     }
   }
-
-  String _text(Object error) =>
-      error.toString().replaceFirst('Exception: ', '');
 
   @override
   Widget build(BuildContext context) {
