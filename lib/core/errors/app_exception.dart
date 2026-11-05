@@ -101,7 +101,7 @@ class AppException implements Exception {
       return 'A senha precisa ter pelo menos 6 caracteres.';
     }
     if (lower.contains('email not confirmed')) {
-      return 'Falta confirmar o e-mail. Abra a mensagem que enviamos e depois entre.';
+      return 'Falta um passo: abra o e-mail que enviamos, toque em confirmar e entre de novo.';
     }
     if (lower.contains('rate limit') || lower.contains('too many')) {
       return 'Muitas tentativas seguidas. Espere um pouco e tente de novo.';
