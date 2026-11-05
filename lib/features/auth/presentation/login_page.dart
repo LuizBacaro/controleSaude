@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/router/home_location.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -32,10 +33,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       _error = null;
     });
     try {
-      await ref.read(authRepositoryProvider).login(
-            email: _email.text,
-            password: _password.text,
-          );
+      await ref
+          .read(authRepositoryProvider)
+          .login(email: _email.text, password: _password.text);
       await ref.read(examsRepositoryProvider).load();
       ref.read(authRevisionProvider.notifier).bump();
       ref.read(examsRevisionProvider.notifier).bump();
@@ -46,7 +46,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         homeLocation(isDoctor: user?.isDoctor ?? false, hasExams: hasExams),
       );
     } catch (e) {
-      setState(() => _error = e.toString().replaceFirst('Exception: ', ''));
+      setState(() => _error = AppException.messageOf(e));
     } finally {
       if (mounted) setState(() => _loading = false);
     }

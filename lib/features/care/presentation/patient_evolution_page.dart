@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../../dashboard/presentation/evolution_page.dart';
 import '../../dashboard/presentation/marker_detail_page.dart';
 import '../data/granted_charts.dart';
@@ -40,9 +41,7 @@ class _PatientEvolutionPageState extends ConsumerState<PatientEvolutionPage> {
       await ref.read(grantedChartsProvider.notifier).load(widget.patientId);
     } catch (error) {
       if (mounted) {
-        setState(
-          () => _error = error.toString().replaceFirst('Exception: ', ''),
-        );
+        setState(() => _error = AppException.messageOf(error));
       }
     } finally {
       if (mounted) setState(() => _loading = false);

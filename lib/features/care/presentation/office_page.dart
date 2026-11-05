@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -44,7 +45,7 @@ class _OfficePageState extends ConsumerState<OfficePage> {
       });
     } catch (error) {
       if (!mounted) return;
-      setState(() => _error = error.toString().replaceFirst('Exception: ', ''));
+      setState(() => _error = AppException.messageOf(error));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -62,9 +63,7 @@ class _OfficePageState extends ConsumerState<OfficePage> {
       await _load();
     } catch (error) {
       if (mounted) {
-        setState(
-          () => _error = error.toString().replaceFirst('Exception: ', ''),
-        );
+        setState(() => _error = AppException.messageOf(error));
       }
     } finally {
       if (mounted) setState(() => _busyId = null);

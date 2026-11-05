@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -58,12 +59,12 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
       } else if (file.path != null) {
         draft = await repo.readPdfFile(File(file.path!), patient: _patient());
       } else {
-        throw Exception('Não foi possível ler o arquivo selecionado.');
+        throw AppException('Não foi possível ler o arquivo selecionado.');
       }
       _showDraft(draft);
     } catch (e) {
       setState(() {
-        _error = e.toString().replaceFirst('Exception: ', '');
+        _error = AppException.messageOf(e);
         _loading = false;
       });
     }
@@ -78,7 +79,7 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
         ref.read(examsRepositoryProvider).readSample(patient: _patient()),
       );
     } catch (e) {
-      setState(() => _error = e.toString().replaceFirst('Exception: ', ''));
+      setState(() => _error = AppException.messageOf(e));
     }
   }
 
@@ -109,7 +110,9 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
       _error = null;
     });
     try {
-      await ref.read(examsRepositoryProvider).saveReport(draft.withMarkers(kept));
+      await ref
+          .read(examsRepositoryProvider)
+          .saveReport(draft.withMarkers(kept));
       ref.read(examsRevisionProvider.notifier).bump();
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -119,7 +122,7 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
     } catch (e) {
       setState(() {
         _saving = false;
-        _error = e.toString().replaceFirst('Exception: ', '');
+        _error = AppException.messageOf(e);
       });
     }
   }
@@ -236,7 +239,10 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
         ),
         if (_error != null) ...[
           const SizedBox(height: AppSpacing.sm),
-          Text(_error!, style: text.bodyMedium?.copyWith(color: AppColors.error)),
+          Text(
+            _error!,
+            style: text.bodyMedium?.copyWith(color: AppColors.error),
+          ),
         ],
         ...categories.expand((cat) {
           return [
@@ -317,7 +323,11 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.picture_as_pdf_outlined, size: 40, color: AppColors.teal),
+              Icon(
+                Icons.picture_as_pdf_outlined,
+                size: 40,
+                color: AppColors.teal,
+              ),
               const SizedBox(height: AppSpacing.md),
               Text(
                 widget.isOnboarding
@@ -365,7 +375,10 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
         ],
         if (_error != null) ...[
           const SizedBox(height: AppSpacing.lg),
-          Text(_error!, style: text.bodyMedium?.copyWith(color: AppColors.error)),
+          Text(
+            _error!,
+            style: text.bodyMedium?.copyWith(color: AppColors.error),
+          ),
         ],
         const SizedBox(height: AppSpacing.xl),
         Text(
