@@ -66,7 +66,7 @@ class AuthRepository extends ChangeNotifier {
       final user = response.user;
       if (user == null || response.session == null) {
         throw AppException(
-          'Conta criada. Abra o e-mail de confirmação e depois entre com a senha.',
+          'Conta criada. Abra o e-mail que enviamos, toque em confirmar e volte aqui para entrar.',
         );
       }
       if (birthDate != null) {

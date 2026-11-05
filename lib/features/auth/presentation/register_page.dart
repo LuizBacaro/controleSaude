@@ -20,6 +20,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
+  final _passwordConfirm = TextEditingController();
   final _crmNumber = TextEditingController();
   String? _role;
   String? _crmUf;
@@ -33,6 +34,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     _name.dispose();
     _email.dispose();
     _password.dispose();
+    _passwordConfirm.dispose();
     _crmNumber.dispose();
     super.dispose();
   }
@@ -41,6 +43,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     final role = _role;
     if (role == null) {
       setState(() => _error = 'Escolha se a conta é de paciente ou de médico.');
+      return;
+    }
+    if (_password.text != _passwordConfirm.text) {
+      setState(
+        () => _error = 'As senhas não são iguais. Digite a mesma nos dois campos.',
+      );
       return;
     }
     if (_birthDate == null || _sex == null) {
@@ -136,10 +144,22 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           TextField(
             controller: _password,
             obscureText: true,
+            autocorrect: false,
+            enableSuggestions: false,
+            textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
               labelText: 'Senha',
               helperText: 'Mínimo de 6 caracteres',
             ),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          TextField(
+            controller: _passwordConfirm,
+            obscureText: true,
+            autocorrect: false,
+            enableSuggestions: false,
+            textInputAction: TextInputAction.next,
+            decoration: const InputDecoration(labelText: 'Confirmar senha'),
           ),
           const SizedBox(height: AppSpacing.md),
           HealthFields(
