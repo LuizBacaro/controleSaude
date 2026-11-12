@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,6 +28,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   String? _sex;
   DateTime? _birthDate;
   var _loading = false;
+  var _showPassword = false;
+  var _showPasswordConfirm = false;
   String? _error;
 
   @override
@@ -47,7 +50,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     }
     if (_password.text != _passwordConfirm.text) {
       setState(
-        () => _error = 'As senhas não são iguais. Digite a mesma nos dois campos.',
+        () => _error =
+            'As senhas não são iguais. Digite a mesma nos dois campos.',
       );
       return;
     }
@@ -90,6 +94,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       ref.read(authRevisionProvider.notifier).bump();
       ref.read(examsRevisionProvider.notifier).bump();
       if (!mounted) return;
+      TextInput.finishAutofillContext();
       final hasExams = ref.read(examsRepositoryProvider).hasReports;
       context.go(homeLocation(isDoctor: role == 'doctor', hasExams: hasExams));
     } catch (e) {
@@ -104,111 +109,150 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     final isDoctor = _role == 'doctor';
     return Scaffold(
       appBar: AppBar(title: const Text('Criar conta')),
-      body: ListView(
-        padding: const EdgeInsets.all(AppSpacing.lg),
-        children: [
-          Text(
-            'A conta fica salva. Se reinstalar o app, entre de novo com o mesmo e-mail e senha.',
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          Text(
-            'Esta conta é de',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          SegmentedButton<String>(
-            segments: const [
-              ButtonSegment(value: 'patient', label: Text('Paciente')),
-              ButtonSegment(value: 'doctor', label: Text('Médico')),
-            ],
-            selected: {?_role},
-            emptySelectionAllowed: true,
-            onSelectionChanged: (value) => setState(() => _role = value.first),
-            showSelectedIcon: false,
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          TextField(
-            controller: _name,
-            textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(labelText: 'Nome'),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          TextField(
-            controller: _email,
-            keyboardType: TextInputType.emailAddress,
-            autocorrect: false,
-            decoration: const InputDecoration(labelText: 'E-mail'),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          TextField(
-            controller: _password,
-            obscureText: true,
-            autocorrect: false,
-            enableSuggestions: false,
-            textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(
-              labelText: 'Senha',
-              helperText: 'Mínimo de 6 caracteres',
-            ),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          TextField(
-            controller: _passwordConfirm,
-            obscureText: true,
-            autocorrect: false,
-            enableSuggestions: false,
-            textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(labelText: 'Confirmar senha'),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          HealthFields(
-            birthDate: _birthDate,
-            sex: _sex,
-            onBirthDate: (date) => setState(() => _birthDate = date),
-            onSex: (value) => setState(() => _sex = value),
-          ),
-          if (isDoctor) ...[
-            const SizedBox(height: AppSpacing.md),
-            DropdownMenu<String>(
-              initialSelection: _crmUf,
-              label: const Text('UF do CRM'),
-              expandedInsets: EdgeInsets.zero,
-              dropdownMenuEntries: [
-                for (final uf in brazilianUfs)
-                  DropdownMenuEntry(value: uf, label: uf),
-              ],
-              onSelected: (value) => setState(() => _crmUf = value),
-            ),
-            const SizedBox(height: AppSpacing.md),
-            TextField(
-              controller: _crmNumber,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                labelText: 'Número do CRM',
-                helperText: 'De 4 a 7 dígitos, sem a UF',
+      body: SafeArea(
+        top: false,
+        child: AutofillGroup(
+          child: ListView(
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            children: [
+              Text(
+                'A conta fica salva. Se reinstalar o app, entre de novo com o mesmo e-mail e senha.',
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-            ),
-          ],
-          if (_error != null) ...[
-            const SizedBox(height: AppSpacing.md),
-            Text(
-              _error!,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ],
-          const SizedBox(height: AppSpacing.lg),
-          FilledButton(
-            onPressed: _loading ? null : _submit,
-            child: _loading
-                ? const SizedBox(
-                    height: 22,
-                    width: 22,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Text('Continuar'),
+              const SizedBox(height: AppSpacing.lg),
+              Text(
+                'Esta conta é de',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              SegmentedButton<String>(
+                segments: const [
+                  ButtonSegment(value: 'patient', label: Text('Paciente')),
+                  ButtonSegment(value: 'doctor', label: Text('Médico')),
+                ],
+                selected: {?_role},
+                emptySelectionAllowed: true,
+                onSelectionChanged: (value) =>
+                    setState(() => _role = value.first),
+                showSelectedIcon: false,
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              TextField(
+                controller: _name,
+                textCapitalization: TextCapitalization.words,
+                autofillHints: const [AutofillHints.name],
+                textInputAction: TextInputAction.next,
+                decoration: const InputDecoration(labelText: 'Nome'),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              TextField(
+                controller: _email,
+                keyboardType: TextInputType.emailAddress,
+                autocorrect: false,
+                autofillHints: const [AutofillHints.email],
+                textInputAction: TextInputAction.next,
+                decoration: const InputDecoration(labelText: 'E-mail'),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              TextField(
+                controller: _password,
+                obscureText: !_showPassword,
+                autocorrect: false,
+                smartDashesType: SmartDashesType.disabled,
+                smartQuotesType: SmartQuotesType.disabled,
+                autofillHints: const [AutofillHints.newPassword],
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  labelText: 'Senha',
+                  helperText: 'Mínimo de 6 caracteres',
+                  suffixIcon: IconButton(
+                    tooltip: _showPassword ? 'Esconder senha' : 'Mostrar senha',
+                    onPressed: () =>
+                        setState(() => _showPassword = !_showPassword),
+                    icon: Icon(
+                      _showPassword
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              TextField(
+                controller: _passwordConfirm,
+                obscureText: !_showPasswordConfirm,
+                autocorrect: false,
+                smartDashesType: SmartDashesType.disabled,
+                smartQuotesType: SmartQuotesType.disabled,
+                autofillHints: const [AutofillHints.newPassword],
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  labelText: 'Confirmar senha',
+                  suffixIcon: IconButton(
+                    tooltip: _showPasswordConfirm
+                        ? 'Esconder senha'
+                        : 'Mostrar senha',
+                    onPressed: () => setState(
+                      () => _showPasswordConfirm = !_showPasswordConfirm,
+                    ),
+                    icon: Icon(
+                      _showPasswordConfirm
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              HealthFields(
+                birthDate: _birthDate,
+                sex: _sex,
+                onBirthDate: (date) => setState(() => _birthDate = date),
+                onSex: (value) => setState(() => _sex = value),
+              ),
+              if (isDoctor) ...[
+                const SizedBox(height: AppSpacing.md),
+                DropdownMenu<String>(
+                  initialSelection: _crmUf,
+                  label: const Text('UF do CRM'),
+                  expandedInsets: EdgeInsets.zero,
+                  dropdownMenuEntries: [
+                    for (final uf in brazilianUfs)
+                      DropdownMenuEntry(value: uf, label: uf),
+                  ],
+                  onSelected: (value) => setState(() => _crmUf = value),
+                ),
+                const SizedBox(height: AppSpacing.md),
+                TextField(
+                  controller: _crmNumber,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    labelText: 'Número do CRM',
+                    helperText: 'De 4 a 7 dígitos, sem a UF',
+                  ),
+                ),
+              ],
+              if (_error != null) ...[
+                const SizedBox(height: AppSpacing.md),
+                Text(
+                  _error!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ],
+              const SizedBox(height: AppSpacing.lg),
+              FilledButton(
+                onPressed: _loading ? null : _submit,
+                child: _loading
+                    ? const SizedBox(
+                        height: 22,
+                        width: 22,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Text('Continuar'),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

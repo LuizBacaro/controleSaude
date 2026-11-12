@@ -1,19 +1,39 @@
+import 'dart:async';
+
+import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/errors/app_exception.dart';
 import '../domain/app_user.dart';
+import 'password_reset.dart';
 
 class AuthRepository extends ChangeNotifier {
-  AuthRepository({SupabaseClient? client})
-    : _client = client ?? Supabase.instance.client;
+  AuthRepository({SupabaseClient? client, this._appLinks})
+    : _client = client ?? Supabase.instance.client {
+    _authSub = _client.auth.onAuthStateChange.listen((state) {
+      if (state.event != AuthChangeEvent.passwordRecovery) return;
+      _recoveryPending = true;
+      _recoveryError = null;
+      notifyListeners();
+    });
+  }
 
   final SupabaseClient _client;
+  final AppLinks? _appLinks;
+  StreamSubscription<AuthState>? _authSub;
 
   AppUser? _currentUser;
+  var _recoveryPending = false;
+  String? _recoveryError;
 
   AppUser? get currentUser => _currentUser;
   bool get isLoggedIn => _currentUser != null;
+
+  /// A pessoa abriu o link do e-mail e ainda precisa escolher a senha nova.
+  bool get recoveryPending => _recoveryPending;
+
+  String? get recoveryError => _recoveryError;
 
   Future<void> load() async {
     final session = _client.auth.currentSession;
@@ -97,11 +117,118 @@ class AuthRepository extends ChangeNotifier {
     }
   }
 
+  /// Pede o e-mail com o link para escolher outra senha.
+  ///
+  /// Se o e-mail não tiver conta, a chamada termina do mesmo jeito. A tela
+  /// não conta se o endereço existe.
+  Future<void> requestPasswordReset(String email) async {
+    final normalized = email.trim().toLowerCase();
+    if (normalized.isEmpty || !normalized.contains('@')) {
+      throw AppException('Informe um e-mail válido.');
+    }
+    _recoveryError = null;
+    try {
+      await _call(
+        () => _client.auth.resetPasswordForEmail(
+          normalized,
+          redirectTo: passwordResetRedirect(
+            web: kIsWeb,
+            webOrigin: Uri.base.origin,
+          ),
+        ),
+      );
+    } on AuthException catch (error) {
+      final lower = error.message.toLowerCase();
+      if (lower.contains('not found') || lower.contains('does not exist')) {
+        return;
+      }
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível enviar o e-mail. Tente de novo.',
+      );
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível enviar o e-mail. Tente de novo.',
+      );
+    }
+  }
+
+  /// Troca a senha da sessão aberta pelo link do e-mail.
+  Future<void> updatePassword(String password) async {
+    if (password.length < 6) {
+      throw AppException('A senha precisa ter pelo menos 6 caracteres.');
+    }
+    if (_client.auth.currentSession == null) {
+      throw AppException('Este link expirou. Peça outro na tela de entrar.');
+    }
+    try {
+      await _call(
+        () => _client.auth.updateUser(UserAttributes(password: password)),
+      );
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException.from(
+        error,
+        fallback: 'Não foi possível salvar a senha. Tente de novo.',
+      );
+    }
+    _recoveryPending = false;
+    _recoveryError = null;
+    final user = _client.auth.currentUser;
+    if (user != null) {
+      try {
+        _currentUser = await _call(() => _profileFor(user));
+      } catch (_) {
+        _currentUser = _userFromMetadata(user);
+      }
+    }
+    notifyListeners();
+  }
+
+  /// O link de recuperação já foi trocado por sessão, ou falhou ao abrir.
+  ///
+  /// No navegador o Supabase consome o código antes desta chamada. No celular
+  /// o endereço inicial continua disponível. Nos dois casos a rota
+  /// [passwordResetPath] marca que a senha nova ainda não foi escolhida.
+  Future<void> captureRecoveryFromLaunch() async {
+    final uri = kIsWeb
+        ? Uri.base
+        : await (_appLinks ?? AppLinks()).getInitialLink();
+    if (uri == null || !isPasswordRecoveryUri(uri)) return;
+    if (_client.auth.currentSession != null) {
+      _recoveryPending = true;
+      _recoveryError = null;
+      notifyListeners();
+      return;
+    }
+    final params = {
+      ...uri.queryParameters,
+      ...Uri.splitQueryString(uri.fragment),
+    };
+    final description = params['error_description'] ?? params['error'];
+    _recoveryError = description == null
+        ? 'Abra o link no mesmo aparelho em que pediu a nova senha.'
+        : AppException.messageOf(AuthException(description));
+    notifyListeners();
+  }
+
+  void clearRecoveryError() {
+    if (_recoveryError == null) return;
+    _recoveryError = null;
+    notifyListeners();
+  }
+
   Future<AppUser> login({
     required String email,
     required String password,
   }) async {
     final normalized = email.trim().toLowerCase();
+    _recoveryPending = false;
+    _recoveryError = null;
     try {
       final response = await _call(
         () => _client.auth.signInWithPassword(
@@ -167,9 +294,17 @@ class AuthRepository extends ChangeNotifier {
       '${date.day.toString().padLeft(2, '0')}';
 
   Future<void> logout() async {
+    _recoveryPending = false;
+    _recoveryError = null;
     await _client.auth.signOut();
     _currentUser = null;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    unawaited(_authSub?.cancel());
+    super.dispose();
   }
 
   Future<AppUser> _profileFor(User user) async {
@@ -180,18 +315,7 @@ class AuthRepository extends ChangeNotifier {
         .maybeSingle();
     final meta = user.userMetadata ?? const <String, dynamic>{};
     final metaBirth = DateTime.tryParse(meta['birth_date'] as String? ?? '');
-    if (row == null) {
-      return AppUser(
-        id: user.id,
-        email: user.email ?? '',
-        displayName:
-            meta['display_name'] as String? ??
-            (user.email ?? '').split('@').first,
-        sex: meta['sex'] as String?,
-        birthDate: metaBirth,
-        role: 'patient',
-      );
-    }
+    if (row == null) return _userFromMetadata(user);
     final profile = AppUser.fromJson(Map<String, dynamic>.from(row));
     return AppUser(
       id: profile.id,
@@ -202,6 +326,22 @@ class AuthRepository extends ChangeNotifier {
       role: profile.role,
       crmUf: profile.crmUf,
       crmNumber: profile.crmNumber,
+    );
+  }
+
+  AppUser _userFromMetadata(User user) {
+    final meta = user.userMetadata ?? const <String, dynamic>{};
+    return AppUser(
+      id: user.id,
+      email: user.email ?? '',
+      displayName:
+          meta['display_name'] as String? ??
+          (user.email ?? '').split('@').first,
+      sex: meta['sex'] as String?,
+      birthDate: DateTime.tryParse(meta['birth_date'] as String? ?? ''),
+      role: meta['role'] == 'doctor' ? 'doctor' : 'patient',
+      crmUf: meta['crm_uf'] as String?,
+      crmNumber: meta['crm_number'] as String?,
     );
   }
 

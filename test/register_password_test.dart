@@ -40,5 +40,19 @@ void main() {
       find.text('Informe data de nascimento e sexo para avaliar os exames.'),
       findsOneWidget,
     );
+
+    final senha = tester.widget<TextField>(
+      find.widgetWithText(TextField, 'Senha'),
+    );
+    expect(senha.autofillHints, contains(AutofillHints.newPassword));
+    expect(senha.obscureText, isTrue);
+    await tester.tap(find.byTooltip('Mostrar senha').first);
+    await tester.pump();
+    expect(
+      tester
+          .widget<TextField>(find.widgetWithText(TextField, 'Senha'))
+          .obscureText,
+      isFalse,
+    );
   });
 }

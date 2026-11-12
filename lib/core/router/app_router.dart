@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/presentation/forgot_password_page.dart';
 import '../../features/auth/presentation/login_page.dart';
 import '../../features/auth/presentation/profile_page.dart';
 import '../../features/auth/presentation/register_page.dart';
+import '../../features/auth/presentation/reset_password_page.dart';
 import '../../features/auth/presentation/welcome_page.dart';
 import '../../features/care/presentation/doctors_page.dart';
 import '../../features/care/presentation/office_page.dart';
@@ -30,8 +32,25 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     refreshListenable: refresh,
     redirect: (context, state) {
       final loc = state.matchedLocation;
-      final loggedIn = ref.read(authRepositoryProvider).isLoggedIn;
-      final isPublic = loc == '/' || loc == '/entrar' || loc == '/criar-conta';
+      final auth = ref.read(authRepositoryProvider);
+      final loggedIn = auth.isLoggedIn;
+      if (auth.recoveryPending && loc != '/redefinir-senha') {
+        return '/redefinir-senha';
+      }
+      if (auth.recoveryError != null && loc == '/') return '/redefinir-senha';
+      final isPublic =
+          loc == '/' ||
+          loc == '/entrar' ||
+          loc == '/criar-conta' ||
+          loc == '/esqueci-senha';
+      if (loc == '/redefinir-senha' && !auth.recoveryPending) {
+        if (auth.recoveryError != null) return null;
+        if (!loggedIn) return '/esqueci-senha';
+        return homeLocation(
+          isDoctor: auth.currentUser?.isDoctor ?? false,
+          hasExams: ref.read(examsRepositoryProvider).hasReports,
+        );
+      }
       final isDoctor =
           ref.read(authRepositoryProvider).currentUser?.isDoctor ?? false;
       final home = homeLocation(
@@ -51,6 +70,20 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/criar-conta',
         builder: (context, state) => const RegisterPage(),
+      ),
+      GoRoute(
+        path: '/esqueci-senha',
+        builder: (context, state) => const ForgotPasswordPage(),
+      ),
+      GoRoute(
+        path: '/redefinir-senha',
+        builder: (context, state) {
+          final auth = ref.read(authRepositoryProvider);
+          return ResetPasswordPage(
+            canSetPassword: auth.recoveryPending,
+            initialError: auth.recoveryError,
+          );
+        },
       ),
       GoRoute(
         path: '/importar',
@@ -147,6 +180,9 @@ class _RouterRefresh extends ChangeNotifier {
   _RouterRefresh(this.ref) {
     ref.listen(authRevisionProvider, (_, _) => notifyListeners());
     ref.listen(examsRevisionProvider, (_, _) => notifyListeners());
+    final auth = ref.read(authRepositoryProvider);
+    auth.addListener(notifyListeners);
+    ref.onDispose(() => auth.removeListener(notifyListeners));
   }
 
   final Ref ref;

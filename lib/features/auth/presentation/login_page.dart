@@ -72,6 +72,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             decoration: const InputDecoration(labelText: 'Senha'),
             onSubmitted: (_) => _submit(),
           ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () => context.push('/esqueci-senha'),
+              child: const Text('Esqueci a senha'),
+            ),
+          ),
           if (_error != null) ...[
             const SizedBox(height: AppSpacing.md),
             Text(
