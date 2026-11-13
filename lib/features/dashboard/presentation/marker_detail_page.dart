@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 import '../../exams/domain/exam_marker.dart';
 import '../../exams/domain/exam_report.dart';
 import '../../exams/presentation/widgets/marker_chart.dart';
@@ -32,7 +33,9 @@ class MarkerDetailPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(series.name)),
-      body: ListView(
+      body: WebFrame(
+        maxWidth: 860,
+        child: ListView(
         padding: const EdgeInsets.all(AppSpacing.lg),
         children: [
           Container(
@@ -121,6 +124,7 @@ class MarkerDetailPage extends ConsumerWidget {
             style: text.bodySmall,
           ),
         ],
+        ),
       ),
     );
   }

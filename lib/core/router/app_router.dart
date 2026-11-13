@@ -8,6 +8,7 @@ import '../../features/auth/presentation/profile_page.dart';
 import '../../features/auth/presentation/register_page.dart';
 import '../../features/auth/presentation/reset_password_page.dart';
 import '../../features/auth/presentation/welcome_page.dart';
+import '../../features/billing/presentation/doctor_plan_page.dart';
 import '../../features/care/presentation/doctors_page.dart';
 import '../../features/care/presentation/office_page.dart';
 import '../../features/care/presentation/patient_evolution_page.dart';
@@ -42,7 +43,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           loc == '/' ||
           loc == '/entrar' ||
           loc == '/criar-conta' ||
-          loc == '/esqueci-senha';
+          loc == '/esqueci-senha' ||
+          loc == '/plano';
       if (loc == '/redefinir-senha' && !auth.recoveryPending) {
         if (auth.recoveryError != null) return null;
         if (!loggedIn) return '/esqueci-senha';
@@ -59,8 +61,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       );
 
       if (!loggedIn && !isPublic) return '/';
-      if (loggedIn && isPublic) return home;
-      if (loggedIn && isDoctor && isPatientArea(loc)) return '/consultorio';
+      if (loggedIn && isPublic && loc != '/plano') return home;
       if (loggedIn && !isDoctor && loc.startsWith('/consultorio')) return home;
       return null;
     },
@@ -74,6 +75,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/esqueci-senha',
         builder: (context, state) => const ForgotPasswordPage(),
+      ),
+      GoRoute(
+        path: '/plano',
+        builder: (context, state) => DoctorPlanPage(
+          paid: state.uri.queryParameters['pago'] == '1',
+        ),
       ),
       GoRoute(
         path: '/redefinir-senha',

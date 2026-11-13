@@ -8,6 +8,7 @@ import '../../../core/providers.dart';
 import '../../care/data/granted_charts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 import 'widgets/health_fields.dart';
 
 class ProfilePage extends ConsumerWidget {
@@ -21,7 +22,9 @@ class ProfilePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Perfil')),
-      body: ListView(
+      body: WebFrame(
+        maxWidth: 640,
+        child: ListView(
         padding: const EdgeInsets.all(AppSpacing.lg),
         children: [
           CircleAvatar(
@@ -38,15 +41,29 @@ class ProfilePage extends ConsumerWidget {
           const SizedBox(height: AppSpacing.md),
           Text(user?.displayName ?? '', style: text.headlineSmall),
           Text(user?.email ?? '', style: text.bodyMedium),
+          if (user?.crmLabel != null)
+            Text(user!.crmLabel!, style: text.bodyMedium),
           const SizedBox(height: AppSpacing.lg),
           _HealthSummary(
             sex: user?.sex,
             birthDate: user?.birthDate,
-            onEdit: () => showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => const _HealthProfileSheet(),
-            ),
+            onEdit: () {
+              final wide = MediaQuery.sizeOf(context).width >= 840;
+              if (!wide) {
+                showModalBottomSheet<void>(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (_) => const _HealthProfileSheet(),
+                );
+                return;
+              }
+              showDialog<void>(
+                context: context,
+                builder: (_) => const Dialog(
+                  child: SizedBox(width: 480, child: _HealthProfileSheet()),
+                ),
+              );
+            },
           ),
           const Divider(),
           ListTile(
@@ -85,6 +102,7 @@ class ProfilePage extends ConsumerWidget {
             child: const Text('Sair'),
           ),
         ],
+        ),
       ),
     );
   }

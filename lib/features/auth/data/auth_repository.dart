@@ -133,7 +133,7 @@ class AuthRepository extends ChangeNotifier {
           normalized,
           redirectTo: passwordResetRedirect(
             web: kIsWeb,
-            webOrigin: Uri.base.origin,
+            webOrigin: kIsWeb ? Uri.base.origin : '',
           ),
         ),
       );

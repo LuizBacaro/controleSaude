@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 
 class ForgotPasswordPage extends ConsumerStatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -52,7 +53,8 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
       appBar: AppBar(title: const Text('Esqueci a senha')),
       body: SafeArea(
         top: false,
-        child: ListView(
+        child: WebFrame(
+          child: ListView(
           padding: const EdgeInsets.all(AppSpacing.lg),
           children: [
             if (_sent) ...[
@@ -100,6 +102,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
               ),
             ],
           ],
+          ),
         ),
       ),
     );

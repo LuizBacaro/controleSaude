@@ -7,6 +7,7 @@ import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/router/home_location.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 
 class ResetPasswordPage extends ConsumerStatefulWidget {
   const ResetPasswordPage({
@@ -90,7 +91,8 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
       appBar: AppBar(title: const Text('Nova senha')),
       body: SafeArea(
         top: false,
-        child: ListView(
+        child: WebFrame(
+          child: ListView(
           padding: const EdgeInsets.all(AppSpacing.lg),
           children: [
             if (!widget.canSetPassword) ...[
@@ -187,6 +189,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
               ),
             ],
           ],
+          ),
         ),
       ),
     );

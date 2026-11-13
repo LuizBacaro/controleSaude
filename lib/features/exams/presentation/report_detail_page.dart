@@ -7,6 +7,7 @@ import '../../../core/providers.dart';
 import '../../../core/router/marker_route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 import '../domain/exam_marker.dart';
 import 'widgets/report_heading.dart';
 import 'widgets/status_chip.dart';
@@ -77,7 +78,9 @@ class ReportDetailPage extends ConsumerWidget {
           ),
         ],
       ),
-      body: ListView(
+      body: WebFrame(
+        maxWidth: 860,
+        child: ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
         children: [
           ReportHeading(report: report),
@@ -141,6 +144,7 @@ class ReportDetailPage extends ConsumerWidget {
             ];
           }),
         ],
+        ),
       ),
     );
   }
