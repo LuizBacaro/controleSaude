@@ -1,5 +1,12 @@
 # TODOs do ExameFácil
 
+Cobrança do consultório, a partir de 2026-11-13. O desenho está em `notas/evolucao.md` (entrada dessa data). Não trocar por um botão “ir ao site” dentro do app da Play.
+
+- [ ] Criar o preço no Stripe e gravar `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` e `STRIPE_WEBHOOK_SECRET` nas funções. O webhook aponta para `stripe-webhook`. Sem isso o site não cobra.
+- [ ] Criar a assinatura `plano_medico_mensal` na Play e a credencial da Play Developer API para `confirm-play-purchase`. Sem a conferência no servidor, a compra não libera o consultório.
+- [ ] Enviar o AAB 1.0.7 (`build/app/outputs/bundle/release/app-release.aab`) à produção só quando o produto da Play existir. A 1.0.6 já está publicada. Não anexar pacote antigo no lugar.
+- [ ] Provar no site: “Sou médico”, cadastro em `/plano` e, com o Stripe configurado, a volta em `/#/plano?pago=1` abrindo o consultório. No Android, o paywall compra pela Play e “Meus exames” continua aberto.
+
 Ordem que destrava o uso real. Guardar o PDF original para reprocessar laudos antigos fica para depois.
 
 - [x] Liberar o endereço publicado no login do Supabase. Em 2026-10-25, no projeto `xdzognwurazkbmckzldf`, Authentication → URL Configuration ficou com Site URL `https://examefacil.pages.dev` e Redirect URLs `https://examefacil.pages.dev/**`.

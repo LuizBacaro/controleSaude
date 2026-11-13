@@ -6,6 +6,7 @@ import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/router/home_location.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -56,7 +57,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Entrar')),
-      body: ListView(
+      body: WebFrame(
+        child: ListView(
         padding: const EdgeInsets.all(AppSpacing.lg),
         children: [
           TextField(
@@ -71,6 +73,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             obscureText: true,
             decoration: const InputDecoration(labelText: 'Senha'),
             onSubmitted: (_) => _submit(),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () => context.push('/esqueci-senha'),
+              child: const Text('Esqueci a senha'),
+            ),
           ),
           if (_error != null) ...[
             const SizedBox(height: AppSpacing.md),
@@ -95,6 +104,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             child: const Text('Criar conta'),
           ),
         ],
+        ),
       ),
     );
   }

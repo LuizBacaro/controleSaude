@@ -14,8 +14,12 @@ Future<void> openServices() {
 }
 
 Future<void> loadSession(ProviderContainer container) async {
+  final auth = container.read(authRepositoryProvider);
   try {
-    await container.read(authRepositoryProvider).load();
+    await auth.captureRecoveryFromLaunch();
+  } catch (_) {}
+  try {
+    await auth.load();
   } catch (_) {}
   try {
     await container.read(examsRepositoryProvider).load();

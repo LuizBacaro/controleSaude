@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/errors/app_exception.dart';
+import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 import '../data/care_repository.dart';
 import '../domain/care_grant.dart';
 
@@ -52,9 +54,13 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
       final care = ref.read(careRepositoryProvider);
       final doctors = await care.listDoctors();
       final grants = await care.grantsAsPatient();
+      final me = ref.read(currentUserProvider)?.id;
       if (!mounted) return;
       setState(() {
-        _doctors = doctors;
+        _doctors = [
+          for (final doctor in doctors)
+            if (doctor.id != me) doctor,
+        ];
         _grants = grants;
         _error = null;
       });
@@ -113,7 +119,9 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
           ? const Center(child: CircularProgressIndicator())
           : RefreshIndicator(
               onRefresh: _load,
-              child: ListView(
+              child: WebFrame(
+                maxWidth: 720,
+                child: ListView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(AppSpacing.md),
                 children: [
@@ -157,6 +165,7 @@ class _DoctorsPageState extends ConsumerState<DoctorsPage> {
                     const SizedBox(height: AppSpacing.sm),
                   ],
                 ],
+                ),
               ),
             ),
     );

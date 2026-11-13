@@ -103,8 +103,21 @@ class AppException implements Exception {
     if (lower.contains('email not confirmed')) {
       return 'Falta um passo: abra o e-mail que enviamos, toque em confirmar e entre de novo.';
     }
-    if (lower.contains('rate limit') || lower.contains('too many')) {
+    if (lower.contains('rate limit') ||
+        lower.contains('too many') ||
+        lower.contains('only request this')) {
       return 'Muitas tentativas seguidas. Espere um pouco e tente de novo.';
+    }
+    if (lower.contains('code verifier') || lower.contains('code challenge')) {
+      return 'Abra o link no mesmo aparelho em que pediu a nova senha.';
+    }
+    if (lower.contains('otp_expired') ||
+        lower.contains('email link is invalid') ||
+        lower.contains('has expired')) {
+      return 'Este link expirou. Peça outro na tela de entrar.';
+    }
+    if (lower.contains('should be different')) {
+      return 'Escolha uma senha diferente da atual.';
     }
     if (lower.contains('profiles_crm_unique')) {
       return 'Este CRM já está cadastrado.';

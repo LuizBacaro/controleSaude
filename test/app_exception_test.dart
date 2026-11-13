@@ -52,6 +52,23 @@ void main() {
     );
   });
 
+  test('traduz link de senha vencido e senha repetida', () {
+    expect(
+      AppException.messageOf(
+        const AuthException('Email link is invalid or has expired'),
+      ),
+      'Este link expirou. Peça outro na tela de entrar.',
+    );
+    expect(
+      AppException.messageOf(
+        const AuthException(
+          'New password should be different from the old password.',
+        ),
+      ),
+      'Escolha uma senha diferente da atual.',
+    );
+  });
+
   test('não mostra erro desconhecido de sistema', () {
     final error = ClientException(
       'boom',

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../providers.dart';
 import '../theme/app_colors.dart';
+import 'web_frame.dart';
 
 /// Monta só a aba já visitada. O [IndexedStack] padrão construía Painel,
 /// Evolução, Histórico e Perfil juntos na primeira abertura.
@@ -67,7 +68,8 @@ class ShellEpochScope extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(ShellEpochScope oldWidget) => epoch != oldWidget.epoch;
+  bool updateShouldNotify(ShellEpochScope oldWidget) =>
+      epoch != oldWidget.epoch;
 }
 
 Widget lazyBranchContainer(
@@ -101,6 +103,27 @@ class AppShell extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final epoch = ref.watch(shellEpochProvider);
+    final isDoctor = ref.watch(currentUserProvider)?.isDoctor ?? false;
+    final destinations = [
+      if (isDoctor)
+        const _NavItem(
+          'Consultório',
+          Icons.apartment_outlined,
+          Icons.apartment,
+        ),
+      ..._destinations,
+    ];
+    final selected = isDoctor
+        ? navigationShell.currentIndex + 1
+        : navigationShell.currentIndex;
+    void openDestination(int index) {
+      if (isDoctor && index == 0) {
+        context.go('/consultorio');
+        return;
+      }
+      navigationShell.goBranch(isDoctor ? index - 1 : index);
+    }
+
     final wide = MediaQuery.sizeOf(context).width >= 840;
     final fab = navigationShell.currentIndex == 2
         ? FloatingActionButton.extended(
@@ -112,16 +135,18 @@ class AppShell extends ConsumerWidget {
           )
         : null;
 
+    final page = WebFrame(maxWidth: 1080, child: navigationShell);
+
     final scaffold = wide
         ? Scaffold(
             body: Row(
               children: [
                 NavigationRail(
-                  selectedIndex: navigationShell.currentIndex,
-                  onDestinationSelected: navigationShell.goBranch,
+                  selectedIndex: selected,
+                  onDestinationSelected: openDestination,
                   labelType: NavigationRailLabelType.all,
                   destinations: [
-                    for (final item in _destinations)
+                    for (final item in destinations)
                       NavigationRailDestination(
                         icon: Icon(item.icon),
                         selectedIcon: Icon(item.selected),
@@ -130,18 +155,18 @@ class AppShell extends ConsumerWidget {
                   ],
                 ),
                 const VerticalDivider(width: 1),
-                Expanded(child: navigationShell),
+                Expanded(child: page),
               ],
             ),
             floatingActionButton: fab,
           )
         : Scaffold(
-            body: navigationShell,
+            body: page,
             bottomNavigationBar: NavigationBar(
-              selectedIndex: navigationShell.currentIndex,
-              onDestinationSelected: navigationShell.goBranch,
+              selectedIndex: selected,
+              onDestinationSelected: openDestination,
               destinations: [
-                for (final item in _destinations)
+                for (final item in destinations)
                   NavigationDestination(
                     icon: Icon(item.icon),
                     selectedIcon: Icon(item.selected),

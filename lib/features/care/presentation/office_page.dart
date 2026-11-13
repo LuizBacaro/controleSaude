@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
+import '../../billing/data/doctor_plan_repository.dart';
+import '../../billing/presentation/doctor_plan_locked_page.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../care/data/granted_charts.dart';
@@ -27,7 +29,15 @@ class _OfficePageState extends ConsumerState<OfficePage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(_load);
+    Future.microtask(() async {
+      final active = await ref.read(doctorPlanActiveProvider.future);
+      if (!mounted) return;
+      if (active) {
+        await _load();
+      } else {
+        setState(() => _loading = false);
+      }
+    });
   }
 
   Future<void> _load() async {
@@ -92,6 +102,20 @@ class _OfficePageState extends ConsumerState<OfficePage> {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final user = ref.watch(currentUserProvider);
+    final plan = ref.watch(doctorPlanActiveProvider);
+    ref.listen(doctorPlanActiveProvider, (previous, next) {
+      if (next.asData?.value == true && previous?.asData?.value != true) {
+        _load();
+      }
+    });
+    if (user?.isDoctor == true && plan.asData?.value != true) {
+      if (plan.isLoading) {
+        return const Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
+      }
+      return DoctorPlanLockedPage(onLogout: _logout);
+    }
     final pending = _sorted(_grants.where((grant) => grant.isPending).toList());
     final accepted = _sorted(
       _grants.where((grant) => grant.isAccepted).toList(),
@@ -130,6 +154,20 @@ class _OfficePageState extends ConsumerState<OfficePage> {
                     padding: const EdgeInsets.all(AppSpacing.lg),
                     children: [
                       Text(greeting, style: text.headlineSmall),
+                      const SizedBox(height: AppSpacing.sm),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: FilledButton.tonalIcon(
+                          onPressed: () => context.go('/app'),
+                          icon: const Icon(Icons.monitor_heart_outlined),
+                          label: const Text('Meus exames'),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.xs),
+                      Text(
+                        'Os seus laudos ficam aqui, e você pode convidar outro médico para acompanhá-los.',
+                        style: text.bodyMedium,
+                      ),
                       if (_error != null) ...[
                         const SizedBox(height: AppSpacing.md),
                         Text(

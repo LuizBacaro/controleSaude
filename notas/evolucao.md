@@ -37,6 +37,13 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - O ícone da abertura é o escudo em `ic_launcher_foreground`, fundo `#0A3352`. Recortar em cima do branco e só reduzir deixa uma borda clara. A borda transparente tem que ficar na cor do escudo. O escudo cabe na máscara redonda (diâmetro 72/108); maior que isso, o topo oposto à seta é cortado.
 - No encontro da seta com o escudo sobra um vão branco da página. Esse vão se pinta no verde da seta (por volta de 49, 236, 186). Amostrar o pixel claro ao lado pinta de novo um ciano quase branco.
 - `FilledButton` do tema tem largura infinita (`Size.fromHeight`). Dentro do `trailing` de um `ListTile`, o botão come o cartão e, no debug, o nome some com o erro de largura. Botão de ação fica embaixo do nome, ou num `Expanded`.
+- Não impedir o download na Play por papel ou pagamento. Paciente e médico instalam o mesmo app. O que fecha sem assinatura é o consultório, não a loja.
+- No app distribuído pela Play não entra botão nem link para o checkout do site. Frases como “Continuar no site” ou “Assinar no site” ficam de fora desse binário. A compra no Android é o Google Play Billing, produto `plano_medico_mensal`. Quem já está no navegador paga no site.
+- Não copiar o passo do Inspekio em que o Android pede para ir pagar no site. O Brasil não está no programa de escolha de faturamento da Play. ExameFácil e Inspekio usam a mesma conta de desenvolvedor `6637139677623017493`.
+- O aplicativo não grava `doctor_subscriptions.status`. Plano ativo só nasce na função com service role, depois do webhook do Stripe ou da conferência do recibo da Play. Sem essa credencial a função responde 503 e o consultório continua fechado. Não inventar preço: valor e price id ficam nos segredos, não no código.
+- `wrangler pages deploy` sem `--branch main` publica na branch do git e não troca `examefacil.pages.dev`. A produção da Pages é a branch `main`.
+- O site usa rota com hash. A volta do pagamento é `https://examefacil.pages.dev/#/plano?pago=1`. Abrir `/plano` sem `#` cai na abertura.
+- Médico que já existia quando a migração `assinatura_medico` rodou permanece ativo. Médico novo nasce inativo. `luizsalvador31@gmail.com` continua paciente. Uma conta, um papel, congelado no cadastro.
 
 ## O que está valendo
 
@@ -57,7 +64,11 @@ O app lê laudos em PDF (Unilab e IPC), guarda no Supabase e mostra Painel, Evol
 - O mesmo projeto Flutter abre no navegador (`web/`) e no celular, no Supabase `xdzognwurazkbmckzldf`. Na tela larga a navegação fica na lateral. O endereço publicado é `https://examefacil.pages.dev`. A Site URL do Auth é esse endereço, e o redirecionamento permitido é `https://examefacil.pages.dev/**`.
 - `004_medico_e_acesso` já aplicada: `profiles.role`, CRM, `doctor_directory` e `care_grants`. A chave anon não lê diretório nem convite.
 - Médicos: cada médico é um cartão com nome, CRM e o botão embaixo. A lista recarrega ao reabrir a aba. Consultório: uma coluna, convites só quando existem, pacientes em ordem alfabética com busca.
-- A abertura pinta o logo e o indicador antes de ler o disco e de conectar o Supabase. Pacote na Play: 1.0.2 (versionCode 3), em análise desde 2026-10-25. O 1.0.1 quebrava no release por causa do R8. O celular de teste está nessa 1.0.2.
+- A abertura pinta o logo e o indicador antes de ler o disco e de conectar o Supabase. Na Play, a produção no ar é a 1.0.6. O pacote 1.0.7 (versionCode 8) está compilado em `build/app/outputs/bundle/release/app-release.aab` e ainda não foi enviado à revisão. O 1.0.1 quebrava no release por causa do R8.
+- Janela larga do site (a partir de 840 px; o cadastro, a partir de 900) centraliza o conteúdo. Abaixo disso o layout do celular permanece. No site, “Sou médico” abre `/plano`. Escolher Médico no cadastro também vai para `/plano`. No Android o cadastro de médico continua no app e o consultório mostra “Assinar pelo Google Play”.
+- Assinatura em `public.doctor_subscriptions` (migração `005_assinatura_medico` / `assinatura_medico` no projeto `xdzognwurazkbmckzldf`). O autenticado só lê a própria linha. `private.doctor_plan_active` é que libera diretório, convite e leitura de laudo alheio. Diretório de médicos lista só plano ativo.
+- Funções no ar: `create-doctor-checkout`, `stripe-webhook` (sem JWT, só assinatura do Stripe) e `confirm-play-purchase`. Faltam `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID`, `STRIPE_WEBHOOK_SECRET` e a credencial da Play Developer API. Enquanto faltam, o botão avisa que o pagamento não está configurado e ninguém é marcado como pago.
+- Site publicado: `https://examefacil.pages.dev` na 1.0.7 (`version.json`, build 8), em 2026-11-13.
 
 ## Histórico
 
@@ -391,3 +402,23 @@ Deu certo:
 Deu errado / limite:
 
 - Conta nova ainda não foi criada para ver o e-mail de confirmação abrir o site. As contas que já confirmaram o e-mail não dependem dessa troca.
+
+### 2026-11-13 — Consultório pago, site largo e o que não copiar do Inspekio
+
+Pedido: cobrar assinatura do médico, com a cobrança no site, e sem plano nem deixar baixar o app na Play. Paciente continua gratuito. Depois, publicar o site e, se o app mudasse, o app também. Em seguida, comparar com o Inspekio (`com.inspekio.app`, outro app da mesma conta de desenvolvedor) e guardar o rumo.
+
+Deu certo:
+
+- A Play não deixa uma ficha pública esconder o download conforme o papel ou o pagamento. App privado também não pode ser cobrado e sumiria para o paciente. O portão ficou no uso: o consultório só abre com plano ativo. Os exames da própria conta continuam de graça, porque essa área é a do paciente.
+- Quem chega pelo site cria a conta de médico em `/plano` e segue para o Stripe. O app da Play não aponta para esse checkout. No Android, a conta de médico nasce com plano inativo e o consultório oferece a compra pela Play, com “Restaurar compra”. Os dois caminhos gravam o mesmo status no Supabase: `inactive`, `active`, `past_due` ou `canceled`.
+- A migração `assinatura_medico` está aplicada. O médico de teste que já existia ficou ativo, para a conta interna não trancar. Médico novo fica inativo. Não há política de insert nem de update para o usuário autenticado.
+- O site 1.0.7 está em `https://examefacil.pages.dev`. Cadastro largo em duas colunas, “Sou médico” na abertura e a página do plano com CRM e “Continuar para o pagamento”. O primeiro `wrangler pages deploy` caiu na preview da branch `feature/config`; o endereço público só trocou depois do deploy na branch `main`.
+- O AAB 1.0.7 (63 MB) compilou. Não foi para a revisão da Play: a comparação com o Inspekio ainda estava aberta, e o produto `plano_medico_mensal` ainda não existe na loja.
+- As fotos do Inspekio (na pasta do Rescue Garage) mostram o iPhone só com entrada e cadastro, sem frase de ir ao site, e o navegador em `admin.inspekio.com` com a conta. O recado foi que no Android o app pede para ir ao site e no iOS um botão “continue no web” é recusado. Essa separação (loja sem checkout externo, site com a conta) é a parte que o ExameFácil já segue. O botão de sair do app da Play para pagar no site, não.
+
+Deu errado / limite:
+
+- Sem `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` e `STRIPE_WEBHOOK_SECRET`, o site responde que o pagamento não está configurado. Sem a API da Play, `confirm-play-purchase` responde 503. Nenhum dos dois libera o consultório sozinho.
+- Preço não foi escolhido. Não ficou valor inventado no código.
+- Confirmação de e-mail pode impedir a sessão logo após o cadastro. Nesse caso o checkout não abre; a pessoa confirma o e-mail e volta em `/plano`.
+- O link de redefinir senha de ponta a ponta, e o esquema `examefacil://redefinir-senha` na lista do Supabase, continuam adiados.

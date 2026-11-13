@@ -47,6 +47,9 @@ class CareRepository {
 
   Future<void> invite(String doctorId) async {
     final uid = _requireUser();
+    if (doctorId == uid) {
+      throw AppException('Escolha outro médico.');
+    }
     final existing = await _client
         .from('care_grants')
         .select('id, status')

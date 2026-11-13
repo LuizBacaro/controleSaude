@@ -9,6 +9,7 @@ import '../../../core/errors/app_exception.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/web_frame.dart';
 import '../../exams/domain/exam_marker.dart';
 import '../../exams/domain/exam_report.dart';
 import '../../exams/domain/patient_profile.dart';
@@ -155,10 +156,21 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
               ),
         automaticallyImplyLeading: !widget.isOnboarding,
       ),
-      body: draft == null ? _picker(context) : _review(context, draft),
+      body: WebFrame(
+        maxWidth: 800,
+        child: draft == null ? _picker(context) : _review(context, draft),
+      ),
       bottomNavigationBar: draft == null
           ? null
-          : SafeArea(
+          : Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.sizeOf(context).width < 840
+                      ? double.infinity
+                      : 800,
+                ),
+                child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.md,
@@ -195,6 +207,8 @@ class _ImportExamPageState extends ConsumerState<ImportExamPage> {
                       ),
                     ),
                   ],
+                ),
+              ),
                 ),
               ),
             ),
